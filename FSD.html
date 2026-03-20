@@ -1,454 +1,719 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FSD Question Bank — GEC Bhubaneswar</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSD Question Bank - GEC Bhubaneswar</title>
 <style>
-  /* ── Reset & Base ────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg:        #0a0e1a;
-    --bg2:       #0f1525;
-    --bg3:       #141c30;
-    --card:      #161e30;
-    --card-h:    #1b2540;
-    --border:    #1f2d4a;
-    --border-h:  #2e4070;
-    --accent:    #4f8ef7;
-    --accent2:   #7b5cf7;
-    --accent3:   #2de6c6;
-    --accent4:   #f7a94f;
-    --text:      #e2e8f4;
-    --text2:     #8fa8cc;
-    --text3:     #4a6080;
-    --green:     #22d3a3;
-    --red:       #f75a5a;
-    --yellow:    #f7c948;
-    --radius:    14px;
-    --radius-sm: 8px;
-    --shadow:    0 4px 24px rgba(0,0,0,.45);
-    --shadow-h:  0 8px 40px rgba(79,142,247,.15);
-    --trans:     .25s cubic-bezier(.4,0,.2,1);
-    --font:      'Space Grotesk', sans-serif;
-    --mono:      'JetBrains Mono', monospace;
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2433;
+    --border: #30363d;
+    --accent: #00d4aa;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --m1: #00d4aa;
+    --m2: #7c3aed;
+    --m3: #f59e0b;
+    --m4: #ef4444;
+    --r: 14px;
+    --tr: 0.3s cubic-bezier(.4, 0, .2, 1);
   }
 
-  html { scroll-behavior: smooth; }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    font-family: var(--font);
+    font-family: 'Sora', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* ── Noise texture overlay ───────────────────────── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: .4;
-  }
-
-  /* ── Gradient blobs ──────────────────────────────── */
-  .blob {
-    position: fixed; border-radius: 50%;
-    filter: blur(80px); pointer-events: none; z-index: 0;
-    animation: float 12s ease-in-out infinite;
-  }
-  .blob-1 { width: 400px; height: 400px; background: rgba(79,142,247,.07); top: -100px; right: -100px; animation-delay: 0s; }
-  .blob-2 { width: 350px; height: 350px; background: rgba(123,92,247,.06); bottom: -80px; left: -80px; animation-delay: -4s; }
-  .blob-3 { width: 300px; height: 300px; background: rgba(45,230,198,.05); top: 50%; left: 50%; animation-delay: -8s; }
-  @keyframes float { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-20px)} 66%{transform:translate(-20px,30px)} }
-
-  /* ── Layout wrapper ──────────────────────────────── */
-  .wrapper {
-    position: relative; z-index: 1;
-    max-width: 1100px; margin: 0 auto;
-    padding: 0 20px 80px;
-  }
-
-  /* ── Header ──────────────────────────────────────── */
   header {
-    padding: 40px 0 32px;
-    text-align: center;
+    background: linear-gradient(135deg, #0d1117, #161b22);
     border-bottom: 1px solid var(--border);
-    margin-bottom: 48px;
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    right: -60px;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(0, 212, 170, .1), transparent 70%);
+    pointer-events: none;
+  }
+
+  header h1 {
+    font-size: clamp(1.4rem, 4vw, 2.3rem);
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4aa, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     position: relative;
   }
-  header::after {
-    content: '';
-    position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
-    width: 120px; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
+
+  header p {
+    color: var(--muted);
+    font-size: .88rem;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    position: relative;
   }
 
   .badge {
-    display: inline-block;
-    font-size: .72rem; font-weight: 600; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--accent);
-    background: rgba(79,142,247,.1);
-    border: 1px solid rgba(79,142,247,.2);
-    border-radius: 40px; padding: 4px 14px;
-    margin-bottom: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
   }
 
-  h1 {
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
-    font-weight: 700; color: var(--text);
-    letter-spacing: -.02em;
-    margin-bottom: 8px;
+  .badge.g {
+    border-color: var(--m1);
+    color: var(--m1);
+    background: rgba(0, 212, 170, .08);
   }
-  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-  .subtitle {
-    font-size: .9rem; color: var(--text2);
-    display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+  .badge.p {
+    border-color: var(--m2);
+    color: var(--m2);
+    background: rgba(124, 58, 237, .08);
   }
-  .subtitle .dot { width: 3px; height: 3px; background: var(--text3); border-radius: 50%; }
 
-  /* ── Breadcrumb ──────────────────────────────────── */
-  #breadcrumb {
-    display: flex; align-items: center; gap: 8px;
-    font-size: .82rem; color: var(--text3);
-    margin-bottom: 28px;
-    min-height: 28px;
-    transition: opacity var(--trans);
+  .badge.a {
+    border-color: var(--m3);
+    color: var(--m3);
+    background: rgba(245, 158, 11, .08);
   }
-  #breadcrumb span { color: var(--text2); }
-  #breadcrumb .sep { color: var(--text3); }
-  #breadcrumb .crumb-active { color: var(--accent); }
 
-  /* ── Back Button ─────────────────────────────────── */
-  .nav-actions {
-    display: flex; align-items: center; gap: 12px;
-    flex-wrap: wrap; margin-bottom: 32px;
+  .badge.r {
+    border-color: var(--m4);
+    color: var(--m4);
+    background: rgba(239, 68, 68, .08);
   }
-  .home-btn,
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    min-height: 52px;
+    flex-wrap: wrap;
+  }
+
+  #back-btn,
+  .home-btn {
+    align-items: center;
+    gap: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--tr);
+    white-space: nowrap;
+  }
+
   #back-btn {
-    align-items: center; gap: 8px;
-    background: var(--card); border: 1px solid var(--border);
-    color: var(--text2); font-family: var(--font);
-    font-size: .85rem; font-weight: 500;
-    padding: 8px 18px; border-radius: 40px;
-    transition: all var(--trans);
+    display: none;
   }
-  .home-btn { display: inline-flex; text-decoration: none; }
-  #back-btn { display: none; cursor: pointer; }
-  .home-btn:hover,
-  #back-btn:hover { background: var(--card-h); border-color: var(--accent); color: var(--accent); transform: translateX(-3px); }
-  .home-btn svg,
-  #back-btn svg { transition: transform var(--trans); }
-  .home-btn:hover svg,
-  #back-btn:hover svg { transform: translateX(-3px); }
 
-  /* ── Views ───────────────────────────────────────── */
-  .view { display: none; animation: fadeUp .35s ease both; }
-  .view.active { display: block; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  .home-btn {
+    display: inline-flex;
+    text-decoration: none;
+  }
 
-  /* ── Module Cards ────────────────────────────────── */
-  .modules-grid {
+  #back-btn:hover,
+  .home-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  #breadcrumb {
+    font-size: .8rem;
+    color: var(--muted);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  #breadcrumb .sep {
+    opacity: .4;
+  }
+
+  #breadcrumb .active {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  #breadcrumb .lnk {
+    cursor: pointer;
+  }
+
+  #breadcrumb .lnk:hover {
+    color: var(--accent);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  .page-footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    text-align: center;
+    padding: 18px 20px 24px;
+    font-size: .82rem;
+    letter-spacing: .4px;
+  }
+
+  .view {
+    animation: fadeIn .35s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-lbl {
+    font-size: .72rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
   }
 
-  .module-card {
-    background: var(--card);
+  .mc {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--r);
     padding: 28px 24px 24px;
     cursor: pointer;
-    transition: all var(--trans);
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column; gap: 12px;
+    transition: var(--tr);
+    position: relative;
+    overflow: hidden;
   }
-  .module-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--card-h), transparent);
-    opacity: 0; transition: opacity var(--trans);
-  }
-  .module-card:hover { border-color: var(--border-h); transform: translateY(-4px); box-shadow: var(--shadow-h); }
-  .module-card:hover::before { opacity: 1; }
 
-  .module-card .m-num {
-    font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+  .mc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--r) var(--r) 0 0;
+  }
+
+  .mc.m1::before { background: var(--m1); }
+  .mc.m2::before { background: var(--m2); }
+  .mc.m3::before { background: var(--m3); }
+  .mc.m4::before { background: var(--m4); }
+
+  .mc:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+  }
+
+  .mc.m1:hover {
+    box-shadow: 0 8px 32px rgba(0, 212, 170, .18);
+    border-color: rgba(0, 212, 170, .3);
+  }
+
+  .mc.m2:hover {
+    box-shadow: 0 8px 32px rgba(124, 58, 237, .18);
+    border-color: rgba(124, 58, 237, .3);
+  }
+
+  .mc.m3:hover {
+    box-shadow: 0 8px 32px rgba(245, 158, 11, .18);
+    border-color: rgba(245, 158, 11, .3);
+  }
+
+  .mc.m4:hover {
+    box-shadow: 0 8px 32px rgba(239, 68, 68, .18);
+    border-color: rgba(239, 68, 68, .3);
+  }
+
+  .cn {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .m1 .cn { color: var(--m1); }
+  .m2 .cn { color: var(--m2); }
+  .m3 .cn { color: var(--m3); }
+  .m4 .cn { color: var(--m4); }
+
+  .ct {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .cd {
+    font-size: .79rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .cf {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    font-size: .68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .chip.c2 {
+    background: rgba(99, 179, 237, .12);
+    color: #63b3ed;
+    border: 1px solid rgba(99, 179, 237, .25);
+  }
+
+  .chip.c5 {
+    background: rgba(245, 158, 11, .12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, .25);
+  }
+
+  .chip.c10 {
+    background: rgba(239, 68, 68, .12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, .25);
+  }
+
+  #module-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  #module-subtitle {
+    color: var(--muted);
+    font-size: .84rem;
+    margin-bottom: 24px;
+  }
+
+  .marks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+  }
+
+  .mkc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: var(--tr);
+    text-align: center;
+  }
+
+  .mkc:hover {
+    transform: translateY(-3px);
+  }
+
+  .mkc.active {
+    border-color: currentColor;
+  }
+
+  .mkc .mv {
+    font-size: 2.4rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .mkc .ml {
+    font-size: .7rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .5px;
     text-transform: uppercase;
   }
-  .module-card .m-title { font-size: 1.1rem; font-weight: 700; }
-  .module-card .m-desc { font-size: .82rem; color: var(--text2); line-height: 1.55; }
-  .module-card .m-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
-  .chip {
-    font-size: .7rem; font-weight: 600;
-    padding: 3px 10px; border-radius: 20px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.08);
-    color: var(--text2);
+
+  .mkc .mc2 {
+    font-size: .7rem;
+    margin-top: 8px;
+    color: var(--muted);
   }
 
-  /* card accent colors */
-  .mc-1 .m-num { color: var(--accent); }
-  .mc-1:hover { border-color: rgba(79,142,247,.4); box-shadow: 0 8px 40px rgba(79,142,247,.12); }
-  .mc-2 .m-num { color: var(--accent2); }
-  .mc-2:hover { border-color: rgba(123,92,247,.4); box-shadow: 0 8px 40px rgba(123,92,247,.12); }
-  .mc-3 .m-num { color: var(--accent3); }
-  .mc-3:hover { border-color: rgba(45,230,198,.4); box-shadow: 0 8px 40px rgba(45,230,198,.12); }
-  .mc-4 .m-num { color: var(--accent4); }
-  .mc-4:hover { border-color: rgba(247,169,79,.4); box-shadow: 0 8px 40px rgba(247,169,79,.12); }
-
-  /* ── Marks Section ───────────────────────────────── */
-  .marks-header {
-    margin-bottom: 28px;
-  }
-  .marks-header h2 {
-    font-size: 1.5rem; font-weight: 700; margin-bottom: 4px;
-  }
-  .marks-header p { font-size: .88rem; color: var(--text2); }
-
-  .marks-tabs {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    margin-bottom: 32px;
+  .mkc.two { color: #63b3ed; }
+  .mkc.two:hover,
+  .mkc.two.active {
+    box-shadow: 0 4px 20px rgba(99, 179, 237, .2);
+    background: rgba(99, 179, 237, .06);
   }
 
-  .marks-tab {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 22px; border-radius: 40px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text2);
-    font-family: var(--font); font-size: .85rem; font-weight: 600;
-    cursor: pointer; transition: all var(--trans);
+  .mkc.five { color: var(--m3); }
+  .mkc.five:hover,
+  .mkc.five.active {
+    box-shadow: 0 4px 20px rgba(245, 158, 11, .2);
+    background: rgba(245, 158, 11, .06);
   }
-  .marks-tab:hover { border-color: var(--border-h); color: var(--text); }
-  .marks-tab.active { background: rgba(79,142,247,.12); border-color: var(--accent); color: var(--accent); }
-  .marks-tab .tab-badge {
-    font-size: .68rem; font-weight: 700;
-    background: rgba(255,255,255,.07);
-    border-radius: 10px; padding: 1px 8px; color: var(--text3);
+
+  .mkc.ten { color: var(--m4); }
+  .mkc.ten:hover,
+  .mkc.ten.active {
+    box-shadow: 0 4px 20px rgba(239, 68, 68, .2);
+    background: rgba(239, 68, 68, .06);
   }
-  .marks-tab.active .tab-badge { background: rgba(79,142,247,.15); color: var(--accent); }
 
-  /* ── Questions List ──────────────────────────────── */
-  .q-section { display: none; animation: fadeUp .3s ease both; }
-  .q-section.active { display: block; }
-
-  .q-section-title {
-    font-size: .78rem; font-weight: 600; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--text3);
+  .mst {
+    font-size: .83rem;
+    color: var(--muted);
+    margin-top: 28px;
     margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .q-section-title::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .q-item {
-    background: var(--card);
+  .mst span {
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--text);
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .tbtn {
+    font-family: 'Sora', sans-serif;
+    font-size: .74rem;
+    font-weight: 600;
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: border-color var(--trans);
+    color: var(--muted);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--tr);
   }
-  .q-item:hover { border-color: var(--border-h); }
-  .q-item.open { border-color: var(--border-h); }
 
-  .q-trigger {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 16px 20px;
+  .tbtn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .qlist {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .qi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+
+  .qh {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 15px 17px;
     cursor: pointer;
     user-select: none;
-    position: relative;
   }
 
-  .q-num {
-    font-size: .7rem; font-weight: 700;
-    font-family: var(--mono);
-    color: var(--text3);
-    background: rgba(255,255,255,.04);
-    border: 1px solid var(--border);
-    border-radius: 6px; padding: 2px 8px;
-    white-space: nowrap; margin-top: 2px; flex-shrink: 0;
-  }
-
-  .q-text {
-    flex: 1;
-    font-size: .92rem; font-weight: 500; color: var(--text);
-    line-height: 1.55;
-  }
-
-  .q-chevron {
-    flex-shrink: 0; width: 20px; height: 20px;
-    color: var(--text3);
-    transition: transform var(--trans), color var(--trans);
+  .qn {
+    font-size: .68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
     margin-top: 2px;
-  }
-  .q-item.open .q-chevron { transform: rotate(180deg); color: var(--accent); }
-
-  .q-answer {
-    max-height: 0; overflow: hidden;
-    transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
-    opacity: 0;
-  }
-  .q-item.open .q-answer { max-height: 2000px; opacity: 1; }
-
-  .q-answer-inner {
-    padding: 0 20px 20px 52px;
-    font-size: .88rem; color: var(--text2);
-    line-height: 1.75;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-    margin-top: -4px;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
   }
 
-  /* answer content formatting */
-  .q-answer-inner p { margin-bottom: 10px; }
-  .q-answer-inner p:last-child { margin-bottom: 0; }
-  .q-answer-inner strong { color: var(--text); font-weight: 600; }
-  .q-answer-inner ul { padding-left: 18px; margin: 8px 0; }
-  .q-answer-inner ul li { margin-bottom: 5px; }
-  .q-answer-inner code {
-    font-family: var(--mono);
-    font-size: .82em;
-    background: rgba(255,255,255,.06);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--accent3);
+  .qi.two .qn {
+    background: rgba(99, 179, 237, .15);
+    color: #63b3ed;
   }
-  .q-answer-inner pre {
-    font-family: var(--mono);
+
+  .qi.five .qn {
+    background: rgba(245, 158, 11, .15);
+    color: #f59e0b;
+  }
+
+  .qi.ten .qn {
+    background: rgba(239, 68, 68, .15);
+    color: #ef4444;
+  }
+
+  .qt {
+    flex: 1;
+    font-size: .875rem;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  .qtg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--surface2);
+    color: var(--muted);
+    transition: var(--tr);
+    margin-top: 2px;
     font-size: .8rem;
-    background: #0d1322;
+    font-weight: 700;
+  }
+
+  .qi.open .qtg {
+    background: var(--accent);
+    color: #000;
+    transform: rotate(45deg);
+  }
+
+  .qa {
+    display: none;
+    padding: 16px 17px 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .qi.open .qa {
+    display: block;
+    animation: fadeIn .2s ease;
+  }
+
+  .albl {
+    font-size: .67rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .albl::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .ab {
+    font-size: .85rem;
+    line-height: 1.75;
+    color: #c9d1d9;
+  }
+
+  .ab code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    background: rgba(28, 36, 51, .8);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 16px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    color: #79c0ff;
+  }
+
+  .ab pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    background: #0a0e14;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 10px 0;
     overflow-x: auto;
-    margin: 12px 0;
-    color: #a9d4ff;
+    color: #c9d1d9;
     line-height: 1.65;
     white-space: pre;
   }
-  .q-answer-inner pre .kw  { color: #c792ea; }
-  .q-answer-inner pre .fn  { color: #82aaff; }
-  .q-answer-inner pre .str { color: #c3e88d; }
-  .q-answer-inner pre .cmt { color: #546e7a; }
-  .q-answer-inner pre .num { color: #f78c6c; }
-  .q-answer-inner table {
-    width: 100%; border-collapse: collapse; margin: 12px 0;
-    font-size: .82rem;
+
+  .ab pre code {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
   }
-  .q-answer-inner table th {
-    background: rgba(79,142,247,.1);
+
+  .ab pre .kw  { color: #c792ea; }
+  .ab pre .fn  { color: #82aaff; }
+  .ab pre .str { color: #c3e88d; }
+  .ab pre .cmt { color: #546e7a; }
+  .ab pre .num { color: #f78c6c; }
+
+  .ab ul,
+  .ab ol {
+    padding-left: 18px;
+    margin: 8px 0;
+  }
+
+  .ab li {
+    margin-bottom: 5px;
+    line-height: 1.65;
+  }
+
+  .ab strong {
     color: var(--text);
+    font-weight: 600;
+  }
+
+  .ab table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: .8rem;
+  }
+
+  .ab table th {
+    background: var(--surface2);
     padding: 8px 12px;
+    border: 1px solid var(--border);
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--muted);
+    font-size: .72rem;
+    text-transform: uppercase;
   }
-  .q-answer-inner table td {
+
+  .ab table td {
     padding: 8px 12px;
-    border-bottom: 1px solid rgba(255,255,255,.04);
-    color: var(--text2);
-  }
-  .q-answer-inner table tr:last-child td { border-bottom: none; }
-
-  /* ── Footer ──────────────────────────────────────── */
-  footer {
-    text-align: center; padding: 40px 20px 20px;
-    font-size: .78rem; color: var(--text3);
-    border-top: 1px solid var(--border);
-    margin-top: 60px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
   }
 
-  /* ── Responsive ──────────────────────────────────── */
-  @media (max-width: 600px) {
-    .modules-grid { grid-template-columns: 1fr; }
-    .q-answer-inner { padding-left: 20px; }
-    h1 { font-size: 1.5rem; }
-    .marks-tab { padding: 8px 16px; font-size: .8rem; }
+  .ab p {
+    margin-bottom: 8px;
   }
 
-  /* ── Progress indicator ──────────────────────────── */
-  .progress-bar {
-    position: fixed; top: 0; left: 0; height: 2px; z-index: 100;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    width: 0; transition: width .3s ease;
+  @media(max-width:600px) {
+    main {
+      padding: 18px 13px 50px;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .marks-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>
 </head>
 <body>
-<div class="progress-bar" id="progress"></div>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
-<div class="wrapper">
-  <!-- Header -->
   <header>
-    <div class="badge">B.Tech IV Semester · GEC Autonomous Bhubaneswar</div>
-    <h1>Full Stack <span>Development-2</span></h1>
-    <p class="subtitle">
-      <span>Question Bank</span>
-      <span class="dot"></span>
-      <span>96 Questions</span>
-      <span class="dot"></span>
-      <span>Module I–IV</span>
-      <span class="dot"></span>
-      <span>Part A / B / C</span>
-    </p>
-  </header>
-
-  <!-- Breadcrumb -->
-  <div id="breadcrumb"></div>
-
-  <div class="nav-actions">
-    <a class="home-btn" href="index.html">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Home
-    </a>
-
-    <!-- Back Button -->
-    <button id="back-btn" onclick="goBack()">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Modules
-    </button>
-  </div>
-
-  <!-- VIEW: Home -->
-  <div class="view active" id="view-home">
-    <div class="modules-grid" id="modules-grid"></div>
-  </div>
-
-  <!-- VIEW: Module -->
-  <div class="view" id="view-module">
-    <div class="marks-header">
-      <h2 id="mod-heading"></h2>
-      <p id="mod-subheading"></p>
+    <h1>Full Stack Development-2 Question Bank</h1>
+    <p>B.Tech IV Semester &middot; Gandhi Engineering College (GEC Autonomous) Bhubaneswar</p>
+    <div class="badge-row">
+      <span class="badge g">Module 1 &middot; MongoDB</span>
+      <span class="badge p">Module 2 &middot; Node.js</span>
+      <span class="badge a">Module 3 &middot; Angular</span>
+      <span class="badge r">Module 4 &middot; MEAN Stack</span>
     </div>
-    <div class="marks-tabs" id="marks-tabs"></div>
-    <div id="questions-container"></div>
-  </div>
-</div>
+  </header>
+  <nav>
+    <a class="home-btn" href="index.html">&#8592; Home</a>
+    <button id="back-btn" onclick="goBack()">&#8592; Back</button>
+    <div id="breadcrumb"><span class="active">Home</span></div>
+  </nav>
+  <main>
+    <div id="view-home" class="view">
+      <div class="section-lbl">Select a Module to Begin</div>
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+    <div id="view-module" class="view" style="display:none">
+      <h2 id="module-title"></h2>
+      <p id="module-subtitle"></p>
+      <div class="marks-grid" id="marks-grid"></div>
+      <div id="qcontainer" style="margin-top:28px"></div>
+    </div>
+  </main>
+  <footer class="page-footer">&copy; Prabhudatta Panda</footer>
+  <script>const data = {
 
-<footer>© Prabhudatta Panda &nbsp;·&nbsp; Full Stack Development-2 Question Bank</footer>
-
-<script>
-/* ═══════════════════════════════════════════════════════
-   DATA — All 96 questions with answers
-   Structure: data[moduleKey][marksKey] = [{q, a}]
-═══════════════════════════════════════════════════════ */
-const data = {
-
-  /* ────────────── MODULE 1 ────────────── */
+  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ MODULE 1 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   mod1: {
     "2": [
       {
@@ -497,14 +762,14 @@ Returns users who are age 20 <em>and</em> live in Delhi.`
       },
       {
         q: "Explain why sorting is important in queries and explain the use of descending sort.",
-        a: `<strong>Importance:</strong> Sorting organizes query results in a meaningful order — e.g., newest records first, highest scores first. Without sorting, MongoDB returns documents in natural (insertion) order.<br><br>
+        a: `<strong>Importance:</strong> Sorting organizes query results in a meaningful order â€” e.g., newest records first, highest scores first. Without sorting, MongoDB returns documents in natural (insertion) order.<br><br>
 <strong>Descending sort</strong> uses <code>-1</code>:
 <pre>db.students.<span class="fn">find</span>().<span class="fn">sort</span>({ marks: <span class="num">-1</span> })</pre>
 This returns students ordered from highest marks to lowest. Use <code>1</code> for ascending order.`
       },
       {
         q: "Write a query to show only name and age fields and combine sort and limit in a query example.",
-        a: `<strong>Projection — show only name and age:</strong>
+        a: `<strong>Projection â€” show only name and age:</strong>
 <pre>db.students.<span class="fn">find</span>({}, { name: <span class="num">1</span>, age: <span class="num">1</span>, _id: <span class="num">0</span> })</pre>
 <strong>Combine sort and limit:</strong>
 <pre>db.students
@@ -516,7 +781,7 @@ Returns the 5 oldest students. <code>sort()</code> is applied before <code>limit
       {
         q: "What is aggregation in MongoDB and explain the role of $match in aggregation.",
         a: `<strong>Aggregation</strong> is a pipeline-based framework for processing and transforming documents. It performs operations like filtering, grouping, sorting, and computing.<br><br>
-<strong>$match</strong> filters documents — similar to <code>find()</code> — but inside an aggregation pipeline:
+<strong>$match</strong> filters documents â€” similar to <code>find()</code> â€” but inside an aggregation pipeline:
 <pre>db.orders.<span class="fn">aggregate</span>([
   { <span class="str">$match</span>: { status: <span class="str">"completed"</span> } },
   { <span class="str">$group</span>: { _id: <span class="str">"$customerId"</span>, total: { <span class="str">$sum</span>: <span class="str">"$amount"</span> } } }
@@ -538,12 +803,12 @@ Returns the 5 oldest students. <code>sort()</code> is applied before <code>limit
         a: `<strong>User Authentication:</strong> The process of verifying the identity of a user before granting access to the database. MongoDB uses username/password credentials.<br><br>
 <strong>Roles</strong> define what a user can do after authentication (authorization). Common roles:
 <ul>
-<li><code>read</code> — Can only read data</li>
-<li><code>readWrite</code> — Can read and write</li>
-<li><code>dbAdmin</code> — Administrative tasks</li>
-<li><code>root</code> — Full access to everything</li>
+<li><code>read</code> â€” Can only read data</li>
+<li><code>readWrite</code> â€” Can read and write</li>
+<li><code>dbAdmin</code> â€” Administrative tasks</li>
+<li><code>root</code> â€” Full access to everything</li>
 </ul>
-Roles enforce the principle of least privilege — users get only the permissions they need.`
+Roles enforce the principle of least privilege â€” users get only the permissions they need.`
       },
       {
         q: "Which GUI tool is officially provided for MongoDB?",
@@ -599,23 +864,23 @@ Available for Windows, macOS, and Linux. Download from <code>mongodb.com/product
         a: `<table>
 <tr><th>limit()</th><th>skip()</th></tr>
 <tr><td>Restricts the number of documents returned</td><td>Skips a specified number of documents</td></tr>
-<tr><td><code>.limit(5)</code> → returns first 5</td><td><code>.skip(10)</code> → skips first 10</td></tr>
+<tr><td><code>.limit(5)</code> â†’ returns first 5</td><td><code>.skip(10)</code> â†’ skips first 10</td></tr>
 <tr><td>Used for controlling result size</td><td>Used for pagination</td></tr>
 </table>
 <strong>Combined (pagination):</strong>
 <pre>db.items.<span class="fn">find</span>().<span class="fn">skip</span>(<span class="num">10</span>).<span class="fn">limit</span>(<span class="num">5</span>)</pre>
-Returns items 11–15 — the second page of a 5-item-per-page display.`
+Returns items 11â€“15 â€” the second page of a 5-item-per-page display.`
       }
     ]
   },
 
-  /* ────────────── MODULE 2 ────────────── */
+  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ MODULE 2 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   mod2: {
     "2": [
       {
         q: "What is npm used for and state one advantage of using npm.",
         a: `<strong>npm (Node Package Manager)</strong> is used to install, manage, and share JavaScript packages/modules for Node.js projects.<br><br>
-<strong>One advantage:</strong> Huge ecosystem — npm hosts over 2 million packages, allowing developers to reuse code and avoid reinventing the wheel.
+<strong>One advantage:</strong> Huge ecosystem â€” npm hosts over 2 million packages, allowing developers to reuse code and avoid reinventing the wheel.
 <pre><span class="cmt"># Install a package</span>
 npm install express</pre>`
       },
@@ -646,7 +911,7 @@ server.<span class="fn">listen</span>(<span class="num">3000</span>, () => conso
       },
       {
         q: "Explain how to set up a basic Express server and write code to respond with 'Hello World' using Express.",
-        a: `<strong>Steps:</strong> Install Express → require it → create app → define route → listen on port.<br><br>
+        a: `<strong>Steps:</strong> Install Express â†’ require it â†’ create app â†’ define route â†’ listen on port.<br><br>
 <pre><span class="kw">const</span> express = <span class="fn">require</span>(<span class="str">'express'</span>)
 <span class="kw">const</span> app = <span class="fn">express</span>()
 
@@ -679,7 +944,7 @@ Install first: <code>npm install express</code>`
   <span class="kw">const</span> userId = req.params.id
   res.<span class="fn">send</span>(<span class="str">\`User ID is: \${userId}\`</span>)
 })</pre>
-Request to <code>/user/42</code> → responds with <strong>"User ID is: 42"</strong>.<br>
+Request to <code>/user/42</code> â†’ responds with <strong>"User ID is: 42"</strong>.<br>
 Multiple params: <code>/user/:id/post/:postId</code>`
       },
       {
@@ -723,7 +988,7 @@ Install: <code>npm install mongoose</code>`
         q: "Compare JWT vs session-based authentication.",
         a: `<table>
 <tr><th>JWT</th><th>Session-based</th></tr>
-<tr><td>Stateless — token stored client-side</td><td>Stateful — session stored server-side</td></tr>
+<tr><td>Stateless â€” token stored client-side</td><td>Stateful â€” session stored server-side</td></tr>
 <tr><td>Token sent in Authorization header</td><td>Session ID sent via cookie</td></tr>
 <tr><td>Scalable (no server storage)</td><td>Requires shared session store for scaling</td></tr>
 <tr><td>Cannot be invalidated easily</td><td>Easy to invalidate (delete session)</td></tr>
@@ -792,7 +1057,7 @@ Install: <code>npm install express-session</code>`
     ]
   },
 
-  /* ────────────── MODULE 3 ────────────── */
+  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ MODULE 3 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   mod3: {
     "2": [
       {
@@ -816,7 +1081,7 @@ This creates 4 files: <code>.ts</code>, <code>.html</code>, <code>.css</code>, <
         a: `<table>
 <tr><th>One-way Binding</th><th>Two-way Binding</th></tr>
 <tr><td>Data flows in one direction</td><td>Data flows both ways</td></tr>
-<tr><td>Component → Template or Template → Component</td><td>Component ↔ Template</td></tr>
+<tr><td>Component â†’ Template or Template â†’ Component</td><td>Component â†” Template</td></tr>
 <tr><td>Uses <code>{{ }}</code>, <code>[property]</code>, <code>(event)</code></td><td>Uses <code>[(ngModel)]</code></td></tr>
 <tr><td>View doesn't auto-update component</td><td>View updates component and vice versa</td></tr>
 </table>`
@@ -854,7 +1119,7 @@ Access index: <code>*ngFor="let item of items; let i = index"</code>`
         a: `In SPAs, the page never fully reloads. <strong>Routing</strong> is critical because:
 <ul>
 <li>It simulates navigation between pages without full page reload</li>
-<li>Enables deep linking — users can bookmark/share specific URLs</li>
+<li>Enables deep linking â€” users can bookmark/share specific URLs</li>
 <li>Controls which component is displayed for each URL path</li>
 <li>Supports browser back/forward navigation</li>
 <li>Improves user experience by maintaining app state across views</li>
@@ -912,9 +1177,9 @@ A <strong>library</strong> (like React) only handles one concern (UI rendering) 
       },
       {
         q: "Name two structural directives in Angular with example.",
-        a: `<strong>1. *ngIf</strong> — Conditionally renders an element:
+        a: `<strong>1. *ngIf</strong> â€” Conditionally renders an element:
 <pre><span class="str">&lt;div *ngIf="showBanner"&gt;</span>Welcome Banner<span class="str">&lt;/div&gt;</span></pre>
-<strong>2. *ngFor</strong> — Renders a list of elements:
+<strong>2. *ngFor</strong> â€” Renders a list of elements:
 <pre><span class="str">&lt;li *ngFor="let user of users"&gt;</span>{{ user.name }}<span class="str">&lt;/li&gt;</span></pre>
 Structural directives are prefixed with <code>*</code> and change the DOM structure (add/remove elements).`
       },
@@ -952,22 +1217,22 @@ Structural directives are prefixed with <code>*</code> and change the DOM struct
       {
         q: "Describe the architecture of an Angular application (modules, components, templates).",
         a: `Angular follows a <strong>component-based architecture</strong> organized around modules.<br><br>
-<strong>NgModules:</strong> Every Angular app has at least one module — <code>AppModule</code>. Modules group related components, services, and directives. They declare what the module contains and what it imports/exports.<br><br>
-<strong>Components:</strong> The building blocks of the UI. Each component has:<ul><li><strong>.ts file</strong> — class with logic and data</li><li><strong>.html file</strong> — template defining the view</li><li><strong>.css file</strong> — component-specific styles</li></ul>
+<strong>NgModules:</strong> Every Angular app has at least one module â€” <code>AppModule</code>. Modules group related components, services, and directives. They declare what the module contains and what it imports/exports.<br><br>
+<strong>Components:</strong> The building blocks of the UI. Each component has:<ul><li><strong>.ts file</strong> â€” class with logic and data</li><li><strong>.html file</strong> â€” template defining the view</li><li><strong>.css file</strong> â€” component-specific styles</li></ul>
 <strong>Templates:</strong> HTML with Angular-specific syntax including interpolation (<code>{{ }}</code>), property binding (<code>[prop]</code>), event binding (<code>(event)</code>), and directives (<code>*ngIf</code>, <code>*ngFor</code>).<br><br>
-<strong>Services:</strong> Injectable classes for shared business logic, data fetching, etc. — separated from component logic using <strong>Dependency Injection</strong>.<br><br>
-<strong>Data flow:</strong> <em>AppModule → AppComponent → Child Components → Services</em>. This hierarchical structure makes the app modular, testable, and scalable.`
+<strong>Services:</strong> Injectable classes for shared business logic, data fetching, etc. â€” separated from component logic using <strong>Dependency Injection</strong>.<br><br>
+<strong>Data flow:</strong> <em>AppModule â†’ AppComponent â†’ Child Components â†’ Services</em>. This hierarchical structure makes the app modular, testable, and scalable.`
       },
       {
         q: "Differentiate between one-way data binding and two-way data binding with examples.",
-        a: `<strong>One-Way Data Binding</strong> — data flows in a single direction.<br><br>
-<em>Interpolation (Component → View):</em>
+        a: `<strong>One-Way Data Binding</strong> â€” data flows in a single direction.<br><br>
+<em>Interpolation (Component â†’ View):</em>
 <pre><span class="str">&lt;h1&gt;</span>{{ title }}<span class="str">&lt;/h1&gt;</span></pre>
-<em>Property Binding (Component → View):</em>
+<em>Property Binding (Component â†’ View):</em>
 <pre><span class="str">&lt;img [src]="imageUrl"&gt;</span></pre>
-<em>Event Binding (View → Component):</em>
+<em>Event Binding (View â†’ Component):</em>
 <pre><span class="str">&lt;button (click)="save()"&gt;</span>Save<span class="str">&lt;/button&gt;</span></pre>
-<strong>Two-Way Data Binding</strong> — synchronizes data between component and view simultaneously using <code>[(ngModel)]</code>:
+<strong>Two-Way Data Binding</strong> â€” synchronizes data between component and view simultaneously using <code>[(ngModel)]</code>:
 <pre><span class="str">&lt;input [(ngModel)]="username"&gt;</span>
 <span class="str">&lt;p&gt;</span>{{ username }}<span class="str">&lt;/p&gt;</span></pre>
 When the user types, <code>username</code> updates in the component, and the paragraph reflects the change instantly.<br><br>
@@ -975,17 +1240,17 @@ When the user types, <code>username</code> updates in the component, and the par
       },
       {
         q: "Write the steps to configure basic routes in Angular and explain how to navigate between routes programmatically using Router.",
-        a: `<strong>Step 1 — Define routes in app-routing.module.ts:</strong>
+        a: `<strong>Step 1 â€” Define routes in app-routing.module.ts:</strong>
 <pre><span class="kw">const</span> routes: Routes = [
   { path: <span class="str">''</span>, component: HomeComponent },
   { path: <span class="str">'about'</span>, component: AboutComponent },
   { path: <span class="str">'**'</span>, redirectTo: <span class="str">''</span> }
 ]</pre>
-<strong>Step 2 — Add router outlet in app.component.html:</strong>
+<strong>Step 2 â€” Add router outlet in app.component.html:</strong>
 <pre><span class="str">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span></pre>
-<strong>Step 3 — Add navigation links (declarative):</strong>
+<strong>Step 3 â€” Add navigation links (declarative):</strong>
 <pre><span class="str">&lt;a routerLink="/about"&gt;</span>About<span class="str">&lt;/a&gt;</span></pre>
-<strong>Step 4 — Programmatic navigation using Router:</strong>
+<strong>Step 4 â€” Programmatic navigation using Router:</strong>
 <pre><span class="kw">import</span> { Router } <span class="kw">from</span> <span class="str">'@angular/router'</span>
 
 <span class="kw">constructor</span>(<span class="kw">private</span> router: Router) {}
@@ -997,12 +1262,12 @@ Programmatic navigation is essential for conditional redirects after actions lik
       },
       {
         q: "Differentiate between reactive forms and template-driven forms with examples.",
-        a: `<strong>Template-Driven Forms</strong> — logic in the HTML template:
+        a: `<strong>Template-Driven Forms</strong> â€” logic in the HTML template:
 <pre><span class="str">&lt;form #f="ngForm" (ngSubmit)="submit(f)"&gt;</span>
   <span class="str">&lt;input name="email" ngModel required&gt;</span>
 <span class="str">&lt;/form&gt;</span></pre>
 <ul><li>Simpler syntax, less TypeScript code</li><li>Suitable for simple forms</li><li>Uses <code>FormsModule</code></li></ul>
-<strong>Reactive Forms</strong> — logic in the component class:
+<strong>Reactive Forms</strong> â€” logic in the component class:
 <pre>form = <span class="kw">new</span> <span class="fn">FormGroup</span>({
   email: <span class="kw">new</span> <span class="fn">FormControl</span>(<span class="str">''</span>, Validators.required)
 })</pre>
@@ -1011,8 +1276,8 @@ Programmatic navigation is essential for conditional redirects after actions lik
       },
       {
         q: "Write the steps to create a reactive form with two input fields and discuss the advantages of reactive forms in complex form handling scenarios.",
-        a: `<strong>Step 1 — Import ReactiveFormsModule in app.module.ts.</strong><br>
-<strong>Step 2 — Component:</strong>
+        a: `<strong>Step 1 â€” Import ReactiveFormsModule in app.module.ts.</strong><br>
+<strong>Step 2 â€” Component:</strong>
 <pre><span class="kw">import</span> { FormGroup, FormControl, Validators } <span class="kw">from</span> <span class="str">'@angular/forms'</span>
 
 loginForm = <span class="kw">new</span> <span class="fn">FormGroup</span>({
@@ -1023,7 +1288,7 @@ loginForm = <span class="kw">new</span> <span class="fn">FormGroup</span>({
 <span class="fn">onSubmit</span>() {
   console.<span class="fn">log</span>(<span class="kw">this</span>.loginForm.value)
 }</pre>
-<strong>Step 3 — Template:</strong>
+<strong>Step 3 â€” Template:</strong>
 <pre><span class="str">&lt;form [formGroup]="loginForm" (ngSubmit)="onSubmit()"&gt;</span>
   <span class="str">&lt;input formControlName="email"&gt;</span>
   <span class="str">&lt;input formControlName="password" type="password"&gt;</span>
@@ -1043,26 +1308,26 @@ loginForm = <span class="kw">new</span> <span class="fn">FormGroup</span>({
 <strong>Template:</strong>
 <pre><span class="str">&lt;div *ngFor="let p of products; let i = index"&gt;</span>
   <span class="str">&lt;h3&gt;</span>{{ i+1 }}. {{ p.name }}<span class="str">&lt;/h3&gt;</span>
-  <span class="str">&lt;p&gt;</span>Price: ₹{{ p.price }}<span class="str">&lt;/p&gt;</span>
+  <span class="str">&lt;p&gt;</span>Price: â‚¹{{ p.price }}<span class="str">&lt;/p&gt;</span>
 <span class="str">&lt;/div&gt;</span></pre>
 <strong>Key exported variables:</strong> <code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code>. These can be used to style alternate rows or highlight the first/last item.`
       },
       {
         q: "Compare and list a detailed analysis between property binding and event binding with examples.",
-        a: `<strong>Property Binding</strong> — sets a DOM property from a component value (Component → View):
+        a: `<strong>Property Binding</strong> â€” sets a DOM property from a component value (Component â†’ View):
 <pre><span class="str">&lt;input [value]="username"&gt;</span>
 <span class="str">&lt;button [disabled]="isLoading"&gt;</span>Submit<span class="str">&lt;/button&gt;</span>
 <span class="str">&lt;img [src]="imageUrl" [alt]="imageAlt"&gt;</span></pre>
-<ul><li>One-directional: component → DOM</li><li>Updates DOM automatically when component property changes</li></ul>
-<strong>Event Binding</strong> — listens to DOM events and triggers component methods (View → Component):
+<ul><li>One-directional: component â†’ DOM</li><li>Updates DOM automatically when component property changes</li></ul>
+<strong>Event Binding</strong> â€” listens to DOM events and triggers component methods (View â†’ Component):
 <pre><span class="str">&lt;button (click)="onClick()"&gt;</span>Click<span class="str">&lt;/button&gt;</span>
 <span class="str">&lt;input (keyup)="onKey($event)"&gt;</span>
 <span class="str">&lt;form (submit)="onSubmit()"&gt;&lt;/form&gt;</span></pre>
-<ul><li>One-directional: user action → component logic</li><li>Uses <code>$event</code> to pass event data to the method</li></ul>
+<ul><li>One-directional: user action â†’ component logic</li><li>Uses <code>$event</code> to pass event data to the method</li></ul>
 <strong>Comparison:</strong>
 <table>
 <tr><th>Feature</th><th>Property Binding</th><th>Event Binding</th></tr>
-<tr><td>Direction</td><td>Component → DOM</td><td>DOM → Component</td></tr>
+<tr><td>Direction</td><td>Component â†’ DOM</td><td>DOM â†’ Component</td></tr>
 <tr><td>Syntax</td><td><code>[property]</code></td><td><code>(event)</code></td></tr>
 <tr><td>Purpose</td><td>Set DOM properties</td><td>React to user actions</td></tr>
 </table>`
@@ -1119,15 +1384,15 @@ cd my-app
 ng serve</pre>
 <strong>Key generated files:</strong>
 <ul>
-<li><code>src/app/app.module.ts</code> — Root module; declares and imports everything</li>
-<li><code>src/app/app.component.ts</code> — Root component class</li>
-<li><code>src/app/app.component.html</code> — Root component template</li>
-<li><code>src/app/app-routing.module.ts</code> — Route configuration</li>
-<li><code>src/main.ts</code> — Entry point that bootstraps AppModule</li>
-<li><code>src/index.html</code> — Single HTML page with <code>&lt;app-root&gt;</code></li>
-<li><code>angular.json</code> — Project configuration (build, serve, test)</li>
-<li><code>tsconfig.json</code> — TypeScript compiler options</li>
-<li><code>package.json</code> — npm dependencies</li>
+<li><code>src/app/app.module.ts</code> â€” Root module; declares and imports everything</li>
+<li><code>src/app/app.component.ts</code> â€” Root component class</li>
+<li><code>src/app/app.component.html</code> â€” Root component template</li>
+<li><code>src/app/app-routing.module.ts</code> â€” Route configuration</li>
+<li><code>src/main.ts</code> â€” Entry point that bootstraps AppModule</li>
+<li><code>src/index.html</code> â€” Single HTML page with <code>&lt;app-root&gt;</code></li>
+<li><code>angular.json</code> â€” Project configuration (build, serve, test)</li>
+<li><code>tsconfig.json</code> â€” TypeScript compiler options</li>
+<li><code>package.json</code> â€” npm dependencies</li>
 </ul>
 <strong>Other useful CLI commands:</strong>
 <pre>ng g c my-component   <span class="cmt"># generate component</span>
@@ -1167,18 +1432,18 @@ These three together form the core data-binding mechanism in Angular.`
       },
       {
         q: "Discuss the role of route parameters. Write an example of passing and retrieving parameters and differentiate between relative and absolute navigation in Angular with examples.",
-        a: `<strong>Route Parameters</strong> allow passing dynamic values in the URL to components — e.g., viewing a specific user's profile at <code>/user/42</code>.<br><br>
-<strong>Step 1 — Define route with parameter:</strong>
+        a: `<strong>Route Parameters</strong> allow passing dynamic values in the URL to components â€” e.g., viewing a specific user's profile at <code>/user/42</code>.<br><br>
+<strong>Step 1 â€” Define route with parameter:</strong>
 <pre><span class="kw">const</span> routes: Routes = [
   { path: <span class="str">'user/:id'</span>, component: UserComponent }
 ]</pre>
-<strong>Step 2 — Navigate with parameter:</strong>
+<strong>Step 2 â€” Navigate with parameter:</strong>
 <pre><span class="cmt">// In template:</span>
 <span class="str">&lt;a [routerLink]="['/user', 42]"&gt;</span>View User<span class="str">&lt;/a&gt;</span>
 
 <span class="cmt">// Programmatically:</span>
 <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/user'</span>, <span class="kw">this</span>.userId])</pre>
-<strong>Step 3 — Retrieve parameter in component:</strong>
+<strong>Step 3 â€” Retrieve parameter in component:</strong>
 <pre><span class="kw">import</span> { ActivatedRoute } <span class="kw">from</span> <span class="str">'@angular/router'</span>
 
 <span class="kw">constructor</span>(<span class="kw">private</span> route: ActivatedRoute) {}
@@ -1203,7 +1468,7 @@ ngOnInit() {
 <tr><th>Aspect</th><th>Reactive Forms</th><th>Template-Driven</th></tr>
 <tr><td>Structure</td><td>Defined in TS class</td><td>Defined in HTML</td></tr>
 <tr><td>Validation</td><td>Programmatic, explicit</td><td>HTML attributes</td></tr>
-<tr><td>Scalability</td><td>High — complex forms, dynamic fields</td><td>Low — best for simple forms</td></tr>
+<tr><td>Scalability</td><td>High â€” complex forms, dynamic fields</td><td>Low â€” best for simple forms</td></tr>
 <tr><td>Testing</td><td>Easily unit-tested</td><td>Harder to unit test</td></tr>
 <tr><td>Module</td><td>ReactiveFormsModule</td><td>FormsModule</td></tr>
 </table>
@@ -1261,13 +1526,13 @@ ngOnInit() {
   <span class="str">&lt;button (click)="increment()"&gt;</span>+ Increment<span class="str">&lt;/button&gt;</span>
   <span class="str">&lt;button (click)="decrement()"
     [disabled]="count === 0"&gt;</span>
-    − Decrement
+    âˆ’ Decrement
   <span class="str">&lt;/button&gt;</span>
   <span class="str">&lt;button (click)="reset()"&gt;</span>Reset<span class="str">&lt;/button&gt;</span>
 <span class="str">&lt;/div&gt;</span></pre>
 <strong>Key Logic:</strong>
 <ul>
-<li><code>decrement()</code> checks <code>count > 0</code> before subtracting — prevents negative values</li>
+<li><code>decrement()</code> checks <code>count > 0</code> before subtracting â€” prevents negative values</li>
 <li><code>[disabled]="count === 0"</code> disables the decrement button at zero (UX guard)</li>
 <li><code>reset()</code> sets count back to 0</li>
 </ul>`
@@ -1357,7 +1622,7 @@ ngOnInit() {
     path: <span class="str">'about'</span>,
     component: AboutComponent
   },
-  <span class="cmt">// Wildcard — redirect unknown routes to home</span>
+  <span class="cmt">// Wildcard â€” redirect unknown routes to home</span>
   {
     path: <span class="str">'**'</span>,
     redirectTo: <span class="str">'/home'</span>
@@ -1365,10 +1630,10 @@ ngOnInit() {
 ]</pre>
 <strong>Key Points:</strong>
 <ul>
-<li><code>pathMatch: 'full'</code> — Only matches if the <em>entire</em> URL is empty. Use with <code>''</code> paths.</li>
-<li><code>pathMatch: 'prefix'</code> (default) — Matches if URL starts with the path.</li>
-<li><code>**</code> wildcard must always be the <strong>last route</strong> in the array — Angular matches routes top-to-bottom.</li>
-<li>Redirect happens client-side — no HTTP redirect, just component swap.</li>
+<li><code>pathMatch: 'full'</code> â€” Only matches if the <em>entire</em> URL is empty. Use with <code>''</code> paths.</li>
+<li><code>pathMatch: 'prefix'</code> (default) â€” Matches if URL starts with the path.</li>
+<li><code>**</code> wildcard must always be the <strong>last route</strong> in the array â€” Angular matches routes top-to-bottom.</li>
+<li>Redirect happens client-side â€” no HTTP redirect, just component swap.</li>
 </ul>
 <strong>Conditional redirect (programmatic):</strong>
 <pre><span class="kw">if</span> (!<span class="kw">this</span>.authService.isLoggedIn()) {
@@ -1377,7 +1642,7 @@ ngOnInit() {
       },
       {
         q: "Define multiple routes in Angular and demonstrate navigation between them.",
-        a: `<strong>Step 1 — app-routing.module.ts:</strong>
+        a: `<strong>Step 1 â€” app-routing.module.ts:</strong>
 <pre><span class="kw">import</span> { NgModule } <span class="kw">from</span> <span class="str">'@angular/core'</span>
 <span class="kw">import</span> { RouterModule, Routes } <span class="kw">from</span> <span class="str">'@angular/router'</span>
 <span class="kw">import</span> { HomeComponent }    <span class="kw">from</span> <span class="str">'./home/home.component'</span>
@@ -1397,14 +1662,14 @@ ngOnInit() {
   exports: [RouterModule]
 })
 <span class="kw">export class</span> AppRoutingModule {}</pre>
-<strong>Step 2 — Navbar with routerLink:</strong>
+<strong>Step 2 â€” Navbar with routerLink:</strong>
 <pre><span class="str">&lt;nav&gt;</span>
   <span class="str">&lt;a routerLink="/home"    routerLinkActive="active"&gt;</span>Home<span class="str">&lt;/a&gt;</span>
   <span class="str">&lt;a routerLink="/about"   routerLinkActive="active"&gt;</span>About<span class="str">&lt;/a&gt;</span>
   <span class="str">&lt;a routerLink="/contact" routerLinkActive="active"&gt;</span>Contact<span class="str">&lt;/a&gt;</span>
 <span class="str">&lt;/nav&gt;</span>
 <span class="str">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span></pre>
-<strong>Step 3 — Programmatic navigation in component:</strong>
+<strong>Step 3 â€” Programmatic navigation in component:</strong>
 <pre>goToContact() {
   <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/contact'</span>])
 }</pre>
@@ -1413,7 +1678,7 @@ ngOnInit() {
     ]
   },
 
-  /* ────────────── MODULE 4 ────────────── */
+  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ MODULE 4 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   mod4: {
     "2": [
       {
@@ -1436,22 +1701,22 @@ Import <code>HttpClientModule</code> in <code>AppModule</code> to use it.`
 @<span class="fn">NgModule</span>({
   imports: [
     BrowserModule,
-    HttpClientModule  <span class="cmt">// ← add this</span>
+    HttpClientModule  <span class="cmt">// â† add this</span>
   ]
 })
 <span class="kw">export class</span> AppModule {}</pre>`
       },
       {
         q: "What is unit testing in Angular and state one advantage of unit testing.",
-        a: `<strong>Unit testing</strong> in Angular tests individual components, services, or functions in isolation — without dependencies on the browser, database, or other modules.<br><br>
+        a: `<strong>Unit testing</strong> in Angular tests individual components, services, or functions in isolation â€” without dependencies on the browser, database, or other modules.<br><br>
 Angular uses <strong>Jasmine</strong> (testing framework) and <strong>Karma</strong> (test runner) by default.<br><br>
-<strong>One advantage:</strong> Early bug detection — issues are caught during development before deployment, reducing the cost of fixing bugs.`
+<strong>One advantage:</strong> Early bug detection â€” issues are caught during development before deployment, reducing the cost of fixing bugs.`
       },
       {
         q: "Identify the difference between beforeEach() and it() in Jasmine.",
         a: `<table>
 <tr><th>beforeEach()</th><th>it()</th></tr>
-<tr><td>Setup function — runs before each test</td><td>Defines an individual test case</td></tr>
+<tr><td>Setup function â€” runs before each test</td><td>Defines an individual test case</td></tr>
 <tr><td>Used to initialize variables, create components</td><td>Contains assertions (expect statements)</td></tr>
 <tr><td>Runs automatically before every <code>it()</code></td><td>Defines what exactly is being tested</td></tr>
 </table>
@@ -1466,7 +1731,7 @@ Angular uses <strong>Jasmine</strong> (testing framework) and <strong>Karma</str
 <strong>Why suitable for full-stack:</strong>
 <ul>
 <li><strong>Single language:</strong> JavaScript/TypeScript across the entire stack</li>
-<li><strong>JSON everywhere:</strong> Data flows as JSON from MongoDB → Express → Angular without conversion</li>
+<li><strong>JSON everywhere:</strong> Data flows as JSON from MongoDB â†’ Express â†’ Angular without conversion</li>
 <li><strong>Scalable:</strong> Node.js handles concurrent requests; MongoDB scales horizontally</li>
 <li><strong>Open-source:</strong> All components are free and widely supported</li>
 </ul>`
@@ -1474,10 +1739,10 @@ Angular uses <strong>Jasmine</strong> (testing framework) and <strong>Karma</str
       {
         q: "Explain how MEAN supports single-page applications.",
         a: `<ul>
-<li><strong>Angular (Frontend):</strong> Handles routing, UI rendering, and state management client-side — no full page reloads</li>
+<li><strong>Angular (Frontend):</strong> Handles routing, UI rendering, and state management client-side â€” no full page reloads</li>
 <li><strong>Express + Node.js (Backend):</strong> Provides REST APIs that Angular consumes via HTTP</li>
 <li><strong>MongoDB (Database):</strong> Stores and returns JSON data efficiently</li>
-<li><strong>Flow:</strong> Angular SPA → HttpClient → Express REST API → MongoDB → JSON response → Angular updates view</li>
+<li><strong>Flow:</strong> Angular SPA â†’ HttpClient â†’ Express REST API â†’ MongoDB â†’ JSON response â†’ Angular updates view</li>
 </ul>
 The result is a fast, seamless user experience with dynamic content loading.`
       },
@@ -1504,7 +1769,7 @@ app.<span class="fn">get</span>(<span class="str">'/api/users'</span>, (req, res
 
 <span class="cmt">// Angular</span>
 <span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/users'</span>).<span class="fn">subscribe</span>(data => console.<span class="fn">log</span>(data))</pre>
-GET requests are idempotent — calling them multiple times returns the same result without side effects.`
+GET requests are idempotent â€” calling them multiple times returns the same result without side effects.`
       },
       {
         q: "What is deployment in web applications and explain the purpose of environment variables in deployment.",
@@ -1524,10 +1789,10 @@ Use <code>.env</code> file with the <code>dotenv</code> npm package.`
 ng build --configuration production  <span class="cmt"># production build</span></pre>
 <strong>What it does:</strong>
 <ul>
-<li>Compiles TypeScript → JavaScript</li>
+<li>Compiles TypeScript â†’ JavaScript</li>
 <li>Bundles all files (tree-shaking removes unused code)</li>
 <li>Minifies and optimizes for smaller file sizes</li>
-<li>Outputs to <code>dist/</code> folder — ready to deploy on any web server</li>
+<li>Outputs to <code>dist/</code> folder â€” ready to deploy on any web server</li>
 </ul>`
       },
       {
@@ -1538,7 +1803,7 @@ ng build --configuration production  <span class="cmt"># production build</span>
   error: (err)   => console.<span class="fn">log</span>(err),    <span class="cmt">// error</span>
   complete: ()   => console.<span class="fn">log</span>(<span class="str">'Done'</span>) <span class="cmt">// completed</span>
 })</pre>
-Without <code>subscribe()</code>, the HTTP request is never sent — Observables are lazy.`
+Without <code>subscribe()</code>, the HTTP request is never sent â€” Observables are lazy.`
       },
       {
         q: "Explain the role of observables in HTTP communication.",
@@ -1546,7 +1811,7 @@ Without <code>subscribe()</code>, the HTTP request is never sent — Observables
 <ul>
 <li>HttpClient methods return Observables, not Promises</li>
 <li>Support operators like <code>map()</code>, <code>filter()</code>, <code>catchError()</code></li>
-<li>Can be cancelled (unsubscribed) — important to prevent memory leaks</li>
+<li>Can be cancelled (unsubscribed) â€” important to prevent memory leaks</li>
 <li>Support retry logic: <code>.pipe(retry(3))</code></li>
 </ul>
 <pre><span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/data'</span>).<span class="fn">pipe</span>(
@@ -1560,7 +1825,7 @@ Without <code>subscribe()</code>, the HTTP request is never sent — Observables
 <tr><th>Unit Testing</th><th>Integration Testing</th></tr>
 <tr><td>Tests a single unit (component/service) in isolation</td><td>Tests multiple units working together</td></tr>
 <tr><td>Dependencies are mocked</td><td>Real dependencies are used</td></tr>
-<tr><td>Fast execution</td><td>Slower — involves more components</td></tr>
+<tr><td>Fast execution</td><td>Slower â€” involves more components</td></tr>
 <tr><td>Easy to identify exact failure point</td><td>Tests real-world interaction</td></tr>
 <tr><td>Example: Testing a component's method</td><td>Example: Testing form + service + API</td></tr>
 </table>`
@@ -1581,7 +1846,7 @@ Equivalent to <code>res.send(JSON.stringify(obj))</code> but cleaner.`
       },
       {
         q: "What is the purpose of mongoose.model() in CRUD apps?",
-        a: `<code>mongoose.model()</code> creates a <strong>Model</strong> — a class that represents a MongoDB collection and provides methods to interact with it:
+        a: `<code>mongoose.model()</code> creates a <strong>Model</strong> â€” a class that represents a MongoDB collection and provides methods to interact with it:
 <pre><span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
   name:  String,
   email: String
@@ -1632,9 +1897,9 @@ User.<span class="fn">findByIdAndDelete</span>(id)      <span class="cmt">// Del
         q: "Analyse in detail why are observables preferred over promises in Angular HTTP?",
         a: `<table>
 <tr><th>Feature</th><th>Observable</th><th>Promise</th></tr>
-<tr><td>Lazy</td><td>Yes — executes only when subscribed</td><td>No — executes immediately</td></tr>
-<tr><td>Multiple values</td><td>Yes — stream of values</td><td>No — single value</td></tr>
-<tr><td>Cancellable</td><td>Yes — unsubscribe()</td><td>No</td></tr>
+<tr><td>Lazy</td><td>Yes â€” executes only when subscribed</td><td>No â€” executes immediately</td></tr>
+<tr><td>Multiple values</td><td>Yes â€” stream of values</td><td>No â€” single value</td></tr>
+<tr><td>Cancellable</td><td>Yes â€” unsubscribe()</td><td>No</td></tr>
 <tr><td>Operators</td><td>map, filter, retry, catchError...</td><td>Limited (.then, .catch)</td></tr>
 <tr><td>Retry on error</td><td><code>.pipe(retry(3))</code></td><td>Manual implementation</td></tr>
 </table>
@@ -1653,12 +1918,12 @@ User.<span class="fn">findByIdAndDelete</span>(id)      <span class="cmt">// Del
   <span class="fn">expect</span>(service.<span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>)).<span class="fn">toBe</span>(<span class="num">5</span>)
 })</pre>
 <ul><li>Fast, deterministic, catches bugs early</li><li>Uses TestBed, SpyOn, HttpClientTestingModule</li></ul>
-<strong>Integration Testing in Angular:</strong> Tests how multiple components/services work together — includes DOM rendering and service interactions.
+<strong>Integration Testing in Angular:</strong> Tests how multiple components/services work together â€” includes DOM rendering and service interactions.
 <pre>fixture = TestBed.<span class="fn">createComponent</span>(AppComponent)
 fixture.detectChanges()
 <span class="fn">expect</span>(compiled.textContent).<span class="fn">toContain</span>(<span class="str">'Welcome'</span>)</pre>
 <ul><li>Slower, more realistic, catches interaction bugs</li><li>Uses ComponentFixture, real service injection</li></ul>
-<strong>Conclusion:</strong> Use unit tests for 80% of coverage (fast feedback loop), and integration tests for critical user flows. Both are complementary — unit tests alone cannot catch all integration issues.`
+<strong>Conclusion:</strong> Use unit tests for 80% of coverage (fast feedback loop), and integration tests for critical user flows. Both are complementary â€” unit tests alone cannot catch all integration issues.`
       },
       {
         q: "Explain what is Unit testing and design a test case for a component with input and output properties.",
@@ -1699,18 +1964,18 @@ fixture.detectChanges()
 <tr><td>ODM</td><td>Mongoose</td><td>Schema definition, validation, model methods</td></tr>
 </table>
 <strong>Data Flow:</strong>
-<pre>User Action → Angular Component → HttpClient
-  → Express Route → Mongoose Model → MongoDB
-  → JSON Response → Angular → DOM Update</pre>
+<pre>User Action â†’ Angular Component â†’ HttpClient
+  â†’ Express Route â†’ Mongoose Model â†’ MongoDB
+  â†’ JSON Response â†’ Angular â†’ DOM Update</pre>
 <strong>Frontend (Angular) handles:</strong> component lifecycle, data binding, form validation, client-side routing, template rendering.<br>
 <strong>Backend (Express/Node) handles:</strong> API endpoints, CORS, authentication middleware, DB queries, error responses.`
       },
       {
         q: "Why is deployment considered the final step in application lifecycle?",
-        a: `Deployment is the transition of an application from development to production — making it accessible to real users.<br><br>
+        a: `Deployment is the transition of an application from development to production â€” making it accessible to real users.<br><br>
 <strong>Application lifecycle stages:</strong>
 <ul>
-<li><strong>Plan → Design → Develop → Test → Deploy → Monitor</strong></li>
+<li><strong>Plan â†’ Design â†’ Develop â†’ Test â†’ Deploy â†’ Monitor</strong></li>
 </ul>
 Deployment is the final dev step because:<ul>
 <li>All previous phases (coding, testing, QA) feed into it</li>
@@ -1719,7 +1984,7 @@ Deployment is the final dev step because:<ul>
 </ul>
 <strong>MEAN Stack deployment steps:</strong>
 <ol>
-<li>Run <code>ng build --configuration production</code> → <code>dist/</code> folder</li>
+<li>Run <code>ng build --configuration production</code> â†’ <code>dist/</code> folder</li>
 <li>Set environment variables on server (<code>MONGO_URI</code>, <code>PORT</code>)</li>
 <li>Deploy Node/Express backend on Render/Railway/AWS</li>
 <li>Deploy Angular frontend on Vercel/Netlify</li>
@@ -1768,12 +2033,12 @@ mongoose.<span class="fn">connect</span>(process.env.MONGODB_URI)
       },
       {
         q: "Show how to connect MongoDB with Express using Mongoose.",
-        a: `<strong>Step 1 — Install dependencies:</strong>
+        a: `<strong>Step 1 â€” Install dependencies:</strong>
 <pre>npm install express mongoose dotenv</pre>
-<strong>Step 2 — Setup .env:</strong>
+<strong>Step 2 â€” Setup .env:</strong>
 <pre>MONGO_URI=mongodb://localhost:27017/myapp
 PORT=3000</pre>
-<strong>Step 3 — server.js:</strong>
+<strong>Step 3 â€” server.js:</strong>
 <pre><span class="kw">const</span> express  = <span class="fn">require</span>(<span class="str">'express'</span>)
 <span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">'mongoose'</span>)
 <span class="fn">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>()
@@ -1788,7 +2053,7 @@ mongoose.<span class="fn">connect</span>(process.env.MONGO_URI)
       console.<span class="fn">log</span>(<span class="str">\`Server on port \${process.env.PORT}\`</span>))
   })
   .<span class="fn">catch</span>(err => console.<span class="fn">log</span>(err))</pre>
-<strong>Step 4 — Define a Model:</strong>
+<strong>Step 4 â€” Define a Model:</strong>
 <pre><span class="kw">const</span> User = mongoose.<span class="fn">model</span>(<span class="str">'User'</span>,
   <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({ name: String, email: String }))
 </pre>`
@@ -1805,12 +2070,12 @@ mongoose.<span class="fn">connect</span>(process.env.MONGO_URI)
 <li><strong>Node.js:</strong> JavaScript runtime (V8 engine). Non-blocking, event-driven I/O. Handles thousands of concurrent connections efficiently.</li>
 </ul>
 <strong>Communication flow:</strong>
-<pre>Angular (HttpClient) → Express Routes
-  → Mongoose/MongoDB → JSON Response → Angular</pre>
+<pre>Angular (HttpClient) â†’ Express Routes
+  â†’ Mongoose/MongoDB â†’ JSON Response â†’ Angular</pre>
 <strong>Scalability Challenges:</strong>
 <ul>
 <li><strong>Session management:</strong> Stateless REST APIs require external session stores (Redis) for scaling across multiple Node instances</li>
-<li><strong>CPU-intensive tasks:</strong> Node.js is single-threaded — long operations block the event loop. Solution: Worker threads, microservices</li>
+<li><strong>CPU-intensive tasks:</strong> Node.js is single-threaded â€” long operations block the event loop. Solution: Worker threads, microservices</li>
 <li><strong>MongoDB consistency:</strong> Default eventual consistency may cause stale reads in distributed setups</li>
 <li><strong>Angular bundle size:</strong> Large apps have heavy initial load. Solution: Lazy loading, code splitting, SSR with Angular Universal</li>
 <li><strong>Database connections:</strong> Each Node.js instance needs a connection pool. Use Mongoose connection pooling (<code>poolSize</code> option)</li>
@@ -1851,7 +2116,7 @@ Register in AppModule: <code>{ provide: ErrorHandler, useClass: GlobalErrorHandl
 }</pre>
 <strong>Best Practices Summary:</strong>
 <ul>
-<li>Always handle errors in <code>subscribe()</code> — never leave the error callback empty</li>
+<li>Always handle errors in <code>subscribe()</code> â€” never leave the error callback empty</li>
 <li>Use a global <code>ErrorHandler</code> for unhandled exceptions</li>
 <li>Display user-friendly error messages (toasts/snackbars)</li>
 <li>Log errors to an external monitoring service in production</li>
@@ -1863,10 +2128,10 @@ Register in AppModule: <code>{ provide: ErrorHandler, useClass: GlobalErrorHandl
         a: `<strong>Observables</strong> (RxJS library) are lazy asynchronous data streams that Angular uses for HTTP communication.<br><br>
 <strong>Why Observables over Promises for API responses:</strong>
 <ul>
-<li><strong>Cancellable:</strong> Call <code>unsubscribe()</code> to cancel — critical for preventing memory leaks when components destroy before response arrives</li>
+<li><strong>Cancellable:</strong> Call <code>unsubscribe()</code> to cancel â€” critical for preventing memory leaks when components destroy before response arrives</li>
 <li><strong>Composable:</strong> Chain operators like <code>map</code>, <code>filter</code>, <code>mergeMap</code>, <code>switchMap</code></li>
 <li><strong>Retry logic:</strong> <code>retry(3)</code> automatically retries failed requests</li>
-<li><strong>Multiple emissions:</strong> WebSockets, Server-Sent Events can emit data multiple times — Promises only resolve once</li>
+<li><strong>Multiple emissions:</strong> WebSockets, Server-Sent Events can emit data multiple times â€” Promises only resolve once</li>
 </ul>
 <strong>Practical patterns:</strong>
 <pre><span class="cmt">// Auto-cancel with takeUntilDestroyed or ngOnDestroy</span>
@@ -1886,7 +2151,7 @@ ngOnDestroy() { <span class="kw">this</span>.destroy$.<span class="fn">next</spa
   <span class="fn">distinctUntilChanged</span>(),
   <span class="fn">switchMap</span>(term => <span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">\`/search?q=\${term}\`</span>))
 ).<span class="fn">subscribe</span>(...)</pre>
-<code>switchMap</code> cancels the previous request if a new search term arrives — no stale results.`
+<code>switchMap</code> cancels the previous request if a new search term arrives â€” no stale results.`
       },
       {
         q: "Explain the purpose of unit testing in Angular applications and analyze the difference between unit testing and integration testing.",
@@ -1979,7 +2244,7 @@ Status codes: <code>201</code> (created), <code>400</code> (bad request), <code>
         a: `<strong>Deployment</strong> is the process of making a web application available to users by hosting it on a server or cloud platform.<br><br>
 <strong>MEAN Stack Deployment Steps:</strong>
 <ul>
-<li>Build Angular: <code>ng build --configuration production</code> → outputs to <code>dist/</code></li>
+<li>Build Angular: <code>ng build --configuration production</code> â†’ outputs to <code>dist/</code></li>
 <li>Set up Node.js/Express on server</li>
 <li>Configure environment variables</li>
 <li>Serve Angular build from Express or deploy to CDN (Vercel/Netlify)</li>
@@ -1996,7 +2261,7 @@ app.<span class="fn">use</span>(<span class="fn">cors</span>({ origin: <span cla
 <span class="kw">const</span> limiter = <span class="fn">rateLimit</span>({ windowMs: <span class="num">15</span>*<span class="num">60000</span>, max: <span class="num">100</span> })
 app.<span class="fn">use</span>(limiter)
 
-<span class="cmt">// 4. Environment variables — never hardcode secrets</span>
+<span class="cmt">// 4. Environment variables â€” never hardcode secrets</span>
 <span class="fn">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>()
 
 <span class="cmt">// 5. Use HTTPS (SSL/TLS certificate via Let's Encrypt)</span></pre>
@@ -2012,10 +2277,10 @@ app.<span class="fn">use</span>(limiter)
         q: "Discuss the importance of unit testing in maintaining large-scale Angular applications.",
         a: `Large Angular applications become difficult to maintain without a comprehensive test suite. Unit testing is essential for the following reasons:<br><br>
 <strong>1. Regression Prevention:</strong> When new features are added or code is refactored, tests immediately catch any unintended side effects on existing functionality.<br><br>
-<strong>2. Safe Refactoring:</strong> Developers can restructure code confidently knowing tests will fail if behavior changes — enabling continuous improvement.<br><br>
+<strong>2. Safe Refactoring:</strong> Developers can restructure code confidently knowing tests will fail if behavior changes â€” enabling continuous improvement.<br><br>
 <strong>3. Documentation:</strong> Well-written tests describe expected behavior, serving as always-up-to-date documentation for team members.<br><br>
-<strong>4. Faster Debugging:</strong> Isolated unit tests pinpoint exact failure location — no need to trace through entire application stack.<br><br>
-<strong>Practical Example — Testing a Service:</strong>
+<strong>4. Faster Debugging:</strong> Isolated unit tests pinpoint exact failure location â€” no need to trace through entire application stack.<br><br>
+<strong>Practical Example â€” Testing a Service:</strong>
 <pre>describe(<span class="str">'AuthService'</span>, () => {
   <span class="kw">let</span> service: AuthService
   <span class="kw">let</span> httpMock: HttpTestingController
@@ -2037,11 +2302,11 @@ app.<span class="fn">use</span>(limiter)
     req.<span class="fn">flush</span>({ email: <span class="str">'a@b.com'</span>, token: <span class="str">'abc'</span> })
   })
 })</pre>
-<strong>Industry Standard:</strong> Aim for 70–80% code coverage. Use Karma + Jasmine (Angular default). Integrate tests into CI/CD pipeline so every pull request runs tests before merging.`
+<strong>Industry Standard:</strong> Aim for 70â€“80% code coverage. Use Karma + Jasmine (Angular default). Integrate tests into CI/CD pipeline so every pull request runs tests before merging.`
       },
       {
         q: "Evaluate the importance of schema design in Mongoose for MEAN applications.",
-        a: `Schema design in Mongoose defines the structure and constraints of MongoDB documents — critical for data integrity and application performance.<br><br>
+        a: `Schema design in Mongoose defines the structure and constraints of MongoDB documents â€” critical for data integrity and application performance.<br><br>
 <strong>Basic Schema with Validation:</strong>
 <pre><span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
   name: {
@@ -2062,9 +2327,9 @@ app.<span class="fn">use</span>(limiter)
 })</pre>
 <strong>Why Schema Design Matters:</strong>
 <ul>
-<li><strong>Data integrity:</strong> Enforces required fields, data types, min/max values, regex patterns — prevents bad data entry</li>
-<li><strong>Validation:</strong> Mongoose validates before saving — no need for manual validation in every route</li>
-<li><strong>Indexing:</strong> <code>unique: true</code> creates MongoDB index automatically — fast lookups on email</li>
+<li><strong>Data integrity:</strong> Enforces required fields, data types, min/max values, regex patterns â€” prevents bad data entry</li>
+<li><strong>Validation:</strong> Mongoose validates before saving â€” no need for manual validation in every route</li>
+<li><strong>Indexing:</strong> <code>unique: true</code> creates MongoDB index automatically â€” fast lookups on email</li>
 <li><strong>Default values:</strong> Prevents <code>undefined</code> fields in documents</li>
 <li><strong>Population:</strong> <code>ref</code> field enables joining collections (like SQL JOINs)</li>
 </ul>
@@ -2077,14 +2342,14 @@ Post.<span class="fn">find</span>().<span class="fn">populate</span>(<span class
       {
         q: "Discuss why MEAN stack is popular for modern web development.",
         a: `The MEAN stack has become a popular choice for building modern, scalable full-stack web applications. Here's why:<br><br>
-<strong>1. Single Language — JavaScript Everywhere:</strong>
-<pre>MongoDB  → JSON documents (JS-native)
-Express  → Node.js (JavaScript)
-Angular  → TypeScript (JS superset)
-Node.js  → JavaScript runtime</pre>
-Developers write one language across frontend, backend, and database queries — reducing context switching and team size needed.<br><br>
+<strong>1. Single Language â€” JavaScript Everywhere:</strong>
+<pre>MongoDB  â†’ JSON documents (JS-native)
+Express  â†’ Node.js (JavaScript)
+Angular  â†’ TypeScript (JS superset)
+Node.js  â†’ JavaScript runtime</pre>
+Developers write one language across frontend, backend, and database queries â€” reducing context switching and team size needed.<br><br>
 <strong>2. JSON Data Flow:</strong> Data flows as JSON from MongoDB through Express APIs to Angular without conversion or serialization overhead.<br><br>
-<strong>3. Performance:</strong> Node.js uses a non-blocking, event-driven I/O model — handles thousands of concurrent connections with low memory usage.<br><br>
+<strong>3. Performance:</strong> Node.js uses a non-blocking, event-driven I/O model â€” handles thousands of concurrent connections with low memory usage.<br><br>
 <strong>4. Scalability:</strong>
 <ul>
 <li>MongoDB scales horizontally with sharding</li>
@@ -2105,201 +2370,213 @@ Developers write one language across frontend, backend, and database queries —
   }
 }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    MODULE META
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const modules = [
   {
     key: 'mod1',
-    num: 'Module I',
+    num: 'Module 1',
     title: 'MongoDB & Database',
-    desc: 'SQL vs NoSQL, MongoDB shell, CRUD operations, aggregation pipeline, indexing, user authentication and GUI tools',
-    chips: ['2 Marks × 15'],
-    marks: ['2'],
-    accent: 'var(--accent)'
+    desc: 'SQL vs NoSQL, MongoDB shell, CRUD operations, aggregation pipeline, indexing, user authentication and GUI tools'
   },
   {
     key: 'mod2',
-    num: 'Module II',
+    num: 'Module 2',
     title: 'Node.js & Express',
-    desc: 'npm, file system module, HTTP server, Express routing, middleware, Mongoose, JWT authentication, session management',
-    chips: ['2 Marks × 15'],
-    marks: ['2'],
-    accent: 'var(--accent2)'
+    desc: 'npm, file system module, HTTP server, Express routing, middleware, Mongoose, JWT authentication and session management'
   },
   {
     key: 'mod3',
-    num: 'Module III',
+    num: 'Module 3',
     title: 'Angular Framework',
-    desc: 'Angular CLI, components, data binding, directives (*ngIf, *ngFor), routing, reactive & template-driven forms',
-    chips: ['2 Marks × 15', '5 Marks × 9', '10 Marks × 9'],
-    marks: ['2', '5', '10'],
-    accent: 'var(--accent3)'
+    desc: 'Angular CLI, components, data binding, directives, routing and reactive or template-driven forms'
   },
   {
     key: 'mod4',
-    num: 'Module IV',
+    num: 'Module 4',
     title: 'MEAN Stack & Testing',
-    desc: 'HttpClient, Observables, unit testing (Jasmine/Karma), MEAN architecture, deployment, environment variables',
-    chips: ['2 Marks × 15', '5 Marks × 9', '10 Marks × 9'],
-    marks: ['2', '5', '10'],
-    accent: 'var(--accent4)'
+    desc: 'HttpClient, Observables, unit testing, MEAN architecture, deployment and environment variables'
   }
-]
+];
 
-/* ═══════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════ */
-let currentModule = null
-let currentMark   = null
+let currentModule = null;
+let currentMarks = null;
 
-/* ═══════════════════════════════════════════════════════
-   INIT — render module cards
-═══════════════════════════════════════════════════════ */
-function init() {
-  const grid = document.getElementById('modules-grid')
-  grid.innerHTML = modules.map((m, i) => `
-    <div class="module-card mc-${i+1}" onclick="openModule('${m.key}')">
-      <div class="m-num">${m.num}</div>
-      <div class="m-title">${m.title}</div>
-      <div class="m-desc">${m.desc}</div>
-      <div class="m-chips">${m.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
-    </div>
-  `).join('')
+function markClass(mark) {
+  if (+mark === 2) return 'c2';
+  if (+mark === 5) return 'c5';
+  return 'c10';
 }
 
-/* ═══════════════════════════════════════════════════════
-   OPEN MODULE
-═══════════════════════════════════════════════════════ */
+function questionClass(mark) {
+  if (+mark === 2) return 'two';
+  if (+mark === 5) return 'five';
+  return 'ten';
+}
+
+function buildHome() {
+  const grid = document.getElementById('cards-grid');
+  grid.innerHTML = '';
+
+  modules.forEach((module, index) => {
+    const marks = Object.keys(data[module.key]).sort((a, b) => +a - +b);
+    const chips = marks.map(mark => `<span class="chip ${markClass(mark)}">${mark} Marks x ${data[module.key][mark].length}</span>`).join('');
+
+    grid.innerHTML += `
+      <div class="mc m${index + 1}" onclick="openModule('${module.key}')">
+        <div class="cn">${module.num}</div>
+        <div class="ct">${module.title}</div>
+        <div class="cd">${module.desc}</div>
+        <div class="cf">${chips}</div>
+      </div>`;
+  });
+}
+
 function openModule(key) {
-  currentModule = key
-  const mod = modules.find(m => m.key === key)
-  currentMark = mod.marks[0]
+  currentModule = key;
+  currentMarks = null;
 
-  document.getElementById('mod-heading').textContent = `${mod.num} — ${mod.title}`
-  document.getElementById('mod-subheading').textContent = `${mod.chips.join('  ·  ')}`
+  const module = modules.find(item => item.key === key);
+  hide('view-home');
+  show('view-module');
 
-  // Tabs
-  const tabsEl = document.getElementById('marks-tabs')
-  tabsEl.innerHTML = mod.marks.map(m => `
-    <button class="marks-tab ${m === currentMark ? 'active' : ''}"
-      onclick="switchMark('${m}', this)">
-      ${m} Marks
-      <span class="tab-badge">${data[key][m] ? data[key][m].length : 0} Qs</span>
-    </button>
-  `).join('')
+  document.getElementById('module-title').textContent = `${module.num} - ${module.title}`;
+  document.getElementById('module-subtitle').textContent = module.desc;
 
-  renderQuestions(key, currentMark)
+  const marks = Object.keys(data[key]).sort((a, b) => +a - +b);
+  const grid = document.getElementById('marks-grid');
 
-  // Show module view
-  showView('view-module')
-  updateBreadcrumb(mod)
-  document.getElementById('back-btn').style.display = 'flex'
+  grid.innerHTML = marks.map(mark => {
+    const markType = questionClass(mark);
+    const part = +mark === 2 ? 'A' : +mark === 5 ? 'B' : 'C';
+    return `
+      <div class="mkc ${markType}" id="mc-${mark}" onclick="openMarks('${mark}')">
+        <span class="mv">${mark}</span>
+        <span class="ml">Marks</span>
+        <div class="mc2">${data[key][mark].length} Questions &middot; Part ${part}</div>
+      </div>`;
+  }).join('');
 
-  // Progress
-  setProgress(50)
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  document.getElementById('qcontainer').innerHTML = '';
+  updateNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ═══════════════════════════════════════════════════════
-   SWITCH MARK TAB
-═══════════════════════════════════════════════════════ */
-function switchMark(mark, btnEl) {
-  currentMark = mark
-  document.querySelectorAll('.marks-tab').forEach(b => b.classList.remove('active'))
-  btnEl.classList.add('active')
-  renderQuestions(currentModule, mark)
-}
+function openMarks(mark) {
+  currentMarks = mark;
+  document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
 
-/* ═══════════════════════════════════════════════════════
-   RENDER QUESTIONS
-═══════════════════════════════════════════════════════ */
-function renderQuestions(modKey, mark) {
-  const container = document.getElementById('questions-container')
-  const questions = data[modKey][mark] || []
+  const activeCard = document.getElementById(`mc-${mark}`);
+  if (activeCard) activeCard.classList.add('active');
 
-  const labels = { '2': 'Part-A', '5': 'Part-B', '10': 'Part-C' }
-  const label  = labels[mark] || ''
+  const questions = data[currentModule][mark] || [];
+  const type = questionClass(mark);
+  const part = +mark === 2 ? 'A' : +mark === 5 ? 'B' : 'C';
+  const container = document.getElementById('qcontainer');
 
   container.innerHTML = `
-    <div class="q-section active">
-      <div class="q-section-title">${label} — ${mark} Mark Questions (${questions.length} questions)</div>
-      ${questions.map((item, idx) => `
-        <div class="q-item" id="q-${modKey}-${mark}-${idx}">
-          <div class="q-trigger" onclick="toggleQ('q-${modKey}-${mark}-${idx}')">
-            <span class="q-num">Q.${idx + 1}</span>
-            <span class="q-text">${item.q}</span>
-            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </div>
-          <div class="q-answer">
-            <div class="q-answer-inner">${item.a}</div>
-          </div>
-        </div>
-      `).join('')}
+    <div class="mst"><span>${mark}-Mark Questions</span>- ${questions.length} Questions &middot; Part ${part}</div>
+    <div class="toolbar">
+      <button class="tbtn" onclick="expandAll()">&#9660; Expand All</button>
+      <button class="tbtn" onclick="collapseAll()">&#9650; Collapse All</button>
     </div>
-  `
+    <div class="qlist">
+      ${questions.map((item, index) => `
+        <div class="qi ${type}" id="q${index}" onclick="toggleQuestion(${index})">
+          <div class="qh">
+            <span class="qn">${String.fromCharCode(65 + index)}</span>
+            <span class="qt">${item.q.replace(/\n/g, '<br>')}</span>
+            <span class="qtg">+</span>
+          </div>
+          <div class="qa">
+            <div class="albl">Answer</div>
+            <div class="ab">${item.a}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  updateNav();
+  setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 }
 
-/* ═══════════════════════════════════════════════════════
-   TOGGLE QUESTION
-═══════════════════════════════════════════════════════ */
-function toggleQ(id) {
-  const el = document.getElementById(id)
-  const wasOpen = el.classList.contains('open')
-
-  // Close all others in this section
-  document.querySelectorAll('.q-item.open').forEach(item => {
-    if (item.id !== id) item.classList.remove('open')
-  })
-
-  el.classList.toggle('open', !wasOpen)
+function toggleQuestion(index) {
+  const item = document.getElementById(`q${index}`);
+  if (item) item.classList.toggle('open');
 }
 
-/* ═══════════════════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════════════════ */
+function expandAll() {
+  document.querySelectorAll('.qi').forEach(item => item.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.qi').forEach(item => item.classList.remove('open'));
+}
+
 function goBack() {
-  showView('view-home')
-  document.getElementById('back-btn').style.display = 'none'
-  document.getElementById('breadcrumb').innerHTML = ''
-  currentModule = null
-  setProgress(0)
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'))
-  document.getElementById(id).classList.add('active')
-}
-
-/* ═══════════════════════════════════════════════════════
-   BREADCRUMB
-═══════════════════════════════════════════════════════ */
-function updateBreadcrumb(mod) {
-  const bc = document.getElementById('breadcrumb')
-  bc.innerHTML = `
-    <span style="cursor:pointer;color:var(--text2)" onclick="goBack()">Home</span>
-    <span class="sep">›</span>
-    <span class="crumb-active">${mod.num}</span>
-  `
-}
-
-/* ═══════════════════════════════════════════════════════
-   PROGRESS BAR
-═══════════════════════════════════════════════════════ */
-function setProgress(pct) {
-  document.getElementById('progress').style.width = pct + '%'
-  if (pct >= 100 || pct === 0) {
-    setTimeout(() => document.getElementById('progress').style.width = '0', 500)
+  if (currentMarks !== null) {
+    currentMarks = null;
+    document.getElementById('qcontainer').innerHTML = '';
+    document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
+  } else if (currentModule !== null) {
+    currentModule = null;
+    hide('view-module');
+    show('view-home');
   }
+
+  updateNav();
 }
 
-/* ═══════════════════════════════════════════════════════
-   START
-═══════════════════════════════════════════════════════ */
-init()
+function show(id) {
+  const element = document.getElementById(id);
+  element.style.display = 'block';
+  element.className = 'view';
+}
+
+function hide(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function goHome() {
+  currentModule = null;
+  currentMarks = null;
+  hide('view-module');
+  show('view-home');
+  document.getElementById('qcontainer').innerHTML = '';
+  updateNav();
+}
+
+function goToModule() {
+  if (currentModule === null) return;
+  currentMarks = null;
+  document.getElementById('qcontainer').innerHTML = '';
+  document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
+  updateNav();
+}
+
+function updateNav() {
+  const backButton = document.getElementById('back-btn');
+  const breadcrumb = document.getElementById('breadcrumb');
+
+  if (currentModule === null) {
+    backButton.style.display = 'none';
+    breadcrumb.innerHTML = '<span class="active">Home</span>';
+    return;
+  }
+
+  backButton.style.display = 'flex';
+  const module = modules.find(item => item.key === currentModule);
+
+  if (currentMarks === null) {
+    breadcrumb.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">&rsaquo;</span><span class="active">${module.num}</span>`;
+    return;
+  }
+
+  breadcrumb.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">&rsaquo;</span><span class="lnk" onclick="goToModule()">${module.num}</span><span class="sep">&rsaquo;</span><span class="active">${currentMarks} Marks</span>`;
+}
+
+buildHome();
+updateNav();
 </script>
 </body>
 </html>

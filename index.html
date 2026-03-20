@@ -15,10 +15,6 @@
       --panel-border: rgba(148, 163, 184, 0.2);
       --text: #e8eefc;
       --muted: #a6b2d1;
-      --iot-a: #38bdf8;
-      --iot-b: #22d3ee;
-      --cle-a: #f97316;
-      --cle-b: #facc15;
       --shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
       --radius: 24px;
     }
@@ -43,7 +39,7 @@
     }
 
     .shell {
-      width: min(1024px, 100%);
+      width: min(1120px, 100%);
       background: rgba(10, 16, 32, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 32px;
@@ -90,7 +86,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 22px;
       padding: 18px 24px 32px;
     }
@@ -133,6 +129,10 @@
       border-color: rgba(250, 204, 21, 0.45);
     }
 
+    .fsd:hover {
+      border-color: rgba(139, 92, 246, 0.45);
+    }
+
     .label {
       display: inline-flex;
       align-self: flex-start;
@@ -153,6 +153,11 @@
     .cle .label {
       background: rgba(250, 204, 21, 0.12);
       color: #fcd34d;
+    }
+
+    .fsd .label {
+      background: rgba(139, 92, 246, 0.14);
+      color: #c4b5fd;
     }
 
     .card h2 {
@@ -184,6 +189,10 @@
 
     .cle .cta {
       color: #fdba74;
+    }
+
+    .fsd .cta {
+      color: #86efac;
     }
 
     .arrow {
@@ -228,7 +237,6 @@
     <section class="hero">
       <span class="eyebrow">Academic Portal</span>
       <h1>Choose Your Question Bank</h1>
-  
     </section>
 
     <section class="grid">
@@ -238,7 +246,7 @@
           <h2>Internet of Things</h2>
           <p>Access the IoT end semester question bank with its existing sections and content.</p>
         </div>
-        <span class="cta">Open IOT Page <span class="arrow">→</span></span>
+        <span class="cta">Open IOT Page <span class="arrow">&#8594;</span></span>
       </a>
 
       <a class="card cle" href="CLE.html">
@@ -247,11 +255,18 @@
           <h2>Cyber Law and Ethics</h2>
           <p>Go to the CLE question bank page for cyber law and ethics study material.</p>
         </div>
-        <span class="cta">Open CLE Page <span class="arrow">→</span></span>
+        <span class="cta">Open CLE Page <span class="arrow">&#8594;</span></span>
+      </a>
+
+      <a class="card fsd" href="FSD.html">
+        <div>
+          <span class="label">FSD</span>
+          <h2>Full Stack Development</h2>
+          <p>Open the FSD question bank for full stack development topics and module-wise content.</p>
+        </div>
+        <span class="cta">Open FSD Page <span class="arrow">&#8594;</span></span>
       </a>
     </section>
-
-
   </main>
 </body>
 </html>

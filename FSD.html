@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FSD Question Bank — GEC Bhubaneswar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ── Reset & Base ────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0a0e1a;
+    --bg2:       #0f1525;
+    --bg3:       #141c30;
+    --card:      #161e30;
+    --card-h:    #1b2540;
+    --border:    #1f2d4a;
+    --border-h:  #2e4070;
+    --accent:    #4f8ef7;
+    --accent2:   #7b5cf7;
+    --accent3:   #2de6c6;
+    --accent4:   #f7a94f;
+    --text:      #e2e8f4;
+    --text2:     #8fa8cc;
+    --text3:     #4a6080;
+    --green:     #22d3a3;
+    --red:       #f75a5a;
+    --yellow:    #f7c948;
+    --radius:    14px;
+    --radius-sm: 8px;
+    --shadow:    0 4px 24px rgba(0,0,0,.45);
+    --shadow-h:  0 8px 40px rgba(79,142,247,.15);
+    --trans:     .25s cubic-bezier(.4,0,.2,1);
+    --font:      'Space Grotesk', sans-serif;
+    --mono:      'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Noise texture overlay ───────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .4;
+  }
+
+  /* ── Gradient blobs ──────────────────────────────── */
+  .blob {
+    position: fixed; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; z-index: 0;
+    animation: float 12s ease-in-out infinite;
+  }
+  .blob-1 { width: 400px; height: 400px; background: rgba(79,142,247,.07); top: -100px; right: -100px; animation-delay: 0s; }
+  .blob-2 { width: 350px; height: 350px; background: rgba(123,92,247,.06); bottom: -80px; left: -80px; animation-delay: -4s; }
+  .blob-3 { width: 300px; height: 300px; background: rgba(45,230,198,.05); top: 50%; left: 50%; animation-delay: -8s; }
+  @keyframes float { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-20px)} 66%{transform:translate(-20px,30px)} }
+
+  /* ── Layout wrapper ──────────────────────────────── */
+  .wrapper {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── Header ──────────────────────────────────────── */
+  header {
+    padding: 40px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent);
+    background: rgba(79,142,247,.1);
+    border: 1px solid rgba(79,142,247,.2);
+    border-radius: 40px; padding: 4px 14px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 700; color: var(--text);
+    letter-spacing: -.02em;
+    margin-bottom: 8px;
+  }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .subtitle {
+    font-size: .9rem; color: var(--text2);
+    display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+  }
+  .subtitle .dot { width: 3px; height: 3px; background: var(--text3); border-radius: 50%; }
+
+  /* ── Breadcrumb ──────────────────────────────────── */
+  #breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .82rem; color: var(--text3);
+    margin-bottom: 28px;
+    min-height: 28px;
+    transition: opacity var(--trans);
+  }
+  #breadcrumb span { color: var(--text2); }
+  #breadcrumb .sep { color: var(--text3); }
+  #breadcrumb .crumb-active { color: var(--accent); }
+
+  /* ── Back Button ─────────────────────────────────── */
+  .nav-actions {
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 32px;
+  }
+  .home-btn,
+  #back-btn {
+    align-items: center; gap: 8px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text2); font-family: var(--font);
+    font-size: .85rem; font-weight: 500;
+    padding: 8px 18px; border-radius: 40px;
+    transition: all var(--trans);
+  }
+  .home-btn { display: inline-flex; text-decoration: none; }
+  #back-btn { display: none; cursor: pointer; }
+  .home-btn:hover,
+  #back-btn:hover { background: var(--card-h); border-color: var(--accent); color: var(--accent); transform: translateX(-3px); }
+  .home-btn svg,
+  #back-btn svg { transition: transform var(--trans); }
+  .home-btn:hover svg,
+  #back-btn:hover svg { transform: translateX(-3px); }
+
+  /* ── Views ───────────────────────────────────────── */
+  .view { display: none; animation: fadeUp .35s ease both; }
+  .view.active { display: block; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── Module Cards ────────────────────────────────── */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .module-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px 24px;
+    cursor: pointer;
+    transition: all var(--trans);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .module-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--card-h), transparent);
+    opacity: 0; transition: opacity var(--trans);
+  }
+  .module-card:hover { border-color: var(--border-h); transform: translateY(-4px); box-shadow: var(--shadow-h); }
+  .module-card:hover::before { opacity: 1; }
+
+  .module-card .m-num {
+    font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .module-card .m-title { font-size: 1.1rem; font-weight: 700; }
+  .module-card .m-desc { font-size: .82rem; color: var(--text2); line-height: 1.55; }
+  .module-card .m-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .chip {
+    font-size: .7rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 20px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    color: var(--text2);
+  }
+
+  /* card accent colors */
+  .mc-1 .m-num { color: var(--accent); }
+  .mc-1:hover { border-color: rgba(79,142,247,.4); box-shadow: 0 8px 40px rgba(79,142,247,.12); }
+  .mc-2 .m-num { color: var(--accent2); }
+  .mc-2:hover { border-color: rgba(123,92,247,.4); box-shadow: 0 8px 40px rgba(123,92,247,.12); }
+  .mc-3 .m-num { color: var(--accent3); }
+  .mc-3:hover { border-color: rgba(45,230,198,.4); box-shadow: 0 8px 40px rgba(45,230,198,.12); }
+  .mc-4 .m-num { color: var(--accent4); }
+  .mc-4:hover { border-color: rgba(247,169,79,.4); box-shadow: 0 8px 40px rgba(247,169,79,.12); }
+
+  /* ── Marks Section ───────────────────────────────── */
+  .marks-header {
+    margin-bottom: 28px;
+  }
+  .marks-header h2 {
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 4px;
+  }
+  .marks-header p { font-size: .88rem; color: var(--text2); }
+
+  .marks-tabs {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .marks-tab {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 40px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text2);
+    font-family: var(--font); font-size: .85rem; font-weight: 600;
+    cursor: pointer; transition: all var(--trans);
+  }
+  .marks-tab:hover { border-color: var(--border-h); color: var(--text); }
+  .marks-tab.active { background: rgba(79,142,247,.12); border-color: var(--accent); color: var(--accent); }
+  .marks-tab .tab-badge {
+    font-size: .68rem; font-weight: 700;
+    background: rgba(255,255,255,.07);
+    border-radius: 10px; padding: 1px 8px; color: var(--text3);
+  }
+  .marks-tab.active .tab-badge { background: rgba(79,142,247,.15); color: var(--accent); }
+
+  /* ── Questions List ──────────────────────────────── */
+  .q-section { display: none; animation: fadeUp .3s ease both; }
+  .q-section.active { display: block; }
+
+  .q-section-title {
+    font-size: .78rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .q-section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .q-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color var(--trans);
+  }
+  .q-item:hover { border-color: var(--border-h); }
+  .q-item.open { border-color: var(--border-h); }
+
+  .q-trigger {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+
+  .q-num {
+    font-size: .7rem; font-weight: 700;
+    font-family: var(--mono);
+    color: var(--text3);
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px 8px;
+    white-space: nowrap; margin-top: 2px; flex-shrink: 0;
+  }
+
+  .q-text {
+    flex: 1;
+    font-size: .92rem; font-weight: 500; color: var(--text);
+    line-height: 1.55;
+  }
+
+  .q-chevron {
+    flex-shrink: 0; width: 20px; height: 20px;
+    color: var(--text3);
+    transition: transform var(--trans), color var(--trans);
+    margin-top: 2px;
+  }
+  .q-item.open .q-chevron { transform: rotate(180deg); color: var(--accent); }
+
+  .q-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+    opacity: 0;
+  }
+  .q-item.open .q-answer { max-height: 2000px; opacity: 1; }
+
+  .q-answer-inner {
+    padding: 0 20px 20px 52px;
+    font-size: .88rem; color: var(--text2);
+    line-height: 1.75;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: -4px;
+  }
+
+  /* answer content formatting */
+  .q-answer-inner p { margin-bottom: 10px; }
+  .q-answer-inner p:last-child { margin-bottom: 0; }
+  .q-answer-inner strong { color: var(--text); font-weight: 600; }
+  .q-answer-inner ul { padding-left: 18px; margin: 8px 0; }
+  .q-answer-inner ul li { margin-bottom: 5px; }
+  .q-answer-inner code {
+    font-family: var(--mono);
+    font-size: .82em;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--accent3);
+  }
+  .q-answer-inner pre {
+    font-family: var(--mono);
+    font-size: .8rem;
+    background: #0d1322;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    overflow-x: auto;
+    margin: 12px 0;
+    color: #a9d4ff;
+    line-height: 1.65;
+    white-space: pre;
+  }
+  .q-answer-inner pre .kw  { color: #c792ea; }
+  .q-answer-inner pre .fn  { color: #82aaff; }
+  .q-answer-inner pre .str { color: #c3e88d; }
+  .q-answer-inner pre .cmt { color: #546e7a; }
+  .q-answer-inner pre .num { color: #f78c6c; }
+  .q-answer-inner table {
+    width: 100%; border-collapse: collapse; margin: 12px 0;
+    font-size: .82rem;
+  }
+  .q-answer-inner table th {
+    background: rgba(79,142,247,.1);
+    color: var(--text);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-answer-inner table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    color: var(--text2);
+  }
+  .q-answer-inner table tr:last-child td { border-bottom: none; }
+
+  /* ── Footer ──────────────────────────────────────── */
+  footer {
+    text-align: center; padding: 40px 20px 20px;
+    font-size: .78rem; color: var(--text3);
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 600px) {
+    .modules-grid { grid-template-columns: 1fr; }
+    .q-answer-inner { padding-left: 20px; }
+    h1 { font-size: 1.5rem; }
+    .marks-tab { padding: 8px 16px; font-size: .8rem; }
+  }
+
+  /* ── Progress indicator ──────────────────────────── */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px; z-index: 100;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0; transition: width .3s ease;
+  }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="wrapper">
+  <!-- Header -->
+  <header>
+    <div class="badge">B.Tech IV Semester · GEC Autonomous Bhubaneswar</div>
+    <h1>Full Stack <span>Development-2</span></h1>
+    <p class="subtitle">
+      <span>Question Bank</span>
+      <span class="dot"></span>
+      <span>96 Questions</span>
+      <span class="dot"></span>
+      <span>Module I–IV</span>
+      <span class="dot"></span>
+      <span>Part A / B / C</span>
+    </p>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div id="breadcrumb"></div>
+
+  <div class="nav-actions">
+    <a class="home-btn" href="index.html">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Home
+    </a>
+
+    <!-- Back Button -->
+    <button id="back-btn" onclick="goBack()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Modules
+    </button>
+  </div>
+
+  <!-- VIEW: Home -->
+  <div class="view active" id="view-home">
+    <div class="modules-grid" id="modules-grid"></div>
+  </div>
+
+  <!-- VIEW: Module -->
+  <div class="view" id="view-module">
+    <div class="marks-header">
+      <h2 id="mod-heading"></h2>
+      <p id="mod-subheading"></p>
+    </div>
+    <div class="marks-tabs" id="marks-tabs"></div>
+    <div id="questions-container"></div>
+  </div>
+</div>
+
+<footer>© Prabhudatta Panda &nbsp;·&nbsp; Full Stack Development-2 Question Bank</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DATA — All 96 questions with answers
+   Structure: data[moduleKey][marksKey] = [{q, a}]
+═══════════════════════════════════════════════════════ */
+const data = {
+
+  /* ────────────── MODULE 1 ────────────── */
+  mod1: {
+    "2": [
+      {
+        q: "Differentiate SQL vs NoSQL in terms of schema.",
+        a: `<strong>SQL (Relational):</strong> Uses a fixed, predefined schema. Tables have defined columns with strict data types. Schema must be designed before inserting data.<br><br>
+<strong>NoSQL (Non-Relational):</strong> Uses a dynamic schema (schema-less). Documents can have different fields. MongoDB, for example, allows flexible JSON-like documents where fields can vary per record.<br><br>
+<strong>Key Difference:</strong> SQL enforces structure upfront; NoSQL allows structure to evolve over time.`
+      },
+      {
+        q: "Show how to create a new database in MongoDB shell.",
+        a: `In MongoDB shell, use the <code>use</code> command to create or switch to a database:<br><br>
+<pre><span class="cmt">// Switch to (or create) a database named 'mydb'</span>
+<span class="kw">use</span> mydb</pre>
+MongoDB does not physically create the database until at least one document is inserted:<br><br>
+<pre>db.users.<span class="fn">insertOne</span>({ name: <span class="str">"Alice"</span> })</pre>
+After insertion, the database <code>mydb</code> is created and stored.`
+      },
+      {
+        q: "Write the command to list all databases in MongoDB shell and show the command to connect to a specific database.",
+        a: `<strong>List all databases:</strong>
+<pre><span class="fn">show</span> dbs</pre>
+<strong>Connect to a specific database:</strong>
+<pre><span class="kw">use</span> databaseName
+<span class="cmt">// Example:</span>
+<span class="kw">use</span> school</pre>
+After <code>use school</code>, all subsequent commands operate on the <code>school</code> database. Use <code>db</code> to verify the currently selected database.`
+      },
+      {
+        q: "Identify the difference between insertOne() and insertMany().",
+        a: `<table>
+<tr><th>insertOne()</th><th>insertMany()</th></tr>
+<tr><td>Inserts a single document</td><td>Inserts multiple documents at once</td></tr>
+<tr><td>Takes one object as argument</td><td>Takes an array of objects</td></tr>
+<tr><td><code>db.col.insertOne({name:"A"})</code></td><td><code>db.col.insertMany([{name:"A"},{name:"B"}])</code></td></tr>
+<tr><td>Returns one insertedId</td><td>Returns array of insertedIds</td></tr>
+</table>`
+      },
+      {
+        q: "Compare $or and $and operators with examples.",
+        a: `<strong>$or:</strong> Returns documents that match <em>at least one</em> condition.
+<pre>db.users.<span class="fn">find</span>({ <span class="str">$or</span>: [{ age: <span class="num">20</span> }, { city: <span class="str">"Delhi"</span> }] })</pre>
+Returns users who are age 20 <em>or</em> live in Delhi.<br><br>
+<strong>$and:</strong> Returns documents that match <em>all</em> conditions.
+<pre>db.users.<span class="fn">find</span>({ <span class="str">$and</span>: [{ age: <span class="num">20</span> }, { city: <span class="str">"Delhi"</span> }] })</pre>
+Returns users who are age 20 <em>and</em> live in Delhi.`
+      },
+      {
+        q: "Explain why sorting is important in queries and explain the use of descending sort.",
+        a: `<strong>Importance:</strong> Sorting organizes query results in a meaningful order — e.g., newest records first, highest scores first. Without sorting, MongoDB returns documents in natural (insertion) order.<br><br>
+<strong>Descending sort</strong> uses <code>-1</code>:
+<pre>db.students.<span class="fn">find</span>().<span class="fn">sort</span>({ marks: <span class="num">-1</span> })</pre>
+This returns students ordered from highest marks to lowest. Use <code>1</code> for ascending order.`
+      },
+      {
+        q: "Write a query to show only name and age fields and combine sort and limit in a query example.",
+        a: `<strong>Projection — show only name and age:</strong>
+<pre>db.students.<span class="fn">find</span>({}, { name: <span class="num">1</span>, age: <span class="num">1</span>, _id: <span class="num">0</span> })</pre>
+<strong>Combine sort and limit:</strong>
+<pre>db.students
+  .<span class="fn">find</span>()
+  .<span class="fn">sort</span>({ age: <span class="num">-1</span> })
+  .<span class="fn">limit</span>(<span class="num">5</span>)</pre>
+Returns the 5 oldest students. <code>sort()</code> is applied before <code>limit()</code>.`
+      },
+      {
+        q: "What is aggregation in MongoDB and explain the role of $match in aggregation.",
+        a: `<strong>Aggregation</strong> is a pipeline-based framework for processing and transforming documents. It performs operations like filtering, grouping, sorting, and computing.<br><br>
+<strong>$match</strong> filters documents — similar to <code>find()</code> — but inside an aggregation pipeline:
+<pre>db.orders.<span class="fn">aggregate</span>([
+  { <span class="str">$match</span>: { status: <span class="str">"completed"</span> } },
+  { <span class="str">$group</span>: { _id: <span class="str">"$customerId"</span>, total: { <span class="str">$sum</span>: <span class="str">"$amount"</span> } } }
+])</pre>
+<code>$match</code> should be placed early in the pipeline to improve performance by reducing documents processed downstream.`
+      },
+      {
+        q: "Compare $sort in queries vs aggregation.",
+        a: `<table>
+<tr><th>Feature</th><th>Query sort()</th><th>Aggregation $sort</th></tr>
+<tr><td>Usage</td><td><code>.sort({field:1})</code></td><td><code>{ $sort: {field:1} }</code></td></tr>
+<tr><td>Context</td><td>Used with find()</td><td>Used inside aggregate pipeline</td></tr>
+<tr><td>Position</td><td>Appended after find()</td><td>Can be placed anywhere in pipeline</td></tr>
+<tr><td>Combined with</td><td>limit(), skip()</td><td>$limit, $skip stages</td></tr>
+</table>`
+      },
+      {
+        q: "What is user authentication and explain the purpose of roles in MongoDB.",
+        a: `<strong>User Authentication:</strong> The process of verifying the identity of a user before granting access to the database. MongoDB uses username/password credentials.<br><br>
+<strong>Roles</strong> define what a user can do after authentication (authorization). Common roles:
+<ul>
+<li><code>read</code> — Can only read data</li>
+<li><code>readWrite</code> — Can read and write</li>
+<li><code>dbAdmin</code> — Administrative tasks</li>
+<li><code>root</code> — Full access to everything</li>
+</ul>
+Roles enforce the principle of least privilege — users get only the permissions they need.`
+      },
+      {
+        q: "Which GUI tool is officially provided for MongoDB?",
+        a: `<strong>MongoDB Compass</strong> is the official GUI tool provided by MongoDB Inc.<br><br>
+It allows users to:
+<ul>
+<li>Visually explore and query databases</li>
+<li>View document structures</li>
+<li>Run aggregation pipelines</li>
+<li>Analyze performance with query explain plans</li>
+<li>Manage indexes</li>
+</ul>
+Available for Windows, macOS, and Linux. Download from <code>mongodb.com/products/compass</code>.`
+      },
+      {
+        q: "State one difference between deleteOne() and deleteMany().",
+        a: `<table>
+<tr><th>deleteOne()</th><th>deleteMany()</th></tr>
+<tr><td>Deletes only the <em>first</em> matching document</td><td>Deletes <em>all</em> matching documents</td></tr>
+<tr><td><code>db.col.deleteOne({age:20})</code></td><td><code>db.col.deleteMany({age:20})</code></td></tr>
+</table>
+<br>Use <code>deleteOne()</code> when targeting a specific document; use <code>deleteMany()</code> for bulk removal.`
+      },
+      {
+        q: "How do you create a new user in MongoDB?",
+        a: `Use <code>db.createUser()</code> in the MongoDB shell:
+<pre>db.<span class="fn">createUser</span>({
+  user: <span class="str">"myUser"</span>,
+  pwd:  <span class="str">"myPassword"</span>,
+  roles: [{ role: <span class="str">"readWrite"</span>, db: <span class="str">"myDatabase"</span> }]
+})</pre>
+<ul>
+<li>Switch to the target database first using <code>use dbName</code></li>
+<li>The role determines what operations the user can perform</li>
+<li>Always create users in the <code>admin</code> database for global access</li>
+</ul>`
+      },
+      {
+        q: "How do you sort documents in aggregation?",
+        a: `Use the <code>$sort</code> stage inside the aggregation pipeline:
+<pre>db.students.<span class="fn">aggregate</span>([
+  { <span class="str">$sort</span>: { marks: <span class="num">-1</span> } }  <span class="cmt">// -1 = descending</span>
+])</pre>
+<ul>
+<li><code>1</code> = ascending order</li>
+<li><code>-1</code> = descending order</li>
+<li>Can sort by multiple fields: <code>{ $sort: { age: 1, name: 1 } }</code></li>
+<li>Place <code>$sort</code> before <code>$limit</code> to get top-N results efficiently</li>
+</ul>`
+      },
+      {
+        q: "Illustrate the difference between limit() and skip().",
+        a: `<table>
+<tr><th>limit()</th><th>skip()</th></tr>
+<tr><td>Restricts the number of documents returned</td><td>Skips a specified number of documents</td></tr>
+<tr><td><code>.limit(5)</code> → returns first 5</td><td><code>.skip(10)</code> → skips first 10</td></tr>
+<tr><td>Used for controlling result size</td><td>Used for pagination</td></tr>
+</table>
+<strong>Combined (pagination):</strong>
+<pre>db.items.<span class="fn">find</span>().<span class="fn">skip</span>(<span class="num">10</span>).<span class="fn">limit</span>(<span class="num">5</span>)</pre>
+Returns items 11–15 — the second page of a 5-item-per-page display.`
+      }
+    ]
+  },
+
+  /* ────────────── MODULE 2 ────────────── */
+  mod2: {
+    "2": [
+      {
+        q: "What is npm used for and state one advantage of using npm.",
+        a: `<strong>npm (Node Package Manager)</strong> is used to install, manage, and share JavaScript packages/modules for Node.js projects.<br><br>
+<strong>One advantage:</strong> Huge ecosystem — npm hosts over 2 million packages, allowing developers to reuse code and avoid reinventing the wheel.
+<pre><span class="cmt"># Install a package</span>
+npm install express</pre>`
+      },
+      {
+        q: "Identify the difference between fs.writeFile() and fs.appendFile().",
+        a: `<table>
+<tr><th>fs.writeFile()</th><th>fs.appendFile()</th></tr>
+<tr><td>Creates or <em>overwrites</em> the file</td><td>Creates or <em>appends</em> to the file</td></tr>
+<tr><td>Old content is lost</td><td>Old content is preserved</td></tr>
+<tr><td>Good for saving fresh data</td><td>Good for logs / adding new lines</td></tr>
+</table>
+<pre><span class="kw">const</span> fs = <span class="fn">require</span>(<span class="str">'fs'</span>)
+fs.<span class="fn">writeFile</span>(<span class="str">'a.txt'</span>, <span class="str">'Hello'</span>, err => {})   <span class="cmt">// overwrites</span>
+fs.<span class="fn">appendFile</span>(<span class="str">'a.txt'</span>, <span class="str">'World'</span>, err => {})  <span class="cmt">// appends</span></pre>`
+      },
+      {
+        q: "What does the HTTP module provide and explain how to create a basic HTTP server.",
+        a: `The <code>http</code> module (built-in Node.js) provides functionality to create HTTP servers and clients without installing any third-party packages.<br><br>
+<strong>Basic HTTP server:</strong>
+<pre><span class="kw">const</span> http = <span class="fn">require</span>(<span class="str">'http'</span>)
+
+<span class="kw">const</span> server = http.<span class="fn">createServer</span>((req, res) => {
+  res.<span class="fn">writeHead</span>(<span class="num">200</span>, { <span class="str">'Content-Type'</span>: <span class="str">'text/plain'</span> })
+  res.<span class="fn">end</span>(<span class="str">'Hello World'</span>)
+})
+
+server.<span class="fn">listen</span>(<span class="num">3000</span>, () => console.<span class="fn">log</span>(<span class="str">'Server running'</span>))</pre>`
+      },
+      {
+        q: "Explain how to set up a basic Express server and write code to respond with 'Hello World' using Express.",
+        a: `<strong>Steps:</strong> Install Express → require it → create app → define route → listen on port.<br><br>
+<pre><span class="kw">const</span> express = <span class="fn">require</span>(<span class="str">'express'</span>)
+<span class="kw">const</span> app = <span class="fn">express</span>()
+
+app.<span class="fn">get</span>(<span class="str">'/'</span>, (req, res) => {
+  res.<span class="fn">send</span>(<span class="str">'Hello World'</span>)
+})
+
+app.<span class="fn">listen</span>(<span class="num">3000</span>, () => {
+  console.<span class="fn">log</span>(<span class="str">'Server running on port 3000'</span>)
+})</pre>
+Install first: <code>npm install express</code>`
+      },
+      {
+        q: "Explain the difference between GET and POST routes and write code for a basic GET route in Express.",
+        a: `<table>
+<tr><th>GET</th><th>POST</th></tr>
+<tr><td>Fetches/reads data</td><td>Sends/creates data</td></tr>
+<tr><td>Params in URL</td><td>Data in request body</td></tr>
+<tr><td>Idempotent (safe to repeat)</td><td>Not idempotent</td></tr>
+</table>
+<strong>Basic GET route:</strong>
+<pre>app.<span class="fn">get</span>(<span class="str">'/users'</span>, (req, res) => {
+  res.<span class="fn">json</span>({ users: [<span class="str">'Alice'</span>, <span class="str">'Bob'</span>] })
+})</pre>`
+      },
+      {
+        q: "Write code to define a route with a parameter /user/:id.",
+        a: `Route parameters are defined with <code>:</code> prefix and accessed via <code>req.params</code>:
+<pre>app.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, (req, res) => {
+  <span class="kw">const</span> userId = req.params.id
+  res.<span class="fn">send</span>(<span class="str">\`User ID is: \${userId}\`</span>)
+})</pre>
+Request to <code>/user/42</code> → responds with <strong>"User ID is: 42"</strong>.<br>
+Multiple params: <code>/user/:id/post/:postId</code>`
+      },
+      {
+        q: "Identify the difference between next() and res.send().",
+        a: `<table>
+<tr><th>next()</th><th>res.send()</th></tr>
+<tr><td>Passes control to the next middleware</td><td>Ends the request-response cycle</td></tr>
+<tr><td>Does not send a response</td><td>Sends data back to the client</td></tr>
+<tr><td>Used in middleware chains</td><td>Used in route handlers</td></tr>
+</table>
+<pre>app.<span class="fn">use</span>((req, res, next) => {
+  console.<span class="fn">log</span>(<span class="str">'Middleware'</span>)
+  <span class="fn">next</span>()   <span class="cmt">// passes to next handler</span>
+})</pre>`
+      },
+      {
+        q: "Write code for a POST route to add a new user and explain what is the role of the POST method.",
+        a: `<strong>Role of POST:</strong> Used to submit data to the server to create a new resource.<br><br>
+<pre>app.<span class="fn">use</span>(express.<span class="fn">json</span>())  <span class="cmt">// parse JSON body</span>
+
+app.<span class="fn">post</span>(<span class="str">'/users'</span>, (req, res) => {
+  <span class="kw">const</span> { name, email } = req.body
+  <span class="cmt">// Save to database here</span>
+  res.<span class="fn">status</span>(<span class="num">201</span>).<span class="fn">json</span>({
+    message: <span class="str">'User created'</span>,
+    user: { name, email }
+  })
+})</pre>`
+      },
+      {
+        q: "What is Mongoose and write code to connect to MongoDB using Mongoose.",
+        a: `<strong>Mongoose</strong> is an ODM (Object Data Modeling) library for MongoDB and Node.js. It provides schema-based modeling, validation, and a convenient query API.<br><br>
+<pre><span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">'mongoose'</span>)
+
+mongoose.<span class="fn">connect</span>(<span class="str">'mongodb://localhost:27017/mydb'</span>)
+  .<span class="fn">then</span>(() => console.<span class="fn">log</span>(<span class="str">'MongoDB Connected'</span>))
+  .<span class="fn">catch</span>(err => console.<span class="fn">log</span>(err))</pre>
+Install: <code>npm install mongoose</code>`
+      },
+      {
+        q: "Compare JWT vs session-based authentication.",
+        a: `<table>
+<tr><th>JWT</th><th>Session-based</th></tr>
+<tr><td>Stateless — token stored client-side</td><td>Stateful — session stored server-side</td></tr>
+<tr><td>Token sent in Authorization header</td><td>Session ID sent via cookie</td></tr>
+<tr><td>Scalable (no server storage)</td><td>Requires shared session store for scaling</td></tr>
+<tr><td>Cannot be invalidated easily</td><td>Easy to invalidate (delete session)</td></tr>
+</table>`
+      },
+      {
+        q: "Explain how do you export a function from a module?",
+        a: `In Node.js, use <code>module.exports</code> to export:
+<pre><span class="cmt">// math.js</span>
+<span class="kw">function</span> <span class="fn">add</span>(a, b) { <span class="kw">return</span> a + b }
+module.exports = { add }</pre>
+<pre><span class="cmt">// app.js</span>
+<span class="kw">const</span> { add } = <span class="fn">require</span>(<span class="str">'./math'</span>)
+console.<span class="fn">log</span>(<span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>))  <span class="cmt">// 5</span></pre>
+You can also use ES Modules syntax with <code>export</code> / <code>import</code> (Node.js v12+).`
+      },
+      {
+        q: "Which module is used to create a web server in Node.js? Give me an example.",
+        a: `The built-in <strong>http</strong> module is used to create a web server in Node.js:
+<pre><span class="kw">const</span> http = <span class="fn">require</span>(<span class="str">'http'</span>)
+
+<span class="kw">const</span> server = http.<span class="fn">createServer</span>((req, res) => {
+  res.<span class="fn">end</span>(<span class="str">'Server is running!'</span>)
+})
+
+server.<span class="fn">listen</span>(<span class="num">3000</span>)</pre>
+Navigate to <code>http://localhost:3000</code> to see the response.`
+      },
+      {
+        q: "Discuss the difference between app.get() and app.post() method.",
+        a: `<table>
+<tr><th>app.get()</th><th>app.post()</th></tr>
+<tr><td>Handles HTTP GET requests</td><td>Handles HTTP POST requests</td></tr>
+<tr><td>Used to retrieve/read data</td><td>Used to create/submit data</td></tr>
+<tr><td>Data passed in URL query params</td><td>Data passed in request body</td></tr>
+<tr><td><code>app.get('/route', handler)</code></td><td><code>app.post('/route', handler)</code></td></tr>
+</table>`
+      },
+      {
+        q: "Enlighten how do you store sessions in Express?",
+        a: `Use the <code>express-session</code> middleware:
+<pre><span class="kw">const</span> session = <span class="fn">require</span>(<span class="str">'express-session'</span>)
+
+app.<span class="fn">use</span>(<span class="fn">session</span>({
+  secret: <span class="str">'mySecret'</span>,
+  resave: <span class="kw">false</span>,
+  saveUninitialized: <span class="kw">true</span>
+}))
+
+app.<span class="fn">get</span>(<span class="str">'/login'</span>, (req, res) => {
+  req.session.user = <span class="str">'Alice'</span>
+  res.<span class="fn">send</span>(<span class="str">'Logged in'</span>)
+})</pre>
+Install: <code>npm install express-session</code>`
+      },
+      {
+        q: "Name the four main HTTP methods used in CRUD operations.",
+        a: `<table>
+<tr><th>HTTP Method</th><th>CRUD Operation</th><th>Purpose</th></tr>
+<tr><td><code>POST</code></td><td>Create</td><td>Add new resource</td></tr>
+<tr><td><code>GET</code></td><td>Read</td><td>Retrieve resource</td></tr>
+<tr><td><code>PUT</code>/<code>PATCH</code></td><td>Update</td><td>Modify resource</td></tr>
+<tr><td><code>DELETE</code></td><td>Delete</td><td>Remove resource</td></tr>
+</table>`
+      }
+    ]
+  },
+
+  /* ────────────── MODULE 3 ────────────── */
+  mod3: {
+    "2": [
+      {
+        q: "What is Angular and explain the purpose of Angular CLI.",
+        a: `<strong>Angular</strong> is a TypeScript-based, open-source front-end framework developed by Google for building single-page applications (SPAs).<br><br>
+<strong>Angular CLI (Command Line Interface)</strong> is a tool that automates development tasks: creating projects, generating components/services, running tests, building for production.<br><br>
+<code>npm install -g @angular/cli</code> to install.`
+      },
+      {
+        q: "Write the command to create a new Angular project and state the command to generate a new component.",
+        a: `<strong>Create new project:</strong>
+<pre>ng new my-app</pre>
+<strong>Generate a new component:</strong>
+<pre>ng generate component component-name
+<span class="cmt">// shorthand:</span>
+ng g c component-name</pre>
+This creates 4 files: <code>.ts</code>, <code>.html</code>, <code>.css</code>, <code>.spec.ts</code> and updates <code>app.module.ts</code>.`
+      },
+      {
+        q: "Identify the difference between one-way and two-way data binding.",
+        a: `<table>
+<tr><th>One-way Binding</th><th>Two-way Binding</th></tr>
+<tr><td>Data flows in one direction</td><td>Data flows both ways</td></tr>
+<tr><td>Component → Template or Template → Component</td><td>Component ↔ Template</td></tr>
+<tr><td>Uses <code>{{ }}</code>, <code>[property]</code>, <code>(event)</code></td><td>Uses <code>[(ngModel)]</code></td></tr>
+<tr><td>View doesn't auto-update component</td><td>View updates component and vice versa</td></tr>
+</table>`
+      },
+      {
+        q: "What is event binding and write code to bind a button click event to a method.",
+        a: `<strong>Event binding</strong> listens for DOM events (click, keyup, etc.) and calls a component method when triggered. Syntax: <code>(event)="method()"</code><br><br>
+<strong>Template:</strong>
+<pre><span class="str">&lt;button (click)="onButtonClick()"&gt;</span>Click Me<span class="str">&lt;/button&gt;</span></pre>
+<strong>Component:</strong>
+<pre><span class="fn">onButtonClick</span>() {
+  console.<span class="fn">log</span>(<span class="str">'Button clicked!'</span>)
+}</pre>`
+      },
+      {
+        q: "What is a directive in Angular and explain the role of *ngIf directive.",
+        a: `<strong>Directive:</strong> A class that adds behavior to elements in the DOM. Angular has structural directives (change DOM layout) and attribute directives (change element appearance).<br><br>
+<strong>*ngIf</strong> is a structural directive that conditionally adds or removes an element from the DOM:
+<pre><span class="str">&lt;p *ngIf="isLoggedIn"&gt;</span>Welcome!<span class="str">&lt;/p&gt;</span></pre>
+If <code>isLoggedIn</code> is <code>false</code>, the <code>&lt;p&gt;</code> element is removed from the DOM entirely.`
+      },
+      {
+        q: "Write code to loop through an array using *ngFor.",
+        a: `<code>*ngFor</code> is a structural directive for rendering a list of items:
+<pre><span class="cmt">&lt;!-- Template --&gt;</span>
+<span class="str">&lt;ul&gt;</span>
+  <span class="str">&lt;li *ngFor="let item of items"&gt;</span>{{ item }}<span class="str">&lt;/li&gt;</span>
+<span class="str">&lt;/ul&gt;</span></pre>
+<pre><span class="cmt">// Component</span>
+items = [<span class="str">'Apple'</span>, <span class="str">'Banana'</span>, <span class="str">'Cherry'</span>]</pre>
+Access index: <code>*ngFor="let item of items; let i = index"</code>`
+      },
+      {
+        q: "Explain why routing is important in single-page applications.",
+        a: `In SPAs, the page never fully reloads. <strong>Routing</strong> is critical because:
+<ul>
+<li>It simulates navigation between pages without full page reload</li>
+<li>Enables deep linking — users can bookmark/share specific URLs</li>
+<li>Controls which component is displayed for each URL path</li>
+<li>Supports browser back/forward navigation</li>
+<li>Improves user experience by maintaining app state across views</li>
+</ul>`
+      },
+      {
+        q: "Explain why routing is important in single-page applications. (b)",
+        a: `Routing in SPAs allows the app to respond to URL changes without reloading the page. Benefits:
+<ul>
+<li><strong>Navigation control:</strong> Angular Router maps URL paths to components</li>
+<li><strong>Lazy loading:</strong> Loads feature modules only when needed, improving performance</li>
+<li><strong>Guards:</strong> Protects routes from unauthorized access</li>
+<li><strong>URL state:</strong> Preserves navigation history in the browser</li>
+</ul>
+Without routing, a SPA would show only one view to all users regardless of context.`
+      },
+      {
+        q: "Explain the difference between reactive and template-driven forms.",
+        a: `<table>
+<tr><th>Reactive Forms</th><th>Template-Driven Forms</th></tr>
+<tr><td>Defined in component class (TypeScript)</td><td>Defined in the template (HTML)</td></tr>
+<tr><td>Uses FormGroup, FormControl</td><td>Uses ngModel, ngForm</td></tr>
+<tr><td>More control, testable</td><td>Simpler, less boilerplate</td></tr>
+<tr><td>Best for complex forms</td><td>Best for simple forms</td></tr>
+</table>`
+      },
+      {
+        q: "What directive is used for two-way binding in template-driven forms with an example.",
+        a: `The <strong>ngModel</strong> directive is used for two-way data binding in template-driven forms:
+<pre><span class="str">&lt;input [(ngModel)]="username" name="username"&gt;</span>
+<span class="str">&lt;p&gt;</span>Hello, {{ username }}!<span class="str">&lt;/p&gt;</span></pre>
+<pre><span class="cmt">// Component</span>
+username: string = <span class="str">''</span></pre>
+When the user types in the input, <code>username</code> in the component updates instantly, and the paragraph reflects the change.`
+      },
+      {
+        q: "Why is Angular considered a framework rather than a library?",
+        a: `Angular is a <strong>full framework</strong> because it:
+<ul>
+<li>Enforces a specific project structure (modules, components, services)</li>
+<li>Provides its own routing, HTTP client, forms, testing utilities</li>
+<li>Uses dependency injection as a core pattern</li>
+<li>Requires TypeScript (opinionated)</li>
+</ul>
+A <strong>library</strong> (like React) only handles one concern (UI rendering) and lets you choose everything else. Angular makes architectural decisions for you.`
+      },
+      {
+        q: "Write the syntax for two-way binding using ngModel.",
+        a: `Two-way binding uses the "banana in a box" syntax <code>[( )]</code>:
+<pre><span class="str">&lt;input [(ngModel)]="propertyName" name="propertyName"&gt;</span></pre>
+<strong>Example:</strong>
+<pre><span class="str">&lt;input [(ngModel)]="email" name="email" type="email"&gt;</span>
+<span class="str">&lt;p&gt;</span>Email: {{ email }}<span class="str">&lt;/p&gt;</span></pre>
+<strong>Note:</strong> Requires <code>FormsModule</code> to be imported in <code>app.module.ts</code>.`
+      },
+      {
+        q: "Name two structural directives in Angular with example.",
+        a: `<strong>1. *ngIf</strong> — Conditionally renders an element:
+<pre><span class="str">&lt;div *ngIf="showBanner"&gt;</span>Welcome Banner<span class="str">&lt;/div&gt;</span></pre>
+<strong>2. *ngFor</strong> — Renders a list of elements:
+<pre><span class="str">&lt;li *ngFor="let user of users"&gt;</span>{{ user.name }}<span class="str">&lt;/li&gt;</span></pre>
+Structural directives are prefixed with <code>*</code> and change the DOM structure (add/remove elements).`
+      },
+      {
+        q: "Navigate programmatically to a route using router.navigate().",
+        a: `Inject <code>Router</code> into the component and call <code>navigate()</code>:
+<pre><span class="kw">import</span> { Router } <span class="kw">from</span> <span class="str">'@angular/router'</span>
+
+<span class="kw">constructor</span>(<span class="kw">private</span> router: Router) {}
+
+<span class="fn">goToHome</span>() {
+  <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/home'</span>])
+}
+
+<span class="cmt">// With params:</span>
+<span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/user'</span>, userId])</pre>`
+      },
+      {
+        q: "Build a login form with email validation and password length check.",
+        a: `<pre><span class="str">&lt;form (ngSubmit)="onLogin()"&gt;</span>
+  <span class="str">&lt;input [(ngModel)]="email" name="email"
+    required email&gt;</span>
+  <span class="str">&lt;input [(ngModel)]="password" name="password"
+    type="password" minlength="6"&gt;</span>
+  <span class="str">&lt;button type="submit"&gt;</span>Login<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;/form&gt;</span></pre>
+<pre><span class="fn">onLogin</span>() {
+  <span class="kw">if</span> (<span class="kw">this</span>.email && <span class="kw">this</span>.password.length >= <span class="num">6</span>) {
+    console.<span class="fn">log</span>(<span class="str">'Login attempted'</span>)
+  }
+}</pre>`
+      }
+    ],
+    "5": [
+      {
+        q: "Describe the architecture of an Angular application (modules, components, templates).",
+        a: `Angular follows a <strong>component-based architecture</strong> organized around modules.<br><br>
+<strong>NgModules:</strong> Every Angular app has at least one module — <code>AppModule</code>. Modules group related components, services, and directives. They declare what the module contains and what it imports/exports.<br><br>
+<strong>Components:</strong> The building blocks of the UI. Each component has:<ul><li><strong>.ts file</strong> — class with logic and data</li><li><strong>.html file</strong> — template defining the view</li><li><strong>.css file</strong> — component-specific styles</li></ul>
+<strong>Templates:</strong> HTML with Angular-specific syntax including interpolation (<code>{{ }}</code>), property binding (<code>[prop]</code>), event binding (<code>(event)</code>), and directives (<code>*ngIf</code>, <code>*ngFor</code>).<br><br>
+<strong>Services:</strong> Injectable classes for shared business logic, data fetching, etc. — separated from component logic using <strong>Dependency Injection</strong>.<br><br>
+<strong>Data flow:</strong> <em>AppModule → AppComponent → Child Components → Services</em>. This hierarchical structure makes the app modular, testable, and scalable.`
+      },
+      {
+        q: "Differentiate between one-way data binding and two-way data binding with examples.",
+        a: `<strong>One-Way Data Binding</strong> — data flows in a single direction.<br><br>
+<em>Interpolation (Component → View):</em>
+<pre><span class="str">&lt;h1&gt;</span>{{ title }}<span class="str">&lt;/h1&gt;</span></pre>
+<em>Property Binding (Component → View):</em>
+<pre><span class="str">&lt;img [src]="imageUrl"&gt;</span></pre>
+<em>Event Binding (View → Component):</em>
+<pre><span class="str">&lt;button (click)="save()"&gt;</span>Save<span class="str">&lt;/button&gt;</span></pre>
+<strong>Two-Way Data Binding</strong> — synchronizes data between component and view simultaneously using <code>[(ngModel)]</code>:
+<pre><span class="str">&lt;input [(ngModel)]="username"&gt;</span>
+<span class="str">&lt;p&gt;</span>{{ username }}<span class="str">&lt;/p&gt;</span></pre>
+When the user types, <code>username</code> updates in the component, and the paragraph reflects the change instantly.<br><br>
+<strong>Key Difference:</strong> One-way requires explicit event handling for user input; two-way automatically keeps both in sync.`
+      },
+      {
+        q: "Write the steps to configure basic routes in Angular and explain how to navigate between routes programmatically using Router.",
+        a: `<strong>Step 1 — Define routes in app-routing.module.ts:</strong>
+<pre><span class="kw">const</span> routes: Routes = [
+  { path: <span class="str">''</span>, component: HomeComponent },
+  { path: <span class="str">'about'</span>, component: AboutComponent },
+  { path: <span class="str">'**'</span>, redirectTo: <span class="str">''</span> }
+]</pre>
+<strong>Step 2 — Add router outlet in app.component.html:</strong>
+<pre><span class="str">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span></pre>
+<strong>Step 3 — Add navigation links (declarative):</strong>
+<pre><span class="str">&lt;a routerLink="/about"&gt;</span>About<span class="str">&lt;/a&gt;</span></pre>
+<strong>Step 4 — Programmatic navigation using Router:</strong>
+<pre><span class="kw">import</span> { Router } <span class="kw">from</span> <span class="str">'@angular/router'</span>
+
+<span class="kw">constructor</span>(<span class="kw">private</span> router: Router) {}
+
+<span class="fn">goToAbout</span>() {
+  <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/about'</span>])
+}</pre>
+Programmatic navigation is essential for conditional redirects after actions like login/logout.`
+      },
+      {
+        q: "Differentiate between reactive forms and template-driven forms with examples.",
+        a: `<strong>Template-Driven Forms</strong> — logic in the HTML template:
+<pre><span class="str">&lt;form #f="ngForm" (ngSubmit)="submit(f)"&gt;</span>
+  <span class="str">&lt;input name="email" ngModel required&gt;</span>
+<span class="str">&lt;/form&gt;</span></pre>
+<ul><li>Simpler syntax, less TypeScript code</li><li>Suitable for simple forms</li><li>Uses <code>FormsModule</code></li></ul>
+<strong>Reactive Forms</strong> — logic in the component class:
+<pre>form = <span class="kw">new</span> <span class="fn">FormGroup</span>({
+  email: <span class="kw">new</span> <span class="fn">FormControl</span>(<span class="str">''</span>, Validators.required)
+})</pre>
+<ul><li>More control, easier to test</li><li>Better for dynamic/complex forms</li><li>Uses <code>ReactiveFormsModule</code></li></ul>
+<strong>Conclusion:</strong> Use template-driven for quick, simple forms; use reactive for complex validation, dynamic fields, or when testing is critical.`
+      },
+      {
+        q: "Write the steps to create a reactive form with two input fields and discuss the advantages of reactive forms in complex form handling scenarios.",
+        a: `<strong>Step 1 — Import ReactiveFormsModule in app.module.ts.</strong><br>
+<strong>Step 2 — Component:</strong>
+<pre><span class="kw">import</span> { FormGroup, FormControl, Validators } <span class="kw">from</span> <span class="str">'@angular/forms'</span>
+
+loginForm = <span class="kw">new</span> <span class="fn">FormGroup</span>({
+  email: <span class="kw">new</span> <span class="fn">FormControl</span>(<span class="str">''</span>, [Validators.required, Validators.email]),
+  password: <span class="kw">new</span> <span class="fn">FormControl</span>(<span class="str">''</span>, Validators.<span class="fn">minLength</span>(<span class="num">6</span>))
+})
+
+<span class="fn">onSubmit</span>() {
+  console.<span class="fn">log</span>(<span class="kw">this</span>.loginForm.value)
+}</pre>
+<strong>Step 3 — Template:</strong>
+<pre><span class="str">&lt;form [formGroup]="loginForm" (ngSubmit)="onSubmit()"&gt;</span>
+  <span class="str">&lt;input formControlName="email"&gt;</span>
+  <span class="str">&lt;input formControlName="password" type="password"&gt;</span>
+  <span class="str">&lt;button type="submit"&gt;</span>Submit<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;/form&gt;</span></pre>
+<strong>Advantages:</strong> Explicit validation in TypeScript, programmatic control, easy unit testing, support for dynamic fields, cleaner separation of concerns.`
+      },
+      {
+        q: "Demonstrate how *ngFor can be used to loop through an array of items using an example.",
+        a: `<code>*ngFor</code> iterates over an iterable and renders an element per item.<br><br>
+<strong>Component:</strong>
+<pre>products = [
+  { id: <span class="num">1</span>, name: <span class="str">'Laptop'</span>, price: <span class="num">50000</span> },
+  { id: <span class="num">2</span>, name: <span class="str">'Phone'</span>, price: <span class="num">20000</span> },
+  { id: <span class="num">3</span>, name: <span class="str">'Tablet'</span>, price: <span class="num">30000</span> }
+]</pre>
+<strong>Template:</strong>
+<pre><span class="str">&lt;div *ngFor="let p of products; let i = index"&gt;</span>
+  <span class="str">&lt;h3&gt;</span>{{ i+1 }}. {{ p.name }}<span class="str">&lt;/h3&gt;</span>
+  <span class="str">&lt;p&gt;</span>Price: ₹{{ p.price }}<span class="str">&lt;/p&gt;</span>
+<span class="str">&lt;/div&gt;</span></pre>
+<strong>Key exported variables:</strong> <code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code>. These can be used to style alternate rows or highlight the first/last item.`
+      },
+      {
+        q: "Compare and list a detailed analysis between property binding and event binding with examples.",
+        a: `<strong>Property Binding</strong> — sets a DOM property from a component value (Component → View):
+<pre><span class="str">&lt;input [value]="username"&gt;</span>
+<span class="str">&lt;button [disabled]="isLoading"&gt;</span>Submit<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;img [src]="imageUrl" [alt]="imageAlt"&gt;</span></pre>
+<ul><li>One-directional: component → DOM</li><li>Updates DOM automatically when component property changes</li></ul>
+<strong>Event Binding</strong> — listens to DOM events and triggers component methods (View → Component):
+<pre><span class="str">&lt;button (click)="onClick()"&gt;</span>Click<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;input (keyup)="onKey($event)"&gt;</span>
+<span class="str">&lt;form (submit)="onSubmit()"&gt;&lt;/form&gt;</span></pre>
+<ul><li>One-directional: user action → component logic</li><li>Uses <code>$event</code> to pass event data to the method</li></ul>
+<strong>Comparison:</strong>
+<table>
+<tr><th>Feature</th><th>Property Binding</th><th>Event Binding</th></tr>
+<tr><td>Direction</td><td>Component → DOM</td><td>DOM → Component</td></tr>
+<tr><td>Syntax</td><td><code>[property]</code></td><td><code>(event)</code></td></tr>
+<tr><td>Purpose</td><td>Set DOM properties</td><td>React to user actions</td></tr>
+</table>`
+      },
+      {
+        q: "Discuss in detail the importance of routing in single-page applications.",
+        a: `In traditional multi-page apps, navigating to a new page triggers a full HTTP request and page reload. In a <strong>SPA</strong>, only data is fetched and the view updates dynamically.<br><br>
+<strong>Why Routing Matters:</strong>
+<ul>
+<li><strong>Navigation without reload:</strong> Angular Router intercepts URL changes and renders the appropriate component, preventing full reloads and improving performance.</li>
+<li><strong>Deep linking:</strong> Each view has a unique URL, allowing bookmarking and sharing of specific states.</li>
+<li><strong>Browser history:</strong> Back/forward buttons work correctly via the History API.</li>
+<li><strong>Lazy loading:</strong> Route-based code splitting loads modules only when navigated to, reducing initial bundle size.</li>
+<li><strong>Route guards:</strong> <code>CanActivate</code>, <code>CanDeactivate</code> guards control access to routes based on conditions (e.g., authentication).</li>
+<li><strong>Nested routes:</strong> Child routes enable complex layouts with multiple nested components.</li>
+</ul>
+Angular's Router module (<code>RouterModule</code>) handles all of this through the <code>&lt;router-outlet&gt;</code> directive.`
+      },
+      {
+        q: "Illustrate in detail the importance of form validation in user experience.",
+        a: `Form validation ensures data integrity and guides users to enter correct information.<br><br>
+<strong>Why Validation Matters:</strong>
+<ul>
+<li><strong>Data quality:</strong> Prevents invalid/incomplete data from reaching the server.</li>
+<li><strong>Security:</strong> Blocks malicious inputs like SQL injection patterns at the UI level.</li>
+<li><strong>User guidance:</strong> Real-time error messages help users correct mistakes immediately.</li>
+<li><strong>Reduced server load:</strong> Client-side validation catches errors before an API call is made.</li>
+</ul>
+<strong>Angular Validation Example (Reactive):</strong>
+<pre>email: <span class="kw">new</span> <span class="fn">FormControl</span>(<span class="str">''</span>, [
+  Validators.required,
+  Validators.email
+])</pre>
+<pre><span class="str">&lt;span *ngIf="email.hasError('required')"&gt;</span>
+  Email is required
+<span class="str">&lt;/span&gt;</span>
+<span class="str">&lt;span *ngIf="email.hasError('email')"&gt;</span>
+  Invalid email format
+<span class="str">&lt;/span&gt;</span></pre>
+<strong>Best Practices:</strong> Validate on blur (not just submit), show specific error messages, use visual cues (red borders), and always re-validate on the server side too.`
+      }
+    ],
+    "10": [
+      {
+        q: "Explain the role of Angular CLI in project setup. Write the steps to create a new Angular project and describe the files generated.",
+        a: `<strong>Angular CLI</strong> is a command-line interface tool that automates scaffolding, development, testing, and deployment tasks.<br><br>
+<strong>Install Angular CLI:</strong>
+<pre>npm install -g @angular/cli</pre>
+<strong>Create a new project:</strong>
+<pre>ng new my-app
+<span class="cmt"># Choose routing: Yes/No</span>
+<span class="cmt"># Choose stylesheet: CSS/SCSS/SASS</span>
+cd my-app
+ng serve</pre>
+<strong>Key generated files:</strong>
+<ul>
+<li><code>src/app/app.module.ts</code> — Root module; declares and imports everything</li>
+<li><code>src/app/app.component.ts</code> — Root component class</li>
+<li><code>src/app/app.component.html</code> — Root component template</li>
+<li><code>src/app/app-routing.module.ts</code> — Route configuration</li>
+<li><code>src/main.ts</code> — Entry point that bootstraps AppModule</li>
+<li><code>src/index.html</code> — Single HTML page with <code>&lt;app-root&gt;</code></li>
+<li><code>angular.json</code> — Project configuration (build, serve, test)</li>
+<li><code>tsconfig.json</code> — TypeScript compiler options</li>
+<li><code>package.json</code> — npm dependencies</li>
+</ul>
+<strong>Other useful CLI commands:</strong>
+<pre>ng g c my-component   <span class="cmt"># generate component</span>
+ng g s my-service     <span class="cmt"># generate service</span>
+ng build --prod       <span class="cmt"># production build</span>
+ng test               <span class="cmt"># run unit tests</span></pre>
+Angular CLI enforces consistent project structure, speeds up development, and handles the complex webpack/TypeScript build configuration automatically.`
+      },
+      {
+        q: "Write a component that demonstrates interpolation, property binding, and event binding together and explain the above concepts.",
+        a: `<strong>Component (app.component.ts):</strong>
+<pre><span class="kw">export class</span> AppComponent {
+  title   = <span class="str">'Angular Demo'</span>
+  imgUrl  = <span class="str">'https://angular.io/assets/images/logos/angular/angular.png'</span>
+  count   = <span class="num">0</span>
+  isDisabled = <span class="kw">false</span>
+
+  <span class="fn">increment</span>() { <span class="kw">this</span>.count++ }
+  <span class="fn">toggleBtn</span>() { <span class="kw">this</span>.isDisabled = !<span class="kw">this</span>.isDisabled }
+}</pre>
+<strong>Template (app.component.html):</strong>
+<pre><span class="str">&lt;h1&gt;</span>{{ title }}<span class="str">&lt;/h1&gt;</span>          &lt;!-- Interpolation --&gt;
+<span class="str">&lt;img [src]="imgUrl"&gt;</span>         &lt;!-- Property Binding --&gt;
+<span class="str">&lt;p&gt;</span>Count: {{ count }}<span class="str">&lt;/p&gt;</span>
+<span class="str">&lt;button (click)="increment()"
+  [disabled]="isDisabled"&gt;</span>    &lt;!-- Event + Property --&gt;
+  Increment
+<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;button (click)="toggleBtn()"&gt;</span>Toggle<span class="str">&lt;/button&gt;</span></pre>
+<strong>Concepts Explained:</strong>
+<ul>
+<li><strong>Interpolation <code>{{ }}</code>:</strong> Embeds component expressions directly into HTML text. Evaluated at runtime.</li>
+<li><strong>Property Binding <code>[prop]</code>:</strong> Sets an HTML attribute/DOM property dynamically from a component variable. <code>[src]="imgUrl"</code> sets the image source.</li>
+<li><strong>Event Binding <code>(event)</code>:</strong> Listens for user actions and triggers component methods. <code>(click)="increment()"</code> calls the method when button is clicked.</li>
+</ul>
+These three together form the core data-binding mechanism in Angular.`
+      },
+      {
+        q: "Discuss the role of route parameters. Write an example of passing and retrieving parameters and differentiate between relative and absolute navigation in Angular with examples.",
+        a: `<strong>Route Parameters</strong> allow passing dynamic values in the URL to components — e.g., viewing a specific user's profile at <code>/user/42</code>.<br><br>
+<strong>Step 1 — Define route with parameter:</strong>
+<pre><span class="kw">const</span> routes: Routes = [
+  { path: <span class="str">'user/:id'</span>, component: UserComponent }
+]</pre>
+<strong>Step 2 — Navigate with parameter:</strong>
+<pre><span class="cmt">// In template:</span>
+<span class="str">&lt;a [routerLink]="['/user', 42]"&gt;</span>View User<span class="str">&lt;/a&gt;</span>
+
+<span class="cmt">// Programmatically:</span>
+<span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/user'</span>, <span class="kw">this</span>.userId])</pre>
+<strong>Step 3 — Retrieve parameter in component:</strong>
+<pre><span class="kw">import</span> { ActivatedRoute } <span class="kw">from</span> <span class="str">'@angular/router'</span>
+
+<span class="kw">constructor</span>(<span class="kw">private</span> route: ActivatedRoute) {}
+
+ngOnInit() {
+  <span class="kw">const</span> id = <span class="kw">this</span>.route.snapshot.paramMap.<span class="fn">get</span>(<span class="str">'id'</span>)
+  console.<span class="fn">log</span>(id)  <span class="cmt">// "42"</span>
+}</pre>
+<strong>Absolute vs Relative Navigation:</strong>
+<table>
+<tr><th>Absolute</th><th>Relative</th></tr>
+<tr><td>Starts with <code>/</code></td><td>Does not start with <code>/</code></td></tr>
+<tr><td><code>router.navigate(['/user/1'])</code></td><td><code>router.navigate(['../details'], {relativeTo: route})</code></td></tr>
+<tr><td>Navigates from app root</td><td>Navigates relative to current route</td></tr>
+<tr><td>Predictable, context-free</td><td>Flexible for nested routes</td></tr>
+</table>`
+      },
+      {
+        q: "Compare reactive forms and template-driven forms in terms of structure, validation, and scalability. Demonstrate two-way binding in template-driven forms using ngModel with validation.",
+        a: `<strong>Comparison:</strong>
+<table>
+<tr><th>Aspect</th><th>Reactive Forms</th><th>Template-Driven</th></tr>
+<tr><td>Structure</td><td>Defined in TS class</td><td>Defined in HTML</td></tr>
+<tr><td>Validation</td><td>Programmatic, explicit</td><td>HTML attributes</td></tr>
+<tr><td>Scalability</td><td>High — complex forms, dynamic fields</td><td>Low — best for simple forms</td></tr>
+<tr><td>Testing</td><td>Easily unit-tested</td><td>Harder to unit test</td></tr>
+<tr><td>Module</td><td>ReactiveFormsModule</td><td>FormsModule</td></tr>
+</table>
+<strong>Template-Driven Form with ngModel + Validation:</strong>
+<pre><span class="str">&lt;form #regForm="ngForm" (ngSubmit)="register(regForm)"&gt;</span>
+  <span class="str">&lt;input name="name" [(ngModel)]="user.name"
+    required minlength="3" #nameRef="ngModel"&gt;</span>
+  <span class="str">&lt;span *ngIf="nameRef.invalid && nameRef.touched"&gt;</span>
+    Name must be at least 3 characters
+  <span class="str">&lt;/span&gt;</span>
+
+  <span class="str">&lt;input name="email" [(ngModel)]="user.email"
+    required email #emailRef="ngModel"&gt;</span>
+  <span class="str">&lt;span *ngIf="emailRef.invalid && emailRef.touched"&gt;</span>
+    Enter a valid email
+  <span class="str">&lt;/span&gt;</span>
+
+  <span class="str">&lt;button [disabled]="regForm.invalid"&gt;</span>Register<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;/form&gt;</span></pre>
+<strong>Component:</strong>
+<pre>user = { name: <span class="str">''</span>, email: <span class="str">''</span> }
+<span class="fn">register</span>(form: NgForm) {
+  <span class="kw">if</span> (form.valid) console.<span class="fn">log</span>(<span class="kw">this</span>.user)
+}</pre>`
+      },
+      {
+        q: "Create a digital counter, by using button the value must go up and down but not negative value using Angular.",
+        a: `<strong>Component (counter.component.ts):</strong>
+<pre><span class="kw">import</span> { Component } <span class="kw">from</span> <span class="str">'@angular/core'</span>
+
+@<span class="fn">Component</span>({
+  selector: <span class="str">'app-counter'</span>,
+  templateUrl: <span class="str">'./counter.component.html'</span>
+})
+<span class="kw">export class</span> CounterComponent {
+  count: number = <span class="num">0</span>
+
+  <span class="fn">increment</span>() {
+    <span class="kw">this</span>.count++
+  }
+
+  <span class="fn">decrement</span>() {
+    <span class="kw">if</span> (<span class="kw">this</span>.count > <span class="num">0</span>) {
+      <span class="kw">this</span>.count--
+    }
+  }
+
+  <span class="fn">reset</span>() {
+    <span class="kw">this</span>.count = <span class="num">0</span>
+  }
+}</pre>
+<strong>Template (counter.component.html):</strong>
+<pre><span class="str">&lt;div class="counter"&gt;</span>
+  <span class="str">&lt;h2&gt;</span>Counter: {{ count }}<span class="str">&lt;/h2&gt;</span>
+  <span class="str">&lt;button (click)="increment()"&gt;</span>+ Increment<span class="str">&lt;/button&gt;</span>
+  <span class="str">&lt;button (click)="decrement()"
+    [disabled]="count === 0"&gt;</span>
+    − Decrement
+  <span class="str">&lt;/button&gt;</span>
+  <span class="str">&lt;button (click)="reset()"&gt;</span>Reset<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;/div&gt;</span></pre>
+<strong>Key Logic:</strong>
+<ul>
+<li><code>decrement()</code> checks <code>count > 0</code> before subtracting — prevents negative values</li>
+<li><code>[disabled]="count === 0"</code> disables the decrement button at zero (UX guard)</li>
+<li><code>reset()</code> sets count back to 0</li>
+</ul>`
+      },
+      {
+        q: "Create a sign-up form using Angular's Reactive Forms feature so the validation happens automatically.",
+        a: `<strong>Component (signup.component.ts):</strong>
+<pre><span class="kw">import</span> { Component } <span class="kw">from</span> <span class="str">'@angular/core'</span>
+<span class="kw">import</span> { FormBuilder, Validators } <span class="kw">from</span> <span class="str">'@angular/forms'</span>
+
+@<span class="fn">Component</span>({ selector: <span class="str">'app-signup'</span>, ... })
+<span class="kw">export class</span> SignupComponent {
+  form = <span class="kw">this</span>.fb.<span class="fn">group</span>({
+    name:     [<span class="str">''</span>, [Validators.required, Validators.<span class="fn">minLength</span>(<span class="num">3</span>)]],
+    email:    [<span class="str">''</span>, [Validators.required, Validators.email]],
+    password: [<span class="str">''</span>, [Validators.required, Validators.<span class="fn">minLength</span>(<span class="num">6</span>)]],
+  })
+
+  <span class="kw">constructor</span>(<span class="kw">private</span> fb: FormBuilder) {}
+
+  <span class="fn">onSubmit</span>() {
+    <span class="kw">if</span> (<span class="kw">this</span>.form.valid) {
+      console.<span class="fn">log</span>(<span class="str">'Form Submitted'</span>, <span class="kw">this</span>.form.value)
+    }
+  }
+}</pre>
+<strong>Template (signup.component.html):</strong>
+<pre><span class="str">&lt;form [formGroup]="form" (ngSubmit)="onSubmit()"&gt;</span>
+  <span class="str">&lt;input formControlName="name" placeholder="Full Name"&gt;</span>
+  <span class="str">&lt;span *ngIf="form.get('name')?.invalid && form.get('name')?.touched"&gt;</span>
+    Name must be at least 3 characters
+  <span class="str">&lt;/span&gt;</span>
+
+  <span class="str">&lt;input formControlName="email" placeholder="Email"&gt;</span>
+  <span class="str">&lt;span *ngIf="form.get('email')?.invalid && form.get('email')?.touched"&gt;</span>
+    Enter a valid email
+  <span class="str">&lt;/span&gt;</span>
+
+  <span class="str">&lt;input formControlName="password" type="password"
+    placeholder="Password (min 6 chars)"&gt;</span>
+  <span class="str">&lt;span *ngIf="form.get('password')?.invalid && form.get('password')?.touched"&gt;</span>
+    Password must be at least 6 characters
+  <span class="str">&lt;/span&gt;</span>
+
+  <span class="str">&lt;button type="submit" [disabled]="form.invalid"&gt;</span>Sign Up<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;/form&gt;</span></pre>`
+      },
+      {
+        q: "Discuss the trade-offs between template-driven event handling and reactive event handling.",
+        a: `<strong>Template-Driven Event Handling</strong> uses Angular event binding in HTML:
+<pre><span class="str">&lt;button (click)="handleClick()"&gt;</span>Click<span class="str">&lt;/button&gt;</span>
+<span class="str">&lt;input (input)="onInput($event)"&gt;</span></pre>
+<ul><li><strong>Pros:</strong> Simple, fast to write, readable HTML, less TypeScript boilerplate</li>
+<li><strong>Cons:</strong> Logic scattered in template, hard to test, no debounce/throttle easily</li></ul>
+<strong>Reactive Event Handling</strong> uses RxJS Observables and fromEvent:
+<pre>fromEvent(inputEl, <span class="str">'input'</span>).<span class="fn">pipe</span>(
+  <span class="fn">debounceTime</span>(<span class="num">300</span>),
+  <span class="fn">map</span>(e => e.target.value),
+  <span class="fn">distinctUntilChanged</span>()
+).<span class="fn">subscribe</span>(val => console.<span class="fn">log</span>(val))</pre>
+<ul><li><strong>Pros:</strong> Debounce/throttle, composable streams, easier to test, cancel subscriptions</li>
+<li><strong>Cons:</strong> More complex setup, requires RxJS knowledge</li></ul>
+<strong>Trade-off Summary:</strong>
+<table>
+<tr><th>Aspect</th><th>Template-Driven</th><th>Reactive</th></tr>
+<tr><td>Complexity</td><td>Low</td><td>High</td></tr>
+<tr><td>Power</td><td>Limited</td><td>Full control</td></tr>
+<tr><td>Best for</td><td>Simple clicks/submits</td><td>Search, auto-save, streams</td></tr>
+</table>`
+      },
+      {
+        q: "Show in detail how to redirect a route in Angular using redirectTo with an example.",
+        a: `Route redirection maps one path to another, commonly used for default routes and 404 handling.<br><br>
+<strong>Basic redirectTo setup:</strong>
+<pre><span class="kw">const</span> routes: Routes = [
+  <span class="cmt">// Redirect empty path to /home</span>
+  {
+    path: <span class="str">''</span>,
+    redirectTo: <span class="str">'/home'</span>,
+    pathMatch: <span class="str">'full'</span>
+  },
+  {
+    path: <span class="str">'home'</span>,
+    component: HomeComponent
+  },
+  {
+    path: <span class="str">'about'</span>,
+    component: AboutComponent
+  },
+  <span class="cmt">// Wildcard — redirect unknown routes to home</span>
+  {
+    path: <span class="str">'**'</span>,
+    redirectTo: <span class="str">'/home'</span>
+  }
+]</pre>
+<strong>Key Points:</strong>
+<ul>
+<li><code>pathMatch: 'full'</code> — Only matches if the <em>entire</em> URL is empty. Use with <code>''</code> paths.</li>
+<li><code>pathMatch: 'prefix'</code> (default) — Matches if URL starts with the path.</li>
+<li><code>**</code> wildcard must always be the <strong>last route</strong> in the array — Angular matches routes top-to-bottom.</li>
+<li>Redirect happens client-side — no HTTP redirect, just component swap.</li>
+</ul>
+<strong>Conditional redirect (programmatic):</strong>
+<pre><span class="kw">if</span> (!<span class="kw">this</span>.authService.isLoggedIn()) {
+  <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/login'</span>])
+}</pre>`
+      },
+      {
+        q: "Define multiple routes in Angular and demonstrate navigation between them.",
+        a: `<strong>Step 1 — app-routing.module.ts:</strong>
+<pre><span class="kw">import</span> { NgModule } <span class="kw">from</span> <span class="str">'@angular/core'</span>
+<span class="kw">import</span> { RouterModule, Routes } <span class="kw">from</span> <span class="str">'@angular/router'</span>
+<span class="kw">import</span> { HomeComponent }    <span class="kw">from</span> <span class="str">'./home/home.component'</span>
+<span class="kw">import</span> { AboutComponent }   <span class="kw">from</span> <span class="str">'./about/about.component'</span>
+<span class="kw">import</span> { ContactComponent } <span class="kw">from</span> <span class="str">'./contact/contact.component'</span>
+
+<span class="kw">const</span> routes: Routes = [
+  { path: <span class="str">''</span>,        redirectTo: <span class="str">'/home'</span>, pathMatch: <span class="str">'full'</span> },
+  { path: <span class="str">'home'</span>,    component: HomeComponent },
+  { path: <span class="str">'about'</span>,   component: AboutComponent },
+  { path: <span class="str">'contact'</span>, component: ContactComponent },
+  { path: <span class="str">'**'</span>,      redirectTo: <span class="str">'/home'</span> }
+]
+
+@<span class="fn">NgModule</span>({
+  imports: [<span class="fn">RouterModule.forRoot</span>(routes)],
+  exports: [RouterModule]
+})
+<span class="kw">export class</span> AppRoutingModule {}</pre>
+<strong>Step 2 — Navbar with routerLink:</strong>
+<pre><span class="str">&lt;nav&gt;</span>
+  <span class="str">&lt;a routerLink="/home"    routerLinkActive="active"&gt;</span>Home<span class="str">&lt;/a&gt;</span>
+  <span class="str">&lt;a routerLink="/about"   routerLinkActive="active"&gt;</span>About<span class="str">&lt;/a&gt;</span>
+  <span class="str">&lt;a routerLink="/contact" routerLinkActive="active"&gt;</span>Contact<span class="str">&lt;/a&gt;</span>
+<span class="str">&lt;/nav&gt;</span>
+<span class="str">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span></pre>
+<strong>Step 3 — Programmatic navigation in component:</strong>
+<pre>goToContact() {
+  <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/contact'</span>])
+}</pre>
+<code>routerLinkActive="active"</code> adds the CSS class <code>active</code> to the currently matched link.`
+      }
+    ]
+  },
+
+  /* ────────────── MODULE 4 ────────────── */
+  mod4: {
+    "2": [
+      {
+        q: "What is the purpose of Angular's HttpClient?",
+        a: `<strong>HttpClient</strong> (from <code>@angular/common/http</code>) is Angular's built-in service for making HTTP requests to backend APIs.<br><br>
+<strong>Purpose:</strong>
+<ul>
+<li>Performs GET, POST, PUT, DELETE requests</li>
+<li>Returns Observables for reactive handling</li>
+<li>Supports request/response interceptors</li>
+<li>Handles JSON parsing automatically</li>
+</ul>
+Import <code>HttpClientModule</code> in <code>AppModule</code> to use it.`
+      },
+      {
+        q: "State the command to import HttpClientModule.",
+        a: `In <strong>app.module.ts</strong>, import and add to the <code>imports</code> array:
+<pre><span class="kw">import</span> { HttpClientModule } <span class="kw">from</span> <span class="str">'@angular/common/http'</span>
+
+@<span class="fn">NgModule</span>({
+  imports: [
+    BrowserModule,
+    HttpClientModule  <span class="cmt">// ← add this</span>
+  ]
+})
+<span class="kw">export class</span> AppModule {}</pre>`
+      },
+      {
+        q: "What is unit testing in Angular and state one advantage of unit testing.",
+        a: `<strong>Unit testing</strong> in Angular tests individual components, services, or functions in isolation — without dependencies on the browser, database, or other modules.<br><br>
+Angular uses <strong>Jasmine</strong> (testing framework) and <strong>Karma</strong> (test runner) by default.<br><br>
+<strong>One advantage:</strong> Early bug detection — issues are caught during development before deployment, reducing the cost of fixing bugs.`
+      },
+      {
+        q: "Identify the difference between beforeEach() and it() in Jasmine.",
+        a: `<table>
+<tr><th>beforeEach()</th><th>it()</th></tr>
+<tr><td>Setup function — runs before each test</td><td>Defines an individual test case</td></tr>
+<tr><td>Used to initialize variables, create components</td><td>Contains assertions (expect statements)</td></tr>
+<tr><td>Runs automatically before every <code>it()</code></td><td>Defines what exactly is being tested</td></tr>
+</table>
+<pre><span class="fn">beforeEach</span>(() => { fixture = TestBed.<span class="fn">createComponent</span>(AppComponent) })
+<span class="fn">it</span>(<span class="str">'should have title'</span>, () => {
+  <span class="fn">expect</span>(component.title).<span class="fn">toBe</span>(<span class="str">'my-app'</span>)
+})</pre>`
+      },
+      {
+        q: "What does MEAN stand for and explain why MEAN is suitable for full-stack development.",
+        a: `<strong>MEAN = MongoDB + Express + Angular + Node.js</strong><br><br>
+<strong>Why suitable for full-stack:</strong>
+<ul>
+<li><strong>Single language:</strong> JavaScript/TypeScript across the entire stack</li>
+<li><strong>JSON everywhere:</strong> Data flows as JSON from MongoDB → Express → Angular without conversion</li>
+<li><strong>Scalable:</strong> Node.js handles concurrent requests; MongoDB scales horizontally</li>
+<li><strong>Open-source:</strong> All components are free and widely supported</li>
+</ul>`
+      },
+      {
+        q: "Explain how MEAN supports single-page applications.",
+        a: `<ul>
+<li><strong>Angular (Frontend):</strong> Handles routing, UI rendering, and state management client-side — no full page reloads</li>
+<li><strong>Express + Node.js (Backend):</strong> Provides REST APIs that Angular consumes via HTTP</li>
+<li><strong>MongoDB (Database):</strong> Stores and returns JSON data efficiently</li>
+<li><strong>Flow:</strong> Angular SPA → HttpClient → Express REST API → MongoDB → JSON response → Angular updates view</li>
+</ul>
+The result is a fast, seamless user experience with dynamic content loading.`
+      },
+      {
+        q: "Explain how Angular communicates with Express.",
+        a: `Angular uses <strong>HttpClient</strong> to send HTTP requests to Express REST API endpoints:
+<pre><span class="cmt">// Angular Service</span>
+<span class="fn">getUsers</span>(): Observable&lt;any&gt; {
+  <span class="kw">return this</span>.http.<span class="fn">get</span>(<span class="str">'http://localhost:3000/api/users'</span>)
+}</pre>
+<pre><span class="cmt">// Express Route</span>
+app.<span class="fn">get</span>(<span class="str">'/api/users'</span>, (req, res) => {
+  res.<span class="fn">json</span>([{ name: <span class="str">'Alice'</span> }, { name: <span class="str">'Bob'</span> }])
+})</pre>
+Angular subscribes to the Observable to receive and use the response data.`
+      },
+      {
+        q: "State the HTTP method used to fetch records.",
+        a: `The <strong>GET</strong> method is used to fetch/retrieve records from a server.<br><br>
+<pre><span class="cmt">// Express</span>
+app.<span class="fn">get</span>(<span class="str">'/api/users'</span>, (req, res) => {
+  res.<span class="fn">json</span>(users)
+})
+
+<span class="cmt">// Angular</span>
+<span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/users'</span>).<span class="fn">subscribe</span>(data => console.<span class="fn">log</span>(data))</pre>
+GET requests are idempotent — calling them multiple times returns the same result without side effects.`
+      },
+      {
+        q: "What is deployment in web applications and explain the purpose of environment variables in deployment.",
+        a: `<strong>Deployment</strong> is the process of publishing a web application to a production server (cloud/hosting) so end users can access it.<br><br>
+<strong>Environment variables</strong> store configuration values (API keys, DB URLs, ports) outside the code:
+<ul>
+<li>Prevents hardcoding sensitive data in source code</li>
+<li>Allows different configs for dev/staging/production environments</li>
+<li>Example: <code>process.env.MONGODB_URI</code>, <code>process.env.JWT_SECRET</code></li>
+</ul>
+Use <code>.env</code> file with the <code>dotenv</code> npm package.`
+      },
+      {
+        q: "What is the role of ng build in Angular?",
+        a: `<code>ng build</code> compiles the Angular application into static files for deployment:
+<pre>ng build               <span class="cmt"># development build</span>
+ng build --configuration production  <span class="cmt"># production build</span></pre>
+<strong>What it does:</strong>
+<ul>
+<li>Compiles TypeScript → JavaScript</li>
+<li>Bundles all files (tree-shaking removes unused code)</li>
+<li>Minifies and optimizes for smaller file sizes</li>
+<li>Outputs to <code>dist/</code> folder — ready to deploy on any web server</li>
+</ul>`
+      },
+      {
+        q: "What does subscribe() do in an HTTP call?",
+        a: `In Angular, HTTP methods return <strong>Observables</strong> (lazy streams). <code>subscribe()</code> activates the Observable and listens for data:
+<pre><span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/users'</span>).<span class="fn">subscribe</span>({
+  next:  (data)  => console.<span class="fn">log</span>(data),   <span class="cmt">// success</span>
+  error: (err)   => console.<span class="fn">log</span>(err),    <span class="cmt">// error</span>
+  complete: ()   => console.<span class="fn">log</span>(<span class="str">'Done'</span>) <span class="cmt">// completed</span>
+})</pre>
+Without <code>subscribe()</code>, the HTTP request is never sent — Observables are lazy.`
+      },
+      {
+        q: "Explain the role of observables in HTTP communication.",
+        a: `<strong>Observables</strong> (from RxJS) represent asynchronous data streams. In Angular HTTP:
+<ul>
+<li>HttpClient methods return Observables, not Promises</li>
+<li>Support operators like <code>map()</code>, <code>filter()</code>, <code>catchError()</code></li>
+<li>Can be cancelled (unsubscribed) — important to prevent memory leaks</li>
+<li>Support retry logic: <code>.pipe(retry(3))</code></li>
+</ul>
+<pre><span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/data'</span>).<span class="fn">pipe</span>(
+  <span class="fn">map</span>(res => res.data),
+  <span class="fn">catchError</span>(err => throwError(err))
+).<span class="fn">subscribe</span>(...)</pre>`
+      },
+      {
+        q: "Differentiate between unit testing and integration testing.",
+        a: `<table>
+<tr><th>Unit Testing</th><th>Integration Testing</th></tr>
+<tr><td>Tests a single unit (component/service) in isolation</td><td>Tests multiple units working together</td></tr>
+<tr><td>Dependencies are mocked</td><td>Real dependencies are used</td></tr>
+<tr><td>Fast execution</td><td>Slower — involves more components</td></tr>
+<tr><td>Easy to identify exact failure point</td><td>Tests real-world interaction</td></tr>
+<tr><td>Example: Testing a component's method</td><td>Example: Testing form + service + API</td></tr>
+</table>`
+      },
+      {
+        q: "Discuss what is the purpose of res.json() in Express?",
+        a: `<code>res.json()</code> sends a JSON response to the client. It:
+<ul>
+<li>Automatically sets <code>Content-Type: application/json</code> header</li>
+<li>Serializes the JavaScript object to a JSON string</li>
+<li>Ends the request-response cycle</li>
+</ul>
+<pre>app.<span class="fn">get</span>(<span class="str">'/api/user'</span>, (req, res) => {
+  res.<span class="fn">json</span>({ id: <span class="num">1</span>, name: <span class="str">'Alice'</span> })
+  <span class="cmt">// Sends: {"id":1,"name":"Alice"}</span>
+})</pre>
+Equivalent to <code>res.send(JSON.stringify(obj))</code> but cleaner.`
+      },
+      {
+        q: "What is the purpose of mongoose.model() in CRUD apps?",
+        a: `<code>mongoose.model()</code> creates a <strong>Model</strong> — a class that represents a MongoDB collection and provides methods to interact with it:
+<pre><span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  name:  String,
+  email: String
+})
+<span class="kw">const</span> User = mongoose.<span class="fn">model</span>(<span class="str">'User'</span>, userSchema)
+
+<span class="cmt">// CRUD operations:</span>
+User.<span class="fn">find</span>()             <span class="cmt">// Read</span>
+User.<span class="fn">create</span>({ name: <span class="str">'A'</span> })  <span class="cmt">// Create</span>
+User.<span class="fn">findByIdAndUpdate</span>(id, {})  <span class="cmt">// Update</span>
+User.<span class="fn">findByIdAndDelete</span>(id)      <span class="cmt">// Delete</span></pre>`
+      }
+    ],
+    "5": [
+      {
+        q: "Demonstrate how to make a POST request with HttpClient and handle the response.",
+        a: `<strong>Service (user.service.ts):</strong>
+<pre><span class="kw">import</span> { HttpClient } <span class="kw">from</span> <span class="str">'@angular/common/http'</span>
+<span class="kw">import</span> { Injectable } <span class="kw">from</span> <span class="str">'@angular/core'</span>
+
+@<span class="fn">Injectable</span>({ providedIn: <span class="str">'root'</span> })
+<span class="kw">export class</span> UserService {
+  <span class="kw">private</span> apiUrl = <span class="str">'http://localhost:3000/api/users'</span>
+
+  <span class="kw">constructor</span>(<span class="kw">private</span> http: HttpClient) {}
+
+  <span class="fn">createUser</span>(user: any): Observable&lt;any&gt; {
+    <span class="kw">return this</span>.http.<span class="fn">post</span>(<span class="kw">this</span>.apiUrl, user)
+  }
+}</pre>
+<strong>Component:</strong>
+<pre>newUser = { name: <span class="str">'Alice'</span>, email: <span class="str">'a@b.com'</span> }
+
+<span class="fn">addUser</span>() {
+  <span class="kw">this</span>.userService.<span class="fn">createUser</span>(<span class="kw">this</span>.newUser).<span class="fn">subscribe</span>({
+    next:  (res) => console.<span class="fn">log</span>(<span class="str">'Created:'</span>, res),
+    error: (err) => console.<span class="fn">log</span>(<span class="str">'Error:'</span>, err)
+  })
+}</pre>
+<strong>Express route (server side):</strong>
+<pre>app.<span class="fn">post</span>(<span class="str">'/api/users'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">create</span>(req.body)
+  res.<span class="fn">status</span>(<span class="num">201</span>).<span class="fn">json</span>(user)
+})</pre>
+<strong>Key:</strong> POST sends data in the request body; the server creates the resource and returns <code>201 Created</code>.`
+      },
+      {
+        q: "Analyse in detail why are observables preferred over promises in Angular HTTP?",
+        a: `<table>
+<tr><th>Feature</th><th>Observable</th><th>Promise</th></tr>
+<tr><td>Lazy</td><td>Yes — executes only when subscribed</td><td>No — executes immediately</td></tr>
+<tr><td>Multiple values</td><td>Yes — stream of values</td><td>No — single value</td></tr>
+<tr><td>Cancellable</td><td>Yes — unsubscribe()</td><td>No</td></tr>
+<tr><td>Operators</td><td>map, filter, retry, catchError...</td><td>Limited (.then, .catch)</td></tr>
+<tr><td>Retry on error</td><td><code>.pipe(retry(3))</code></td><td>Manual implementation</td></tr>
+</table>
+<strong>Example with RxJS operators:</strong>
+<pre><span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/data'</span>).<span class="fn">pipe</span>(
+  <span class="fn">retry</span>(<span class="num">2</span>),
+  <span class="fn">catchError</span>(err => <span class="fn">throwError</span>(err)),
+  <span class="fn">map</span>(data => data.results)
+).<span class="fn">subscribe</span>(result => <span class="kw">this</span>.data = result)</pre>
+<strong>Conclusion:</strong> Observables are more powerful for HTTP in Angular because they support cancellation (important for search inputs), composition with operators, and reactive programming patterns.`
+      },
+      {
+        q: "Discuss the comparison between unit testing with integration testing in Angular and suggest the conclusion.",
+        a: `<strong>Unit Testing in Angular:</strong> Tests a single class (component, service, pipe) in isolation. Dependencies are replaced with mocks/stubs.
+<pre><span class="fn">it</span>(<span class="str">'should add values'</span>, () => {
+  <span class="fn">expect</span>(service.<span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>)).<span class="fn">toBe</span>(<span class="num">5</span>)
+})</pre>
+<ul><li>Fast, deterministic, catches bugs early</li><li>Uses TestBed, SpyOn, HttpClientTestingModule</li></ul>
+<strong>Integration Testing in Angular:</strong> Tests how multiple components/services work together — includes DOM rendering and service interactions.
+<pre>fixture = TestBed.<span class="fn">createComponent</span>(AppComponent)
+fixture.detectChanges()
+<span class="fn">expect</span>(compiled.textContent).<span class="fn">toContain</span>(<span class="str">'Welcome'</span>)</pre>
+<ul><li>Slower, more realistic, catches interaction bugs</li><li>Uses ComponentFixture, real service injection</li></ul>
+<strong>Conclusion:</strong> Use unit tests for 80% of coverage (fast feedback loop), and integration tests for critical user flows. Both are complementary — unit tests alone cannot catch all integration issues.`
+      },
+      {
+        q: "Explain what is Unit testing and design a test case for a component with input and output properties.",
+        a: `<strong>Unit Testing</strong> verifies that a single unit of code (a component, function, or service) behaves as expected under defined conditions.<br><br>
+<strong>Component under test:</strong>
+<pre><span class="kw">export class</span> GreetComponent {
+  @<span class="fn">Input</span>() name: string = <span class="str">''</span>
+  @<span class="fn">Output</span>() greeted = <span class="kw">new</span> <span class="fn">EventEmitter</span>&lt;string&gt;()
+
+  <span class="fn">greet</span>() {
+    <span class="kw">this</span>.greeted.<span class="fn">emit</span>(<span class="str">\`Hello \${this.name}\`</span>)
+  }
+}</pre>
+<strong>Test file (greet.component.spec.ts):</strong>
+<pre><span class="fn">beforeEach</span>(<span class="kw">async</span> () => {
+  <span class="kw">await</span> TestBed.<span class="fn">configureTestingModule</span>({
+    declarations: [GreetComponent]
+  }).<span class="fn">compileComponents</span>()
+  fixture   = TestBed.<span class="fn">createComponent</span>(GreetComponent)
+  component = fixture.componentInstance
+})
+
+<span class="fn">it</span>(<span class="str">'should emit greeting with name'</span>, () => {
+  component.name = <span class="str">'Alice'</span>
+  <span class="kw">let</span> emitted = <span class="str">''</span>
+  component.greeted.<span class="fn">subscribe</span>(val => emitted = val)
+  component.<span class="fn">greet</span>()
+  <span class="fn">expect</span>(emitted).<span class="fn">toBe</span>(<span class="str">'Hello Alice'</span>)
+})</pre>`
+      },
+      {
+        q: "Compare in detail the frontend and backend responsibilities in MEAN stack.",
+        a: `<table>
+<tr><th>Layer</th><th>Technology</th><th>Responsibilities</th></tr>
+<tr><td>Frontend</td><td>Angular</td><td>UI rendering, routing, forms, HTTP calls, state management</td></tr>
+<tr><td>Backend</td><td>Node.js + Express</td><td>REST API, business logic, middleware, authentication (JWT)</td></tr>
+<tr><td>Database</td><td>MongoDB</td><td>Data storage, querying, indexing, aggregation</td></tr>
+<tr><td>ODM</td><td>Mongoose</td><td>Schema definition, validation, model methods</td></tr>
+</table>
+<strong>Data Flow:</strong>
+<pre>User Action → Angular Component → HttpClient
+  → Express Route → Mongoose Model → MongoDB
+  → JSON Response → Angular → DOM Update</pre>
+<strong>Frontend (Angular) handles:</strong> component lifecycle, data binding, form validation, client-side routing, template rendering.<br>
+<strong>Backend (Express/Node) handles:</strong> API endpoints, CORS, authentication middleware, DB queries, error responses.`
+      },
+      {
+        q: "Why is deployment considered the final step in application lifecycle?",
+        a: `Deployment is the transition of an application from development to production — making it accessible to real users.<br><br>
+<strong>Application lifecycle stages:</strong>
+<ul>
+<li><strong>Plan → Design → Develop → Test → Deploy → Monitor</strong></li>
+</ul>
+Deployment is the final dev step because:<ul>
+<li>All previous phases (coding, testing, QA) feed into it</li>
+<li>It validates that the app works in a real production environment</li>
+<li>After deployment, the focus shifts to monitoring and maintenance</li>
+</ul>
+<strong>MEAN Stack deployment steps:</strong>
+<ol>
+<li>Run <code>ng build --configuration production</code> → <code>dist/</code> folder</li>
+<li>Set environment variables on server (<code>MONGO_URI</code>, <code>PORT</code>)</li>
+<li>Deploy Node/Express backend on Render/Railway/AWS</li>
+<li>Deploy Angular frontend on Vercel/Netlify</li>
+</ol>`
+      },
+      {
+        q: "Describe the differentiation between PUT and PATCH methods in CRUD operations.",
+        a: `<table>
+<tr><th>PUT</th><th>PATCH</th></tr>
+<tr><td>Replaces the entire resource</td><td>Partially updates the resource</td></tr>
+<tr><td>Sends the full object</td><td>Sends only changed fields</td></tr>
+<tr><td>Idempotent</td><td>May or may not be idempotent</td></tr>
+<tr><td>Higher bandwidth usage</td><td>More efficient for partial updates</td></tr>
+</table>
+<strong>PUT Example:</strong>
+<pre>app.<span class="fn">put</span>(<span class="str">'/api/user/:id'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">findByIdAndUpdate</span>(
+    req.params.id, req.body, { new: <span class="kw">true</span>, overwrite: <span class="kw">true</span> })
+  res.<span class="fn">json</span>(user)
+})</pre>
+<strong>PATCH Example:</strong>
+<pre>app.<span class="fn">patch</span>(<span class="str">'/api/user/:id'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">findByIdAndUpdate</span>(
+    req.params.id, { <span class="str">$set</span>: req.body }, { new: <span class="kw">true</span> })
+  res.<span class="fn">json</span>(user)
+})</pre>`
+      },
+      {
+        q: "Evaluate in detail why are environment variables important in deployment?",
+        a: `Environment variables are key-value pairs stored outside the application code, accessed at runtime via <code>process.env</code>.<br><br>
+<strong>Why critical in deployment:</strong>
+<ul>
+<li><strong>Security:</strong> Keeps secrets (API keys, DB passwords, JWT secrets) out of source code and version control</li>
+<li><strong>Flexibility:</strong> Same codebase works across dev/staging/production with different configs</li>
+<li><strong>12-Factor App principle:</strong> Configuration should be in the environment, not the code</li>
+</ul>
+<strong>Usage with dotenv:</strong>
+<pre><span class="cmt"># .env file (never commit to git)</span>
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/db
+JWT_SECRET=mySuperSecretKey
+PORT=3000</pre>
+<pre><span class="kw">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>()
+mongoose.<span class="fn">connect</span>(process.env.MONGODB_URI)
+<span class="kw">const</span> port = process.env.PORT || <span class="num">3000</span></pre>
+<strong>Best practice:</strong> Add <code>.env</code> to <code>.gitignore</code>; use platform env vars (Vercel, Heroku, Railway) in production.`
+      },
+      {
+        q: "Show how to connect MongoDB with Express using Mongoose.",
+        a: `<strong>Step 1 — Install dependencies:</strong>
+<pre>npm install express mongoose dotenv</pre>
+<strong>Step 2 — Setup .env:</strong>
+<pre>MONGO_URI=mongodb://localhost:27017/myapp
+PORT=3000</pre>
+<strong>Step 3 — server.js:</strong>
+<pre><span class="kw">const</span> express  = <span class="fn">require</span>(<span class="str">'express'</span>)
+<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">'mongoose'</span>)
+<span class="fn">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>()
+
+<span class="kw">const</span> app = <span class="fn">express</span>()
+app.<span class="fn">use</span>(express.<span class="fn">json</span>())
+
+mongoose.<span class="fn">connect</span>(process.env.MONGO_URI)
+  .<span class="fn">then</span>(() => {
+    console.<span class="fn">log</span>(<span class="str">'MongoDB Connected'</span>)
+    app.<span class="fn">listen</span>(process.env.PORT, () =>
+      console.<span class="fn">log</span>(<span class="str">\`Server on port \${process.env.PORT}\`</span>))
+  })
+  .<span class="fn">catch</span>(err => console.<span class="fn">log</span>(err))</pre>
+<strong>Step 4 — Define a Model:</strong>
+<pre><span class="kw">const</span> User = mongoose.<span class="fn">model</span>(<span class="str">'User'</span>,
+  <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({ name: String, email: String }))
+</pre>`
+      }
+    ],
+    "10": [
+      {
+        q: "Explain the role of each technology in the MEAN stack and discuss scalability challenges in MEAN stack applications.",
+        a: `<strong>MEAN Stack Technologies:</strong>
+<ul>
+<li><strong>MongoDB:</strong> NoSQL document database. Stores data as BSON (binary JSON). Flexible schema allows storing varied data structures. Horizontal scaling via sharding.</li>
+<li><strong>Express.js:</strong> Minimal Node.js web framework. Handles HTTP routing, middleware, and API endpoints. Provides structure to Node.js applications.</li>
+<li><strong>Angular:</strong> TypeScript SPA framework. Manages UI, routing, forms, HTTP communication. Component-based architecture ensures maintainability.</li>
+<li><strong>Node.js:</strong> JavaScript runtime (V8 engine). Non-blocking, event-driven I/O. Handles thousands of concurrent connections efficiently.</li>
+</ul>
+<strong>Communication flow:</strong>
+<pre>Angular (HttpClient) → Express Routes
+  → Mongoose/MongoDB → JSON Response → Angular</pre>
+<strong>Scalability Challenges:</strong>
+<ul>
+<li><strong>Session management:</strong> Stateless REST APIs require external session stores (Redis) for scaling across multiple Node instances</li>
+<li><strong>CPU-intensive tasks:</strong> Node.js is single-threaded — long operations block the event loop. Solution: Worker threads, microservices</li>
+<li><strong>MongoDB consistency:</strong> Default eventual consistency may cause stale reads in distributed setups</li>
+<li><strong>Angular bundle size:</strong> Large apps have heavy initial load. Solution: Lazy loading, code splitting, SSR with Angular Universal</li>
+<li><strong>Database connections:</strong> Each Node.js instance needs a connection pool. Use Mongoose connection pooling (<code>poolSize</code> option)</li>
+</ul>
+<strong>Solutions:</strong> Load balancers (Nginx), Redis cache, Docker containers, PM2 cluster mode for Node.js.`
+      },
+      {
+        q: "Discuss best practices for error handling in Angular applications.",
+        a: `Effective error handling ensures a smooth user experience and easier debugging.<br><br>
+<strong>1. HTTP Error Handling with catchError:</strong>
+<pre><span class="kw">import</span> { catchError, throwError } <span class="kw">from</span> <span class="str">'rxjs'</span>
+
+<span class="fn">getUsers</span>() {
+  <span class="kw">return this</span>.http.<span class="fn">get</span>(<span class="str">'/api/users'</span>).<span class="fn">pipe</span>(
+    <span class="fn">catchError</span>(err => {
+      console.error(<span class="str">'API Error:'</span>, err)
+      <span class="kw">return</span> <span class="fn">throwError</span>(() => <span class="kw">new</span> <span class="fn">Error</span>(err.message))
+    })
+  )
+}</pre>
+<strong>2. Global Error Handler:</strong>
+<pre>@<span class="fn">Injectable</span>()
+<span class="kw">export class</span> GlobalErrorHandler <span class="kw">implements</span> ErrorHandler {
+  <span class="fn">handleError</span>(error: any) {
+    console.error(<span class="str">'Global Error:'</span>, error)
+    <span class="cmt">// Log to monitoring service (Sentry, etc.)</span>
+  }
+}</pre>
+Register in AppModule: <code>{ provide: ErrorHandler, useClass: GlobalErrorHandler }</code>
+<strong>3. HTTP Interceptor for Auth Errors:</strong>
+<pre>intercept(req, next) {
+  <span class="kw">return</span> next.<span class="fn">handle</span>(req).<span class="fn">pipe</span>(
+    <span class="fn">catchError</span>(err => {
+      <span class="kw">if</span> (err.status === <span class="num">401</span>) <span class="kw">this</span>.router.<span class="fn">navigate</span>([<span class="str">'/login'</span>])
+      <span class="kw">return</span> <span class="fn">throwError</span>(() => err)
+    })
+  )
+}</pre>
+<strong>Best Practices Summary:</strong>
+<ul>
+<li>Always handle errors in <code>subscribe()</code> — never leave the error callback empty</li>
+<li>Use a global <code>ErrorHandler</code> for unhandled exceptions</li>
+<li>Display user-friendly error messages (toasts/snackbars)</li>
+<li>Log errors to an external monitoring service in production</li>
+<li>Use HTTP interceptors to handle 401/403/500 globally</li>
+</ul>`
+      },
+      {
+        q: "Evaluate the importance of observables in managing API responses.",
+        a: `<strong>Observables</strong> (RxJS library) are lazy asynchronous data streams that Angular uses for HTTP communication.<br><br>
+<strong>Why Observables over Promises for API responses:</strong>
+<ul>
+<li><strong>Cancellable:</strong> Call <code>unsubscribe()</code> to cancel — critical for preventing memory leaks when components destroy before response arrives</li>
+<li><strong>Composable:</strong> Chain operators like <code>map</code>, <code>filter</code>, <code>mergeMap</code>, <code>switchMap</code></li>
+<li><strong>Retry logic:</strong> <code>retry(3)</code> automatically retries failed requests</li>
+<li><strong>Multiple emissions:</strong> WebSockets, Server-Sent Events can emit data multiple times — Promises only resolve once</li>
+</ul>
+<strong>Practical patterns:</strong>
+<pre><span class="cmt">// Auto-cancel with takeUntilDestroyed or ngOnDestroy</span>
+<span class="kw">private</span> destroy$ = <span class="kw">new</span> <span class="fn">Subject</span>&lt;void&gt;()
+
+<span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">'/api/data'</span>).<span class="fn">pipe</span>(
+  <span class="fn">takeUntil</span>(<span class="kw">this</span>.destroy$),    <span class="cmt">// cancel on destroy</span>
+  <span class="fn">retry</span>(<span class="num">2</span>),                     <span class="cmt">// retry twice on error</span>
+  <span class="fn">map</span>(res => res.data),          <span class="cmt">// transform data</span>
+  <span class="fn">catchError</span>(err => <span class="fn">of</span>([]))    <span class="cmt">// fallback to empty</span>
+).<span class="fn">subscribe</span>(data => <span class="kw">this</span>.items = data)
+
+ngOnDestroy() { <span class="kw">this</span>.destroy$.<span class="fn">next</span>(); <span class="kw">this</span>.destroy$.<span class="fn">complete</span>() }</pre>
+<strong>switchMap for search (debounced):</strong>
+<pre>searchTerm$.<span class="fn">pipe</span>(
+  <span class="fn">debounceTime</span>(<span class="num">300</span>),
+  <span class="fn">distinctUntilChanged</span>(),
+  <span class="fn">switchMap</span>(term => <span class="kw">this</span>.http.<span class="fn">get</span>(<span class="str">\`/search?q=\${term}\`</span>))
+).<span class="fn">subscribe</span>(...)</pre>
+<code>switchMap</code> cancels the previous request if a new search term arrives — no stale results.`
+      },
+      {
+        q: "Explain the purpose of unit testing in Angular applications and analyze the difference between unit testing and integration testing.",
+        a: `<strong>Purpose of Unit Testing:</strong>
+<ul>
+<li>Verify individual units (components, services, pipes) work correctly in isolation</li>
+<li>Catch regressions when code changes</li>
+<li>Serve as living documentation</li>
+<li>Enable safe refactoring</li>
+<li>Increase developer confidence</li>
+</ul>
+<strong>Angular Unit Test Example:</strong>
+<pre>describe(<span class="str">'CounterComponent'</span>, () => {
+  <span class="kw">let</span> component: CounterComponent
+
+  <span class="fn">beforeEach</span>(<span class="kw">async</span> () => {
+    <span class="kw">await</span> TestBed.<span class="fn">configureTestingModule</span>({
+      declarations: [CounterComponent]
+    }).<span class="fn">compileComponents</span>()
+    component = TestBed.<span class="fn">createComponent</span>(CounterComponent).componentInstance
+  })
+
+  <span class="fn">it</span>(<span class="str">'should increment count'</span>, () => {
+    component.count = <span class="num">0</span>
+    component.<span class="fn">increment</span>()
+    <span class="fn">expect</span>(component.count).<span class="fn">toBe</span>(<span class="num">1</span>)
+  })
+
+  <span class="fn">it</span>(<span class="str">'should not go negative'</span>, () => {
+    component.count = <span class="num">0</span>
+    component.<span class="fn">decrement</span>()
+    <span class="fn">expect</span>(component.count).<span class="fn">toBe</span>(<span class="num">0</span>)
+  })
+})</pre>
+<strong>Unit vs Integration Testing:</strong>
+<table>
+<tr><th>Aspect</th><th>Unit Testing</th><th>Integration Testing</th></tr>
+<tr><td>Scope</td><td>Single class/function</td><td>Multiple units together</td></tr>
+<tr><td>Dependencies</td><td>Mocked</td><td>Real or partial mocks</td></tr>
+<tr><td>Speed</td><td>Very fast</td><td>Slower</td></tr>
+<tr><td>Isolation</td><td>Complete</td><td>Partial</td></tr>
+<tr><td>Angular tool</td><td>TestBed + SpyOn</td><td>TestBed + real modules</td></tr>
+</table>
+<strong>Recommendation:</strong> Write more unit tests (fast, specific) and fewer but meaningful integration tests for critical flows.`
+      },
+      {
+        q: "Write code to implement a POST route in Express for creating records.",
+        a: `<strong>Full CRUD POST implementation:</strong>
+<pre><span class="cmt">// models/User.js</span>
+<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">'mongoose'</span>)
+<span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  name:  { type: String, required: <span class="kw">true</span> },
+  email: { type: String, required: <span class="kw">true</span>, unique: <span class="kw">true</span> },
+  age:   { type: Number, min: <span class="num">0</span> }
+}, { timestamps: <span class="kw">true</span> })
+
+module.exports = mongoose.<span class="fn">model</span>(<span class="str">'User'</span>, userSchema)</pre>
+<pre><span class="cmt">// routes/users.js</span>
+<span class="kw">const</span> express = <span class="fn">require</span>(<span class="str">'express'</span>)
+<span class="kw">const</span> router  = express.<span class="fn">Router</span>()
+<span class="kw">const</span> User    = <span class="fn">require</span>(<span class="str">'../models/User'</span>)
+
+router.<span class="fn">post</span>(<span class="str">'/'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> { name, email, age } = req.body
+
+    <span class="cmt">// Validate input</span>
+    <span class="kw">if</span> (!name || !email) {
+      <span class="kw">return</span> res.<span class="fn">status</span>(<span class="num">400</span>).<span class="fn">json</span>({ error: <span class="str">'Name and email required'</span> })
+    }
+
+    <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">create</span>({ name, email, age })
+    res.<span class="fn">status</span>(<span class="num">201</span>).<span class="fn">json</span>({ success: <span class="kw">true</span>, user })
+
+  } <span class="kw">catch</span> (err) {
+    <span class="kw">if</span> (err.code === <span class="num">11000</span>) {
+      <span class="kw">return</span> res.<span class="fn">status</span>(<span class="num">409</span>).<span class="fn">json</span>({ error: <span class="str">'Email already exists'</span> })
+    }
+    res.<span class="fn">status</span>(<span class="num">500</span>).<span class="fn">json</span>({ error: err.message })
+  }
+})
+
+module.exports = router</pre>
+<pre><span class="cmt">// server.js</span>
+app.<span class="fn">use</span>(<span class="str">'/api/users'</span>, <span class="fn">require</span>(<span class="str">'./routes/users'</span>))</pre>
+Status codes: <code>201</code> (created), <code>400</code> (bad request), <code>409</code> (conflict), <code>500</code> (server error).`
+      },
+      {
+        q: "Explain what deployment means in web applications and discuss best practices for secure deployment of web applications.",
+        a: `<strong>Deployment</strong> is the process of making a web application available to users by hosting it on a server or cloud platform.<br><br>
+<strong>MEAN Stack Deployment Steps:</strong>
+<ul>
+<li>Build Angular: <code>ng build --configuration production</code> → outputs to <code>dist/</code></li>
+<li>Set up Node.js/Express on server</li>
+<li>Configure environment variables</li>
+<li>Serve Angular build from Express or deploy to CDN (Vercel/Netlify)</li>
+</ul>
+<strong>Best Practices for Secure Deployment:</strong>
+<pre><span class="cmt">// 1. Use Helmet for HTTP security headers</span>
+<span class="kw">const</span> helmet = <span class="fn">require</span>(<span class="str">'helmet'</span>)
+app.<span class="fn">use</span>(<span class="fn">helmet</span>())
+
+<span class="cmt">// 2. Enable CORS properly (not wildcard *)</span>
+app.<span class="fn">use</span>(<span class="fn">cors</span>({ origin: <span class="str">'https://myapp.com'</span> }))
+
+<span class="cmt">// 3. Rate limiting</span>
+<span class="kw">const</span> limiter = <span class="fn">rateLimit</span>({ windowMs: <span class="num">15</span>*<span class="num">60000</span>, max: <span class="num">100</span> })
+app.<span class="fn">use</span>(limiter)
+
+<span class="cmt">// 4. Environment variables — never hardcode secrets</span>
+<span class="fn">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>()
+
+<span class="cmt">// 5. Use HTTPS (SSL/TLS certificate via Let's Encrypt)</span></pre>
+<ul>
+<li>Always use HTTPS in production</li>
+<li>Never commit <code>.env</code> to Git</li>
+<li>Keep dependencies updated (<code>npm audit</code>)</li>
+<li>Use PM2 for process management and auto-restart</li>
+<li>Set up CI/CD pipeline for automated deployments</li>
+</ul>`
+      },
+      {
+        q: "Discuss the importance of unit testing in maintaining large-scale Angular applications.",
+        a: `Large Angular applications become difficult to maintain without a comprehensive test suite. Unit testing is essential for the following reasons:<br><br>
+<strong>1. Regression Prevention:</strong> When new features are added or code is refactored, tests immediately catch any unintended side effects on existing functionality.<br><br>
+<strong>2. Safe Refactoring:</strong> Developers can restructure code confidently knowing tests will fail if behavior changes — enabling continuous improvement.<br><br>
+<strong>3. Documentation:</strong> Well-written tests describe expected behavior, serving as always-up-to-date documentation for team members.<br><br>
+<strong>4. Faster Debugging:</strong> Isolated unit tests pinpoint exact failure location — no need to trace through entire application stack.<br><br>
+<strong>Practical Example — Testing a Service:</strong>
+<pre>describe(<span class="str">'AuthService'</span>, () => {
+  <span class="kw">let</span> service: AuthService
+  <span class="kw">let</span> httpMock: HttpTestingController
+
+  <span class="fn">beforeEach</span>(() => {
+    TestBed.<span class="fn">configureTestingModule</span>({
+      imports: [HttpClientTestingModule],
+      providers: [AuthService]
+    })
+    service  = TestBed.<span class="fn">inject</span>(AuthService)
+    httpMock = TestBed.<span class="fn">inject</span>(HttpTestingController)
+  })
+
+  <span class="fn">it</span>(<span class="str">'should return user on login'</span>, () => {
+    service.<span class="fn">login</span>(<span class="str">'a@b.com'</span>, <span class="str">'pass'</span>).<span class="fn">subscribe</span>(user =>
+      <span class="fn">expect</span>(user.email).<span class="fn">toBe</span>(<span class="str">'a@b.com'</span>)
+    )
+    <span class="kw">const</span> req = httpMock.<span class="fn">expectOne</span>(<span class="str">'/api/login'</span>)
+    req.<span class="fn">flush</span>({ email: <span class="str">'a@b.com'</span>, token: <span class="str">'abc'</span> })
+  })
+})</pre>
+<strong>Industry Standard:</strong> Aim for 70–80% code coverage. Use Karma + Jasmine (Angular default). Integrate tests into CI/CD pipeline so every pull request runs tests before merging.`
+      },
+      {
+        q: "Evaluate the importance of schema design in Mongoose for MEAN applications.",
+        a: `Schema design in Mongoose defines the structure and constraints of MongoDB documents — critical for data integrity and application performance.<br><br>
+<strong>Basic Schema with Validation:</strong>
+<pre><span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  name: {
+    type: String, required: <span class="kw">true</span>,
+    trim: <span class="kw">true</span>, minlength: <span class="num">2</span>
+  },
+  email: {
+    type: String, required: <span class="kw">true</span>,
+    unique: <span class="kw">true</span>, lowercase: <span class="kw">true</span>,
+    match: /^[\w.-]+@[\w.-]+\.\w+$/
+  },
+  role: {
+    type: String,
+    enum: [<span class="str">'admin'</span>, <span class="str">'user'</span>, <span class="str">'moderator'</span>],
+    default: <span class="str">'user'</span>
+  },
+  createdAt: { type: Date, default: Date.now }
+})</pre>
+<strong>Why Schema Design Matters:</strong>
+<ul>
+<li><strong>Data integrity:</strong> Enforces required fields, data types, min/max values, regex patterns — prevents bad data entry</li>
+<li><strong>Validation:</strong> Mongoose validates before saving — no need for manual validation in every route</li>
+<li><strong>Indexing:</strong> <code>unique: true</code> creates MongoDB index automatically — fast lookups on email</li>
+<li><strong>Default values:</strong> Prevents <code>undefined</code> fields in documents</li>
+<li><strong>Population:</strong> <code>ref</code> field enables joining collections (like SQL JOINs)</li>
+</ul>
+<strong>References (Population):</strong>
+<pre>post: { author: { type: ObjectId, ref: <span class="str">'User'</span> } }
+<span class="cmt">// Query with populate:</span>
+Post.<span class="fn">find</span>().<span class="fn">populate</span>(<span class="str">'author'</span>, <span class="str">'name email'</span>)</pre>
+<strong>Conclusion:</strong> A well-designed Mongoose schema reduces bugs, improves query performance, and makes code self-documenting.`
+      },
+      {
+        q: "Discuss why MEAN stack is popular for modern web development.",
+        a: `The MEAN stack has become a popular choice for building modern, scalable full-stack web applications. Here's why:<br><br>
+<strong>1. Single Language — JavaScript Everywhere:</strong>
+<pre>MongoDB  → JSON documents (JS-native)
+Express  → Node.js (JavaScript)
+Angular  → TypeScript (JS superset)
+Node.js  → JavaScript runtime</pre>
+Developers write one language across frontend, backend, and database queries — reducing context switching and team size needed.<br><br>
+<strong>2. JSON Data Flow:</strong> Data flows as JSON from MongoDB through Express APIs to Angular without conversion or serialization overhead.<br><br>
+<strong>3. Performance:</strong> Node.js uses a non-blocking, event-driven I/O model — handles thousands of concurrent connections with low memory usage.<br><br>
+<strong>4. Scalability:</strong>
+<ul>
+<li>MongoDB scales horizontally with sharding</li>
+<li>Node.js scales with PM2 cluster mode</li>
+<li>Angular reduces server load (client-side rendering)</li>
+</ul>
+<strong>5. Rich Ecosystem:</strong> npm has 2M+ packages; Angular has a comprehensive standard library (forms, router, HTTP, testing).<br><br>
+<strong>6. Open Source & Community:</strong> All four technologies are open-source with active communities, extensive documentation, and regular updates.<br><br>
+<strong>7. Real-World Suitability:</strong>
+<ul>
+<li>SPAs (dashboards, social apps)</li>
+<li>Real-time apps (chat, notifications) with Socket.io</li>
+<li>REST API backends consumed by mobile/web clients</li>
+</ul>
+<strong>Conclusion:</strong> MEAN's JavaScript uniformity, performance, and ecosystem maturity make it a strong choice for startups and enterprises building modern web applications.`
+      }
+    ]
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MODULE META
+═══════════════════════════════════════════════════════ */
+const modules = [
+  {
+    key: 'mod1',
+    num: 'Module I',
+    title: 'MongoDB & Database',
+    desc: 'SQL vs NoSQL, MongoDB shell, CRUD operations, aggregation pipeline, indexing, user authentication and GUI tools',
+    chips: ['2 Marks × 15'],
+    marks: ['2'],
+    accent: 'var(--accent)'
+  },
+  {
+    key: 'mod2',
+    num: 'Module II',
+    title: 'Node.js & Express',
+    desc: 'npm, file system module, HTTP server, Express routing, middleware, Mongoose, JWT authentication, session management',
+    chips: ['2 Marks × 15'],
+    marks: ['2'],
+    accent: 'var(--accent2)'
+  },
+  {
+    key: 'mod3',
+    num: 'Module III',
+    title: 'Angular Framework',
+    desc: 'Angular CLI, components, data binding, directives (*ngIf, *ngFor), routing, reactive & template-driven forms',
+    chips: ['2 Marks × 15', '5 Marks × 9', '10 Marks × 9'],
+    marks: ['2', '5', '10'],
+    accent: 'var(--accent3)'
+  },
+  {
+    key: 'mod4',
+    num: 'Module IV',
+    title: 'MEAN Stack & Testing',
+    desc: 'HttpClient, Observables, unit testing (Jasmine/Karma), MEAN architecture, deployment, environment variables',
+    chips: ['2 Marks × 15', '5 Marks × 9', '10 Marks × 9'],
+    marks: ['2', '5', '10'],
+    accent: 'var(--accent4)'
+  }
+]
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
+let currentModule = null
+let currentMark   = null
+
+/* ═══════════════════════════════════════════════════════
+   INIT — render module cards
+═══════════════════════════════════════════════════════ */
+function init() {
+  const grid = document.getElementById('modules-grid')
+  grid.innerHTML = modules.map((m, i) => `
+    <div class="module-card mc-${i+1}" onclick="openModule('${m.key}')">
+      <div class="m-num">${m.num}</div>
+      <div class="m-title">${m.title}</div>
+      <div class="m-desc">${m.desc}</div>
+      <div class="m-chips">${m.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
+    </div>
+  `).join('')
+}
+
+/* ═══════════════════════════════════════════════════════
+   OPEN MODULE
+═══════════════════════════════════════════════════════ */
+function openModule(key) {
+  currentModule = key
+  const mod = modules.find(m => m.key === key)
+  currentMark = mod.marks[0]
+
+  document.getElementById('mod-heading').textContent = `${mod.num} — ${mod.title}`
+  document.getElementById('mod-subheading').textContent = `${mod.chips.join('  ·  ')}`
+
+  // Tabs
+  const tabsEl = document.getElementById('marks-tabs')
+  tabsEl.innerHTML = mod.marks.map(m => `
+    <button class="marks-tab ${m === currentMark ? 'active' : ''}"
+      onclick="switchMark('${m}', this)">
+      ${m} Marks
+      <span class="tab-badge">${data[key][m] ? data[key][m].length : 0} Qs</span>
+    </button>
+  `).join('')
+
+  renderQuestions(key, currentMark)
+
+  // Show module view
+  showView('view-module')
+  updateBreadcrumb(mod)
+  document.getElementById('back-btn').style.display = 'flex'
+
+  // Progress
+  setProgress(50)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+/* ═══════════════════════════════════════════════════════
+   SWITCH MARK TAB
+═══════════════════════════════════════════════════════ */
+function switchMark(mark, btnEl) {
+  currentMark = mark
+  document.querySelectorAll('.marks-tab').forEach(b => b.classList.remove('active'))
+  btnEl.classList.add('active')
+  renderQuestions(currentModule, mark)
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER QUESTIONS
+═══════════════════════════════════════════════════════ */
+function renderQuestions(modKey, mark) {
+  const container = document.getElementById('questions-container')
+  const questions = data[modKey][mark] || []
+
+  const labels = { '2': 'Part-A', '5': 'Part-B', '10': 'Part-C' }
+  const label  = labels[mark] || ''
+
+  container.innerHTML = `
+    <div class="q-section active">
+      <div class="q-section-title">${label} — ${mark} Mark Questions (${questions.length} questions)</div>
+      ${questions.map((item, idx) => `
+        <div class="q-item" id="q-${modKey}-${mark}-${idx}">
+          <div class="q-trigger" onclick="toggleQ('q-${modKey}-${mark}-${idx}')">
+            <span class="q-num">Q.${idx + 1}</span>
+            <span class="q-text">${item.q}</span>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </div>
+          <div class="q-answer">
+            <div class="q-answer-inner">${item.a}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `
+}
+
+/* ═══════════════════════════════════════════════════════
+   TOGGLE QUESTION
+═══════════════════════════════════════════════════════ */
+function toggleQ(id) {
+  const el = document.getElementById(id)
+  const wasOpen = el.classList.contains('open')
+
+  // Close all others in this section
+  document.querySelectorAll('.q-item.open').forEach(item => {
+    if (item.id !== id) item.classList.remove('open')
+  })
+
+  el.classList.toggle('open', !wasOpen)
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════ */
+function goBack() {
+  showView('view-home')
+  document.getElementById('back-btn').style.display = 'none'
+  document.getElementById('breadcrumb').innerHTML = ''
+  currentModule = null
+  setProgress(0)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+}
+
+/* ═══════════════════════════════════════════════════════
+   BREADCRUMB
+═══════════════════════════════════════════════════════ */
+function updateBreadcrumb(mod) {
+  const bc = document.getElementById('breadcrumb')
+  bc.innerHTML = `
+    <span style="cursor:pointer;color:var(--text2)" onclick="goBack()">Home</span>
+    <span class="sep">›</span>
+    <span class="crumb-active">${mod.num}</span>
+  `
+}
+
+/* ═══════════════════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════════════════ */
+function setProgress(pct) {
+  document.getElementById('progress').style.width = pct + '%'
+  if (pct >= 100 || pct === 0) {
+    setTimeout(() => document.getElementById('progress').style.width = '0', 500)
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   START
+═══════════════════════════════════════════════════════ */
+init()
+</script>
+</body>
+</html>

@@ -588,6 +588,18 @@
       animation: fadeIn .2s ease
     }
 
+    .qi.speaking {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, .16), 0 10px 28px rgba(0, 212, 170, .08)
+    }
+
+    .ans-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px
+    }
+
     .albl {
       font-size: .67rem;
       font-weight: 700;
@@ -600,11 +612,130 @@
       gap: 6px
     }
 
+    .ans-top .albl {
+      flex: 1;
+      margin-bottom: 0
+    }
+
     .albl::after {
       content: '';
       flex: 1;
       height: 1px;
       background: var(--border)
+    }
+
+    .tts-panel {
+      margin-top: 22px;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px
+    }
+
+    .tts-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px
+    }
+
+    .tts-title {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .tts-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tts-settings {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.35fr) minmax(180px, 1fr);
+      gap: 12px;
+      align-items: end
+    }
+
+    .tts-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .tts-field span {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .tts-field strong {
+      color: var(--text);
+      font-size: .75rem
+    }
+
+    .tts-field select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: .82rem
+    }
+
+    .tts-field input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent)
+    }
+
+    .tts-status {
+      margin-top: 12px;
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .tts-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-family: 'Sora', sans-serif;
+      font-size: .74rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--tr)
+    }
+
+    .tts-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .tts-btn.listen {
+      border-color: rgba(0, 212, 170, .28);
+      color: var(--accent);
+      background: rgba(0, 212, 170, .08)
+    }
+
+    .tts-btn.danger:hover {
+      border-color: var(--m4);
+      color: var(--m4)
+    }
+
+    .tts-unsupported {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5
     }
 
     .ab {
@@ -703,6 +834,10 @@
       .marks-grid {
         grid-template-columns: 1fr 1fr
       }
+
+      .tts-settings {
+        grid-template-columns: 1fr
+      }
     }
   </style>
 </head>
@@ -769,6 +904,27 @@
       <h2 id="module-title"></h2>
       <p id="module-subtitle"></p>
       <div class="marks-grid" id="marks-grid"></div>
+      <div class="tts-panel" id="tts-panel">
+        <div class="tts-top">
+          <div class="tts-title">Voice Reading</div>
+          <div class="tts-controls">
+            <button class="tts-btn" type="button" onclick="pauseSpeaking(event)">Pause</button>
+            <button class="tts-btn" type="button" onclick="resumeSpeaking(event)">Resume</button>
+            <button class="tts-btn danger" type="button" onclick="stopSpeaking(event)">Stop</button>
+          </div>
+        </div>
+        <div class="tts-settings">
+          <label class="tts-field">
+            <span>Voice</span>
+            <select id="tts-voice"></select>
+          </label>
+          <label class="tts-field">
+            <span>Speed <strong id="tts-rate-value">1.0x</strong></span>
+            <input id="tts-rate" type="range" min="0.7" max="1.4" step="0.1" value="1">
+          </label>
+        </div>
+        <div class="tts-status" id="tts-status">Choose an answer and press Listen.</div>
+      </div>
       <div id="qcontainer" style="margin-top:28px"></div>
     </div>
   </main>
@@ -1200,8 +1356,15 @@
     };
 
     let cM = null, cK = null;
+    const TTS_STORAGE_KEY = 'question-bank-tts-settings-v1';
+    const ttsState = {
+      supported: 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window,
+      activeId: null,
+      voices: []
+    };
 
     function openModule(n) {
+      stopSpeaking(null, 'Choose an answer and press Listen.');
       cM = n; cK = null;
       const mod = D[n];
       hide('view-home'); show('view-module');
@@ -1220,6 +1383,7 @@
     }
 
     function openMarks(marks) {
+      stopSpeaking(null, 'Choose an answer and press Listen.');
       cK = marks;
       document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active'));
       const mc = document.getElementById('mc-' + marks);
@@ -1239,7 +1403,7 @@
         <span class="qt">${item.q.replace(/\n/g, '<br>')}</span>
         <span class="qtg">+</span>
       </div>
-      <div class="qa"><div class="albl">Answer</div><div class="ab">${item.a}</div></div>
+      <div class="qa" onclick="event.stopPropagation()"><div class="ans-top"><div class="albl">Answer</div><button class="tts-btn listen" type="button" onclick="speakAnswer(event, 'q${i}')">Listen</button></div><div class="ab">${item.a}</div></div>
     </div>`).join('')}
   </div>`;
       updateNav();
@@ -1251,6 +1415,7 @@
     function collapseAll() { document.querySelectorAll('.qi').forEach(e => e.classList.remove('open')); }
 
     function goBack() {
+      stopSpeaking(null, 'Choose an answer and press Listen.');
       if (cK !== null) { cK = null; document.getElementById('qcontainer').innerHTML = ''; document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active')); }
       else if (cM !== null) { cM = null; hide('view-module'); show('view-home'); }
       updateNav();
@@ -1271,8 +1436,178 @@
       }
     }
 
-    function goHome() { cM = null; cK = null; hide('view-module'); show('view-home'); updateNav(); }
-    function goToModule() { if (cM) { cK = null; document.getElementById('qcontainer').innerHTML = ''; document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active')); updateNav(); } }
+    function goHome() { stopSpeaking(null, 'Choose an answer and press Listen.'); cM = null; cK = null; hide('view-module'); show('view-home'); updateNav(); }
+    function goToModule() { if (cM) { stopSpeaking(null, 'Choose an answer and press Listen.'); cK = null; document.getElementById('qcontainer').innerHTML = ''; document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active')); updateNav(); } }
+
+    function updateTTSStatus(message) {
+      const status = document.getElementById('tts-status');
+      if (status) status.textContent = message;
+    }
+
+    function clearSpeakingState() {
+      if (!ttsState.activeId) return;
+      const active = document.getElementById(ttsState.activeId);
+      if (active) active.classList.remove('speaking');
+      ttsState.activeId = null;
+    }
+
+    function setSpeakingState(questionId) {
+      clearSpeakingState();
+      const active = document.getElementById(questionId);
+      if (active) active.classList.add('speaking');
+      ttsState.activeId = questionId;
+    }
+
+    function getTTSSettings() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(TTS_STORAGE_KEY) || '{}');
+        return { voice: saved.voice || '', rate: saved.rate || '1' };
+      } catch (error) {
+        return { voice: '', rate: '1' };
+      }
+    }
+
+    function updateRateLabel(value) {
+      const label = document.getElementById('tts-rate-value');
+      if (label) label.textContent = `${Number(value).toFixed(1)}x`;
+    }
+
+    function saveTTSSettings() {
+      if (!ttsState.supported) return;
+      const voiceSelect = document.getElementById('tts-voice');
+      const rateInput = document.getElementById('tts-rate');
+      if (!voiceSelect || !rateInput) return;
+      updateRateLabel(rateInput.value);
+      localStorage.setItem(TTS_STORAGE_KEY, JSON.stringify({ voice: voiceSelect.value, rate: rateInput.value }));
+    }
+
+    function populateVoiceOptions() {
+      if (!ttsState.supported) return;
+      const voiceSelect = document.getElementById('tts-voice');
+      if (!voiceSelect) return;
+      const settings = getTTSSettings();
+      const voices = window.speechSynthesis.getVoices().slice().sort((a, b) => a.name.localeCompare(b.name));
+      ttsState.voices = voices;
+      voiceSelect.innerHTML = '';
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = 'Default Browser Voice';
+      voiceSelect.appendChild(defaultOption);
+      voices.forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.voiceURI;
+        option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' - default' : ''}`;
+        voiceSelect.appendChild(option);
+      });
+      voiceSelect.value = voices.some(voice => voice.voiceURI === settings.voice) ? settings.voice : '';
+      saveTTSSettings();
+    }
+
+    function getSpeakableText(answerElement) {
+      const clone = answerElement.cloneNode(true);
+      return (clone.textContent || '').replace(/\s+/g, ' ').replace(/\s([,.;!?])/g, '$1').trim();
+    }
+
+    function speakAnswer(event, questionId) {
+      if (event) event.stopPropagation();
+      if (!ttsState.supported) {
+        updateTTSStatus('Text-to-speech is not supported in this browser.');
+        return;
+      }
+
+      const questionElement = document.getElementById(questionId);
+      const answerElement = questionElement ? questionElement.querySelector('.ab') : null;
+      if (!answerElement) return;
+
+      const spokenText = getSpeakableText(answerElement);
+      if (!spokenText) {
+        updateTTSStatus('This answer has no readable text.');
+        return;
+      }
+
+      const voiceSelect = document.getElementById('tts-voice');
+      const rateInput = document.getElementById('tts-rate');
+      const questionLabel = (questionElement.querySelector('.qt')?.textContent || 'Selected answer').trim();
+
+      window.speechSynthesis.cancel();
+      clearSpeakingState();
+
+      const utterance = new SpeechSynthesisUtterance(spokenText);
+      const selectedVoice = ttsState.voices.find(voice => voice.voiceURI === (voiceSelect ? voiceSelect.value : ''));
+      if (selectedVoice) utterance.voice = selectedVoice;
+      utterance.rate = parseFloat(rateInput ? rateInput.value : '1');
+
+      utterance.onstart = () => {
+        setSpeakingState(questionId);
+        updateTTSStatus(`Reading: ${questionLabel}`);
+      };
+
+      utterance.onend = () => {
+        clearSpeakingState();
+        updateTTSStatus(`Finished reading: ${questionLabel}`);
+      };
+
+      utterance.onerror = () => {
+        clearSpeakingState();
+        updateTTSStatus('Unable to read this answer in the current browser.');
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function pauseSpeaking(event) {
+      if (event) event.stopPropagation();
+      if (!ttsState.supported) return;
+      if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+        window.speechSynthesis.pause();
+        updateTTSStatus('Reading paused.');
+      }
+    }
+
+    function resumeSpeaking(event) {
+      if (event) event.stopPropagation();
+      if (!ttsState.supported) return;
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        updateTTSStatus('Reading resumed.');
+      }
+    }
+
+    function stopSpeaking(event, message = 'Choose an answer and press Listen.') {
+      if (event) event.stopPropagation();
+      if (!ttsState.supported) return;
+      window.speechSynthesis.cancel();
+      clearSpeakingState();
+      updateTTSStatus(message);
+    }
+
+    function initTTS() {
+      const panel = document.getElementById('tts-panel');
+      if (!panel) return;
+      if (!ttsState.supported) {
+        panel.innerHTML = '<div class="tts-unsupported">Text-to-speech is not supported in this browser.</div>';
+        return;
+      }
+
+      const settings = getTTSSettings();
+      const voiceSelect = document.getElementById('tts-voice');
+      const rateInput = document.getElementById('tts-rate');
+
+      if (rateInput) {
+        rateInput.value = settings.rate;
+        updateRateLabel(rateInput.value);
+        rateInput.addEventListener('input', saveTTSSettings);
+      }
+
+      if (voiceSelect) voiceSelect.addEventListener('change', saveTTSSettings);
+
+      populateVoiceOptions();
+      window.speechSynthesis.onvoiceschanged = populateVoiceOptions;
+      updateTTSStatus('Choose an answer and press Listen.');
+      window.addEventListener('beforeunload', () => stopSpeaking(null, ''));
+    }
+
+    initTTS();
   </script>
 </body>
 

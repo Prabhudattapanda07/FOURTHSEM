@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT End Semester Question Bank — GEC Bhubaneswar</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2433;
+      --border: #30363d;
+      --accent: #00d4aa;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --m1: #00d4aa;
+      --m2: #7c3aed;
+      --m3: #f59e0b;
+      --m4: #ef4444;
+      --r: 14px;
+      --tr: 0.3s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d1117, #161b22);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      right: -60px;
+      height: 200px;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 170, .1), transparent 70%);
+      pointer-events: none
+    }
+
+    header h1 {
+      font-size: clamp(1.4rem, 4vw, 2.3rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, #00d4aa, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-top: 6px;
+      position: relative
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      position: relative
+    }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: .5px;
+      text-transform: uppercase
+    }
+
+    .badge.g {
+      border-color: var(--m1);
+      color: var(--m1);
+      background: rgba(0, 212, 170, .08)
+    }
+
+    .badge.p {
+      border-color: var(--m2);
+      color: var(--m2);
+      background: rgba(124, 58, 237, .08)
+    }
+
+    .badge.a {
+      border-color: var(--m3);
+      color: var(--m3);
+      background: rgba(245, 158, 11, .08)
+    }
+
+    .badge.r {
+      border-color: var(--m4);
+      color: var(--m4);
+      background: rgba(239, 68, 68, .08)
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      min-height: 52px;
+      flex-wrap: wrap
+    }
+
+    #back-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--tr);
+      white-space: nowrap
+    }
+
+    #back-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    #breadcrumb {
+      font-size: .8rem;
+      color: var(--muted);
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    #breadcrumb .sep {
+      opacity: .4
+    }
+
+    #breadcrumb .active {
+      color: var(--text);
+      font-weight: 600
+    }
+
+    #breadcrumb .lnk {
+      cursor: pointer
+    }
+
+    #breadcrumb .lnk:hover {
+      color: var(--accent)
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px
+    }
+
+    .page-footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      text-align: center;
+      padding: 18px 20px 24px;
+      font-size: .82rem;
+      letter-spacing: .4px
+    }
+
+    .view {
+      animation: fadeIn .35s ease
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .section-lbl {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px
+    }
+
+    .mc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px 24px 24px;
+      cursor: pointer;
+      transition: var(--tr);
+      position: relative;
+      overflow: hidden
+    }
+
+    .mc::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: var(--r) var(--r) 0 0
+    }
+
+    .mc.m1::before {
+      background: var(--m1)
+    }
+
+    .mc.m2::before {
+      background: var(--m2)
+    }
+
+    .mc.m3::before {
+      background: var(--m3)
+    }
+
+    .mc.m4::before {
+      background: var(--m4)
+    }
+
+    .mc:hover {
+      transform: translateY(-4px);
+      border-color: transparent
+    }
+
+    .mc.m1:hover {
+      box-shadow: 0 8px 32px rgba(0, 212, 170, .18);
+      border-color: rgba(0, 212, 170, .3)
+    }
+
+    .mc.m2:hover {
+      box-shadow: 0 8px 32px rgba(124, 58, 237, .18);
+      border-color: rgba(124, 58, 237, .3)
+    }
+
+    .mc.m3:hover {
+      box-shadow: 0 8px 32px rgba(245, 158, 11, .18);
+      border-color: rgba(245, 158, 11, .3)
+    }
+
+    .mc.m4:hover {
+      box-shadow: 0 8px 32px rgba(239, 68, 68, .18);
+      border-color: rgba(239, 68, 68, .3)
+    }
+
+    .cn {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px
+    }
+
+    .m1 .cn {
+      color: var(--m1)
+    }
+
+    .m2 .cn {
+      color: var(--m2)
+    }
+
+    .m3 .cn {
+      color: var(--m3)
+    }
+
+    .m4 .cn {
+      color: var(--m4)
+    }
+
+    .ct {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3
+    }
+
+    .cd {
+      font-size: .79rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px
+    }
+
+    .cf {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .chip {
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px
+    }
+
+    .chip.c2 {
+      background: rgba(99, 179, 237, .12);
+      color: #63b3ed;
+      border: 1px solid rgba(99, 179, 237, .25)
+    }
+
+    .chip.c5 {
+      background: rgba(245, 158, 11, .12);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, .25)
+    }
+
+    .chip.c10 {
+      background: rgba(239, 68, 68, .12);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, .25)
+    }
+
+    #module-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    #module-subtitle {
+      color: var(--muted);
+      font-size: .84rem;
+      margin-bottom: 24px
+    }
+
+    .marks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px
+    }
+
+    .mkc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 22px 20px;
+      cursor: pointer;
+      transition: var(--tr);
+      text-align: center
+    }
+
+    .mkc:hover {
+      transform: translateY(-3px)
+    }
+
+    .mkc.active {
+      border-color: currentColor
+    }
+
+    .mkc .mv {
+      font-size: 2.4rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px
+    }
+
+    .mkc .ml {
+      font-size: .7rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase
+    }
+
+    .mkc .mc2 {
+      font-size: .7rem;
+      margin-top: 8px;
+      color: var(--muted)
+    }
+
+    .mkc.two {
+      color: #63b3ed
+    }
+
+    .mkc.two:hover,
+    .mkc.two.active {
+      box-shadow: 0 4px 20px rgba(99, 179, 237, .2);
+      background: rgba(99, 179, 237, .06)
+    }
+
+    .mkc.five {
+      color: var(--m3)
+    }
+
+    .mkc.five:hover,
+    .mkc.five.active {
+      box-shadow: 0 4px 20px rgba(245, 158, 11, .2);
+      background: rgba(245, 158, 11, .06)
+    }
+
+    .mkc.ten {
+      color: var(--m4)
+    }
+
+    .mkc.ten:hover,
+    .mkc.ten.active {
+      box-shadow: 0 4px 20px rgba(239, 68, 68, .2);
+      background: rgba(239, 68, 68, .06)
+    }
+
+    .mst {
+      font-size: .83rem;
+      color: var(--muted);
+      margin-top: 28px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .mst span {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text)
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap
+    }
+
+    .tbtn {
+      font-family: 'Sora', sans-serif;
+      font-size: .74rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--tr)
+    }
+
+    .tbtn:hover {
+      color: var(--text);
+      border-color: var(--accent)
+    }
+
+    .qlist {
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .qi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s
+    }
+
+    .qh {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 15px 17px;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .qn {
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .qi.two .qn {
+      background: rgba(99, 179, 237, .15);
+      color: #63b3ed
+    }
+
+    .qi.five .qn {
+      background: rgba(245, 158, 11, .15);
+      color: #f59e0b
+    }
+
+    .qi.ten .qn {
+      background: rgba(239, 68, 68, .15);
+      color: #ef4444
+    }
+
+    .qt {
+      flex: 1;
+      font-size: .875rem;
+      line-height: 1.55;
+      font-weight: 500
+    }
+
+    .qtg {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--surface2);
+      color: var(--muted);
+      transition: var(--tr);
+      margin-top: 2px;
+      font-size: .8rem;
+      font-weight: 700
+    }
+
+    .qi.open .qtg {
+      background: var(--accent);
+      color: #000;
+      transform: rotate(45deg)
+    }
+
+    .qa {
+      display: none;
+      padding: 16px 17px 18px;
+      border-top: 1px solid var(--border)
+    }
+
+    .qi.open .qa {
+      display: block;
+      animation: fadeIn .2s ease
+    }
+
+    .albl {
+      font-size: .67rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .albl::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .ab {
+      font-size: .85rem;
+      line-height: 1.75;
+      color: #c9d1d9
+    }
+
+    .ab code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      background: #0a0e14;
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 8px;
+      display: block;
+      margin: 10px 0;
+      overflow-x: auto;
+      color: #79c0ff;
+      line-height: 1.65;
+      white-space: pre
+    }
+
+    .ab ul {
+      padding-left: 18px;
+      margin: 8px 0
+    }
+
+    .ab li {
+      margin-bottom: 5px;
+      line-height: 1.65
+    }
+
+    .ab ol {
+      padding-left: 20px;
+      margin: 8px 0
+    }
+
+    .ab ol li {
+      margin-bottom: 6px;
+      line-height: 1.65
+    }
+
+    .ab strong {
+      color: var(--text);
+      font-weight: 600
+    }
+
+    .ab table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: .8rem
+    }
+
+    .ab table th {
+      background: var(--surface2);
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: .72rem;
+      text-transform: uppercase
+    }
+
+    .ab table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.6
+    }
+
+    .ab p {
+      margin-bottom: 8px
+    }
+
+    .ab .note {
+      background: rgba(0, 212, 170, .07);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: .82rem
+    }
+
+    @media(max-width:600px) {
+      main {
+        padding: 18px 13px 50px
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr
+      }
+
+      .marks-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>IoT End Semester Question Bank</h1>
+    <p>B.Tech IV Semester &nbsp;·&nbsp; Gandhi Engineering College (GEC Autonomous) Bhubaneswar</p>
+    <div class="badge-row">
+      <span class="badge g">Module 1 · IoT Fundamentals</span>
+      <span class="badge p">Module 2 · M2M &amp; Network</span>
+      <span class="badge a">Module 3 · Python</span>
+      <span class="badge r">Module 4 · IoT Devices</span>
+    </div>
+  </header>
+  <nav>
+    <button id="back-btn" onclick="goBack()">&#8592; Back</button>
+    <div id="breadcrumb"><span class="active">Home</span></div>
+  </nav>
+  <main>
+    <div id="view-home" class="view">
+      <div class="section-lbl">Select a Module to Begin</div>
+      <div class="cards-grid">
+        <div class="mc m1" onclick="openModule(1)">
+          <div class="cn">Module I</div>
+          <div class="ct">IoT Fundamentals &amp; Architecture</div>
+          <div class="cd">IoT definition, physical &amp; logical design, communication models, REST/WebSocket APIs, IoT
+            levels 1–6, WSN, Cloud computing, Big Data Analytics, major IoT domains</div>
+          <div class="cf"><span class="chip c2">2 Marks × 15</span></div>
+        </div>
+        <div class="mc m2" onclick="openModule(2)">
+          <div class="cn">Module II</div>
+          <div class="ct">M2M, SDN, NFV &amp; Network Mgmt</div>
+          <div class="cd">M2M vs IoT, Software Defined Networking architecture, Network Function Virtualization, IoT
+            system management, SNMP framework, NETCONF protocol, YANG data models</div>
+          <div class="cf"><span class="chip c2">2 Marks × 15</span></div>
+        </div>
+        <div class="mc m3" onclick="openModule(3)">
+          <div class="cn">Module III</div>
+          <div class="ct">Python for IoT</div>
+          <div class="cd">Python basics, data types &amp; structures, control flow, lists, tuples, sets, dictionaries,
+            functions, modules, packages, OOP classes &amp; objects, file handling, datetime module</div>
+          <div class="cf">
+            <span class="chip c2">2 Marks × 15</span>
+            <span class="chip c5">5 Marks × 9</span>
+            <span class="chip c10">10 Marks × 9</span>
+          </div>
+        </div>
+        <div class="mc m4" onclick="openModule(4)">
+          <div class="cn">Module IV</div>
+          <div class="ct">IoT Devices, Boards &amp; Interfaces</div>
+          <div class="cd">Development boards (Arduino, RPi, ESP32, BeagleBone), communication interfaces (GPIO, SPI,
+            I2C, UART, HDMI, USB), exemplary IoT devices, design methodology, Raspberry Pi programming</div>
+          <div class="cf">
+            <span class="chip c2">2 Marks × 15</span>
+            <span class="chip c5">5 Marks × 9</span>
+            <span class="chip c10">10 Marks × 9</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="view-module" class="view" style="display:none">
+      <h2 id="module-title"></h2>
+      <p id="module-subtitle"></p>
+      <div class="marks-grid" id="marks-grid"></div>
+      <div id="qcontainer" style="margin-top:28px"></div>
+    </div>
+  </main>
+  <footer class="page-footer">
+    &copy; Prabhudatta Panda
+  </footer>
+  <script>
+    const D = {
+      1: {
+        title: "Module I — IoT Fundamentals & Architecture",
+        subtitle: "Physical & logical design, communication models, REST/WebSocket APIs, IoT levels 1–6, enabling technologies (WSN, Cloud, Big Data)",
+        marks: [2],
+        2: [
+          {
+            q: "Define the Internet of Things (IoT).",
+            a: "The <strong>Internet of Things (IoT)</strong> is a network of physical objects — called 'things' — embedded with sensors, actuators, microcontrollers, software, and communication hardware that enables them to collect, exchange, and act on data over the internet without requiring direct human intervention. Each 'thing' has a unique identity (IP address or device ID) and can sense the environment, process data locally or in the cloud, and communicate results to other devices or users. IoT spans a wide range of applications from smart homes and healthcare to industrial automation and smart cities."
+          },
+          {
+            q: "List any four characteristics of IoT.",
+            a: "<ul><li><strong>Connectivity</strong> — IoT devices connect to each other and to the internet using wired or wireless protocols (WiFi, Bluetooth, Zigbee, LoRa).</li><li><strong>Unique Identification</strong> — every IoT device has a unique identifier such as an IP address or a device ID, enabling it to be addressed and managed individually.</li><li><strong>Sensing and Actuation</strong> — devices can measure physical parameters (sensing) and perform physical actions (actuation) based on data or commands.</li><li><strong>Low Power Consumption</strong> — IoT devices are optimized for minimal energy use, often running on batteries for extended periods using sleep modes and energy harvesting.</li></ul>"
+          },
+          {
+            q: "Differentiate between a sensor and an actuator.",
+            a: "<table><tr><th>Sensor</th><th>Actuator</th></tr><tr><td>An input device that detects or measures physical parameters from the environment</td><td>An output device that converts electrical signals into physical actions</td></tr><tr><td>Converts physical quantity into an electrical signal</td><td>Converts an electrical signal into mechanical or physical action</td></tr><tr><td>Examples: Temperature sensor (DHT11), LDR, PIR motion sensor, pressure sensor</td><td>Examples: DC motor, relay switch, buzzer, LED, solenoid valve</td></tr><tr><td>Role in IoT: acts as the input — gathers real-world data</td><td>Role in IoT: acts as the output — performs actions based on processed data</td></tr></table>"
+          },
+          {
+            q: "What is the role of cloud computing in IoT?",
+            a: "Cloud computing provides the essential backend infrastructure for IoT systems. Its key roles include:<ul><li><strong>Data Storage</strong> — stores the massive volumes of data generated continuously by thousands of IoT sensors</li><li><strong>Data Processing &amp; Analytics</strong> — performs computationally intensive analysis on collected sensor data</li><li><strong>Device Management</strong> — remotely monitors, configures, and updates IoT devices</li><li><strong>Visualization &amp; Monitoring</strong> — enables real-time dashboards, alerts, and reporting for users and administrators</li></ul>"
+          },
+          {
+            q: "What are IoT communication models?",
+            a: "IoT communication models define how data flows between devices in an IoT system. The four main models are:<ul><li><strong>Request-Response</strong> — client sends a request to the server; server processes and responds. Stateless model used by REST APIs.</li><li><strong>Publish-Subscribe</strong> — publishers send data to topics managed by a broker; consumers subscribe to topics and receive data. Used by MQTT.</li><li><strong>Push-Pull</strong> — publishers push data to queues; consumers pull data from queues when ready. Decouples producers and consumers.</li><li><strong>Exclusive Pair</strong> — persistent bidirectional full-duplex connection. Used by WebSocket APIs for real-time communication.</li></ul>"
+          },
+          {
+            q: "Define Wireless Sensor Network (WSN).",
+            a: "A <strong>Wireless Sensor Network (WSN)</strong> consists of spatially distributed, low-power sensor nodes that wirelessly collect environmental or physical data and transmit it to a coordinator node (gateway) which connects to the internet. A WSN comprises: <strong>end nodes</strong> (have sensors; collect data), <strong>routers</strong> (route data packets from end nodes to coordinator), and a <strong>coordinator</strong> (collects all data; acts as gateway to internet). WSNs are self-organizing and robust — even if some nodes fail, the network auto-corrects. They operate in ISM bands (2.4 GHz) using protocols like Zigbee and Bluetooth."
+          },
+          {
+            q: "What is the role of Big Data Analytics in IoT?",
+            a: "IoT generates massive, continuous streams of data from millions of sensors. Big Data Analytics processes this data to extract value. Its role includes:<ul><li><strong>Analyze</strong> sensor data to identify patterns and anomalies</li><li><strong>Predict</strong> future events using predictive analytics (e.g., machine failure prediction)</li><li><strong>Improve</strong> system efficiency and resource utilization</li></ul>Types: Descriptive (summarizes past data), Diagnostic (identifies cause-effect), Predictive (forecasts events), Prescriptive (recommends actions). Tools: Hadoop, Apache Spark, Cassandra. The three Vs: Volume, Velocity, Variety."
+          },
+          {
+            q: "What is Publish-Subscribe Communication Model?",
+            a: "The <strong>Publish-Subscribe model</strong> involves three components working together:<ul><li><strong>Publishers</strong> — the source of data; they publish data to named topics managed by the broker. Publishers are unaware of who the consumers are.</li><li><strong>Broker</strong> — the central server that manages all topics. When it receives data for a topic from a publisher, it immediately forwards it to all subscribed consumers.</li><li><strong>Consumers (Subscribers)</strong> — subscribe to specific topics. They automatically receive data whenever the broker receives it for those topics.</li></ul>This decoupled architecture means publishers and consumers do not communicate directly, improving scalability. MQTT protocol uses this model extensively in IoT."
+          },
+          {
+            q: "Name any two IoT functional blocks.",
+            a: "<ul><li><strong>Device</strong> — the hardware block consisting of physical objects with sensors and actuators. Devices sense environmental data, process it locally, and perform actions. They are the source of all IoT data.</li><li><strong>Communication</strong> — the block responsible for managing the exchange of data between IoT devices and the central system or cloud. It handles protocol selection, data formatting, and transmission reliability.</li></ul>"
+          },
+          {
+            q: "What is Industrial IoT (IIoT)?",
+            a: "<strong>Industrial IoT (IIoT)</strong> refers to the application of IoT technology specifically in manufacturing, industrial, and infrastructure environments. Unlike consumer IoT, IIoT focuses on automation, operational efficiency, and productivity. Key applications include predictive maintenance (detecting machine failures before they occur), smart factories with connected robotic arms, asset tracking, and energy management. IIoT systems require high reliability, ultra-low latency, real-time monitoring, and secure, encrypted communication given the critical nature of industrial operations."
+          },
+          {
+            q: "What is REST-based Communication APIs?",
+            a: "<strong>REST (Representational State Transfer) API</strong> is a software interface that allows different applications to communicate over the internet using standard HTTP protocol. REST follows the Request-Response communication model and is stateless — each request contains all information needed. It supports <strong>CRUD</strong> operations: Create (POST), Read (GET), Update (PUT), Delete (DELETE). REST API features include client-server separation, layered system architecture, uniform interface, and cacheable responses. REST APIs are widely used in IoT cloud platforms (AWS IoT, Adafruit IO) to enable devices to push and pull data from the cloud."
+          },
+          {
+            q: "Explain the advantages of IoT Level-2 over IoT Level-1.",
+            a: "<table><tr><th>Feature</th><th>IoT Level-1</th><th>IoT Level-2</th></tr><tr><td>Architecture</td><td>Single node: sensing + local storage + analysis + application all on device</td><td>Single node: sensing + local analysis; data stored in cloud; app is cloud-based</td></tr><tr><td>Data Storage</td><td>Limited — constrained by device memory</td><td>Unlimited — cloud storage scales as needed</td></tr><tr><td>Accessibility</td><td>Local access only</td><td>Data accessible from anywhere via cloud</td></tr></table><strong>Key Advantages of Level-2:</strong> Data is stored in the cloud making it accessible globally. Supports much larger data volumes without device memory constraints. Cloud applications are more scalable and maintainable than local applications."
+          },
+          {
+            q: "Discuss about IaaS and PaaS relating to cloud computing.",
+            a: "<ul><li><strong>IaaS (Infrastructure as a Service)</strong> — provides virtualized computing resources over the internet: virtual machines, storage, and networking. Users manage the OS, middleware, and applications. The cloud provider manages physical hardware. Example: AWS EC2, Microsoft Azure VMs, Google Compute Engine. In IoT: used to host IoT servers and data pipelines.</li><li><strong>PaaS (Platform as a Service)</strong> — provides a complete platform for developers to build, deploy, and manage applications without worrying about the underlying infrastructure. Example: Google App Engine, Heroku, AWS Elastic Beanstalk. In IoT: used for rapid application development of IoT dashboards and analytics tools.</li></ul>"
+          },
+          {
+            q: "What is SaaS relating to cloud computing?",
+            a: "<strong>SaaS (Software as a Service)</strong> delivers fully functional software applications over the internet on a subscription basis. Users access the software through a web browser without installing, updating, or maintaining it locally. The cloud provider manages everything: infrastructure, security, updates, and availability. Examples: Google Workspace, Microsoft 365, Salesforce, Zoom. In IoT: cloud-based monitoring dashboards and device management platforms offered as SaaS allow users to monitor sensors without building their own backend infrastructure."
+          },
+          {
+            q: "What are the three important characteristics of Big Data analytics?",
+            a: "The three fundamental characteristics of Big Data, known as the <strong>Three V's</strong>:<ul><li><strong>Volume</strong> — extremely large amounts of data generated continuously by millions of IoT sensors. A single smart city can generate terabytes of data daily. Traditional databases cannot handle this scale.</li><li><strong>Velocity</strong> — data is generated and must be processed at very high speeds. Real-time processing is essential for time-critical IoT applications like autonomous vehicles and medical monitoring.</li><li><strong>Variety</strong> — IoT data comes in multiple formats: structured (database tables, CSV), unstructured (video, audio, text logs), and semi-structured (JSON, XML from sensors).</li></ul>"
+          }
+        ]
+      },
+      2: {
+        title: "Module II — M2M, SDN, NFV & Network Management",
+        subtitle: "M2M architecture, SDN layers, NFV components, IoT system management, SNMP, NETCONF, YANG",
+        marks: [2],
+        2: [
+          {
+            q: "List two applications of M2M.",
+            a: "<ul><li><strong>Smart Metering</strong> — electricity, water, and gas meters automatically transmit consumption readings to utility companies without any human involvement, enabling automated billing and real-time usage monitoring.</li><li><strong>Fleet Management</strong> — vehicles continuously communicate GPS location, fuel level, speed, and diagnostic data to a central management system, enabling real-time tracking, route optimization, and preventive maintenance scheduling.</li></ul>"
+          },
+          {
+            q: "Discuss the difference between M2M and IoT.",
+            a: "<table><tr><th>Aspect</th><th>M2M</th><th>IoT</th></tr><tr><td>Scope</td><td>Direct communication between specific machines for a defined purpose</td><td>Broader — connects diverse devices, sensors, and systems via internet</td></tr><tr><td>Protocols</td><td>Proprietary or non-IP-based protocols</td><td>Standard internet protocols (IP-based: MQTT, HTTP)</td></tr><tr><td>Focus</td><td>Hardware-centric; closed dedicated network</td><td>Software-centric; cloud-based generalized applications</td></tr><tr><td>Data Storage</td><td>On-premises, point solutions</td><td>Cloud-based; accessible globally</td></tr><tr><td>Machines</td><td>Homogeneous; similar categories of machines</td><td>Heterogeneous 'Things' — wide variety of devices and sensors</td></tr></table>"
+          },
+          {
+            q: "What are the advantages of SDN in IoT?",
+            a: "<ul><li><strong>Easier Management</strong> — centralized SDN controller simplifies configuration of the entire network from a single point</li><li><strong>Programmable Network</strong> — network behavior can be dynamically programmed and changed without replacing hardware</li><li><strong>Agility</strong> — faster reconfiguration and data forwarding improves network responsiveness</li><li><strong>Improved Visibility</strong> — the SDN controller maintains a unified view of the entire network topology</li><li><strong>Cost Effective</strong> — reduces need for expensive dedicated networking hardware</li><li><strong>Improved Security</strong> — centralized policy enforcement enables better access control and threat detection</li></ul>"
+          },
+          {
+            q: "What are the three layers of SDN architecture?",
+            a: "<ul><li><strong>Application Layer</strong> — contains business applications (load balancers, firewalls, network monitors) that communicate their network requirements to the controller via northbound APIs. These applications define network policies.</li><li><strong>Control Layer (SDN Controller)</strong> — the brain of SDN. Maintains a unified view of the entire network topology. Makes all routing and forwarding decisions. Communicates with data plane via southbound APIs (OpenFlow).</li><li><strong>Infrastructure Layer (Data Plane)</strong> — consists of physical/virtual network devices (switches, routers) that forward data packets strictly according to rules set by the controller. No independent routing decisions.</li></ul>"
+          },
+          {
+            q: "What is Network Function Virtualization (NFV)?",
+            a: "<strong>NFV (Network Function Virtualization)</strong> is the concept of replacing dedicated physical network appliances — such as hardware routers, firewalls, load balancers, and intrusion detection systems — with software-based Virtual Network Functions (VNFs) running on general-purpose CPUs or virtual machines on standard commodity servers. NFV provides the virtualization infrastructure on which SDN can operate. NFV and SDN are mutually beneficial and complementary — NFV virtualizes network functions while SDN centralizes control — but neither depends on the other to function."
+          },
+          {
+            q: "What are the different layers present in NFV architecture?",
+            a: "<ul><li><strong>NFV Infrastructure (NFVI)</strong>: Layer 1 — physical hardware (CPU, storage, networking); Layer 2 — virtualization layer that decouples hardware from software; Layer 3 — virtualized resources (virtual compute, virtual storage, virtual network)</li><li><strong>VNF (Virtualized Network Function)</strong> — software implementations of network functions running on NFVI. Examples: vFirewall, vRouter, vLoad Balancer</li><li><strong>NFV Management and Orchestration (MANO)</strong>: Virtualized Infrastructure Manager (controls NFVI), VNF Manager (manages VNF lifecycle), Orchestrator (manages network service lifecycle)</li></ul>"
+          },
+          {
+            q: "Why is system management important in IoT networks?",
+            a: "IoT system management is critical because:<ul><li><strong>Large Scale</strong> — IoT networks contain thousands to millions of devices; manual monitoring is completely impractical without automated management</li><li><strong>Remote Locations</strong> — many IoT devices are deployed in inaccessible areas requiring remote monitoring and configuration</li><li><strong>Security</strong> — ensures device authentication, access control, and timely firmware security patches</li><li><strong>Fault Detection</strong> — enables early identification of failing devices and predictive maintenance to minimize downtime</li><li><strong>Scalability</strong> — allows easy addition of new devices without disrupting existing services</li></ul>"
+          },
+          {
+            q: "List the functions of IoT system management.",
+            a: "<ul><li>Device provisioning and registration (onboarding new devices)</li><li>Configuration management (push settings to devices)</li><li>Real-time monitoring and diagnostics</li><li>Security management (authentication, encryption, access control)</li><li>Firmware/software OTA (Over-the-Air) updates</li><li>Resource and energy management (power optimization)</li><li>Data management and integration with cloud analytics</li></ul>"
+          },
+          {
+            q: "What is MIB (Management Information Base)?",
+            a: "<strong>MIB (Management Information Base)</strong> is a hierarchical database used by the SNMP protocol, residing on the SNMP Agent (managed device). It contains structured variables (called OIDs — Object Identifiers) that describe the device's configuration and operational status. Variables include: device name, interface status (up/down), network uptime, CPU load, temperature, and memory usage. The SNMP Manager queries the MIB on the agent using 'get' operations to retrieve device information, and uses 'set' operations to change configuration values."
+          },
+          {
+            q: "Write two limitations of SNMP.",
+            a: "<ul><li><strong>Weak Security</strong> — SNMP versions 1 and 2 use community strings (essentially plain-text passwords) transmitted without encryption. This makes them highly vulnerable to interception, eavesdropping, and unauthorized access in IoT networks.</li><li><strong>Poor Real-Time Monitoring and Limited Scalability</strong> — SNMP uses a polling-based architecture where the manager must periodically send requests to each agent. With thousands of IoT devices, this creates significant overhead. Managers must wait for the next polling cycle to detect problems, causing unacceptable delays in time-critical IoT systems.</li></ul>"
+          },
+          {
+            q: "Write two major roles of NETCONF in IoT.",
+            a: "<ul><li><strong>Centralized Configuration Management</strong> — NETCONF allows network administrators to simultaneously push consistent configurations to thousands of IoT gateways, routers, and edge devices. This eliminates manual per-device configuration, reduces errors, and maintains uniformity across large-scale IoT deployments.</li><li><strong>Model-Driven Automation with YANG</strong> — NETCONF uses YANG data models to define device configurations in a vendor-independent, machine-readable format. This enables zero-touch provisioning (ZTP) where new IoT devices can be automatically configured and commissioned without any manual intervention upon network connection.</li></ul>"
+          },
+          {
+            q: "What are the different layers present in NETCONF?",
+            a: "NETCONF follows a four-layer protocol architecture for IoT management:<ul><li><strong>Secure Transport Layer</strong> — provides a secure, reliable communication channel (using SSH/TLS) between NETCONF client and server. Prevents unauthorized access to IoT infrastructure during remote management.</li><li><strong>Application Layer</strong> — interface for IoT management applications. Central platforms use this to manage thousands of sensors and gateways, issuing configuration commands and firmware updates.</li><li><strong>NETCONF Operations Layer (Protocol Layer)</strong> — defines NETCONF operations using RPC (Remote Procedure Calls). Ensures transactional updates, handles errors, and prevents partial configurations in IoT systems.</li><li><strong>Data Modeling Layer (YANG)</strong> — YANG defines the hierarchical structure of device configuration and state data. Enables interoperability, automation, and data validation across different IoT vendors.</li><li><strong>Device Layer</strong> — the actual IoT devices (sensors, gateways, edge computing devices) that implement YANG models and send operational data.</li></ul>"
+          },
+          {
+            q: "What is the relationship between NETCONF and YANG?",
+            a: "<strong>NETCONF</strong> is the network management protocol used to configure, monitor, and manage network devices. <strong>YANG</strong> (Yet Another Next Generation) is the data modeling language that defines the structure, syntax, and semantics of the configuration and state data that NETCONF operates on. In simple terms: YANG defines <em>what</em> data looks like, and NETCONF defines <em>how</em> to transport and manipulate that data. YANG models enable vendor-independent, interoperable, and automated IoT device management — devices from different manufacturers using the same YANG model can be managed uniformly through NETCONF."
+          },
+          {
+            q: "What are the requirements of network operators in IoT systems?",
+            a: "<ul><li><strong>Centralized Management</strong> — single interface to configure and monitor all IoT devices regardless of location or type</li><li><strong>Scalability</strong> — ability to manage thousands to millions of devices without performance degradation</li><li><strong>Security</strong> — device authentication, encrypted communication, access control, and automated security patch deployment</li><li><strong>Real-Time Monitoring</strong> — immediate visibility into device status, faults, and network performance metrics</li><li><strong>Automation</strong> — automated device provisioning, OTA firmware updates, and self-healing network capabilities to reduce manual intervention</li></ul>"
+          },
+          {
+            q: "What are the components of SNMP framework?",
+            a: "<ul><li><strong>SNMP Manager</strong> — a network management application running on a PC or server. It sends 'get' requests to retrieve device data, 'set' requests to modify configuration, and receives 'trap' notifications. Acts as the control center for monitoring the IoT network.</li><li><strong>SNMP Agent</strong> — software running on each managed device (switch, router, server, IoT gateway). It responds to manager requests by reading/writing the MIB and proactively sends 'trap' alerts when predefined conditions occur (e.g., device overheating).</li><li><strong>MIB (Management Information Base)</strong> — hierarchical database on the agent containing all device configuration and status variables, accessed using OID (Object Identifier) addresses.</li></ul>"
+          }
+        ]
+      },
+      3: {
+        title: "Module III — Python for IoT",
+        subtitle: "Python programming: data types, control flow, lists, tuples, sets, dictionaries, functions, OOP, modules, packages, file handling",
+        marks: [2, 5, 10],
+        2: [
+          {
+            q: "Write a program to find sum of two numbers using a function in Python.",
+            a: "<code>def add(a, b):\n    result = a + b\n    return result\n\n# Function call\nsum_val = add(5, 3)\nprint('Sum:', sum_val)\n# Output: Sum: 8</code>"
+          },
+          {
+            q: "Whether Python is Platform Independent or not? What are the different IDEs available in Python?",
+            a: "<strong>Yes, Python is platform independent.</strong> Python source code can run on Windows, Linux, and macOS without any modification. The Python interpreter translates code to bytecode which runs on the platform-specific Python Virtual Machine (PVM), hiding OS differences.<br><strong>Popular Python IDEs:</strong><ul><li>PyCharm — feature-rich IDE with debugging and code completion</li><li>Visual Studio Code (VSCode) — lightweight, extensible, widely used</li><li>Jupyter Notebooks — interactive, ideal for data analysis and IoT projects</li><li>Spyder — scientific Python IDE with variable explorer</li></ul>"
+          },
+          {
+            q: "List any four Python data types.",
+            a: "<ul><li><strong>int</strong> — integer numbers (e.g., 10, -3, 0); used for sensor pin numbers, counts</li><li><strong>float</strong> — decimal numbers (e.g., 3.14, 25.5); used for precise sensor measurements</li><li><strong>str</strong> — text strings (e.g., \"Hello\", \"ESP32\"); used for device names, messages</li><li><strong>list</strong> — ordered, mutable collection (e.g., [23.5, 24.0, 25.1]); used for storing sensor reading history</li></ul>"
+          },
+          {
+            q: "How are single and multiline comments given in Python?",
+            a: "<strong>Single-line comment:</strong> Use the <code>#</code> symbol. Everything after # on that line is ignored.<code># This is a single line comment\nx = 10  # inline comment</code><strong>Multi-line comment:</strong> Use triple quotes <code>''' '''</code> or <code>\"\"\" \"\"\"</code><code>'''This is a\nmultiline comment\nin Python'''</code>"
+          },
+          {
+            q: "What does the import statement do in Python?",
+            a: "The <strong>import</strong> statement loads external modules or packages into a Python program, giving access to their functions, classes, and variables.<code>import math\nprint(math.pi)        # 3.14159...\n\nimport math as m      # Import with alias\nprint(m.sqrt(16))     # 4.0\n\nfrom math import pi   # Import specific item\nprint(pi)             # 3.14159...</code>"
+          },
+          {
+            q: "What is the difference between lists and tuples in Python?",
+            a: "<table><tr><th>List</th><th>Tuple</th></tr><tr><td>Mutable — can be modified after creation</td><td>Immutable — cannot be changed after creation</td></tr><tr><td>Square brackets: [1, 2, 3]</td><td>Parentheses: (1, 2, 3)</td></tr><tr><td>Slower — extra overhead for mutability</td><td>Faster performance</td></tr><tr><td>Many methods: append(), remove(), pop(), sort()</td><td>Limited: count(), index() only</td></tr></table>"
+          },
+          {
+            q: "How do you concatenate two strings in Python? Explain with an example.",
+            a: "String concatenation uses the <strong>+</strong> operator to join strings end to end:<code>str1 = \"Hello\"\nstr2 = \" World\"\nresult = str1 + str2\nprint(result)\n# Output: Hello World\n\n# Repetition with *\nprint(\"Hi\" * 3)\n# Output: HiHiHi</code>"
+          },
+          {
+            q: "How do you define a function in Python?",
+            a: "Functions are defined using the <strong>def</strong> keyword, followed by the function name and parameters in parentheses:<code>def function_name(parameters):\n    # function body\n    return value\n\n# Example\ndef greet(name):\n    return \"Hello, \" + name\n\nprint(greet(\"IoT\"))\n# Output: Hello, IoT</code>"
+          },
+          {
+            q: "What is the difference between a Set and a Dictionary in Python?",
+            a: "<table><tr><th>Set</th><th>Dictionary</th></tr><tr><td>Unordered collection of unique elements</td><td>Collection of key-value pairs</td></tr><tr><td>Defined with: {1, 2, 3}</td><td>Defined with: {'a': 1, 'b': 2}</td></tr><tr><td>No duplicate values allowed</td><td>Keys unique; values can repeat</td></tr><tr><td>Accessed by iteration only</td><td>Accessed by key: dict['key']</td></tr></table>"
+          },
+          {
+            q: "What is the purpose of Indentation in Python?",
+            a: "<strong>Indentation</strong> in Python defines code blocks and program structure. Unlike other languages that use curly braces {}, Python uses consistent indentation (4 spaces standard) to group statements inside functions, loops, conditionals, and classes. Indentation is <strong>mandatory</strong> in Python — incorrect indentation causes an <em>IndentationError</em> and the program will not run."
+          },
+          {
+            q: "How do you use the range() function in a for loop?",
+            a: "<code># range(stop) — 0 to stop-1\nfor i in range(5):\n    print(i)  # 0, 1, 2, 3, 4\n\n# range(start, stop)\nfor i in range(1, 6):\n    print(i)  # 1, 2, 3, 4, 5\n\n# range(start, stop, step)\nfor i in range(0, 10, 2):\n    print(i)  # 0, 2, 4, 6, 8</code>"
+          },
+          {
+            q: "How can all the characters of a string be traversed? Explain with an example.",
+            a: "Using a <strong>for loop</strong> to iterate directly over the string:<code>text = \"IoT\"\nfor char in text:\n    print(char)\n# Output:\n# I\n# o\n# T\n\n# Using index-based traversal\nfor i in range(len(text)):\n    print(text[i])</code>"
+          },
+          {
+            q: "Write a syntactical expression to nest the while loop within for loops.",
+            a: "<code># Syntax: while loop nested inside for loop\nfor i in range(outer_count):\n    j = 0\n    while j < inner_count:\n        # body executes for each i-j combination\n        print(i, j)\n        j += 1\n\n# Concrete example\nfor i in range(3):\n    j = 0\n    while j < 2:\n        print(i, j)\n        j += 1</code>"
+          },
+          {
+            q: "What is the necessity of break and continue statement in Python?",
+            a: "<ul><li><strong>break</strong> — immediately exits the loop when a specific condition is met, skipping all remaining iterations. Necessary to stop execution early when the desired result is found, preventing wasteful processing.</li><li><strong>continue</strong> — skips the rest of the current iteration and moves directly to the next iteration. Necessary when certain values should be excluded from processing while the loop continues for other values.</li></ul>"
+          },
+          {
+            q: "Write the syntax of if...elif...else statement in Python.",
+            a: "<code>if condition1:\n    # executes if condition1 is True\nelif condition2:\n    # executes if condition2 is True\nelif condition3:\n    # executes if condition3 is True\nelse:\n    # executes if none of the above are True\n\n# Example\nx = 10\nif x > 0:\n    print(\"Positive\")\nelif x == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")</code>"
+          }
+        ],
+        5: [
+          {
+            q: "nums = [10, 20, 30, 40, 50, 60]\n\nWrite Code using Python to find the following:\ni) Get the first three elements.\nii) Get the last two elements.\niii) Get elements from index 1 to index 4.\niv) Get all the elements.\nv) Get 30 through negative indexing.",
+            a: "In Python, list slicing uses the syntax <code>list[start:stop:step]</code> to extract portions of a list. Negative indices count from the end of the list.<code>nums = [10, 20, 30, 40, 50, 60]\n\n# i) First three elements (index 0 to 2)\nprint(nums[:3])\n# Output: [10, 20, 30]\n\n# ii) Last two elements (index -2 onwards)\nprint(nums[-2:])\n# Output: [50, 60]\n\n# iii) Elements from index 1 to index 4 (stop is exclusive)\nprint(nums[1:5])\n# Output: [20, 30, 40, 50]\n\n# iv) All elements\nprint(nums[:])\n# Output: [10, 20, 30, 40, 50, 60]\n\n# v) Get 30 through negative indexing\n# List length is 6. Index of 30 is 2.\n# Negative index = 2 - 6 = -4\nprint(nums[-4])\n# Output: 30</code><p>List slicing is a powerful Python feature extensively used in IoT applications to extract recent sensor readings, time windows of data, or specific data subsets for analysis without modifying the original list.</p>"
+          },
+          {
+            q: "Discuss the methods used to add, remove and update List elements in Python with suitable example and their respective outputs.",
+            a: "Python lists provide built-in methods for adding, removing, and updating elements dynamically.<br><br><strong>Adding Elements:</strong><code>lst = [1, 2, 3]\n\nlst.append(4)       # Adds at the END\nprint(lst)          # [1, 2, 3, 4]\n\nlst.insert(1, 10)   # Inserts at index 1\nprint(lst)          # [1, 10, 2, 3, 4]\n\nlst.extend([5, 6])  # Adds multiple elements\nprint(lst)          # [1, 10, 2, 3, 4, 5, 6]</code><strong>Removing Elements:</strong><code>lst.remove(10)  # Removes first occurrence of value 10\nprint(lst)      # [1, 2, 3, 4, 5, 6]\n\nlst.pop()       # Removes and returns last element\nprint(lst)      # [1, 2, 3, 4, 5]\n\nlst.pop(0)      # Removes element at index 0\nprint(lst)      # [2, 3, 4, 5]</code><strong>Updating Elements:</strong><code>lst = [1, 2, 3]\nlst[1] = 20         # Update by index assignment\nprint(lst)          # [1, 20, 3]</code><p>These list operations are essential in IoT for managing dynamic sensor data collections, maintaining device registries, and updating configuration lists at runtime.</p>"
+          },
+          {
+            q: "Explain control flow statements in Python with examples.",
+            a: "Control flow statements determine the order in which Python code executes.<br><br><strong>1. if-elif-else (Conditional):</strong><code>x = 25\nif x > 30:\n    print(\"High temperature\")\nelif x > 20:\n    print(\"Normal temperature\")\nelse:\n    print(\"Low temperature\")\n# Output: Normal temperature</code><strong>2. for loop (Definite iteration):</strong><code>for i in range(3):\n    print(\"Reading\", i)  # Reading 0, 1, 2</code><strong>3. while loop (Indefinite iteration):</strong><code>count = 0\nwhile count < 3:\n    print(count)\n    count += 1   # 0, 1, 2</code><strong>4. break — exits loop immediately:</strong><code>for i in range(10):\n    if i == 5: break\n    print(i)  # 0, 1, 2, 3, 4</code><strong>5. continue — skips current iteration:</strong><code>for i in range(5):\n    if i == 3: continue\n    print(i)  # 0, 1, 2, 4</code><p>Control flow is fundamental in IoT Python programs for reading sensors conditionally, looping through device lists, and triggering actuators based on threshold values.</p>"
+          },
+          {
+            q: "languages = ('Python', 'Swift', 'C++')\n\ni) Write a program to Check if Swift exists in the above Tuple or not?\nii) Write a program to iterate through a Tuple in Python?",
+            a: "Tuples are immutable ordered sequences in Python. Python provides the <code>in</code> operator for membership testing and allows direct iteration using <code>for</code> loops.<code>languages = ('Python', 'Swift', 'C++')\n\n# i) Check membership using 'in' operator\nif 'Swift' in languages:\n    print('Swift exists in the tuple')\nelse:\n    print('Swift does not exist in the tuple')\n# Output: Swift exists in the tuple\n\n# ii) Iterating through a Tuple using for loop\nprint(\"All languages in the tuple:\")\nfor lang in languages:\n    print(lang)\n# Output:\n# All languages in the tuple:\n# Python\n# Swift\n# C++\n\n# Alternative: index-based iteration\nfor i in range(len(languages)):\n    print(i, languages[i])\n# Output: 0 Python  1 Swift  2 C++</code><p>In IoT applications, tuples are used to store fixed configuration data such as sensor pin assignments, GPS coordinates, or protocol constants that should not change during program execution.</p>"
+          },
+          {
+            q: "Differentiate between module and package in Python.",
+            a: "<table><tr><th>Feature</th><th>Module</th><th>Package</th></tr><tr><td>Definition</td><td>A single .py file containing related functions, classes, and variables</td><td>A directory of related modules containing a special __init__.py file</td></tr><tr><td>Purpose</td><td>Organizes related code into a single reusable file</td><td>Organizes multiple related modules into a hierarchical structure</td></tr><tr><td>Import syntax</td><td>import module_name</td><td>import package.module or from package import module</td></tr><tr><td>Example</td><td>math, datetime, os, sys</td><td>numpy, scipy, an IoT project folder</td></tr></table><strong>Module example (sensor.py):</strong><code>def read_temperature():\n    return 28.5  # read from DHT11\n\n# Using in main.py\nimport sensor\ntemp = sensor.read_temperature()</code><strong>Package structure:</strong><code>iot_project/\n  __init__.py\n  sensors/\n    __init__.py\n    temp.py\n  network/\n    __init__.py\n    mqtt_client.py</code><p>Packages are essential for organizing large IoT projects into logical subsystems — separating sensor drivers, network communication, and cloud integration code into maintainable units.</p>"
+          },
+          {
+            q: "Explain file handling in Python for read, write and append mode with suitable example and output.",
+            a: "Python uses the built-in <code>open()</code> function for file handling. The mode parameter determines how the file is accessed.<br><br><strong>Read Mode ('r') — opens existing file for reading:</strong><code>file1 = open(\"data.txt\", \"r\")\ncontent = file1.read()\nprint(content)\n# Output: This is a test file.\n#         Hello from the test file.\nfile1.close()</code><strong>Write Mode ('w') — creates new file or overwrites existing:</strong><code>file2 = open('output.txt', 'w')\nfile2.write('Programming is Fun.\\n')\nfile2.write('Python is for beginners\\n')\nfile2.close()\n# Creates output.txt with these two lines</code><strong>Append Mode ('a') — adds to end of existing file:</strong><code>file3 = open('output.txt', 'a')\nfile3.write('IoT and Python are powerful\\n')\nfile3.close()\n# Adds line WITHOUT deleting existing content</code><p>In IoT applications, file handling is used to log sensor readings to CSV files for offline analysis, store device configurations locally, and maintain event logs when the cloud connection is unavailable.</p>"
+          },
+          {
+            q: "language = (\"java\", \"C\", \"Python\", \"swift\")\n\nWrite Code using Python to find the following:\ni) Get the last three elements.\nii) Get the first two elements.\niii) Get elements from index 1 to index 3.\niv) Get all the elements.\nv) Get \"Java\" through negative indexing.",
+            a: "Tuples support the same slicing operations as lists. The syntax is <code>tuple[start:stop:step]</code>. Negative indices count backwards from the end of the tuple.<code>language = (\"java\", \"C\", \"Python\", \"swift\")\n# Indices:    0       1    2         3\n# Negative:  -4      -3   -2        -1\n\n# i) Last three elements\nprint(language[-3:])\n# Output: ('C', 'Python', 'swift')\n\n# ii) First two elements\nprint(language[:2])\n# Output: ('java', 'C')\n\n# iii) Elements from index 1 to index 3 (stop is exclusive)\nprint(language[1:4])\n# Output: ('C', 'Python', 'swift')\n\n# iv) All elements (full slice)\nprint(language[:])\n# Output: ('java', 'C', 'Python', 'swift')\n\n# v) Get 'java' through negative indexing\n# 'java' is at index 0; negative index = 0-4 = -4\nprint(language[-4])\n# Output: java</code><p>Tuple slicing allows efficient extraction of subsets from fixed configuration data in IoT applications without creating copies of the entire structure.</p>"
+          },
+          {
+            q: "i) Write the syntax of function with return value?\nii) Write the syntax of if, if..else, and while loop?",
+            a: "<strong>i) Function with return value — syntax and example:</strong><code># Syntax\ndef function_name(param1, param2):\n    # function body with processing\n    result = param1 + param2\n    return result\n\n# Example: function to find square\ndef find_square(n):\n    return n * n\n\noutput = find_square(5)\nprint('Square:', output)\n# Output: Square: 25\n\n# IoT example: temperature conversion\ndef celsius_to_fahrenheit(c):\n    return (c * 9/5) + 32\n\nprint(celsius_to_fahrenheit(25))  # 77.0</code><strong>ii) Control structure syntax:</strong><code># if statement\nif condition:\n    # body (executes if True)\n\n# if..else statement\nif condition:\n    # executes if True\nelse:\n    # executes if False\n\n# while loop\nwhile condition:\n    # loop body\n    # must update variable to avoid infinite loop</code>"
+          },
+          {
+            q: "Write a program to check the entered number is even or not using Python.",
+            a: "This program uses the modulo operator <code>%</code> to check divisibility by 2. If the remainder is 0, the number is even; otherwise it is odd.<code>num = int(input(\"Enter a number: \"))\n\nif num % 2 == 0:\n    print(num, \"is Even\")\nelse:\n    print(num, \"is Odd\")\n\n# Test Case 1: Input 8\n# Output: 8 is Even\n\n# Test Case 2: Input 7\n# Output: 7 is Odd\n\n# Test Case 3: Input 0\n# Output: 0 is Even</code><p>The modulo (<code>%</code>) operator returns the remainder after division. Any number divisible by 2 with remainder 0 is even. This logic is used in IoT systems for alternating device states, scheduling tasks for even/odd cycles, and filtering sensor data.</p>"
+          }
+        ],
+        10: [
+          {
+            q: "Explain Python data types and data structures used in IoT applications with suitable examples.",
+            a: "Python provides a rich set of built-in data types and data structures that are essential for handling sensor data and device information in IoT applications.<br><br><strong>Primitive Data Types:</strong><ul><li><strong>int (Integer)</strong> — stores whole numbers. Used for pin numbers, sensor IDs, count values.<br>Example: <code>pin_number = 3</code>, <code>device_count = 50</code></li><li><strong>float (Floating-point)</strong> — stores decimal numbers. Used for precise sensor measurements.<br>Example: <code>temperature = 28.5</code>, <code>voltage = 3.3</code></li><li><strong>str (String)</strong> — stores text. Used for device names, MQTT topics, alert messages.<br>Example: <code>device_name = \"DHT11\"</code>, <code>topic = \"home/temp\"</code></li><li><strong>bool (Boolean)</strong> — stores True/False. Used for device on/off states, alert flags.<br>Example: <code>led_on = True</code>, <code>alarm_triggered = False</code></li></ul><strong>Data Structures:</strong><ul><li><strong>List</strong> — ordered, mutable collection. IoT use: storing a history of sensor readings for trend analysis.<code>readings = [23.5, 24.0, 25.1, 22.8, 26.0]\nreadings.append(27.2)   # add new reading\navg = sum(readings) / len(readings)\nprint('Average:', avg)</code></li><li><strong>Tuple</strong> — ordered, immutable. IoT use: storing fixed GPS coordinates, constant pin assignments.<code>gps_location = (20.2961, 85.8245)  # (lat, long)\nSENSOR_PINS = (3, 5, 7, 11)  # fixed pin config</code></li><li><strong>Dictionary</strong> — key-value pairs. IoT use: storing structured device data or sensor readings with labels.<code>sensor_data = {\n    'device_id': 'DHT11_01',\n    'temperature': 28.5,\n    'humidity': 65,\n    'status': 'active'\n}</code></li><li><strong>Set</strong> — unordered unique values. IoT use: maintaining unique active device IDs, eliminating duplicates.<code>active_devices = {'dev001', 'dev002', 'dev003'}\nactive_devices.add('dev004')  # add new device</code></li></ul><strong>Importance in IoT:</strong> These data structures enable efficient organization, retrieval, and processing of large volumes of sensor data before transmission to cloud platforms. Choosing the correct structure (mutable vs immutable, ordered vs unordered) optimizes both memory usage and processing speed in resource-constrained IoT devices."
+          },
+          {
+            q: "i) Define class and object with proper syntax? Explain the method of accessing attributes of a class through the object with suitable example.\n\nii) Find the output:\ncountry_capitals = {\"Germany\": \"Berlin\", \"Canada\": \"Ottawa\", \"England\": \"London\"}\nprint(country_capitals)\nprint(country_capitals[\"Germany\"])\ncountry_capitals[\"Italy\"] = \"Rome\"\nprint(country_capitals)\ndel country_capitals[\"Germany\"]\nprint(country_capitals)",
+            a: "<strong>i) Class and Object in Python:</strong><br><strong>Class</strong> — a blueprint or template that defines the structure (attributes) and behavior (methods) of objects. Defined using the <code>class</code> keyword.<br><strong>Object</strong> — an instance of a class, created from the class blueprint. Multiple objects can be created from the same class, each with independent attribute values.<br><br><strong>Syntax:</strong><code>class ClassName:\n    # Class attributes (variables)\n    attribute1 = value1\n    attribute2 = value2\n    \n    # Method (function inside class)\n    def method_name(self):\n        # method body\n        pass\n\n# Creating an object (instance)\nobject_name = ClassName()</code><strong>Accessing Attributes — using dot (.) notation:</strong><code># Define a class for IoT device\nclass Bike:\n    name = \"\"\n    gear = 0\n\n# Create object\nbike1 = Bike()\n\n# Assign attribute values\nbike1.name = \"Splender\"\nbike1.gear = 4\n\n# Access attribute values\nprint(f\"Name: {bike1.name}, Gears: {bike1.gear}\")\n# Output: Name: Splender, Gears: 4\n\n# Multiple objects from same class\nbike2 = Bike()\nbike2.name = \"Pulsar\"\nbike2.gear = 5\nprint(f\"Name: {bike2.name}, Gears: {bike2.gear}\")\n# Output: Name: Pulsar, Gears: 5</code>Note: each object is independent — changing bike1's attributes does not affect bike2.<br><br><strong>ii) Output of the Dictionary program:</strong><code>country_capitals = {\"Germany\": \"Berlin\", \"Canada\": \"Ottawa\", \"England\": \"London\"}\n\nprint(country_capitals)\n# Output: {'Germany': 'Berlin', 'Canada': 'Ottawa', 'England': 'London'}\n\nprint(country_capitals[\"Germany\"])\n# Output: Berlin  (accessing value by key)\n\ncountry_capitals[\"Italy\"] = \"Rome\"  # adding new key-value pair\nprint(country_capitals)\n# Output: {'Germany': 'Berlin', 'Canada': 'Ottawa', 'England': 'London', 'Italy': 'Rome'}\n\ndel country_capitals[\"Germany\"]  # deleting key-value pair\nprint(country_capitals)\n# Output: {'Canada': 'Ottawa', 'England': 'London', 'Italy': 'Rome'}</code>Explanation: Dictionaries are mutable; keys can be added, updated, or deleted. The <code>del</code> keyword permanently removes a key and its value."
+          },
+          {
+            q: "Explain functions, modules, and packages in Python and their importance in IoT application development with suitable examples.",
+            a: "<strong>1. Functions:</strong><br>A function is a reusable, named block of code that performs a specific task. Functions accept input parameters and can return a result. Defined using the <code>def</code> keyword.<code># Function to read and convert sensor data\ndef celsius_to_fahrenheit(celsius):\n    fahrenheit = (celsius * 9/5) + 32\n    return fahrenheit\n\n# Function to check threshold\ndef check_alert(temp, threshold=30):\n    if temp > threshold:\n        return \"ALERT: High Temperature!\"\n    return \"Normal\"\n\ntemp_c = 35\ntemp_f = celsius_to_fahrenheit(temp_c)\nstatus = check_alert(temp_c)\nprint(f\"Temp: {temp_f}°F, Status: {status}\")\n# Output: Temp: 95.0°F, Status: ALERT: High Temperature!</code><strong>IoT Importance:</strong> Functions encapsulate sensor reading logic, making the same code reusable across multiple sensors or devices. They improve code readability, testability, and maintenance.<br><br><strong>2. Modules:</strong><br>A module is a single Python file (.py) containing related functions, classes, and variables that can be imported and reused.<code># File: sensor_utils.py (Module)\ndef read_dht11():\n    temperature = 28.5  # read from sensor\n    humidity = 65.0\n    return temperature, humidity\n\ndef read_ldr():\n    return 750  # light intensity value\n\n# File: main.py (Using the module)\nimport sensor_utils\n\ntemp, hum = sensor_utils.read_dht11()\nlight = sensor_utils.read_ldr()\nprint(f\"Temp: {temp}, Humidity: {hum}, Light: {light}\")</code><strong>IoT Importance:</strong> Separate modules for different sensors keep code organized. Standard library modules like <code>time</code>, <code>datetime</code>, and <code>math</code> provide essential utilities without writing from scratch.<br><br><strong>3. Packages:</strong><br>A package is a directory of related modules with a special <code>__init__.py</code> file, creating a hierarchical namespace.<code>iot_project/\n  __init__.py\n  sensors/\n    __init__.py\n    temp_sensor.py\n    humidity_sensor.py\n  network/\n    __init__.py\n    mqtt_client.py\n    http_client.py\n  main.py\n\n# Using the package\nfrom sensors import temp_sensor\nfrom network import mqtt_client\n\ntemp = temp_sensor.read()\nmqtt_client.publish(\"home/temp\", temp)</code><strong>IoT Importance:</strong> Large IoT projects benefit enormously from packages — sensor drivers, network communication, cloud integration, and data processing can each be a separate package, allowing multiple developers to work simultaneously on different subsystems without conflicts."
+          },
+          {
+            q: "i) Write a program in Python to calculate the sum of numbers using while loop?\nii) Write the syntax of for loop? Write a Python program that prints all numbers from 0 to 4 except 3 using a for loop and the continue statement.",
+            a: "<strong>i) Sum of numbers using while loop:</strong><br>The while loop continues executing as long as the condition is True. The accumulator variable <code>sum_val</code> accumulates each number added to it.<code># Program to calculate sum of first N natural numbers\nn = int(input(\"Enter the value of n: \"))\nsum_val = 0\ni = 1\n\nwhile i <= n:\n    sum_val = sum_val + i  # accumulate sum\n    i = i + 1             # increment counter\n\nprint(f\"Sum of first {n} numbers = {sum_val}\")\n\n# Test Case 1: n = 5\n# Iterations: 1+2+3+4+5 = 15\n# Output: Sum of first 5 numbers = 15\n\n# Test Case 2: n = 10\n# Output: Sum of first 10 numbers = 55</code><strong>ii) for loop syntax:</strong><code># General syntax of for loop\nfor variable in sequence:\n    # loop body executed for each element in sequence</code><strong>Print 0 to 4, except 3, using continue:</strong><code># continue skips the current iteration and\n# moves to the next one without exiting the loop\nprint(\"Numbers from 0 to 4 except 3:\")\nfor i in range(5):\n    if i == 3:\n        continue  # skip when i is 3\n    print(i)\n\n# Output:\n# Numbers from 0 to 4 except 3:\n# 0\n# 1\n# 2\n# 4</code><strong>Explanation:</strong> When <code>i == 3</code>, the <code>continue</code> statement causes the loop to skip <code>print(i)</code> for that iteration and jump directly to the next iteration (<code>i = 4</code>). The number 3 is never printed but the loop doesn't exit — it continues with 4."
+          },
+          {
+            q: "i) Write a Python program that prompts the user to enter a number. If positive, print the square using function; otherwise show 'the entered number is negative'.\n\nii) Write a function to swap two numbers using third variable in Python.",
+            a: "<strong>i) Square of positive number using function:</strong><code># Define a function to compute square\ndef find_square(num):\n    square = num * num\n    return square\n\n# Main program\nnumber = int(input(\"Enter a number: \"))\n\nif number > 0:\n    result = find_square(number)\n    print(f\"Square of {number} is: {result}\")\nelse:\n    print(\"the entered number is negative\")\n\n# Test Case 1: Input = 7\n# Output: Square of 7 is: 49\n\n# Test Case 2: Input = -3\n# Output: the entered number is negative\n\n# Test Case 3: Input = 0\n# Note: 0 is neither positive nor negative\n# Output: the entered number is negative</code><strong>ii) Swap two numbers using a third (temporary) variable:</strong><code># Function to swap two numbers\ndef swap(a, b):\n    temp = a    # Step 1: store 'a' in temp\n    a = b       # Step 2: assign 'b' value to 'a'\n    b = temp    # Step 3: assign temp (original 'a') to 'b'\n    return a, b\n\n# Main program\nx = int(input(\"Enter first number: \"))\ny = int(input(\"Enter second number: \"))\n\nprint(f\"Before swap: x = {x}, y = {y}\")\nx, y = swap(x, y)\nprint(f\"After swap:  x = {x}, y = {y}\")\n\n# Input: x = 10, y = 20\n# Output:\n# Before swap: x = 10, y = 20\n# After swap:  x = 20, y = 10</code><strong>Explanation of swap logic:</strong> The temporary variable <code>temp</code> acts as a holding space. Without it, assigning <code>a = b</code> would overwrite the original value of <code>a</code> before it is saved. The three-step approach preserves both values during the exchange."
+          },
+          {
+            q: "i) Find the output of the following program:\nimport datetime\nx = datetime.datetime.now()\nprint(x)\nprint(x.year)\nprint(x.strftime(\"%A\"))\nprint(x.strftime(\"%a\"))\nprint(x.strftime(\"%d\"))\n\nii) Write a program using file operation to add lines to the existing text file:\n'Programming is Fun'\n'Python is for beginners'",
+            a: "<strong>i) Output of the datetime program:</strong><br>The <code>datetime</code> module provides classes for working with dates and times. <code>datetime.now()</code> returns the current local date and time as a datetime object.<code>import datetime\nx = datetime.datetime.now()\n\nprint(x)\n# Output: 2026-03-20 10:09:54.217778\n# (current date and time in YYYY-MM-DD HH:MM:SS.microseconds format)\n\nprint(x.year)\n# Output: 2026\n# (.year attribute returns the 4-digit year as integer)\n\nprint(x.strftime(\"%A\"))\n# Output: Friday\n# (%A = full weekday name)\n\nprint(x.strftime(\"%a\"))\n# Output: Fri\n# (%a = abbreviated weekday name, 3 letters)\n\nprint(x.strftime(\"%d\"))\n# Output: 20\n# (%d = day of the month, zero-padded 2-digit)</code><strong>strftime() format codes reference:</strong> %Y = 4-digit year, %m = month number, %d = day, %H = hour, %M = minute, %S = second, %A = full weekday, %B = full month name.<br><br><strong>ii) Append lines to existing file using file operation:</strong><code># 'a' mode = append — adds content to END of file\n# without deleting or overwriting existing content\n\n# Method: using open() in append mode\nfile2 = open('file2.txt', 'a')\nfile2.write('Programming is Fun\\n')\nfile2.write('Python is for beginners\\n')\nfile2.close()\n\n# Recommended: using 'with' statement (auto-closes file)\nwith open('file2.txt', 'a') as f:\n    f.write('Programming is Fun\\n')\n    f.write('Python is for beginners\\n')\n# File is automatically closed after 'with' block</code><strong>Key difference between modes:</strong> 'w' (write) creates a new file or ERASES existing content. 'a' (append) adds to the END of existing file, preserving all previous data. In IoT, append mode is used for sensor data logging — each new reading is added to the log file without deleting historical data."
+          },
+          {
+            q: "Write a program to find multiplication table of 15.",
+            a: "The multiplication table displays the product of a number with integers from 1 to 10. A <code>for</code> loop combined with the multiplication operator generates each row of the table.<code># Python program to print multiplication table of 15\n\nnum = 15\nprint(f\"===== Multiplication Table of {num} =====\")\nprint()\n\nfor i in range(1, 11):\n    product = num * i\n    print(f\"{num} x {i:2d} = {product:3d}\")\n\n# Output:\n# ===== Multiplication Table of 15 =====\n#\n# 15 x  1 =  15\n# 15 x  2 =  30\n# 15 x  3 =  45\n# 15 x  4 =  60\n# 15 x  5 =  75\n# 15 x  6 =  90\n# 15 x  7 = 105\n# 15 x  8 = 120\n# 15 x  9 = 135\n# 15 x 10 = 150</code><strong>Alternative: generalized function for any number:</strong><code>def print_table(n):\n    print(f\"Multiplication Table of {n}:\")\n    for i in range(1, 11):\n        print(f\"{n} x {i} = {n*i}\")\n\nprint_table(15)</code><p>The <code>for</code> loop with <code>range(1, 11)</code> iterates from 1 to 10 inclusive. The <code>:2d</code> and <code>:3d</code> format specifiers in the f-string right-align the numbers for a neat tabular display. In IoT, similar loop structures are used for generating calibration tables, sensor lookup tables, and generating periodic data samples at defined intervals.</p>"
+          },
+          {
+            q: "i) Write a Python program to print POWERFUL IS PYTHON when the user input is PYTHON IS POWERFUL.\nii) Explain the purpose and working of loops. Discuss the importance of break and continue with examples.",
+            a: "<strong>i) Reverse word order of the input string:</strong><br>The approach: split the input string into a list of words, reverse the list, then rejoin with spaces.<code># Method 1: Using split(), reverse(), and join()\ntext = input(\"Enter string: \")\n\n# Split string into list of words at spaces\nwords = text.split()       # ['PYTHON', 'IS', 'POWERFUL']\n\n# Reverse the list in-place\nwords.reverse()            # ['POWERFUL', 'IS', 'PYTHON']\n\n# Join words back into string with spaces\nresult = ' '.join(words)   # 'POWERFUL IS PYTHON'\nprint(result)\n\n# Input:  PYTHON IS POWERFUL\n# Output: POWERFUL IS PYTHON\n\n# Method 2: Using slicing [::-1]\ntext = input(\"Enter string: \")\nwords = text.split()\nresult = ' '.join(words[::-1])\nprint(result)</code><strong>ii) Loops — Purpose and Working:</strong><br>Loops allow a block of code to execute repeatedly, avoiding the need to write the same code multiple times. Python provides two types of loops:<br><br><strong>for loop</strong> — iterates over a known sequence for a fixed number of times:<code>for i in range(5):\n    print(\"Sensor reading:\", i)</code><strong>while loop</strong> — repeats as long as a condition remains True (used when number of iterations is unknown):<code>sensor_value = 0\nwhile sensor_value < 100:\n    sensor_value = read_sensor()  # read until threshold met</code><strong>break — exits the loop immediately:</strong><code>for i in range(10):\n    if i == 5:\n        break       # stop when i reaches 5\n    print(i)        # prints 0, 1, 2, 3, 4</code><strong>Importance of break:</strong> Saves processing time by stopping the loop when the required condition or result is found. Essential in IoT for stopping sensor polling once a valid reading is obtained.<br><br><strong>continue — skips current iteration, continues to next:</strong><code>for i in range(6):\n    if i == 3:\n        continue    # skip i = 3\n    print(i)        # prints 0, 1, 2, 4, 5</code><strong>Importance of continue:</strong> Allows selective filtering within a loop. In IoT, used to skip invalid or out-of-range sensor readings while continuing to process valid ones."
+          },
+          {
+            q: "Discuss about different operators used in Python programming language.",
+            a: "Python provides a comprehensive set of operators for performing different types of operations on data.<br><br><strong>1. Arithmetic Operators</strong> — for mathematical calculations:<code>a, b = 10, 3\nprint(a + b)   # Addition:        13\nprint(a - b)   # Subtraction:     7\nprint(a * b)   # Multiplication:  30\nprint(a / b)   # Division:        3.3333\nprint(a // b)  # Floor Division:  3  (integer result)\nprint(a % b)   # Modulus:         1  (remainder)\nprint(a ** b)  # Exponentiation:  1000 (10³)</code><strong>2. Comparison Operators</strong> — compare values, return True/False:<code>print(10 == 10)  # Equal:              True\nprint(10 != 5)   # Not Equal:          True\nprint(10 > 5)    # Greater than:       True\nprint(10 < 5)    # Less than:          False\nprint(10 >= 10)  # Greater or equal:   True\nprint(10 <= 5)   # Less or equal:      False</code><strong>3. Assignment Operators</strong> — assign and update values:<code>x = 10       # Simple assignment\nx += 5       # x = x + 5 → 15\nx -= 3       # x = x - 3 → 12\nx *= 2       # x = x * 2 → 24\nx //= 5      # x = x // 5 → 4</code><strong>4. Logical Operators</strong> — combine boolean expressions:<code>print(True and False)   # False (both must be True)\nprint(True or False)    # True  (at least one True)\nprint(not True)         # False (inverts boolean)</code><strong>5. Bitwise Operators</strong> — operate at binary bit level (used in IoT for port/register manipulation):<code>a, b = 12, 10   # 1100 and 1010 in binary\nprint(a & b)     # AND: 8  (1000)\nprint(a | b)     # OR:  14 (1110)\nprint(a ^ b)     # XOR: 6  (0110)\nprint(~a)        # NOT: -13\nprint(a << 2)    # Left shift: 48\nprint(a >> 1)    # Right shift: 6</code><strong>6. Membership Operators</strong> — test for presence in a sequence:<code>lst = [10, 20, 30]\nprint(20 in lst)      # True\nprint(40 not in lst)  # True</code><strong>7. Identity Operators</strong> — check if two variables reference the same object in memory:<code>x = [1, 2]\ny = x\nprint(x is y)      # True (same object)\nprint(x is not y)  # False</code>"
+          }
+        ]
+      },
+      4: {
+        title: "Module IV — IoT Devices, Boards & Interfaces",
+        subtitle: "IoT development boards, communication interfaces (GPIO/SPI/I2C/UART), exemplary IoT devices, design methodology, Raspberry Pi programming",
+        marks: [2, 5, 10],
+        2: [
+          {
+            q: "Write two examples of IoT boards.",
+            a: "<ul><li><strong>Raspberry Pi</strong> — a single-board computer (SBC) running Linux OS with an ARM-based CPU, 1–8GB RAM, built-in WiFi, Bluetooth, Ethernet, and 40 GPIO pins. Widely used in advanced IoT applications, edge computing, and AI-powered IoT.</li><li><strong>Arduino</strong> — a popular open-source microcontroller board based on ATmega328P with 14 digital I/O pins, 6 analog inputs, and an easy-to-use Arduino IDE. Ideal for beginners and for sensor interfacing, automation, and simple IoT projects.</li></ul>"
+          },
+          {
+            q: "What is the role of sensors in IoT devices?",
+            a: "Sensors serve as the <strong>input devices</strong> of an IoT system. They detect or measure physical parameters from the environment — such as temperature, humidity, pressure, motion, light intensity, or gas concentration — and convert these into electrical signals that the microcontroller can read and process. Without sensors, IoT devices cannot perceive the real world, making them the foundational data source of every IoT application."
+          },
+          {
+            q: "What is meant by interfaces in IoT?",
+            a: "An <strong>IoT interface</strong> is the communication link that allows IoT devices, sensors, software systems, and users to interact and exchange data. Four types of IoT interfaces:<ul><li><strong>Hardware interfaces</strong> — GPIO, SPI, I2C, UART for physical device connections</li><li><strong>Network interfaces</strong> — WiFi, Bluetooth, Zigbee, Ethernet for internet connectivity</li><li><strong>Software interfaces (APIs)</strong> — MQTT, HTTP/REST, CoAP for application communication</li><li><strong>User interfaces</strong> — mobile apps, web dashboards, voice assistants for human interaction</li></ul>"
+          },
+          {
+            q: "What is SPI interface?",
+            a: "<strong>SPI (Serial Peripheral Interface)</strong> is a synchronous serial communication protocol used to transfer data between a microcontroller (master) and one or more peripheral devices (slaves). Uses <strong>4 wires</strong>:<ul><li><strong>MOSI</strong> — Master Out Slave In (data from master to slave)</li><li><strong>MISO</strong> — Master In Slave Out (data from slave to master)</li><li><strong>SCLK</strong> — Serial Clock (generated by master)</li><li><strong>SS/CS</strong> — Slave Select / Chip Select (activates specific slave)</li></ul>Features: high-speed, full-duplex communication, supports multiple slaves."
+          },
+          {
+            q: "What is I2C communication?",
+            a: "<strong>I2C (Inter-Integrated Circuit)</strong> is a two-wire serial communication protocol for connecting multiple ICs on the same circuit board. Uses only <strong>2 communication lines</strong>:<ul><li><strong>SDA</strong> — Serial Data Line (transfers data bits between devices)</li><li><strong>SCL</strong> — Serial Clock Line (synchronizes data transfer timing)</li></ul>Key features: supports multiple slave devices on the same bus, each with a unique address; uses master-slave architecture; suitable for short-distance, moderate-speed communication between nearby chips."
+          },
+          {
+            q: "Write two programming languages used for IoT devices.",
+            a: "<ul><li><strong>Python</strong> — widely used on Raspberry Pi and Linux-based boards. Easy-to-read syntax, extensive libraries (RPi.GPIO, paho-mqtt, requests) for sensor interfacing, cloud communication, and data processing. Ideal for rapid IoT prototyping and production.</li><li><strong>C/C++</strong> — used in Arduino and microcontroller programming. Offers efficient memory management, direct hardware register access, and fast execution. Essential for resource-constrained microcontrollers where Python's overhead is too high.</li></ul>"
+          },
+          {
+            q: "What is an IoT device?",
+            a: "An <strong>IoT device</strong> is a physical object embedded with sensors, actuators, a processing unit (microcontroller/microprocessor), and internet connectivity that enables it to collect data from the environment, process it, and communicate with other devices or cloud services — without requiring direct human intervention. Examples include smart thermostats, wearable fitness trackers, smart street lights, connected industrial sensors, and autonomous vehicles."
+          },
+          {
+            q: "What is meant by an IoT endpoint?",
+            a: "An <strong>IoT endpoint</strong> is any physical device at the edge of an IoT network that either originates data (by sensing) or terminates commands (by actuating) in the IoT system. Endpoints are the first point of data collection or the final destination of control signals. They connect to the IoT network via gateways or directly through WiFi/cellular. Examples: temperature sensors, smart meters, wearable health monitors, and industrial machine sensors."
+          },
+          {
+            q: "What is PcDuino?",
+            a: "<strong>PcDuino</strong> is a mini single-board computer that uniquely bridges the capabilities of Arduino and Raspberry Pi. It runs Linux OS like Raspberry Pi while also being compatible with Arduino shields and software libraries. This dual nature makes it suitable for projects requiring both low-level hardware control (similar to Arduino) and higher-level computing tasks (similar to Raspberry Pi). Used in IoT applications that need more processing power than Arduino but Arduino ecosystem compatibility."
+          },
+          {
+            q: "What is UART interface?",
+            a: "<strong>UART (Universal Asynchronous Receiver Transmitter)</strong> is a hardware communication protocol for asynchronous serial communication between two devices. Unlike SPI and I2C, UART does not require a shared clock signal — the two communicating devices must agree on the same baud rate (data speed). Data is transmitted serially, one bit at a time. Features: simple two-wire connection (TX and RX), full-duplex, widely supported. Used to connect GPS modules, Bluetooth modules (HC-05), and WiFi modules to microcontrollers."
+          },
+          {
+            q: "List any two features of BeagleBone Black.",
+            a: "<ul><li><strong>ARM Cortex-A8 processor at 1GHz with 512MB DDR3 RAM</strong> — provides significantly higher processing performance than Arduino, making it suitable for complex industrial IoT applications, robotics, and embedded Linux systems requiring multitasking</li><li><strong>Extensive GPIO with Ethernet support</strong> — offers up to 65+ GPIO pins for connecting numerous sensors and actuators, plus built-in Ethernet for wired network connectivity without requiring additional modules, essential for reliable industrial automation systems</li></ul>"
+          },
+          {
+            q: "Mention any two features available in ESP32.",
+            a: "<ul><li><strong>Dual built-in WiFi and Bluetooth</strong> — ESP32 integrates both WiFi (IEEE 802.11 b/g/n up to 150 Mbps) and Bluetooth (Classic 4.2 + BLE) in a single chip. This eliminates the need for separate communication modules, reducing cost and board size while enabling versatile connectivity for IoT applications.</li><li><strong>Dual-core Tensilica Xtensa processor with ultra-low-power modes</strong> — the dual-core CPU (up to 240MHz) provides high computational performance, while multiple sleep modes (light sleep, deep sleep, hibernate) reduce power consumption to microamps for battery-powered IoT devices.</li></ul>"
+          },
+          {
+            q: "Write 2 differences between RaspberryPi and PcDuino.",
+            a: "<table><tr><th>Feature</th><th>Raspberry Pi</th><th>PcDuino</th></tr><tr><td>Primary Design</td><td>Designed as a full mini Linux computer; no native Arduino compatibility</td><td>Designed to bridge Arduino and Linux; directly compatible with Arduino shields and libraries</td></tr><tr><td>Processing Power</td><td>More powerful ARM CPU; higher RAM; better for media playback, AI and complex IoT applications</td><td>Simpler processing; targeted at users already familiar with Arduino ecosystem needing Linux</td></tr></table>"
+          },
+          {
+            q: "What operating system is commonly used in Raspberry Pi?",
+            a: "<strong>Raspberry Pi OS (formerly called Raspbian)</strong> — a Debian GNU/Linux-based operating system — is the official and most commonly used OS for Raspberry Pi, maintained by the Raspberry Pi Foundation. It includes a desktop environment (LXDE-based), the Chromium browser, Python development tools, and extensive GPIO libraries pre-installed. Other compatible OSes include Ubuntu Server, Arch Linux ARM, and Windows IoT Core for specific use cases."
+          },
+          {
+            q: "What is the use of an SD card in Raspberry Pi?",
+            a: "In Raspberry Pi, a <strong>MicroSD card</strong> serves as the primary and only built-in storage medium. It stores: the complete operating system (Raspberry Pi OS), all installed software packages and libraries, user files and project code, database files, and IoT application data. Since Raspberry Pi has no internal NAND flash or hard drive (unlike a PC), the MicroSD card functions simultaneously as the boot drive, system drive, and data storage device — making its quality and speed critical to overall system performance."
+          }
+        ],
+        5: [
+          {
+            q: "Discuss about different IoT devices.",
+            a: "IoT devices are physical objects embedded with sensors, processing units, and connectivity modules that collect and exchange data over the internet. They share common characteristics: sensors/actuators for data capture or physical action, wireless connectivity (WiFi/Bluetooth/Zigbee/Cellular), a processing unit (microcontroller or microprocessor), data storage, and a user interface (app or dashboard).<br><br><strong>Categories of IoT Devices:</strong><ul><li><strong>Smart Home Devices</strong> — Amazon Echo (voice-controlled assistant for smart home management), Google Nest Thermostat (auto-adjusts home temperature using ML), Philips Hue Smart Bulb (remote lighting control via mobile app). Applications: home automation, energy efficiency, remote security monitoring.</li><li><strong>Wearable Devices</strong> — Apple Watch (tracks heart rate, steps, ECG, notifications), Fitbit Charge (monitors sleep patterns, calorie burn, exercise metrics). Applications: continuous health monitoring, fitness tracking, emergency fall detection.</li><li><strong>Healthcare IoT Devices</strong> — Remote patient monitoring sensors, smart glucose monitors, connected hospital equipment. Applications: telemedicine, chronic disease management, real-time emergency alerts to doctors.</li><li><strong>Industrial IoT (IIoT) Devices</strong> — Vibration and temperature sensors for predictive maintenance, connected robotic arms, smart energy meters. Applications: preventing machine failures, automating manufacturing, energy optimization.</li><li><strong>Smart City Devices</strong> — Adaptive traffic signal controllers, smart parking sensors, air quality monitors. Applications: reducing congestion, improving emergency response, pollution monitoring.</li><li><strong>Smart Agriculture Devices</strong> — Soil moisture sensors, smart drip irrigation systems, livestock GPS trackers. Applications: precision farming, water conservation, crop health monitoring.</li></ul>"
+          },
+          {
+            q: "Explain about different types of interfaces used in Raspberry Pi.",
+            a: "Raspberry Pi supports a comprehensive set of hardware and software interfaces, making it highly versatile for IoT applications.<br><br><strong>1. GPIO (General Purpose Input/Output) — 40-pin header:</strong> Programmable digital pins that can be configured as INPUT or OUTPUT. Supports PWM, SPI, I2C, and UART signals. Used to connect LEDs, buttons, sensors (DHT11, PIR), and motor drivers directly.<br><br><strong>2. USB (2–4 ports):</strong> Connects external peripherals including keyboard, mouse, USB storage drives, USB WiFi dongles, USB webcams, and USB-based sensors for expanded functionality.<br><br><strong>3. HDMI:</strong> Full-size or micro-HDMI port for video and audio output to monitors and TVs. Used for displaying IoT dashboard interfaces, configuration, and system monitoring.<br><br><strong>4. CSI (Camera Serial Interface):</strong> Dedicated high-speed port for the official Raspberry Pi Camera Module. Supports high-resolution image capture and video recording, essential for computer vision IoT applications like surveillance and object detection.<br><br><strong>5. DSI (Display Serial Interface):</strong> High-speed interface for the official 7-inch Raspberry Pi Touchscreen Display. Used to create standalone IoT control panels and kiosks without a separate monitor.<br><br><strong>6. SPI (Serial Peripheral Interface):</strong> High-speed 4-wire full-duplex protocol (MOSI, MISO, SCLK, SS). Used for connecting RFID readers (RC522), high-speed ADCs (MCP3008), and SPI-based displays to Raspberry Pi.<br><br><strong>7. I2C (Inter-Integrated Circuit):</strong> Two-wire protocol (SDA + SCL). Allows multiple sensors with unique addresses on the same 2-wire bus. Used for MPU-6050 accelerometer, BMP280 pressure sensor, and OLED displays.<br><br><strong>8. UART (Universal Asynchronous Receiver Transmitter):</strong> Asynchronous serial protocol for connecting GPS modules, Bluetooth modules (HC-05), and for serial console debugging."
+          },
+          {
+            q: "Describe the architecture of Raspberry Pi with a neat diagram.",
+            a: "Raspberry Pi is a credit-card-sized <strong>Single-Board Computer (SBC)</strong> designed for educational purposes and IoT/embedded applications. All major components are integrated onto a single PCB.<br><br><strong>Key Hardware Components:</strong><ul><li><strong>System-on-Chip (SoC) Processor</strong> — Broadcom BCM2837 (RPi 3) or BCM2711 (RPi 4). Contains ARM Cortex-A CPU cores (quad-core up to 1.8GHz), GPU (VideoCore), and memory controller all in one package.</li><li><strong>RAM</strong> — 1GB to 8GB LPDDR4 SDRAM, physically stacked on top of the SoC on some models.</li><li><strong>MicroSD Card Slot</strong> — primary storage for OS, applications, and user data. Supports high-speed UHS-I SD cards.</li><li><strong>40-Pin GPIO Header</strong> — 26 GPIO pins + power pins (3.3V, 5V, GND). Supports SPI, I2C, UART, PWM, and plain digital I/O.</li><li><strong>USB Ports</strong> — 2× USB-A on RPi 3, 2× USB-A 2.0 + 2× USB-A 3.0 on RPi 4 for peripherals.</li><li><strong>HDMI Output</strong> — full HDMI on RPi 3, 2× micro-HDMI on RPi 4 for dual-monitor support.</li><li><strong>CSI Port</strong> — 15-pin flat-flex connector for Raspberry Pi Camera Module.</li><li><strong>DSI Port</strong> — 15-pin flat-flex for the official touchscreen display.</li><li><strong>Ethernet Port (RJ45)</strong> — 100Mbps (RPi 3) or Gigabit (RPi 4) wired LAN.</li><li><strong>Built-in WiFi + Bluetooth</strong> — 802.11ac dual-band WiFi + Bluetooth 5.0 (RPi 4).</li><li><strong>USB-C Power Input</strong> — 5V, 3A power supply required for RPi 4.</li></ul><strong>Architecture Flow:</strong> Physical sensors → GPIO/SPI/I2C/UART → BCM SoC (CPU processes data) → WiFi/Ethernet → Cloud server → Web dashboard or mobile app for user monitoring."
+          },
+          {
+            q: "Explain about the Exemplary devices used in IoT applications.",
+            a: "Exemplary IoT devices are representative real-world devices that demonstrate the working principles and capabilities of IoT technology across different application domains.<br><br><strong>Common Characteristics of IoT Devices:</strong> Sensors/Actuators (capture data or perform actions), Connectivity (WiFi, Bluetooth, Zigbee, Cellular), Processing Unit (microcontroller or embedded processor), Data Storage, and User Interface (app or dashboard).<br><br><strong>1. Smart Home Devices:</strong><ul><li><strong>Amazon Echo</strong> — voice-activated smart assistant; uses far-field microphones and NLP to control smart home devices, play music, answer questions. Connectivity: WiFi.</li><li><strong>Google Nest Thermostat</strong> — learns user temperature preferences over time using ML; automatically adjusts HVAC. Saves up to 15% on energy bills.</li><li><strong>Philips Hue Smart Bulb</strong> — Zigbee-connected LED bulbs; remotely controllable via app; supports millions of color variations, scheduling, and motion-based automation.</li></ul><strong>2. Wearable Devices:</strong> Apple Watch and Fitbit track heart rate, SpO2, steps, sleep quality, and send health alerts to smartphones and doctors via Bluetooth.<br><br><strong>3. Healthcare IoT:</strong> Remote patient monitoring systems send continuous vital signs (ECG, blood pressure, glucose levels) to hospital servers for real-time physician monitoring, reducing hospital admissions.<br><br><strong>4. Industrial IoT Devices:</strong> Smart vibration and temperature sensors on industrial machines analyze data using ML algorithms to predict equipment failures 2–3 weeks in advance, preventing costly unplanned downtime.<br><br><strong>5. Smart City Devices:</strong> Adaptive traffic signal controllers use vehicle detection sensors and cameras to dynamically adjust green light duration, reducing average wait times by 25–30%.<br><br><strong>6. Smart Agriculture:</strong> Soil moisture sensors combined with weather data APIs allow automated irrigation systems to water crops only when needed, reducing water usage by up to 40%."
+          },
+          {
+            q: "Explain the features of Arduino used in IoT applications.",
+            a: "<strong>Arduino</strong> is an open-source microcontroller platform widely used in IoT prototyping, education, and production applications due to its simplicity, affordability, and extensive ecosystem.<br><br><strong>Hardware Features:</strong><ul><li><strong>Microcontroller</strong> — ATmega328P running at 16MHz. Handles sensor reading, data processing, and output control.</li><li><strong>Digital I/O Pins</strong> — 14 digital pins configurable as INPUT or OUTPUT. Support for interrupts on pins 2 and 3 for event-driven IoT applications.</li><li><strong>Analog Input Pins</strong> — 6 analog pins with built-in 10-bit ADC (1024 levels). Used for reading continuous sensor values (temperature, light, soil moisture).</li><li><strong>PWM Output</strong> — 6 pins support Pulse Width Modulation for controlling motor speed, LED brightness, and servo position.</li><li><strong>Flash Memory</strong> — 32KB for storing program code. 2KB SRAM for runtime variables. 1KB EEPROM for persistent storage.</li></ul><strong>Software Features:</strong><ul><li><strong>Arduino IDE</strong> — free, cross-platform development environment with simplified C/C++ syntax (called Arduino Language). Beginners can program hardware within minutes.</li><li><strong>Vast Library Ecosystem</strong> — thousands of free libraries for sensors (DHT, BMP280), displays (LiquidCrystal, Adafruit SSD1306), communication (WiFi, MQTT, Ethernet), and protocols.</li><li><strong>Large Community</strong> — millions of users worldwide; extensive tutorials, project examples, and forum support.</li></ul><strong>IoT Applications:</strong> Smart home sensor nodes (temperature, motion, gas detection), automated plant watering systems, weather stations, RFID-based access control, industrial relay controllers, and DIY robotics. Arduino connects to the internet using companion modules: ESP8266/ESP32 for WiFi, SIM800L for GSM, and ENC28J60 for Ethernet."
+          },
+          {
+            q: "Write short notes on IoT development boards.",
+            a: "IoT development boards are compact hardware platforms containing a microcontroller/microprocessor, memory, I/O pins, and often built-in communication modules. They serve as the brain of IoT systems, processing sensor data and managing connectivity.<br><br><strong>1. Arduino (Uno/Mega/Nano):</strong> ATmega328P microcontroller, 16MHz, 32KB flash, 14 digital I/O, 6 analog inputs, Arduino IDE programming. Low cost (~$5–25). Best for: beginners, simple sensor projects, home automation.<br><br><strong>2. Raspberry Pi (3B+/4):</strong> Broadcom ARM quad-core CPU, 1–8GB RAM, Linux OS, WiFi+Bluetooth+Ethernet, 40 GPIO pins, supports Python/C/Java. Best for: complex IoT applications, AI/ML edge computing, IoT gateways, media centers.<br><br><strong>3. ESP8266 (NodeMCU):</strong> 32-bit Tensilica CPU (80MHz), built-in WiFi IEEE 802.11 b/g/n, 11 GPIO pins, ~1MB flash, runs MicroPython or Arduino IDE. Very low cost (~$3). Best for: simple WiFi-enabled IoT sensor nodes, home automation switches, cloud-connected devices.<br><br><strong>4. ESP32:</strong> Dual-core Xtensa (240MHz), built-in WiFi + Bluetooth (BLE), 34 GPIO, 520KB SRAM, 4MB flash, multiple sleep modes. Best for: performance IoT applications requiring both WiFi and Bluetooth, BLE beacons, industrial IoT.<br><br><strong>5. BeagleBone Black:</strong> ARM Cortex-A8 (1GHz), 512MB DDR3 RAM, 4GB eMMC storage, Ethernet, 65+ GPIO, Linux OS. Best for: industrial IoT, robotics, real-time embedded applications.<br><br><strong>6. Particle Photon:</strong> ARM Cortex-M3, built-in WiFi, Particle cloud platform integration, 18 GPIO. Best for: rapid cloud-connected IoT prototyping with simplified cloud deployment."
+          },
+          {
+            q: "Explain the features of Raspberry Pi used in IoT applications.",
+            a: "<strong>Raspberry Pi</strong> is a single-board computer (SBC) that has become one of the most popular platforms for advanced IoT development, education, and industrial prototyping due to its computing power and rich feature set.<br><br><strong>Hardware Features:</strong><ul><li><strong>Processor</strong> — Broadcom ARM Cortex-A series CPU (quad-core, up to 1.8GHz on RPi 4). Supports multitasking and computationally intensive IoT applications including image processing and ML inference.</li><li><strong>RAM</strong> — 1GB to 8GB LPDDR4. Enables running multiple IoT processes simultaneously (web server, database, sensor polling, MQTT broker).</li><li><strong>Built-in Wireless</strong> — dual-band 802.11ac WiFi and Bluetooth 5.0 for high-speed wireless communication with IoT cloud platforms and nearby devices.</li><li><strong>Ethernet</strong> — Gigabit Ethernet (RPi 4) for wired, reliable IoT gateway connectivity.</li><li><strong>40-Pin GPIO</strong> — directly interface with sensors (DHT11, DS18B20, BMP280), actuators (relays, motors), and communication modules (SPI, I2C, UART devices).</li><li><strong>CSI Camera Port</strong> — supports Raspberry Pi Camera Module for computer vision IoT applications (object detection, facial recognition, smart surveillance).</li></ul><strong>Software Features:</strong><ul><li><strong>Linux OS (Raspberry Pi OS)</strong> — full Linux environment supporting Python, C, Java, Node.js, and all standard Linux tools.</li><li><strong>Python RPi.GPIO Library</strong> — enables direct GPIO pin control for sensor reading and actuator control from Python programs.</li></ul><strong>IoT Applications:</strong> Smart home controllers and gateways, industrial monitoring and control systems, computer vision-based smart cameras, edge AI devices (running TensorFlow Lite), environmental monitoring stations, and network-connected multi-sensor data loggers."
+          },
+          {
+            q: "Explain the features of ESP8266 used in IoT applications.",
+            a: "<strong>ESP8266</strong> is a low-cost WiFi microcontroller System-on-Chip (SoC) developed by Espressif Systems. It revolutionized the IoT market by providing affordable built-in WiFi capability and is widely used in millions of commercial and DIY IoT products worldwide.<br><br><strong>Key Features:</strong><ul><li><strong>Built-in WiFi (IEEE 802.11 b/g/n)</strong> — integrated WiFi transceiver operating at 2.4GHz. Eliminates the need for a separate WiFi module, significantly reducing cost and board space. Supports station mode, access point mode, and both simultaneously.</li><li><strong>32-bit Tensilica Xtensa L106 CPU</strong> — runs at 80MHz (overclockable to 160MHz). Provides sufficient processing power for sensor reading, data formatting, WiFi communication, and MQTT/HTTP client operations.</li><li><strong>GPIO Pins</strong> — 11 available GPIO pins for connecting sensors, LEDs, relays, and other peripherals. Supports I2C, SPI, UART, PWM, and ADC (1 analog input).</li><li><strong>Flash Memory</strong> — typically 1MB to 4MB SPI flash for program storage and file system (SPIFFS/LittleFS) for storing configuration files and web pages.</li><li><strong>Low Power Consumption</strong> — deep sleep mode reduces power to ~20µA. Wake on timer or external trigger, making it suitable for battery-powered IoT sensor nodes lasting months on a single charge.</li><li><strong>Compact Size</strong> — the bare ESP-01 module is just 14.3mm × 24.8mm, enabling integration into very small IoT products.</li></ul><strong>Programming Options:</strong> Arduino IDE with ESP8266 core (using familiar Arduino functions), MicroPython (Python 3 for microcontrollers), NodeMCU firmware (Lua scripting).<br><br><strong>IoT Applications:</strong> Smart home light switches and power outlets, WiFi-enabled temperature and humidity monitoring stations, IoT door/window sensors, remote relay controllers for appliances, OTA-updatable IoT sensor nodes, and battery-powered environmental sensors transmitting data to cloud platforms like Adafruit IO, AWS IoT, and ThingSpeak."
+          },
+          {
+            q: "Discuss about sensors, actuators, and different communication protocols used in IoT.",
+            a: "<strong>Sensors</strong> are the input devices of IoT systems. They detect physical parameters and convert them to electrical signals:<ul><li><strong>Temperature Sensor (DHT11/DS18B20)</strong> — measures ambient temperature; range 0°C–50°C</li><li><strong>Humidity Sensor (DHT11/DHT22)</strong> — measures relative humidity percentage</li><li><strong>Pressure Sensor (BMP280)</strong> — measures atmospheric pressure; used for altitude and weather monitoring</li><li><strong>Light Sensor (LDR)</strong> — measures light intensity; used for automatic lighting</li><li><strong>Gas Sensor (MQ-2/MQ-7)</strong> — detects smoke, CO, LPG for safety systems</li><li><strong>PIR Motion Sensor</strong> — detects infrared radiation from moving humans; used in security systems</li><li><strong>Soil Moisture Sensor</strong> — measures water content in soil for smart irrigation</li></ul><strong>Actuators</strong> are the output devices of IoT systems. They convert electrical signals into physical actions:<ul><li><strong>DC Motor / Servo Motor</strong> — converts electrical energy to rotational motion; used in robotics, automated blinds</li><li><strong>Relay Module</strong> — electrically controlled switch; turns high-voltage appliances ON/OFF safely from microcontroller</li><li><strong>Buzzer / Speaker</strong> — converts electrical signals to sound for alerts and alarms</li><li><strong>LED / Smart Bulb</strong> — converts electricity to light; used as visual indicator or smart lighting</li><li><strong>Solenoid Valve</strong> — electrically controlled valve for water/gas flow control in irrigation systems</li></ul><strong>Communication Protocols in IoT:</strong><ul><li><strong>MQTT (Message Queuing Telemetry Transport)</strong> — extremely lightweight publish-subscribe protocol designed specifically for IoT. Low bandwidth, low power, runs over TCP/IP. Widely used: AWS IoT, Adafruit IO, Home Assistant.</li><li><strong>HTTP/REST</strong> — standard web protocol; request-response; higher overhead but universally supported by web services and cloud APIs.</li><li><strong>CoAP (Constrained Application Protocol)</strong> — HTTP-like but optimized for constrained devices. Uses UDP instead of TCP, reducing overhead on low-power sensors.</li><li><strong>Bluetooth / BLE</strong> — short-range (10–100m) wireless protocol; BLE (Bluetooth Low Energy) ideal for wearables and coin-battery sensors with months of battery life.</li><li><strong>ZigBee</strong> — low-power, low-data-rate mesh networking protocol for smart home sensor networks. Range: ~10–100m. Supports 65,000+ nodes in a mesh.</li><li><strong>WiFi (802.11)</strong> — high-speed wireless LAN. High bandwidth but higher power consumption. Suitable for devices near power outlets requiring video streaming or large data uploads.</li><li><strong>LoRaWAN</strong> — long-range (up to 15km in rural areas), very low power. Ideal for smart city, smart agriculture, and utility meter reading over wide areas with battery-powered sensors lasting 5–10 years.</li></ul>"
+          }
+        ],
+        10: [
+          {
+            q: "What are exemplary devices used in the Internet of Things (IoT)? Explain the working and uses of any five IoT devices with examples.",
+            a: "Exemplary IoT devices are representative real-world implementations that demonstrate the complete IoT technology stack — from physical sensing to cloud analytics and user interaction. They exhibit the common IoT device characteristics: sensors/actuators, wireless connectivity (WiFi/Bluetooth/Cellular/Zigbee), a processing unit, data storage capability, and a user interface through apps or dashboards.<br><br><strong>1. Smart Thermostat (Google Nest):</strong><br>Components: Temperature and humidity sensors, WiFi module, embedded ARM processor, touchscreen display, and motor for controlling HVAC vents.<br>Working: Continuously monitors room temperature using built-in sensors. Uses machine learning algorithms to study user patterns (preferred temperatures at different times and days). Connects to cloud servers via WiFi to access weather forecasts. Automatically pre-heats or pre-cools the home before the user's arrival. Users can override settings remotely via the mobile app from anywhere in the world.<br>Uses: Energy efficiency (saves 10–15% on heating/cooling bills), remote temperature management, comfort automation, integration with other smart home devices.<br><br><strong>2. Wearable Fitness Tracker (Fitbit Charge 5 / Apple Watch):</strong><br>Components: 3-axis accelerometer, optical heart rate sensor, GPS, SpO2 sensor, Bluetooth module, small OLED display, rechargeable battery.<br>Working: Accelerometer detects motion to count steps and identify activities (walking, running, cycling, swimming). Optical sensor shines green LED light into the wrist and measures reflected light to calculate heart rate from blood flow. Data syncs via Bluetooth to the companion smartphone app, which uploads to cloud for detailed trend analysis.<br>Uses: Continuous health monitoring, sleep quality analysis, guided breathing exercises, emergency SOS, ECG measurement, calorie tracking, and sharing health data with physicians for remote monitoring.<br><br><strong>3. Smart Traffic Management System:</strong><br>Components: Inductive loop sensors (embedded in road), video cameras with computer vision, LTE/cellular communication module, traffic signal controller.<br>Working: Inductive loop sensors detect the presence and count of vehicles waiting at each approach of an intersection. Camera-based computer vision counts vehicles and identifies pedestrians. The city traffic management server (cloud) receives real-time data from all intersections, runs optimization algorithms, and sends adaptive signal timing commands back to each intersection controller. Emergency vehicle pre-emption clears all signals green when an ambulance approaches.<br>Uses: Reduce average intersection wait times by 25–30%, improve emergency vehicle response times, reduce fuel consumption and emissions, collect traffic pattern data for city planning.<br><br><strong>4. Industrial Predictive Maintenance Sensor (IIoT):</strong><br>Components: MEMS vibration accelerometer (3-axis), temperature sensor, industrial wireless module (WirelessHART/WiFi), explosion-proof housing.<br>Working: Sensors are attached directly to rotating industrial machinery (motors, pumps, compressors, fans). They continuously monitor vibration signature and operating temperature. Data is transmitted wirelessly to an edge gateway, which forwards it to a cloud-based analytics platform. Machine learning models trained on historical failure data identify abnormal vibration patterns (bearing wear, imbalance, misalignment) weeks before physical failure occurs. Maintenance alerts are sent to technicians' smartphones.<br>Uses: Prevent costly unplanned production shutdowns (which can cost $50,000–$500,000 per hour in some industries), extend machine lifespan, optimize maintenance scheduling (move from calendar-based to condition-based maintenance), improve workplace safety by eliminating hazardous failures.<br><br><strong>5. Smart Irrigation System:</strong><br>Components: Capacitive soil moisture sensors, rain sensor, temperature sensor, WiFi-enabled microcontroller (ESP32), solenoid valve, solar panel + battery.<br>Working: Soil moisture sensors continuously measure volumetric water content at multiple locations throughout the field at root depth. The microcontroller also retrieves weather forecast data via WiFi to check for upcoming rainfall. When soil moisture drops below a configured threshold AND no rain is forecast, the controller sends a signal to open solenoid valves for precisely timed irrigation. All data is logged to the cloud and viewable on a farmer's dashboard showing soil conditions, water usage history, and savings.<br>Uses: Reduce water consumption by up to 40–60% compared to manual irrigation, improve crop yield through optimal moisture maintenance, enable remote monitoring and control from smartphones, reduce labor costs, and support sustainable precision agriculture practices."
+          },
+          {
+            q: "What is an IoT board? Explain the features, working, and applications of IoT boards.",
+            a: "<strong>IoT Board Definition:</strong> An IoT development board is a compact, self-contained hardware platform that integrates a microcontroller or microprocessor, memory, input/output pins, power management, and usually built-in communication modules (WiFi, Bluetooth, Ethernet) onto a single printed circuit board (PCB). IoT boards serve as the brain of IoT systems — they collect sensor data, execute application logic, make control decisions, and manage network communications.<br><br><strong>General IoT Board Components:</strong><ul><li>Microcontroller (MCU) or Microprocessor (MPU) — the central processing element</li><li>RAM and Flash Memory — for runtime data and program storage</li><li>Digital and Analog I/O Pins — for sensor and actuator connections</li><li>Communication Modules — WiFi, Bluetooth, Ethernet, cellular</li><li>Power Management — voltage regulators, low-power sleep modes, battery connectors</li><li>USB Interface — for programming and serial debugging</li><li>Crystal Oscillator — provides accurate clock timing</li></ul><strong>Major IoT Boards with Features:</strong><table><tr><th>Board</th><th>Processor</th><th>Connectivity</th><th>Best For</th></tr><tr><td>Arduino Uno</td><td>ATmega328P, 16MHz</td><td>None built-in (add shields)</td><td>Beginner IoT, sensor interfacing</td></tr><tr><td>Raspberry Pi 4</td><td>ARM Cortex-A72, quad-core 1.8GHz</td><td>WiFi + BT + Ethernet</td><td>Complex IoT, AI/ML, gateways</td></tr><tr><td>ESP8266</td><td>Tensilica, 80MHz</td><td>Built-in WiFi</td><td>Low-cost WiFi IoT nodes</td></tr><tr><td>ESP32</td><td>Dual-core Xtensa, 240MHz</td><td>WiFi + Bluetooth</td><td>Performance IoT applications</td></tr><tr><td>BeagleBone Black</td><td>ARM Cortex-A8, 1GHz</td><td>Ethernet</td><td>Industrial IoT, robotics</td></tr></table><strong>Working of an IoT Board:</strong><br>Step 1: Sensors connect to I/O pins of the board → Step 2: Microcontroller reads analog/digital sensor values → Step 3: Firmware processes the data (filtering, unit conversion, threshold comparison) → Step 4: Processed data transmitted to cloud via WiFi/Ethernet using MQTT or HTTP protocol → Step 5: Cloud platform stores, analyzes, and visualizes data → Step 6: User views on mobile app or web dashboard → Step 7: Cloud sends commands back to board → Step 8: Board drives actuators (relays, motors, LEDs) accordingly.<br><br><strong>Applications of IoT Boards:</strong><ul><li><strong>Smart Home</strong> — Raspberry Pi or ESP32 as central hub controlling smart lights, locks, and appliances</li><li><strong>Industrial Monitoring</strong> — BeagleBone Black or RPi for real-time machine health monitoring with data logging</li><li><strong>Smart Agriculture</strong> — ESP32 or ESP8266 with soil moisture and weather sensors for automated drip irrigation</li><li><strong>Healthcare Wearables</strong> — compact IoT boards in wearable devices continuously monitoring patient vitals</li><li><strong>Environmental Monitoring</strong> — weather stations with multiple sensors reporting to cloud every few minutes</li><li><strong>Smart City Infrastructure</strong> — IoT boards in streetlights, traffic signals, and waste management systems</li></ul>"
+          },
+          {
+            q: "Explain the construction details of Raspberry Pi with neat diagram. Also explain how this board is used to connect sensors and devices to the internet in IoT systems.",
+            a: "<strong>Raspberry Pi — Construction Details:</strong><br>Raspberry Pi is a credit-card-sized Single-Board Computer (SBC) where all components are mounted on a single green PCB (Printed Circuit Board) measuring approximately 85mm × 56mm.<br><br><strong>Key Hardware Components and Their Locations:</strong><ul><li><strong>System-on-Chip (SoC) — Centre of Board:</strong> The Broadcom BCM2711 (RPi 4) SoC integrates the quad-core ARM Cortex-A72 CPU (1.8GHz), VideoCore VI GPU, memory controller, USB controller, and various peripheral interfaces all in one chip package. This is the heart of the Raspberry Pi.</li><li><strong>LPDDR4 RAM — Stacked on SoC:</strong> 1GB, 2GB, 4GB, or 8GB RAM is physically stacked directly on top of the SoC using PoP (Package on Package) technology to minimize signal path length and board space.</li><li><strong>MicroSD Card Slot — Bottom edge of board:</strong> Spring-loaded push-in slot for MicroSD card which stores the OS, software, and user data. Supports UHS-I at up to 25–50 MB/s read speed on RPi 4.</li><li><strong>40-Pin GPIO Header — Long edge, one side:</strong> Two rows of 20 pins providing: 26 user-accessible GPIO pins, 2× 3.3V power pins, 2× 5V power pins, 8× GND pins. Pitch: 2.54mm standard.</li><li><strong>USB Ports — One edge of board:</strong> RPi 4 provides 2× USB-A 2.0 + 2× USB-A 3.0 ports for external peripherals.</li><li><strong>HDMI Ports — Adjacent to USB:</strong> 2× micro-HDMI ports on RPi 4 for dual-display support at up to 4K 60fps.</li><li><strong>CSI Camera Port</strong> — 15-pin flat-flex cable connector for camera module, near HDMI ports.</li><li><strong>DSI Display Port</strong> — 15-pin flat-flex for touchscreen display.</li><li><strong>Ethernet Port (RJ45) — Corner of board:</strong> Gigabit Ethernet for wired internet connectivity. RJ45 jack with built-in LEDs showing link and activity status.</li><li><strong>USB-C Power Input — End of board:</strong> 5V/3A DC power input for RPi 4. Acts as power-only port (no data on RPi 4).</li><li><strong>WiFi + Bluetooth Chip — Near centre:</strong> CYW43455 chip providing 2.4GHz+5GHz 802.11ac WiFi and Bluetooth 5.0/BLE. Uses built-in PCB antenna.</li></ul><strong>Connecting Sensors to the Internet in IoT Systems:</strong><br>Raspberry Pi functions as a powerful IoT gateway in the following workflow:<br><br>Step 1: Physically connect the sensor (e.g., DHT11 temperature sensor) to the GPIO header pins. DHT11 DATA pin → GPIO pin 11 (Physical Pin 3), VCC → 3.3V pin, GND → GND pin.<br>Step 2: Install the required Python library: <code>pip install Adafruit_DHT</code><br>Step 3: Write a Python program to read sensor data:<code>import Adafruit_DHT\nimport paho.mqtt.client as mqtt\nimport time\n\nSENSOR = Adafruit_DHT.DHT11\nPIN = 11\n\n# MQTT cloud broker configuration\nclient = mqtt.Client()\nclient.connect(\"broker.hivemq.com\", 1883)\n\nwhile True:\n    humidity, temperature = Adafruit_DHT.read_retry(SENSOR, PIN)\n    if temperature is not None:\n        payload = f\"temp:{temperature},hum:{humidity}\"\n        client.publish(\"home/sensor\", payload)\n        print(f\"Published: {payload}\")\n    time.sleep(10)  # send every 10 seconds</code>Step 4: The MQTT broker receives data and forwards it to subscribed cloud applications.<br>Step 5: IoT cloud platforms (AWS IoT, Adafruit IO, ThingSpeak) store the data and generate real-time visualizations on web dashboards accessible from any device worldwide.<br>Step 6: LED blink example showing GPIO output control:<code>import RPi.GPIO as GPIO\nimport time\nGPIO.setmode(GPIO.BOARD)\nGPIO.setup(3, GPIO.OUT)\ntry:\n    while True:\n        GPIO.output(3, True)   # LED ON\n        time.sleep(1)\n        GPIO.output(3, False)  # LED OFF\n        time.sleep(1)\nexcept KeyboardInterrupt:\n    GPIO.cleanup()</code>"
+          },
+          {
+            q: "What are interfaces used in the Internet of Things (IoT)? Explain the importance of interfaces in IoT systems.",
+            a: "<strong>IoT Interface Definition:</strong> An IoT interface is any communication mechanism — hardware, software, or network-based — that enables IoT devices, sensors, actuators, software platforms, and users to interact and exchange data with each other. Interfaces are the enablers of data flow across the entire IoT ecosystem, from physical sensors to end-user applications.<br><br><strong>Classification of IoT Interfaces:</strong><br><br><strong>1. Hardware Interfaces:</strong> Physical connections between IoT hardware components.<ul><li><strong>GPIO (General Purpose Input/Output):</strong> Programmable digital pins on microcontrollers and development boards. Can be configured as digital INPUT (reading button states, sensor binary outputs) or digital OUTPUT (driving LEDs, relay signals). The fundamental interface for direct sensor and actuator connectivity in IoT systems. Present on Arduino (14 digital pins) and Raspberry Pi (26 usable GPIO pins on the 40-pin header).</li><li><strong>I2C (Inter-Integrated Circuit):</strong> Two-wire serial protocol using SDA (data) and SCL (clock) lines. Supports up to 127 devices on the same 2-wire bus, each identified by a unique 7-bit address. Low speed (100kHz standard, 400kHz fast mode) but excellent for connecting multiple sensors without consuming many pins. Used in IoT for: temperature sensors (BMP280 at 0x76), IMUs (MPU-6050 at 0x68), OLED displays (SSD1306 at 0x3C), and real-time clock modules.</li><li><strong>SPI (Serial Peripheral Interface):</strong> Four-wire full-duplex high-speed protocol (MOSI, MISO, SCLK, SS). Significantly faster than I2C (up to 70 MHz). Each slave device requires a dedicated SS (Slave Select) pin. Used in IoT for: SD card modules (high-speed data logging), RFID readers (RC522), high-resolution ADCs (MCP3208), and fast display controllers.</li><li><strong>UART (Universal Asynchronous Receiver Transmitter):</strong> Simple two-wire (TX, RX) asynchronous serial communication requiring no clock signal — both devices must be configured to the same baud rate (typically 9600, 115200 bps). Used in IoT for: GPS modules (NMEA data output), Bluetooth modules (AT command interface), WiFi modules, and serial debugging consoles. Maximum practical range: ~15 meters.</li></ul><strong>2. Network Interfaces:</strong> Enable IoT devices to communicate over local and wide-area networks.<ul><li><strong>WiFi (IEEE 802.11)</strong> — high-speed wireless LAN (54Mbps–1.3Gbps); suitable for IoT devices near power outlets requiring high bandwidth; used by ESP8266, ESP32, Raspberry Pi</li><li><strong>Bluetooth / BLE</strong> — short-range (10–100m); BLE consumes 100× less power than Classic Bluetooth; ideal for wearables and battery sensors</li><li><strong>ZigBee</strong> — low-power (LR-WPAN), self-healing mesh network; used in smart home sensor networks (Philips Hue, Nest)</li><li><strong>LoRaWAN</strong> — long-range (15km rural), extremely low power; used for smart city and agricultural sensors with 5–10 year battery life</li><li><strong>Cellular (4G LTE / NB-IoT)</strong> — wide-area coverage; used for mobile IoT devices (vehicles, field sensors) where WiFi is unavailable</li><li><strong>Ethernet</strong> — wired LAN; highest reliability and speed; used in industrial IoT requiring deterministic communication</li></ul><strong>3. Software Interfaces (APIs and Protocols):</strong><ul><li><strong>MQTT</strong> — lightweight publish-subscribe messaging; 2.5× less data than HTTP; ideal for constrained IoT devices and unreliable networks</li><li><strong>HTTP/REST API</strong> — universal web standard; request-response; used for IoT cloud platform integration</li><li><strong>CoAP</strong> — HTTP semantics over UDP; designed for 8-bit MCUs with limited RAM; used in ZigBee and 6LoWPAN networks</li><li><strong>WebSocket</strong> — persistent full-duplex TCP connection; used for real-time IoT dashboards requiring push notifications</li></ul><strong>4. User Interfaces:</strong> Mobile apps (iOS/Android), web dashboards, voice assistants (Alexa, Google Assistant), and industrial HMI (Human Machine Interface) control panels.<br><br><strong>Importance of Interfaces in IoT Systems:</strong><ul><li>Enable seamless data flow from physical sensors to cloud platforms and end-user applications</li><li>Allow heterogeneous devices from different manufacturers to communicate through standardized protocols</li><li>Support hardware and software modularity — swap out sensors without rewriting network code</li><li>Provide multiple layers of data exchange (hardware-to-MCU, MCU-to-cloud, cloud-to-user)</li><li>Enable interoperability: a DHT11 sensor on Arduino can send data via MQTT to AWS IoT, which displays on a React.js dashboard accessed from any smartphone globally</li></ul>"
+          },
+          {
+            q: "What is IoT design methodology? Describe the necessary steps required for IoT design methodology.",
+            a: "<strong>IoT Design Methodology Definition:</strong> IoT design methodology is a structured, systematic engineering approach for planning, designing, implementing, testing, and deploying an IoT solution. It ensures that all aspects — hardware selection, software development, network architecture, security, scalability, and user experience — are addressed coherently from the initial concept through to production deployment. Without a formal methodology, IoT projects risk scope creep, security vulnerabilities, poor scalability, and integration failures.<br><br><strong>Detailed Steps of IoT Design Methodology:</strong><br><br><strong>Step 1: Purpose and Requirements Specification</strong><br>Define clearly what problem the IoT system needs to solve. Identify all stakeholders (end users, operators, maintenance teams). Specify functional requirements (what the system must do: read temperature every 30 seconds, send alerts when threshold exceeded) and non-functional requirements (performance, security level, battery life, response time, regulatory compliance). Document the use cases with success and failure scenarios.<br><br><strong>Step 2: Process Specification</strong><br>Define the complete data flow and processing pipeline of the IoT system. Map out: what data is collected, how often, from where, by whom, processed how, stored where, and acted upon by what system. Create process flow diagrams showing the sequence from sensor to actuator.<br><br><strong>Step 3: Domain Model Specification</strong><br>Identify and model all entities (devices, users, cloud services, third-party systems) and the relationships between them. Define device roles: sensor node, gateway, cloud server, end-user app. Establish entity responsibilities and boundaries.<br><br><strong>Step 4: Information Model Specification</strong><br>Define the exact data structures, formats, and schemas for all information exchanged in the system. Specify: sensor data JSON structure, MQTT topic hierarchy, REST API endpoint schemas, database table designs. Standardize units (Celsius vs Fahrenheit), data types, precision levels, and timestamp formats.<br><br><strong>Step 5: Service Specification</strong><br>Identify all IoT services required: data ingestion service, device provisioning service, real-time alert notification service, OTA firmware update service, analytics and reporting service, authentication and authorization service. Define service-level agreements (SLA) for each.<br><br><strong>Step 6: IoT Level Specification</strong><br>Select the appropriate IoT deployment level (1–6) based on the application's complexity, data volume, and analytics requirements. Level 1 for simple local-only devices. Level 3–4 for cloud-connected devices with heavy analytics. Level 5–6 for large-scale WSN-based deployments.<br><br><strong>Step 7: Functional View Specification</strong><br>Map requirements to the six IoT functional blocks: Device (hardware), Communication (protocols and connectivity), Services (application logic), Management (monitoring and updates), Security (authentication, encryption, access control), Application (user interface and dashboard).<br><br><strong>Step 8: Operational View Specification</strong><br>Specify the physical deployment environment (indoor/outdoor, temperature range, humidity), maintenance strategy (who maintains devices, how often, OTA or on-site), power strategy (mains/battery/solar), and scalability plan (how the system grows from 10 to 10,000 devices).<br><br><strong>Step 9: Device and Component Integration</strong><br>Select specific hardware components (sensors, MCUs, boards, gateways), software frameworks, and cloud services based on requirements from Steps 1–8. Build prototypes. Integrate components and test subsystems individually then together. Validate against requirements. Perform security testing and penetration testing.<br><br><strong>Step 10: Application Development and Deployment</strong><br>Develop the complete IoT application stack: embedded firmware for devices, backend cloud services, REST/MQTT APIs, database schemas, real-time data processing pipelines, and front-end dashboards for monitoring and control. Deploy with proper CI/CD (Continuous Integration/Deployment) pipelines. Monitor post-deployment performance and iterate."
+          },
+          {
+            q: "Describe the required components, circuit connection using GPIO pins, and the Python program used to make the LED blink.",
+            a: "<strong>Project: LED Blinking on Raspberry Pi using GPIO</strong><br><br>This is one of the fundamental IoT experiments demonstrating how Raspberry Pi controls physical hardware through its GPIO (General Purpose Input/Output) pins using Python programming.<br><br><strong>Required Components:</strong><table><tr><th>Component</th><th>Specification</th><th>Purpose</th></tr><tr><td>Raspberry Pi</td><td>Any model (RPi 3B+, 4)</td><td>Main processing unit</td></tr><tr><td>LED</td><td>Standard 5mm LED (Red/Green)</td><td>Visual output indicator</td></tr><tr><td>Resistor</td><td>330Ω, ¼ Watt</td><td>Current limiting to protect LED</td></tr><tr><td>Breadboard</td><td>400-tie or 830-tie solderless</td><td>Temporary circuit building platform</td></tr><tr><td>Jumper Wires</td><td>Male-to-Female (M2F)</td><td>Connects RPi GPIO to breadboard</td></tr></table><strong>Why the 330Ω Resistor is Necessary:</strong><br>Raspberry Pi GPIO output voltage = 3.3V. LED forward voltage (V_f) ≈ 2.0V. Maximum safe LED current = 10mA. Without resistor, LED would burn out instantly from excess current.<br>Resistor calculation: R = (V_supply − V_LED) / I_LED = (3.3 − 2.0) / 0.010 = 130Ω minimum. Using 330Ω provides a safety margin giving approximately 4mA current — safe and bright enough.<br><br><strong>Circuit Connection (GPIO BOARD Pin Numbering):</strong><ul><li>RPi Physical Pin 3 (GPIO 2) → 330Ω resistor (first lead)</li><li>330Ω resistor (second lead) → LED Anode (+, longer leg)</li><li>LED Cathode (−, shorter leg) → RPi Physical Pin 6 (GND)</li></ul>Note: The resistor can be placed on either side of the LED (before anode or after cathode) — the result is identical.<br><br><strong>Python Program — LED Blinking:</strong><code>import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library\nimport time                 # Import time for sleep function\n\n# Set pin numbering mode: BOARD uses physical pin numbers\n# (alternative is GPIO.BCM which uses Broadcom GPIO numbers)\nGPIO.setmode(GPIO.BOARD)\n\n# Configure Physical Pin 3 as an OUTPUT pin\nGPIO.setup(3, GPIO.OUT)\n\nprint(\"LED Blinking Program Started...\")\nprint(\"Press Ctrl+C to stop\")\n\ntry:\n    while True:                       # Infinite loop for continuous blinking\n        GPIO.output(3, GPIO.HIGH)     # Set pin HIGH (3.3V) → LED ON\n        print(\"LED ON\")\n        time.sleep(1)                 # Wait 1 second\n        \n        GPIO.output(3, GPIO.LOW)      # Set pin LOW (0V) → LED OFF\n        print(\"LED OFF\")\n        time.sleep(1)                 # Wait 1 second\n\nexcept KeyboardInterrupt:\n    # This block runs when user presses Ctrl+C\n    print(\"\\nProgram stopped by user\")\n    GPIO.cleanup()                    # IMPORTANT: resets all GPIO pins to default state\n                                      # Prevents hardware damage on future runs</code><strong>Program Explanation:</strong><ul><li><code>GPIO.setmode(GPIO.BOARD)</code> — tells the library to use physical pin numbers printed on the board (1–40), making the code board-layout-friendly and independent of Broadcom GPIO numbers.</li><li><code>GPIO.setup(3, GPIO.OUT)</code> — configures Physical Pin 3 as a digital output. This pin can now be driven HIGH (3.3V) or LOW (0V) by the program.</li><li><code>GPIO.output(3, GPIO.HIGH)</code> — drives Pin 3 to 3.3V. Current flows: Pin 3 → Resistor → LED Anode → LED Cathode → GND. LED lights up.</li><li><code>time.sleep(1)</code> — pauses program execution for exactly 1 second while the LED stays in its current state.</li><li><code>GPIO.output(3, GPIO.LOW)</code> — drives Pin 3 to 0V. No current flows. LED turns off.</li><li><code>GPIO.cleanup()</code> — essential cleanup that resets all used GPIO pins to their default input state and releases them. Without this, the next program run may encounter 'already in use' warnings or short circuits.</li></ul><strong>Variations:</strong><ul><li>Change blink speed: modify <code>time.sleep()</code> values (0.1 for fast blink, 2 for slow)</li><li>Control multiple LEDs: add <code>GPIO.setup(5, GPIO.OUT)</code>, <code>GPIO.setup(7, GPIO.OUT)</code> for alternating or sequential patterns</li><li>Trigger via sensor: replace <code>while True</code> with sensor reading logic to blink LED only when motion detected or temperature exceeds threshold</li></ul>"
+          },
+          {
+            q: "Explain IoT devices and endpoints. Describe their roles in an IoT system architecture with suitable examples.",
+            a: "<strong>IoT Devices:</strong><br>An IoT device is a physical object embedded with sensors, actuators, a processing unit (microcontroller/microprocessor), memory, and internet connectivity hardware. IoT devices can perceive the physical environment through sensors, make local processing decisions, and communicate data with other devices, edge gateways, or cloud platforms — with minimal or no direct human intervention required during operation.<br><br><strong>Characteristics of IoT Devices:</strong><ul><li><strong>Unique Identity</strong> — each device has a globally unique identifier (IP address, MAC address, or device certificate) enabling individual addressability in large deployments</li><li><strong>Sensing and Actuation</strong> — equipped with domain-specific sensors (temperature, pressure, image) and/or actuators (motors, valves, displays)</li><li><strong>Embedded Processing</strong> — local processing capability from simple 8-bit microcontrollers (Arduino) to powerful quad-core processors (Raspberry Pi), enabling edge computing</li><li><strong>Connectivity</strong> — wireless (WiFi, BLE, ZigBee, LoRa, Cellular) or wired (Ethernet, USB) interfaces for data communication</li><li><strong>Power Management</strong> — optimized for low power consumption; many IoT devices operate on batteries for months or years</li></ul><strong>IoT Endpoints:</strong><br>An IoT endpoint is the device at the farthest edge of the IoT network — the first point where physical data enters the IoT system (data source endpoint) or the last point where commands are executed in the physical world (data destination endpoint). Endpoints are the sensing and actuation nodes of the IoT architecture.<br><br>Key distinction: while all IoT endpoints are IoT devices, not all IoT devices are endpoints. A Raspberry Pi acting as a gateway is an IoT device but not an endpoint in the traditional sense — it aggregates data from endpoint sensors below it.<br><br><strong>Roles in IoT System Architecture:</strong><table><tr><th>Architecture Layer</th><th>Role</th><th>IoT Device/Endpoint Example</th></tr><tr><td>Perception Layer (Edge)</td><td>Endpoints: sense physical data, execute actuator commands</td><td>DHT11 temperature sensor, PIR motion sensor, relay module</td></tr><tr><td>Processing Layer (Edge/Fog)</td><td>IoT devices: aggregate, filter, and pre-process endpoint data</td><td>Arduino, ESP32, Raspberry Pi reading multiple sensors</td></tr><tr><td>Network Layer</td><td>IoT gateways: route data between edge and cloud using different protocols</td><td>RPi acting as MQTT-to-HTTP gateway, industrial IoT gateway</td></tr><tr><td>Cloud/Application Layer</td><td>Cloud platforms: store, analyze, visualize IoT data; send commands</td><td>AWS IoT Core, Azure IoT Hub, ThingSpeak</td></tr><tr><td>User Layer</td><td>User interfaces: dashboards and apps for human monitoring/control</td><td>Grafana dashboard, mobile app, voice assistant</td></tr></table><strong>Real-World Examples with Roles:</strong><ul><li><strong>Smart Energy Meter (Endpoint → Cloud):</strong> The smart meter (endpoint) measures household electricity consumption every 15 minutes. Data is transmitted via cellular to the utility company's cloud server (application layer). The web dashboard (user layer) shows real-time and historical consumption. Anomaly detection algorithms flag unusual usage patterns as potential faults or unauthorized consumption.</li><li><strong>Industrial Vibration Sensor (IIoT Endpoint):</strong> Vibration sensor attached to a motor bearing (endpoint) samples at 10kHz and sends FFT-processed data via WirelessHART to an edge gateway (IoT device). Gateway aggregates data from 50 sensors and forwards to cloud analytics. Machine learning model identifies bearing wear signatures, triggering maintenance work orders 3 weeks before predicted failure.</li><li><strong>Raspberry Pi IoT Gateway:</strong> Multiple Arduino nodes (endpoints) collecting greenhouse temperature, humidity, CO2, and light data transmit via ZigBee to a Raspberry Pi (IoT gateway device). The RPi aggregates all sensor data, applies local control logic (turns on grow lights when light falls below threshold), and publishes data to AWS IoT Core via MQTT over WiFi. This hybrid architecture reduces cloud data volume by 80% through local processing.</li></ul>"
+          },
+          {
+            q: "What are IoT devices? Explain their components and working in an IoT system. Illustrate your answer with suitable examples of common IoT devices used in real-world applications.",
+            a: "<strong>IoT Devices Definition:</strong><br>IoT (Internet of Things) devices are physical objects — ranging from tiny microcontroller-based sensor nodes to powerful edge computing platforms — embedded with sensing, processing, storage, and connectivity capabilities that enable them to collect real-world data, perform local processing, and communicate with other devices or cloud platforms without continuous direct human intervention. The 'intelligence' of an IoT device lies in its ability to make autonomous decisions based on sensor inputs and programmed logic or machine learning models.<br><br><strong>Core Components of an IoT Device:</strong><ul><li><strong>Sensors/Actuators</strong> — the perception and action components. Sensors (DHT11, BMP280, PIR, accelerometer) convert physical phenomena to measurable electrical signals. Actuators (relays, servo motors, solenoid valves, LED arrays) convert electrical control signals to physical actions in the environment.</li><li><strong>Microcontroller/Microprocessor (Processing Unit)</strong> — the brain of the IoT device. Microcontrollers (ATmega328P in Arduino, ESP32) are optimized for embedded, low-power, real-time processing. Microprocessors (ARM Cortex-A in Raspberry Pi) offer full OS support for complex computations and multi-tasking IoT applications.</li><li><strong>Memory</strong> — Flash memory stores program code and configuration (non-volatile). RAM stores runtime variables and sensor buffers (volatile). Some devices include EEPROM for persistent calibration data storage.</li><li><strong>Communication Module</strong> — provides network connectivity. Different technologies serve different use cases: WiFi for high-bandwidth local networking, Bluetooth/BLE for short-range personal devices, LoRa for long-range low-power wide-area, Zigbee for mesh sensor networks, and cellular (4G/NB-IoT) for mobile deployments.</li><li><strong>Power Supply Unit</strong> — AC adapters for stationary devices, rechargeable LiPo/Li-Ion batteries for portable devices, solar panels with power management ICs for permanently deployed remote sensors.</li><li><strong>User Interface (optional)</strong> — small OLED/LCD displays, LED indicators, buttons for local interaction; or entirely remote via cloud apps.</li></ul><strong>Working of an IoT Device in a Complete System:</strong><br>The operational cycle of an IoT device follows this sequence:<br>1. <strong>Sense</strong>: Sensors continuously or periodically measure physical parameters (e.g., DHT11 reads temperature every 2 seconds)<br>2. <strong>Process Locally</strong>: Microcontroller reads raw ADC or digital values, applies calibration formulas, checks against threshold conditions, formats data as JSON or CSV<br>3. <strong>Communicate</strong>: Formatted data is transmitted via WiFi+MQTT to cloud broker, or via LoRa to a gateway, using appropriate protocol<br>4. <strong>Cloud Processing</strong>: IoT platform (AWS IoT, Adafruit IO) ingests data into time-series database, runs analytics, triggers rules (e.g., if temp > 35°C, send push notification)<br>5. <strong>User Interaction</strong>: User views real-time gauges and historical charts on web dashboard or mobile app; can manually override device settings<br>6. <strong>Actuation</strong>: Cloud sends command back to device (or device acts autonomously based on local logic) to trigger actuators — relay turns on fan, solenoid valve opens for irrigation<br><br><strong>Real-World IoT Device Examples:</strong><ul><li><strong>Smart Thermostat (Google Nest, Ecobee):</strong> Components: temperature+humidity sensors, WiFi module, ARM processor, color touchscreen, HVAC relay. Working: learns occupancy patterns over 7–10 days using passive IR sensor and usage history. Automatically pre-heats/cools home 30 minutes before user's typical arrival. Reduces energy consumption by 10–15% through intelligent scheduling. Remote control via smartphone app. Integrates with Google Assistant for voice control.</li><li><strong>Smart Fitness Band (Fitbit Charge, Xiaomi Mi Band):</strong> Components: 3-axis MEMS accelerometer, photoplethysmography (PPG) optical heart rate sensor, SpO2 sensor, vibration motor, BLE 5.0 chip, AMOLED display, 180mAh LiPo battery. Working: Accelerometer tracks motion 24/7 for step counting and sleep stage detection. PPG sensor flashes green LEDs 25× per second into wrist capillaries and measures reflected light to calculate heart rate (50–220 BPM range). BLE syncs data to smartphone app which uploads to cloud for trend analysis, personalized fitness recommendations, and physician sharing.</li><li><strong>Industrial Smart Sensor (Emerson Rosemount):</strong> Components: MEMS pressure sensor, temperature sensor, WirelessHART radio module, 3.6V lithium battery (5+ year life). Working: Measures process pressure at 1-second intervals. Runs FFT analysis locally to detect abnormal pulsation patterns indicating pump cavitation. Transmits compressed data over WirelessHART mesh network to plant DCS (Distributed Control System). Maintenance dashboard shows real-time sensor health, battery status, and process trends. Predictive alerts generated 2–4 weeks before instrumented equipment failure.</li><li><strong>Smart Street Light:</strong> Components: LDR (ambient light sensor), PIR motion sensor, power monitoring chip, DALI/0-10V dimming controller, NB-IoT cellular module. Working: LDR detects sunset/sunrise for automatic ON/OFF switching. PIR detects approaching pedestrians/vehicles and ramps up brightness from 30% to 100% within 2 seconds. Power monitoring chip measures actual energy consumption and reports to city management platform via NB-IoT. Faulty lights are detected within 5 minutes and work orders automatically generated for maintenance crews. Total energy savings: 60–70% compared to traditional sodium vapor street lights.</li></ul>"
+          },
+          {
+            q: "Describe the purpose and working of interfaces: GPIO, USB, HDMI, CSI, DSI, SPI, I²C, and UART with suitable examples.",
+            a: "IoT systems rely on multiple communication interfaces to connect sensors, peripherals, displays, cameras, and networks. Each interface has specific electrical characteristics, data transfer speeds, and optimal use cases.<br><br><strong>1. GPIO (General Purpose Input/Output)</strong><br>Purpose: Provides the most fundamental method of hardware control — directly driving a pin HIGH (3.3V) or reading its logic level LOW/HIGH.<br>Working: GPIO pins are connected to the processor's I/O port registers. Writing 1 to a register bit drives the pin to V_CC (3.3V for RPi). Writing 0 drives it to GND. Reading a bit samples the current voltage on the pin (>2V = HIGH = 1, <0.8V = LOW = 0). Supports INPUT mode for reading sensor binary outputs (button pressed/released, PIR triggered/clear) and OUTPUT mode for driving LEDs, relays, and motor driver enable pins.<code>import RPi.GPIO as GPIO\nGPIO.setmode(GPIO.BOARD)\nGPIO.setup(3, GPIO.OUT)    # Pin 3 as output\nGPIO.setup(5, GPIO.IN)     # Pin 5 as input\n\nGPIO.output(3, True)       # Turn LED ON\nstate = GPIO.input(5)      # Read button/sensor state\nprint(\"Sensor state:\", state)</code>IoT Example: Connecting DHT11 digital temperature sensor to GPIO pin 11, reading 40-bit serial temperature and humidity data.<br><br><strong>2. USB (Universal Serial Bus)</strong><br>Purpose: Provides plug-and-play connectivity for external peripherals using a standardized connector and protocol. Supports power delivery (5V) simultaneously with data transfer.<br>Working: USB uses differential signaling on D+ and D− wires. The host controller (Raspberry Pi USB hub) enumerates connected devices upon plug-in, assigns addresses, identifies device class (mass storage, HID, CDC/serial), and establishes appropriate data transfer pipes. USB 2.0 provides 480 Mbps, USB 3.0 provides 5 Gbps.<br>IoT Example: Connecting a USB webcam to Raspberry Pi for computer vision-based security surveillance. The V4L2 driver automatically loads and the camera becomes accessible as /dev/video0 for OpenCV Python programs.<br><br><strong>3. HDMI (High Definition Multimedia Interface)</strong><br>Purpose: Transmits uncompressed high-definition video (up to 8K) and digital audio over a single cable, used to connect Raspberry Pi to monitors and televisions for GUI display.<br>Working: HDMI uses TMDS (Transition Minimized Differential Signaling) to transmit pixel clock, 3 data channels (Red, Green, Blue), and embedded audio. The Raspberry Pi GPU generates the video signal with configurable resolution (480p to 4K at 60fps). HDMI also supports CEC (Consumer Electronics Control) for remote control integration.<br>IoT Example: Connecting Raspberry Pi to an HDMI monitor to display a live IoT sensor dashboard built with Grafana, showing temperature/humidity/power readings in full-screen mode at a facility control room.<br><br><strong>4. CSI (Camera Serial Interface)</strong><br>Purpose: Provides a dedicated high-bandwidth serial connection specifically optimized for image sensor data — much faster than GPIO and lower CPU overhead than USB cameras.<br>Working: CSI uses MIPI D-PHY differential serial lanes (1–4 data lanes + 1 clock lane). The Raspberry Pi Camera Module contains a Sony IMX219 (8MP) or IMX477 (12MP) sensor. Raw Bayer image data streams at up to 3Gbps through the CSI cable to Raspberry Pi's ISP (Image Signal Processor) which handles demosaicing, noise reduction, and encoding in hardware without loading the ARM CPU.<br>IoT Example: RPi Camera Module connected via CSI enabling 1080p30 video recording for smart doorbell systems with face recognition using TensorFlow Lite running on the RPi 4 CPU.<br><br><strong>5. DSI (Display Serial Interface)</strong><br>Purpose: High-speed serial interface for directly connecting flat-panel LCD or OLED displays to Raspberry Pi without requiring an HDMI display or external controller board.<br>Working: Uses MIPI D-PHY differential signaling, typically 2 data lanes. The official 7-inch RPi Touchscreen uses a DSI-to-LVDS bridge chip. The display driver runs as a kernel module (DRM/KMS) providing a standard Linux framebuffer device. Touch data (capacitive, 10-point multi-touch) is sent back via I2C.<br>IoT Example: The official 7-inch 800×480 touchscreen connected via DSI, running a custom Tkinter Python GUI for a standalone IoT environmental monitoring station dashboard showing CO2, temperature, humidity, and TVOC levels.<br><br><strong>6. SPI (Serial Peripheral Interface)</strong><br>Purpose: High-speed 4-wire full-duplex synchronous serial communication for transferring data between a master microcontroller and peripheral chips such as ADCs, DACs, RFID readers, display controllers, and memory chips.<br>Working: The master generates SCLK (clock). On each rising edge of SCLK, one bit is transmitted on MOSI (from master to slave) and one bit is sampled on MISO (from slave to master) simultaneously — achieving true full-duplex operation. SS (Slave Select) pin activates a specific slave device (active LOW). SPI can operate from 1MHz up to 70MHz for high-speed SD card interfaces.<code># SPI example: reading from MCP3008 ADC\nimport spidev\nspi = spidev.SpiDev()\nspi.open(0, 0)  # bus 0, device 0 (CE0)\nspi.max_speed_hz = 1350000\n\ndef read_channel(channel):\n    adc = spi.xfer2([1, (8+channel)<<4, 0])\n    data = ((adc[1]&3) << 8) + adc[2]\n    return data\n\nvalue = read_channel(0)  # read analog sensor on channel 0\nprint(\"ADC Value:\", value)  # 0-1023</code>IoT Example: RC522 RFID reader connected via SPI to Raspberry Pi for an IoT-based access control system — reads 13.56MHz MIFARE card UIDs in <50ms.<br><br><strong>7. I²C (Inter-Integrated Circuit)</strong><br>Purpose: Two-wire serial communication protocol enabling a single master to communicate with multiple slave devices sharing the same SDA and SCL wires — ideal for sensor-rich IoT applications where pin count is limited.<br>Working: I2C is a multi-master, multi-slave protocol. Communication starts with a START condition (SDA falls while SCL is HIGH), followed by a 7-bit device address + R/W bit. The addressed slave acknowledges (pulls SDA LOW during 9th clock). Data is transferred in 8-bit bytes with ACK after each byte. Communication ends with a STOP condition (SDA rises while SCL is HIGH). Standard mode: 100kHz, Fast mode: 400kHz, High-speed: 3.4MHz.<code># I2C example: reading BMP280 temperature sensor\nimport smbus2\nbus = smbus2.SMBus(1)  # I2C bus 1\nBMP280_ADDR = 0x76\n\n# Read temperature registers\nraw_data = bus.read_i2c_block_data(BMP280_ADDR, 0xFA, 3)\ntemp_raw = (raw_data[0] << 12) | (raw_data[1] << 4) | (raw_data[2] >> 4)\nprint(\"Raw temperature:\", temp_raw)</code>IoT Example: Multiple sensors on a single I2C bus: BMP280 (pressure/temperature at 0x76), MPU-6050 (accelerometer/gyroscope at 0x68), SSD1306 OLED display (at 0x3C), DS3231 RTC (at 0x57) — all on the same 2 wires, consuming only 2 GPIO pins total.<br><br><strong>8. UART (Universal Asynchronous Receiver Transmitter)</strong><br>Purpose: Simple, reliable two-wire (TX+RX) asynchronous serial communication between exactly two devices. No clock line needed — both devices agree on baud rate in advance.<br>Working: UART uses a start bit (line goes LOW), followed by 5–9 data bits (LSB first), an optional parity bit (for error detection), and 1–2 stop bits (line returns HIGH). Common baud rates: 9600, 115200 bps. Each character takes 10 bit-times at 9600 baud = 1.04ms/character. UART is inherently full-duplex — TX of one device connects to RX of the other and vice versa.<code># UART example: reading GPS NMEA sentences\nimport serial\ngps_serial = serial.Serial('/dev/serial0', 9600, timeout=1)\n\nwhile True:\n    line = gps_serial.readline().decode('ascii', errors='ignore')\n    if line.startswith('$GPGGA'):\n        print(\"GPS Data:\", line.strip())\n        # Extract latitude, longitude, altitude from NMEA sentence</code>IoT Examples: HC-05 Bluetooth module connected to Arduino via UART for wireless serial IoT communication with smartphones. Neo-6M GPS module connected to RPi via UART providing real-time latitude/longitude for asset tracking IoT applications. SIM800L GSM module via UART for cellular IoT data transmission in areas without WiFi."
+          }
+        ]
+      }
+    };
+
+    let cM = null, cK = null;
+
+    function openModule(n) {
+      cM = n; cK = null;
+      const mod = D[n];
+      hide('view-home'); show('view-module');
+      document.getElementById('module-title').textContent = mod.title;
+      document.getElementById('module-subtitle').textContent = mod.subtitle;
+      const g = document.getElementById('marks-grid'); g.innerHTML = '';
+      mod.marks.forEach(m => {
+        const cl = m === 2 ? 'two' : m === 5 ? 'five' : 'ten';
+        g.innerHTML += `<div class="mkc ${cl}" onclick="openMarks(${m})" id="mc-${m}">
+      <span class="mv">${m}</span><span class="ml">Marks</span>
+      <div class="mc2">${mod[m].length} Questions &middot; Part ${m === 2 ? 'A' : m === 5 ? 'B' : 'C'}</div>
+    </div>`;
+      });
+      document.getElementById('qcontainer').innerHTML = '';
+      updateNav();
+    }
+
+    function openMarks(marks) {
+      cK = marks;
+      document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active'));
+      const mc = document.getElementById('mc-' + marks);
+      if (mc) mc.classList.add('active');
+      const qs = D[cM][marks];
+      const cl = marks === 2 ? 'two' : marks === 5 ? 'five' : 'ten';
+      const c = document.getElementById('qcontainer');
+      c.innerHTML = `<div class="mst"><span>${marks}-Mark Questions</span>&mdash; ${qs.length} Questions &middot; Part ${marks === 2 ? 'A' : marks === 5 ? 'B' : 'C'}</div>
+  <div class="toolbar">
+    <button class="tbtn" onclick="expandAll()">&#x25BC; Expand All</button>
+    <button class="tbtn" onclick="collapseAll()">&#x25B2; Collapse All</button>
+  </div>
+  <div class="qlist" id="ql">
+    ${qs.map((item, i) => `<div class="qi ${cl}" id="q${i}" onclick="tQ(${i})">
+      <div class="qh">
+        <span class="qn">${String.fromCharCode(65 + i)}</span>
+        <span class="qt">${item.q.replace(/\n/g, '<br>')}</span>
+        <span class="qtg">+</span>
+      </div>
+      <div class="qa"><div class="albl">Answer</div><div class="ab">${item.a}</div></div>
+    </div>`).join('')}
+  </div>`;
+      updateNav();
+      setTimeout(() => c.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    function tQ(i) { document.getElementById('q' + i).classList.toggle('open'); }
+    function expandAll() { document.querySelectorAll('.qi').forEach(e => e.classList.add('open')); }
+    function collapseAll() { document.querySelectorAll('.qi').forEach(e => e.classList.remove('open')); }
+
+    function goBack() {
+      if (cK !== null) { cK = null; document.getElementById('qcontainer').innerHTML = ''; document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active')); }
+      else if (cM !== null) { cM = null; hide('view-module'); show('view-home'); }
+      updateNav();
+    }
+
+    function show(id) { const el = document.getElementById(id); el.style.display = 'block'; el.className = 'view'; }
+    function hide(id) { document.getElementById(id).style.display = 'none'; }
+
+    function updateNav() {
+      const bb = document.getElementById('back-btn');
+      const bc = document.getElementById('breadcrumb');
+      if (!cM) { bb.style.display = 'none'; bc.innerHTML = '<span class="active">Home</span>'; }
+      else {
+        bb.style.display = 'flex';
+        const mn = 'Module ' + cM;
+        if (!cK) { bc.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">›</span><span class="active">${mn}</span>`; }
+        else { bc.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">›</span><span class="lnk" onclick="goToModule()">${mn}</span><span class="sep">›</span><span class="active">${cK} Marks</span>`; }
+      }
+    }
+
+    function goHome() { cM = null; cK = null; hide('view-module'); show('view-home'); updateNav(); }
+    function goToModule() { if (cM) { cK = null; document.getElementById('qcontainer').innerHTML = ''; document.querySelectorAll('.mkc').forEach(c => c.classList.remove('active')); updateNav(); } }
+  </script>
+</body>
+
+</html>

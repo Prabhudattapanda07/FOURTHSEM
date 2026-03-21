@@ -861,11 +861,12 @@
     </div>
   </main>
   <footer class="page-footer">&copy; Nandhan K &amp; Prabhudatta Panda</footer>
-  <script>const D = {
-/* â”€â”€â”€â”€ MODULE 1 â”€â”€â”€â”€ */
+  <script>
+const D = {
+/* ---- MODULE 1 ---- */
 1:{
   name:"Introduction to Cryptography",
-  icon:"ðŸ”", topic:"Ciphers, Attacks, Classical Techniques & Security Goals",
+  icon:"🔐", topic:"Ciphers, Attacks, Classical Techniques & Security Goals",
   c1:"#3b82f6", cb:"rgba(59,130,246,.13)",
   m2:[
     {q:"Define cryptography.",
@@ -875,37 +876,37 @@
     {q:"Define steganography.",
      a:"Steganography is the practice of hiding secret information within non-secret data or a carrier medium (such as images, audio, or video files) so that the existence of the message is concealed. Unlike cryptography which scrambles a message, steganography hides the fact that a message exists at all. Example: embedding text in the least significant bits of image pixels."},
     {q:"What is a passive attack? Give one example.",
-     a:"A passive attack involves monitoring or eavesdropping on transmissions without modifying or disrupting the data. The attacker only observes and gathers information. The goal is to obtain the contents of a transmission or analyse traffic patterns.\n\nExample: Traffic analysis â€” an attacker monitors communication frequency and patterns between two parties to infer information without reading the actual content."},
+     a:"A passive attack involves monitoring or eavesdropping on transmissions without modifying or disrupting the data. The attacker only observes and gathers information. The goal is to obtain the contents of a transmission or analyse traffic patterns.\n\nExample: Traffic analysis — an attacker monitors communication frequency and patterns between two parties to infer information without reading the actual content."},
     {q:"What is an active attack? Give one example.",
-     a:"An active attack involves modification, fabrication, or interruption of data in transit. The attacker actively alters communication or injects false information.\n\nExample: Man-in-the-Middle (MitM) attack â€” the attacker intercepts messages between Alice and Bob, potentially altering them before forwarding, making both parties think they are communicating directly with each other."},
+     a:"An active attack involves modification, fabrication, or interruption of data in transit. The attacker actively alters communication or injects false information.\n\nExample: Man-in-the-Middle (MitM) attack — the attacker intercepts messages between Alice and Bob, potentially altering them before forwarding, making both parties think they are communicating directly with each other."},
     {q:"Explain Playfair Cipher Technique.",
-     a:"The Playfair Cipher is a digraph substitution cipher that encrypts pairs of letters using a 5Ã—5 key matrix.\n\nSteps:\n1. Construct a 5Ã—5 matrix using a keyword (I and J share one cell)\n2. Split plaintext into digraphs (pairs); insert 'X' between repeated letters\n3. Rules:\n   â€¢ Same row â†’ shift right\n   â€¢ Same column â†’ shift down\n   â€¢ Rectangle â†’ swap columns\n\nExample: With key MONARCHY, 'AR' encrypts based on their matrix positions."},
+     a:"The Playfair Cipher is a digraph substitution cipher that encrypts pairs of letters using a 5×5 key matrix.\n\nSteps:\n1. Construct a 5×5 matrix using a keyword (I and J share one cell)\n2. Split plaintext into digraphs (pairs); insert 'X' between repeated letters\n3. Rules:\n   • Same row → shift right\n   • Same column → shift down\n   • Rectangle → swap columns\n\nExample: With key MONARCHY, 'AR' encrypts based on their matrix positions."},
     {q:"What is a substitution cipher?",
-     a:"A substitution cipher replaces each element of the plaintext with another element according to a fixed mapping. Each letter/symbol is substituted by a corresponding letter/symbol in the ciphertext.\n\nTypes:\nâ€¢ Caesar Cipher (shift by fixed amount)\nâ€¢ Monoalphabetic (one-to-one mapping)\nâ€¢ Polyalphabetic (multiple mappings, e.g., VigenÃ¨re)\nâ€¢ Playfair (digraph substitution)\n\nKey strength depends on the complexity of the substitution mapping."},
+     a:"A substitution cipher replaces each element of the plaintext with another element according to a fixed mapping. Each letter/symbol is substituted by a corresponding letter/symbol in the ciphertext.\n\nTypes:\n• Caesar Cipher (shift by fixed amount)\n• Monoalphabetic (one-to-one mapping)\n• Polyalphabetic (multiple mappings, e.g., Vigènere)\n• Playfair (digraph substitution)\n\nKey strength depends on the complexity of the substitution mapping."},
     {q:"What is a transposition cipher?",
-     a:"A transposition cipher rearranges the positions of characters in the plaintext without changing the actual characters themselves. The letters remain the same but their order changes based on a permutation key.\n\nExamples:\nâ€¢ Rail Fence: writes message in zigzag rows, reads row by row\nâ€¢ Columnar Transposition: writes message in columns, reads in key-specified order\n\nAttack: frequency analysis of letters still works since letters are unchanged."},
+     a:"A transposition cipher rearranges the positions of characters in the plaintext without changing the actual characters themselves. The letters remain the same but their order changes based on a permutation key.\n\nExamples:\n• Rail Fence: writes message in zigzag rows, reads row by row\n• Columnar Transposition: writes message in columns, reads in key-specified order\n\nAttack: frequency analysis of letters still works since letters are unchanged."},
     {q:"Distinguish between symmetric and asymmetric encryption.",
-     a:"Symmetric Encryption:\nâ€¢ Same key for encryption and decryption\nâ€¢ Fast and efficient for large data\nâ€¢ Key distribution is a major challenge\nâ€¢ Examples: DES, AES, RC4\n\nAsymmetric Encryption:\nâ€¢ Uses a key pair: public key (encrypt) and private key (decrypt)\nâ€¢ Slower due to complex math operations\nâ€¢ Solves key distribution problem\nâ€¢ Examples: RSA, Diffie-Hellman, ECC\n\nKey difference: Symmetric is faster; Asymmetric is more secure for key exchange."},
+     a:"Symmetric Encryption:\n• Same key for encryption and decryption\n• Fast and efficient for large data\n• Key distribution is a major challenge\n• Examples: DES, AES, RC4\n\nAsymmetric Encryption:\n• Uses a key pair: public key (encrypt) and private key (decrypt)\n• Slower due to complex math operations\n• Solves key distribution problem\n• Examples: RSA, Diffie-Hellman, ECC\n\nKey difference: Symmetric is faster; Asymmetric is more secure for key exchange."},
     {q:"Describe the basic idea behind the Caesar cipher.",
-     a:"The Caesar Cipher is a simple substitution cipher where each letter in the plaintext is shifted a fixed number of positions down the alphabet. The shift amount is the key.\n\nFormula:\n  Encryption: C = (P + k) mod 26\n  Decryption: P = (C âˆ’ k) mod 26\n\nExample (shift = 3):\n  Plaintext:  A B C D â†’ D E F G\n  'HELLO' â†’ 'KHOOR'\n\nOnly 25 possible keys â†’ easily broken by brute force."},
+     a:"The Caesar Cipher is a simple substitution cipher where each letter in the plaintext is shifted a fixed number of positions down the alphabet. The shift amount is the key.\n\nFormula:\n  Encryption: C = (P + k) mod 26\n  Decryption: P = (C − k) mod 26\n\nExample (shift = 3):\n  Plaintext:  A B C D → D E F G\n  'HELLO' → 'KHOOR'\n\nOnly 25 possible keys → easily broken by brute force."},
     {q:"What is the OSI security architecture?",
      a:"The OSI Security Architecture (X.800 standard) defines a systematic approach to security in networks. It identifies three key concepts:\n\n1. Security Attacks: Passive (eavesdropping, traffic analysis) and Active (modification, replay, fabrication)\n2. Security Mechanisms: Encryption, digital signatures, access control, authentication exchange, data integrity, traffic padding\n3. Security Services: Confidentiality, Authentication, Integrity, Non-repudiation, Access Control, Availability"},
     {q:"Define confidentiality and integrity as security goals.",
      a:"Confidentiality: Ensures that information is accessible only to those authorised to access it. Prevents unauthorised disclosure of data. Achieved through encryption, access controls, and secure channels.\n\nIntegrity: Ensures that data has not been altered or tampered with during storage or transmission. Guarantees the accuracy and completeness of data. Achieved through hash functions, MACs, and digital signatures."},
     {q:"What is a Vigenere cipher?",
-     a:"The VigenÃ¨re Cipher is a polyalphabetic substitution cipher that uses a repeating keyword to encrypt plaintext. Each letter of the keyword specifies a different Caesar shift for the corresponding plaintext letter.\n\nFormula: Cáµ¢ = (Páµ¢ + Káµ¢) mod 26\n\nExample: Key = KEY, Plaintext = HELLO\nH(7)+K(10)=R, E(4)+E(4)=I, L(11)+Y(24)=J, L+K=V, O+E=S â†’ Ciphertext: RIJVS\n\nStronger than Caesar as multiple alphabets are used; vulnerable to Kasiski test."},
+     a:"The Vigènere Cipher is a polyalphabetic substitution cipher that uses a repeating keyword to encrypt plaintext. Each letter of the keyword specifies a different Caesar shift for the corresponding plaintext letter.\n\nFormula: C\u1d62 = (P\u1d62 + K\u1d62) mod 26\n\nExample: Key = KEY, Plaintext = HELLO\nH(7)+K(10)=R, E(4)+E(4)=I, L(11)+Y(24)=J, L+K=V, O+E=S → Ciphertext: RIJVS\n\nStronger than Caesar as multiple alphabets are used; vulnerable to Kasiski test."},
     {q:"Describe the concept of perfect secrecy in cryptography.",
-     a:"Perfect secrecy (Shannon secrecy) means that the ciphertext provides absolutely no information about the plaintext. Even with unlimited computing power, an attacker cannot determine the plaintext from the ciphertext.\n\nFormally: P(plaintext | ciphertext) = P(plaintext)\n\nThe One-Time Pad (OTP) achieves perfect secrecy:\nâ€¢ Key must be truly random\nâ€¢ Key length must equal message length\nâ€¢ Key must never be reused\n\nPractical limitation: key distribution is as hard as transmitting the message itself."},
+     a:"Perfect secrecy (Shannon secrecy) means that the ciphertext provides absolutely no information about the plaintext. Even with unlimited computing power, an attacker cannot determine the plaintext from the ciphertext.\n\nFormally: P(plaintext | ciphertext) = P(plaintext)\n\nThe One-Time Pad (OTP) achieves perfect secrecy:\n• Key must be truly random\n• Key length must equal message length\n• Key must never be reused\n\nPractical limitation: key distribution is as hard as transmitting the message itself."},
     {q:"Explain the difference between a brute-force attack and a cryptanalysis attack.",
-     a:"Brute-Force Attack:\nâ€¢ Tries every possible key until the correct one is found\nâ€¢ Purely exhaustive search\nâ€¢ Always eventually succeeds given enough time\nâ€¢ Complexity: O(2^n) where n = key length\nâ€¢ Defence: use long keys (128-bit AES has 2^128 possibilities)\n\nCryptanalysis Attack:\nâ€¢ Exploits weaknesses in the cipher's mathematical structure\nâ€¢ Uses statistical patterns, algebraic weaknesses, or known plaintext\nâ€¢ Types: ciphertext-only, known-plaintext, chosen-plaintext, differential, linear\nâ€¢ More efficient than brute force if cipher has structural weaknesses"}
+     a:"Brute-Force Attack:\n• Tries every possible key until the correct one is found\n• Purely exhaustive search\n• Always eventually succeeds given enough time\n• Complexity: O(2^n) where n = key length\n• Defence: use long keys (128-bit AES has 2^128 possibilities)\n\nCryptanalysis Attack:\n• Exploits weaknesses in the cipher's mathematical structure\n• Uses statistical patterns, algebraic weaknesses, or known plaintext\n• Types: ciphertext-only, known-plaintext, chosen-plaintext, differential, linear\n• More efficient than brute force if cipher has structural weaknesses"}
   ],
   m5:[], m10:[]
 },
 
-/* â”€â”€â”€â”€ MODULE 2 â”€â”€â”€â”€ */
+/* ---- MODULE 2 ---- */
 2:{
   name:"Symmetric Encryption",
-  icon:"âš™ï¸", topic:"Block & Stream Ciphers, DES, AES, Modes of Operation",
+  icon:"⚙️", topic:"Block & Stream Ciphers, DES, AES, Modes of Operation",
   c1:"#8b5cf6", cb:"rgba(139,92,246,.13)",
   m2:[
     {q:"Define block cipher.",
@@ -917,172 +918,172 @@
     {q:"What is AES?",
      a:"AES (Advanced Encryption Standard) is a symmetric block cipher adopted by NIST in 2001. It operates on 128-bit blocks with key sizes of 128, 192, or 256 bits (10, 12, or 14 rounds). Each round consists of: SubBytes, ShiftRows, MixColumns, and AddRoundKey. It is the current gold standard for symmetric encryption, used in HTTPS, Wi-Fi, file encryption."},
     {q:"Define pseudorandom number generator.",
-     a:"A Pseudorandom Number Generator (PRNG) is a deterministic algorithm that produces a sequence of numbers that appears random but is fully determined by an initial seed value. In cryptography, a CSPRNG (Cryptographically Secure PRNG) is required â€” one whose output is unpredictable even if previous outputs are known. Used in stream ciphers, key generation, and nonce creation. Example: RC4's PRGA component."},
+     a:"A Pseudorandom Number Generator (PRNG) is a deterministic algorithm that produces a sequence of numbers that appears random but is fully determined by an initial seed value. In cryptography, a CSPRNG (Cryptographically Secure PRNG) is required — one whose output is unpredictable even if previous outputs are known. Used in stream ciphers, key generation, and nonce creation. Example: RC4's PRGA component."},
     {q:"What is RC4?",
-     a:"RC4 (Rivest Cipher 4) is a symmetric stream cipher designed by Ron Rivest in 1987. It uses a variable key length (40â€“2048 bits) and generates a pseudorandom key stream via two phases:\n1. KSA (Key Scheduling Algorithm): initialises a 256-byte state array\n2. PRGA (Pseudo-Random Generation Algorithm): generates key stream bytes\n\nKey stream is XORed with plaintext. Widely used in SSL/TLS and WEP, but now considered insecure due to biases in initial output bytes."},
+     a:"RC4 (Rivest Cipher 4) is a symmetric stream cipher designed by Ron Rivest in 1987. It uses a variable key length (40–2048 bits) and generates a pseudorandom key stream via two phases:\n1. KSA (Key Scheduling Algorithm): initialises a 256-byte state array\n2. PRGA (Pseudo-Random Generation Algorithm): generates key stream bytes\n\nKey stream is XORed with plaintext. Widely used in SSL/TLS and WEP, but now considered insecure due to biases in initial output bytes."},
     {q:"List the different modes of operation in block ciphers.",
-     a:"Modes of Block Cipher Operation:\n1. ECB (Electronic CodeBook) â€” each block encrypted independently; same plaintext = same ciphertext\n2. CBC (Cipher Block Chaining) â€” each block XORed with previous ciphertext before encryption\n3. CFB (Cipher Feedback) â€” turns block cipher into stream cipher; self-synchronising\n4. OFB (Output Feedback) â€” key stream independent of plaintext; no error propagation\n5. CTR (Counter) â€” block cipher used as PRNG; allows parallel processing"},
+     a:"Modes of Block Cipher Operation:\n1. ECB (Electronic CodeBook) — each block encrypted independently; same plaintext = same ciphertext\n2. CBC (Cipher Block Chaining) — each block XORed with previous ciphertext before encryption\n3. CFB (Cipher Feedback) — turns block cipher into stream cipher; self-synchronising\n4. OFB (Output Feedback) — key stream independent of plaintext; no error propagation\n5. CTR (Counter) — block cipher used as PRNG; allows parallel processing"},
     {q:"Describe the concept of confusion and diffusion in cryptography.",
      a:"Confusion: Makes the relationship between the key and ciphertext as complex as possible. Achieved through substitution (S-boxes). Goal: Even if an attacker knows some ciphertext, they cannot determine the key.\n\nDiffusion: Spreads the influence of each plaintext bit over many ciphertext bits. Achieved through permutations (P-boxes, ShiftRows). Goal: Changing one plaintext bit changes ~half the ciphertext bits (avalanche effect).\n\nBoth concepts were introduced by Claude Shannon and are fundamental to secure block cipher design (e.g., AES, DES)."},
     {q:"Distinguish between ECB and CBC modes of operation.",
-     a:"ECB (Electronic CodeBook):\nâ€¢ Each block encrypted independently with the same key\nâ€¢ Identical plaintext blocks â†’ identical ciphertext blocks (insecure pattern leakage)\nâ€¢ No chaining; parallel encryption/decryption possible\nâ€¢ Weak: exposes patterns in structured data\n\nCBC (Cipher Block Chaining):\nâ€¢ Each plaintext block XORed with previous ciphertext block before encryption\nâ€¢ Formula: Cáµ¢ = E_K(Páµ¢ âŠ• Cáµ¢â‚‹â‚); Câ‚€ = IV\nâ€¢ Identical plaintext blocks â†’ different ciphertext blocks\nâ€¢ More secure; serial encryption required"},
+     a:"ECB (Electronic CodeBook):\n• Each block encrypted independently with the same key\n• Identical plaintext blocks → identical ciphertext blocks (insecure pattern leakage)\n• No chaining; parallel encryption/decryption possible\n• Weak: exposes patterns in structured data\n\nCBC (Cipher Block Chaining):\n• Each plaintext block XORed with previous ciphertext block before encryption\n• Formula: C\u1d62 = E_K(P\u1d62 ⊕ C\u1d62\u208b\u2081); C\u2080 = IV\n• Identical plaintext blocks → different ciphertext blocks\n• More secure; serial encryption required"},
     {q:"Explain the key distribution problem in symmetric encryption.",
-     a:"The key distribution problem in symmetric encryption is: how do two parties securely share a secret key over an insecure channel before they have any shared secret?\n\nChallenges:\nâ€¢ If key is sent over the network, it can be intercepted\nâ€¢ Physical key exchange is impractical for large-scale systems\nâ€¢ n parties need n(nâˆ’1)/2 unique keys\n\nSolutions:\nâ€¢ Key Distribution Centre (KDC) / Kerberos\nâ€¢ Diffie-Hellman key exchange\nâ€¢ Asymmetric encryption to encrypt symmetric keys"},
+     a:"The key distribution problem in symmetric encryption is: how do two parties securely share a secret key over an insecure channel before they have any shared secret?\n\nChallenges:\n• If key is sent over the network, it can be intercepted\n• Physical key exchange is impractical for large-scale systems\n• n parties need n(n−1)/2 unique keys\n\nSolutions:\n• Key Distribution Centre (KDC) / Kerberos\n• Diffie-Hellman key exchange\n• Asymmetric encryption to encrypt symmetric keys"},
     {q:"What is SDES?",
-     a:"SDES (Simplified DES) is a simplified version of DES designed for educational purposes. It uses a 10-bit key to encrypt 8-bit plaintext blocks in 2 rounds. Structure mirrors DES: initial permutation (IP), two rounds with Feistel function (expansion, S-boxes, P4), inverse permutation (IPâ»Â¹), and two subkeys generated via key scheduling. SDES helps students understand the mechanics of DES without the complexity of full 56-bit, 16-round DES."},
+     a:"SDES (Simplified DES) is a simplified version of DES designed for educational purposes. It uses a 10-bit key to encrypt 8-bit plaintext blocks in 2 rounds. Structure mirrors DES: initial permutation (IP), two rounds with Feistel function (expansion, S-boxes, P4), inverse permutation (IP⁻¹), and two subkeys generated via key scheduling. SDES helps students understand the mechanics of DES without the complexity of full 56-bit, 16-round DES."},
     {q:"Define the avalanche effect in block ciphers.",
      a:"The avalanche effect is a desirable property of cryptographic algorithms where a small change in the input (even a single bit) causes a significant change in the output (approximately 50% of the output bits change). This property ensures confusion and diffusion are properly implemented.\n\nExample: In AES, flipping 1 bit in plaintext or key results in roughly 64 out of 128 output bits changing.\n\nStrong avalanche effect = cipher is resistant to differential cryptanalysis."},
     {q:"What is Triple DES (3DES) and why was it introduced?",
-     a:"Triple DES (3DES) applies DES three times to each data block to overcome the 56-bit key weakness of single DES.\n\nModes:\nâ€¢ EEE: Encrypt-Encrypt-Encrypt with 3 different keys (168-bit effective)\nâ€¢ EDE: Encrypt-Decrypt-Encrypt (most common; ANSI X9.52)\n  C = E_K3(D_K2(E_K1(P)))\n\nIntroduced because DES's 56-bit key became vulnerable to brute-force attacks (cracked in 1998). 3DES provides 112â€“168 bits of security. Now being phased out in favour of AES."},
+     a:"Triple DES (3DES) applies DES three times to each data block to overcome the 56-bit key weakness of single DES.\n\nModes:\n• EEE: Encrypt-Encrypt-Encrypt with 3 different keys (168-bit effective)\n• EDE: Encrypt-Decrypt-Encrypt (most common; ANSI X9.52)\n  C = E_K3(D_K2(E_K1(P)))\n\nIntroduced because DES's 56-bit key became vulnerable to brute-force attacks (cracked in 1998). 3DES provides 112–168 bits of security. Now being phased out in favour of AES."},
     {q:"Describe the CTR (Counter) mode of operation in block ciphers.",
-     a:"Counter (CTR) mode turns a block cipher into a stream cipher. A counter value is incremented for each block and encrypted with the key to generate a key stream.\n\nFormula:\n  Keystream block: Sáµ¢ = E_K(Counter + i)\n  Ciphertext: Cáµ¢ = Páµ¢ âŠ• Sáµ¢\n  Decryption: Páµ¢ = Cáµ¢ âŠ• Sáµ¢\n\nAdvantages:\nâ€¢ Parallel encryption and decryption\nâ€¢ Random access to any block\nâ€¢ No error propagation\nâ€¢ Counter must never be reused with the same key"},
+     a:"Counter (CTR) mode turns a block cipher into a stream cipher. A counter value is incremented for each block and encrypted with the key to generate a key stream.\n\nFormula:\n  Keystream block: S\u1d62 = E_K(Counter + i)\n  Ciphertext: C\u1d62 = P\u1d62 ⊕ S\u1d62\n  Decryption: P\u1d62 = C\u1d62 ⊕ S\u1d62\n\nAdvantages:\n• Parallel encryption and decryption\n• Random access to any block\n• No error propagation\n• Counter must never be reused with the same key"},
     {q:"Explain the difference between linear cryptanalysis and differential cryptanalysis.",
-     a:"Linear Cryptanalysis (Matsui, 1993):\nâ€¢ Statistical attack using linear approximations of the cipher\nâ€¢ Finds linear relationships between plaintext, ciphertext, and key bits\nâ€¢ Requires many plaintext-ciphertext pairs\nâ€¢ Attack complexity reduced from brute force\n\nDifferential Cryptanalysis (Biham & Shamir, 1990):\nâ€¢ Studies how differences in input pairs affect output differences\nâ€¢ Traces XOR differences through the cipher rounds\nâ€¢ Works with chosen-plaintext pairs with specific input differences\nâ€¢ Was considered when designing DES S-boxes (DES was designed to resist it)\n\nKey difference: Linear uses correlations; Differential uses input/output differences."}
+     a:"Linear Cryptanalysis (Matsui, 1993):\n• Statistical attack using linear approximations of the cipher\n• Finds linear relationships between plaintext, ciphertext, and key bits\n• Requires many plaintext-ciphertext pairs\n• Attack complexity reduced from brute force\n\nDifferential Cryptanalysis (Biham & Shamir, 1990):\n• Studies how differences in input pairs affect output differences\n• Traces XOR differences through the cipher rounds\n• Works with chosen-plaintext pairs with specific input differences\n• Was considered when designing DES S-boxes (DES was designed to resist it)\n\nKey difference: Linear uses correlations; Differential uses input/output differences."}
   ],
   m5:[], m10:[]
 },
 
-/* â”€â”€â”€â”€ MODULE 3 â”€â”€â”€â”€ */
+/* ---- MODULE 3 ---- */
 3:{
   name:"Asymmetric Cryptography",
-  icon:"ðŸ”¢", topic:"Number Theory, RSA, Diffie-Hellman, ECC & Key Management",
+  icon:"🔢", topic:"Number Theory, RSA, Diffie-Hellman, ECC & Key Management",
   c1:"#06b6d4", cb:"rgba(6,182,212,.13)",
   m2:[
     {q:"Define a prime number.",
      a:"A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23... The number 2 is the only even prime. Primes are the fundamental building blocks of all natural numbers (Fundamental Theorem of Arithmetic). Crucial in cryptography: RSA security relies on the difficulty of factoring large products of two primes."},
-    {q:"What is Euler's totient function Ï†(n)?",
-     a:"Euler's totient function Ï†(n) counts the number of positive integers up to n that are coprime (relatively prime) to n â€” i.e., gcd(a, n) = 1.\n\nFormulas:\nâ€¢ Ï†(p) = p âˆ’ 1 for prime p\nâ€¢ Ï†(pÂ·q) = (pâˆ’1)(qâˆ’1) for distinct primes p, q\nâ€¢ Ï†(páµ) = páµ âˆ’ páµâ»Â¹\n\nExample: Ï†(12) = 4 (numbers 1, 5, 7, 11 are coprime to 12)\n\nCritical in RSA: used to find the private key d = eâ»Â¹ mod Ï†(n)."},
+    {q:"What is Euler's totient function φ(n)?",
+     a:"Euler's totient function φ(n) counts the number of positive integers up to n that are coprime (relatively prime) to n — i.e., gcd(a, n) = 1.\n\nFormulas:\n• φ(p) = p − 1 for prime p\n• φ(p·q) = (p−1)(q−1) for distinct primes p, q\n• φ(pᵏ) = pᵏ − pᵏ⁻¹\n\nExample: φ(12) = 4 (numbers 1, 5, 7, 11 are coprime to 12)\n\nCritical in RSA: used to find the private key d = e⁻¹ mod φ(n)."},
     {q:"State Fermat's Little Theorem.",
-     a:"Fermat's Little Theorem: If p is a prime number and a is any integer not divisible by p, then:\n\n  aáµ–â»Â¹ â‰¡ 1 (mod p)\n\nEquivalently: aáµ– â‰¡ a (mod p)\n\nExample: a = 3, p = 7\n  3â¶ = 729; 729 mod 7 = 1 âœ“\n\nApplications:\nâ€¢ Primality testing (Fermat primality test)\nâ€¢ Modular exponentiation\nâ€¢ RSA algorithm foundations"},
+     a:"Fermat's Little Theorem: If p is a prime number and a is any integer not divisible by p, then:\n\n  a^(p−1) ≡ 1 (mod p)\n\nEquivalently: a^p ≡ a (mod p)\n\nExample: a = 3, p = 7\n  3⁶ = 729; 729 mod 7 = 1 ✓\n\nApplications:\n• Primality testing (Fermat primality test)\n• Modular exponentiation\n• RSA algorithm foundations"},
     {q:"What is the Chinese Remainder Theorem?",
-     a:"The Chinese Remainder Theorem (CRT) states that if nâ‚, nâ‚‚, â€¦, nâ‚– are pairwise coprime (gcd(náµ¢, nâ±¼) = 1 for i â‰  j), then for any set of remainders aâ‚, aâ‚‚, â€¦, aâ‚–, there exists a unique solution x modulo N = nâ‚ Ã— nâ‚‚ Ã— â€¦ Ã— nâ‚– such that:\n  x â‰¡ aâ‚ (mod nâ‚), x â‰¡ aâ‚‚ (mod nâ‚‚), â€¦\n\nApplications: Speeds up RSA decryption, solves congruence systems in number theory."},
+     a:"The Chinese Remainder Theorem (CRT) states that if n₁, n₂, …, nₖ are pairwise coprime (gcd(nᵢ, nⱼ) = 1 for i ≠ j), then for any set of remainders a₁, a₂, …, aₖ, there exists a unique solution x modulo N = n₁ × n₂ × … × nₖ such that:\n  x ≡ a₁ (mod n₁), x ≡ a₂ (mod n₂), …\n\nApplications: Speeds up RSA decryption, solves congruence systems in number theory."},
     {q:"Define public key and private key.",
      a:"Public Key: A key that is shared openly with everyone. Used to encrypt messages or verify digital signatures. Anyone can use the public key to encrypt data intended for the key owner.\n\nPrivate Key: A key that is kept secret by the owner. Used to decrypt messages encrypted with the corresponding public key, or to create digital signatures.\n\nThe two keys are mathematically related (key pair) but it is computationally infeasible to derive the private key from the public key."},
     {q:"Write the properties of modular arithmetic.",
-     a:"Properties of Modular Arithmetic (mod n):\n1. Commutativity: (a+b) mod n = (b+a) mod n\n2. Associativity: [(a+b)+c] mod n = [a+(b+c)] mod n\n3. Distributivity: [(a+b)Â·c] mod n = [(aÂ·c)+(bÂ·c)] mod n\n4. Identity: (a+0) mod n = a mod n; (aÂ·1) mod n = a mod n\n5. Additive Inverse: (a + (-a)) mod n = 0\n6. Multiplicative Inverse: (a Â· aâ»Â¹) mod n = 1 (exists if gcd(a,n) = 1)"},
-    {q:"Calculate Ï†(180).",
-     a:"Factorize 180: 180 = 2Â² Ã— 3Â² Ã— 5\n\nUsing formula: Ï†(n) = n Ã— âˆ(1 âˆ’ 1/p) for each prime factor p\n\nÏ†(180) = 180 Ã— (1 âˆ’ 1/2) Ã— (1 âˆ’ 1/3) Ã— (1 âˆ’ 1/5)\n        = 180 Ã— (1/2) Ã— (2/3) Ã— (4/5)\n        = 180 Ã— 8/30\n        = 48\n\nâˆ´ Ï†(180) = 48"},
+     a:"Properties of Modular Arithmetic (mod n):\n1. Commutativity: (a+b) mod n = (b+a) mod n\n2. Associativity: [(a+b)+c] mod n = [a+(b+c)] mod n\n3. Distributivity: [(a+b)·c] mod n = [(a·c)+(b·c)] mod n\n4. Identity: (a+0) mod n = a mod n; (a·1) mod n = a mod n\n5. Additive Inverse: (a + (-a)) mod n = 0\n6. Multiplicative Inverse: (a · a⁻¹) mod n = 1 (exists if gcd(a,n) = 1)"},
+    {q:"Calculate φ(180).",
+     a:"Factorize 180: 180 = 2² × 3² × 5\n\nUsing formula: φ(n) = n × ∏(1 − 1/p) for each prime factor p\n\nφ(180) = 180 × (1 − 1/2) × (1 − 1/3) × (1 − 1/5)\n        = 180 × (1/2) × (2/3) × (4/5)\n        = 180 × 8/30\n        = 48\n\n∴ φ(180) = 48"},
     {q:"What is the Diffie-Hellman key exchange protocol?",
-     a:"Diffie-Hellman (DH) is a key exchange protocol that allows two parties to establish a shared secret over an insecure channel without transmitting the secret itself.\n\nPublic parameters: large prime p, generator g (primitive root of p)\n\nProcess:\nâ€¢ Alice: picks secret a, sends A = gáµƒ mod p\nâ€¢ Bob: picks secret b, sends B = gáµ‡ mod p\nâ€¢ Shared secret: K = Báµƒ mod p = Aáµ‡ mod p = gáµƒáµ‡ mod p\n\nSecurity: Based on the Discrete Logarithm Problem (DLP)."},
+     a:"Diffie-Hellman (DH) is a key exchange protocol that allows two parties to establish a shared secret over an insecure channel without transmitting the secret itself.\n\nPublic parameters: large prime p, generator g (primitive root of p)\n\nProcess:\n• Alice: picks secret a, sends A = g^a mod p\n• Bob: picks secret b, sends B = g^b mod p\n• Shared secret: K = B^a mod p = A^b mod p = g^(ab) mod p\n\nSecurity: Based on the Discrete Logarithm Problem (DLP)."},
     {q:"Define elliptic curve cryptography.",
-     a:"Elliptic Curve Cryptography (ECC) is a public-key cryptography approach based on the algebraic structure of elliptic curves over finite fields. An elliptic curve is defined by: yÂ² = xÂ³ + ax + b (mod p)\n\nSecurity: Based on the Elliptic Curve Discrete Logarithm Problem (ECDLP) â€” given points P and Q = kP, finding k is computationally hard.\n\nAdvantage: Provides same security as RSA with much smaller key sizes. 256-bit ECC â‰ˆ 3072-bit RSA security."},
+     a:"Elliptic Curve Cryptography (ECC) is a public-key cryptography approach based on the algebraic structure of elliptic curves over finite fields. An elliptic curve is defined by: y² = x³ + ax + b (mod p)\n\nSecurity: Based on the Elliptic Curve Discrete Logarithm Problem (ECDLP) — given points P and Q = kP, finding k is computationally hard.\n\nAdvantage: Provides same security as RSA with much smaller key sizes. 256-bit ECC ≈ 3072-bit RSA security."},
     {q:"Distinguish between key distribution and key management.",
-     a:"Key Distribution: The process of securely delivering cryptographic keys to the parties that need them. Methods include: manual delivery, trusted third party (KDC/Kerberos), Diffie-Hellman exchange, public-key encryption of symmetric keys.\n\nKey Management: The complete lifecycle management of cryptographic keys including: generation, distribution, storage, rotation, revocation, and destruction. Includes policies and procedures.\n\nKey difference: Distribution is a subset of management â€” management is broader and covers the entire key lifecycle."},
+     a:"Key Distribution: The process of securely delivering cryptographic keys to the parties that need them. Methods include: manual delivery, trusted third party (KDC/Kerberos), Diffie-Hellman exchange, public-key encryption of symmetric keys.\n\nKey Management: The complete lifecycle management of cryptographic keys including: generation, distribution, storage, rotation, revocation, and destruction. Includes policies and procedures.\n\nKey difference: Distribution is a subset of management — management is broader and covers the entire key lifecycle."},
     {q:"What is the RSA cryptosystem?",
-     a:"RSA (Rivest-Shamir-Adleman) is the most widely used public-key cryptosystem. Security is based on the difficulty of factoring large composite numbers.\n\nKey Generation: Choose primes p and q, n = pÃ—q, Ï†(n) = (pâˆ’1)(qâˆ’1), choose e: gcd(e,Ï†(n))=1, find d: eÃ—d â‰¡ 1 (mod Ï†(n))\nPublic key: (e, n) Â· Private key: (d, n)\nEncryption: C = Máµ‰ mod n\nDecryption: M = Cáµˆ mod n"},
+     a:"RSA (Rivest-Shamir-Adleman) is the most widely used public-key cryptosystem. Security is based on the difficulty of factoring large composite numbers.\n\nKey Generation: Choose primes p and q, n = p×q, φ(n) = (p−1)(q−1), choose e: gcd(e,φ(n))=1, find d: e×d ≡ 1 (mod φ(n))\nPublic key: (e, n) · Private key: (d, n)\nEncryption: C = M^e mod n\nDecryption: M = C^d mod n"},
     {q:"State Euler's theorem and give one example.",
-     a:"Euler's Theorem: For any integer a with gcd(a, n) = 1:\n\n  aáµ â½â¿â¾ â‰¡ 1 (mod n)\n\nwhere Ï†(n) is Euler's totient function.\n\nNote: Euler's theorem generalises Fermat's Little Theorem (when n is prime, Ï†(n) = nâˆ’1).\n\nExample: a = 3, n = 10, Ï†(10) = 4\n  3â´ = 81; 81 mod 10 = 1 âœ“\n\nApplication: Foundation of RSA decryption correctness proof."},
+     a:"Euler's Theorem: For any integer a with gcd(a, n) = 1:\n\n  a^φ(n) ≡ 1 (mod n)\n\nwhere φ(n) is Euler's totient function.\n\nNote: Euler's theorem generalises Fermat's Little Theorem (when n is prime, φ(n) = n−1).\n\nExample: a = 3, n = 10, φ(10) = 4\n  3⁴ = 81; 81 mod 10 = 1 ✓\n\nApplication: Foundation of RSA decryption correctness proof."},
     {q:"Define the discrete logarithm problem.",
-     a:"The Discrete Logarithm Problem (DLP): Given a prime p, a generator g, and a value y = gË£ mod p, find x.\n\nThe problem is computationally easy in one direction (computing gË£ mod p is fast) but extremely hard to reverse (finding x from y).\n\nThis asymmetry is the security foundation of:\nâ€¢ Diffie-Hellman key exchange\nâ€¢ DSA (Digital Signature Algorithm)\nâ€¢ ElGamal cryptosystem\nâ€¢ Elliptic Curve Cryptography"},
+     a:"The Discrete Logarithm Problem (DLP): Given a prime p, a generator g, and a value y = g^x mod p, find x.\n\nThe problem is computationally easy in one direction (computing g^x mod p is fast) but extremely hard to reverse (finding x from y).\n\nThis asymmetry is the security foundation of:\n• Diffie-Hellman key exchange\n• DSA (Digital Signature Algorithm)\n• ElGamal cryptosystem\n• Elliptic Curve Cryptography"},
     {q:"Calculate GCD(48, 18) using the Euclidean algorithm. Show all steps.",
-     a:"Euclidean Algorithm: repeatedly apply gcd(a,b) = gcd(b, a mod b) until remainder = 0\n\nStep 1: gcd(48, 18) â†’ 48 = 2 Ã— 18 + 12 â†’ gcd(18, 12)\nStep 2: gcd(18, 12) â†’ 18 = 1 Ã— 12 + 6  â†’ gcd(12, 6)\nStep 3: gcd(12, 6)  â†’ 12 = 2 Ã— 6 + 0   â†’ gcd(6, 0)\n\nRemainder = 0, so GCD = last non-zero remainder\n\nâˆ´ GCD(48, 18) = 6"},
+     a:"Euclidean Algorithm: repeatedly apply gcd(a,b) = gcd(b, a mod b) until remainder = 0\n\nStep 1: gcd(48, 18) → 48 = 2 × 18 + 12 → gcd(18, 12)\nStep 2: gcd(18, 12) → 18 = 1 × 12 + 6  → gcd(12, 6)\nStep 3: gcd(12, 6)  → 12 = 2 × 6 + 0   → gcd(6, 0)\n\nRemainder = 0, so GCD = last non-zero remainder\n\n∴ GCD(48, 18) = 6"},
     {q:"Explain what a primitive root (generator) is in the context of Diffie-Hellman.",
-     a:"A primitive root (generator) g of a prime p is an integer such that its powers generate all non-zero elements modulo p â€” i.e., the set {gÂ¹, gÂ², gÂ³, â€¦, gáµ–â»Â¹} mod p = {1, 2, 3, â€¦, pâˆ’1}.\n\nExample: g = 3, p = 7\n  3Â¹=3, 3Â²=2, 3Â³=6, 3â´=4, 3âµ=5, 3â¶=1 (mod 7) â†’ generates all of {1,2,3,4,5,6} âœ“\n\nIn DH, g must be a primitive root of p to ensure the key space is maximally large, making the DLP hard."}
+     a:"A primitive root (generator) g of a prime p is an integer such that its powers generate all non-zero elements modulo p — i.e., the set {g¹, g², g³, …, g^(p−1)} mod p = {1, 2, 3, …, p−1}.\n\nExample: g = 3, p = 7\n  3¹=3, 3²=2, 3³=6, 3⁴=4, 3⁵=5, 3⁶=1 (mod 7) → generates all of {1,2,3,4,5,6} ✓\n\nIn DH, g must be a primitive root of p to ensure the key space is maximally large, making the DLP hard."}
   ],
   m5:[
-    {q:"Explain the role of Euler's totient function Ï†(n) in the RSA cryptosystem. Why is it necessary to compute Ï†(n) = (p-1)(q-1) before generating the public key?",
+    {q:"Explain the role of Euler's totient function φ(n) in the RSA cryptosystem. Why is it necessary to compute φ(n) = (p-1)(q-1) before generating the public key?",
      a:`Euler's Totient Function in RSA
 
-Ï†(n) counts integers from 1 to n that are coprime to n.
+φ(n) counts integers from 1 to n that are coprime to n.
 
-For RSA: n = p Ã— q (product of two primes)
-Ï†(n) = (p âˆ’ 1)(q âˆ’ 1)
+For RSA: n = p × q (product of two primes)
+φ(n) = (p − 1)(q − 1)
 
 Role in RSA Key Generation:
-â€¢ Step 1: Choose primes p and q â†’ compute n = p Ã— q
-â€¢ Step 2: Compute Ï†(n) = (pâˆ’1)(qâˆ’1)
-â€¢ Step 3: Choose public exponent e such that 1 < e < Ï†(n) and gcd(e, Ï†(n)) = 1
-â€¢ Step 4: Compute private key d = eâ»Â¹ mod Ï†(n)  â†’  e Ã— d â‰¡ 1 (mod Ï†(n))
+• Step 1: Choose primes p and q → compute n = p × q
+• Step 2: Compute φ(n) = (p−1)(q−1)
+• Step 3: Choose public exponent e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1
+• Step 4: Compute private key d = e⁻¹ mod φ(n)  →  e × d ≡ 1 (mod φ(n))
 
-Why Ï†(n) is necessary:
-By Euler's theorem: M^Ï†(n) â‰¡ 1 (mod n) when gcd(M,n)=1
-Since ed â‰¡ 1 (mod Ï†(n))  â†’  ed = 1 + kÂ·Ï†(n) for some integer k
-Therefore: C^d = (M^e)^d = M^(ed) = M^(1 + kÂ·Ï†(n)) = M Â· (M^Ï†(n))^k â‰¡ M Â· 1^k â‰¡ M (mod n)
+Why φ(n) is necessary:
+By Euler's theorem: M^φ(n) ≡ 1 (mod n) when gcd(M,n)=1
+Since ed ≡ 1 (mod φ(n))  →  ed = 1 + k·φ(n) for some integer k
+Therefore: C^d = (M^e)^d = M^(ed) = M^(1 + k·φ(n)) = M · (M^φ(n))^k ≡ M · 1^k ≡ M (mod n)
 
-This mathematical guarantee that decryption recovers plaintext ONLY works because d is computed with respect to Ï†(n).`},
+This mathematical guarantee that decryption recovers plaintext ONLY works because d is computed with respect to φ(n).`},
 
-    {q:"Prove Fermat's Little Theorem: If p is prime and a is not divisible by p, then a^(p-1) â‰¡ 1 (mod p). Also state Euler's theorem.",
+    {q:"Prove Fermat's Little Theorem: If p is prime and a is not divisible by p, then a^(p-1) ≡ 1 (mod p). Also state Euler's theorem.",
      a:`Fermat's Little Theorem
 
 Statement: If p is prime and gcd(a, p) = 1, then:
-  a^(pâˆ’1) â‰¡ 1 (mod p)
+  a^(p−1) ≡ 1 (mod p)
 
 Proof Outline:
-Consider the set S = {1, 2, 3, â€¦, pâˆ’1} (non-zero residues mod p)
-Multiply each element by a: S' = {aÂ·1, aÂ·2, â€¦, aÂ·(pâˆ’1)} mod p
+Consider the set S = {1, 2, 3, …, p−1} (non-zero residues mod p)
+Multiply each element by a: S' = {a·1, a·2, …, a·(p−1)} mod p
 
 Since gcd(a,p)=1, all elements of S' are distinct and non-zero mod p
-âŸ¹ S' is a permutation of S
+⟹ S' is a permutation of S
 
 Product of all elements:
-  (aÂ·1)(aÂ·2)Â·Â·Â·(aÂ·(pâˆ’1)) â‰¡ 1Â·2Â·Â·Â·(pâˆ’1) (mod p)
-  a^(pâˆ’1) Â· (pâˆ’1)! â‰¡ (pâˆ’1)! (mod p)
-Since gcd((pâˆ’1)!, p) = 1, divide both sides:
-  a^(pâˆ’1) â‰¡ 1 (mod p) âœ“
+  (a·1)(a·2)···(a·(p−1)) ≡ 1·2···(p−1) (mod p)
+  a^(p−1) · (p−1)! ≡ (p−1)! (mod p)
+Since gcd((p−1)!, p) = 1, divide both sides:
+  a^(p−1) ≡ 1 (mod p) ✓
 
-Example: a=3, p=7 â†’ 3^6 = 729 = 104Ã—7 + 1 â†’ 729 mod 7 = 1 âœ“
+Example: a=3, p=7 → 3^6 = 729 = 104×7 + 1 → 729 mod 7 = 1 ✓
 
 Euler's Theorem (Generalisation):
 For any integer a with gcd(a,n) = 1:
-  a^Ï†(n) â‰¡ 1 (mod n)
-When n is prime: Ï†(n) = nâˆ’1 â†’ reduces to Fermat's Little Theorem`},
+  a^φ(n) ≡ 1 (mod n)
+When n is prime: φ(n) = n−1 → reduces to Fermat's Little Theorem`},
 
-    {q:"Calculate Ï†(180), Ï†(369), GCD(83,19), 11^7 mod 13, and factorize 187. Show all steps.",
-     a:`(1) Ï†(180):
-180 = 2Â² Ã— 3Â² Ã— 5
-Ï†(180) = 180 Ã— (1âˆ’1/2) Ã— (1âˆ’1/3) Ã— (1âˆ’1/5)
-       = 180 Ã— 1/2 Ã— 2/3 Ã— 4/5 = 48
+    {q:"Calculate φ(180), φ(369), GCD(83,19), 11^7 mod 13, and factorize 187. Show all steps.",
+     a:`(1) φ(180):
+180 = 2² × 3² × 5
+φ(180) = 180 × (1−1/2) × (1−1/3) × (1−1/5)
+       = 180 × 1/2 × 2/3 × 4/5 = 48
 
-(2) Ï†(369):
-369 = 3 Ã— 123 = 3 Ã— 3 Ã— 41 = 3Â² Ã— 41
-Ï†(369) = Ï†(3Â²) Ã— Ï†(41) = (9âˆ’3) Ã— 40 = 6 Ã— 40 = 240
+(2) φ(369):
+369 = 3 × 123 = 3 × 3 × 41 = 3² × 41
+φ(369) = φ(3²) × φ(41) = (9−3) × 40 = 6 × 40 = 240
 
-(3) GCD(83, 19) â€” Euclidean Algorithm:
-83 = 4 Ã— 19 + 7  â†’ gcd(19, 7)
-19 = 2 Ã— 7  + 5  â†’ gcd(7, 5)
-7  = 1 Ã— 5  + 2  â†’ gcd(5, 2)
-5  = 2 Ã— 2  + 1  â†’ gcd(2, 1)
-2  = 2 Ã— 1  + 0  â†’ GCD = 1
+(3) GCD(83, 19) — Euclidean Algorithm:
+83 = 4 × 19 + 7  → gcd(19, 7)
+19 = 2 × 7  + 5  → gcd(7, 5)
+7  = 1 × 5  + 2  → gcd(5, 2)
+5  = 2 × 2  + 1  → gcd(2, 1)
+2  = 2 × 1  + 0  → GCD = 1
 
-(4) 11â· mod 13:
-By Fermat: 11^12 â‰¡ 1 (mod 13), so compute directly:
-11Â² = 121 â‰¡ 121 âˆ’ 9Ã—13 = 121âˆ’117 = 4 (mod 13)
-11â´ = 4Â² = 16 â‰¡ 3 (mod 13)
-11â¶ = 11â´ Ã— 11Â² = 3 Ã— 4 = 12 â‰¡ âˆ’1 (mod 13)
-11â· = 11â¶ Ã— 11 = (âˆ’1) Ã— 11 = âˆ’11 â‰¡ 2 (mod 13)
-âˆ´ 11â· mod 13 = 2
+(4) 11⁷ mod 13:
+By Fermat: 11^12 ≡ 1 (mod 13), so compute directly:
+11² = 121 ≡ 121 − 9×13 = 121−117 = 4 (mod 13)
+11⁴ = 4² = 16 ≡ 3 (mod 13)
+11⁶ = 11⁴ × 11² = 3 × 4 = 12 ≡ −1 (mod 13)
+11⁷ = 11⁶ × 11 = (−1) × 11 = −11 ≡ 2 (mod 13)
+∴ 11⁷ mod 13 = 2
 
 (5) Factorize 187:
-Try primes: 187/7â‰ˆ26.7, 187/11=17 âœ“
-187 = 11 Ã— 17`},
+Try primes: 187/7≈26.7, 187/11=17 ✓
+187 = 11 × 17`},
 
-    {q:"If n = 143 and e = 13, find p and q by factorization. Calculate Ï†(n) and determine the private key d.",
+    {q:"If n = 143 and e = 13, find p and q by factorization. Calculate φ(n) and determine the private key d.",
      a:`Given: n = 143, e = 13
 
 Step 1: Factorize n = 143
-Try: 143/11 = 13 âœ“
-âˆ´ p = 11, q = 13
+Try: 143/11 = 13 ✓
+∴ p = 11, q = 13
 
-Step 2: Calculate Ï†(n)
-Ï†(n) = (pâˆ’1)(qâˆ’1) = (11âˆ’1)(13âˆ’1) = 10 Ã— 12 = 120
+Step 2: Calculate φ(n)
+φ(n) = (p−1)(q−1) = (11−1)(13−1) = 10 × 12 = 120
 
-Step 3: Verify gcd(e, Ï†(n)) = gcd(13, 120)
-120 = 9Ã—13 + 3
-13  = 4Ã—3 + 1
-3   = 3Ã—1 + 0  â†’ GCD = 1 âœ“ (valid public key)
+Step 3: Verify gcd(e, φ(n)) = gcd(13, 120)
+120 = 9×13 + 3
+13  = 4×3 + 1
+3   = 3×1 + 0  → GCD = 1 ✓ (valid public key)
 
-Step 4: Find private key d = eâ»Â¹ mod Ï†(n)
-Find d such that 13d â‰¡ 1 (mod 120)
+Step 4: Find private key d = e⁻¹ mod φ(n)
+Find d such that 13d ≡ 1 (mod 120)
 Using Extended Euclidean:
-120 = 9Ã—13 + 3
-13  = 4Ã—3 + 1
+120 = 9×13 + 3
+13  = 4×3 + 1
 Back-substitute:
-1 = 13 âˆ’ 4Ã—3 = 13 âˆ’ 4Ã—(120 âˆ’ 9Ã—13) = 37Ã—13 âˆ’ 4Ã—120
-âˆ´ d â‰¡ 37 (mod 120)
+1 = 13 − 4×3 = 13 − 4×(120 − 9×13) = 37×13 − 4×120
+∴ d ≡ 37 (mod 120)
 
-Verify: 13 Ã— 37 = 481 = 4Ã—120 + 1 â†’ 481 mod 120 = 1 âœ“
+Verify: 13 × 37 = 481 = 4×120 + 1 → 481 mod 120 = 1 ✓
 
-âˆ´ Private key d = 37`},
+∴ Private key d = 37`},
 
     {q:"Write the properties of modular arithmetic with examples for each property.",
      a:`Properties of Modular Arithmetic (mod n):
@@ -1096,535 +1097,512 @@ Verify: 13 Ã— 37 = 481 = 4Ã—120 + 1 â†’ 481 mod 120 = 1 âœ“
    Example: [(2+3)+4] mod 6 = [2+(3+4)] mod 6 = 3
 
 3. Distributivity:
-   [(a + b) Ã— c] mod n = [(aÃ—c) + (bÃ—c)] mod n
-   Example: [(2+3)Ã—4] mod 7 = [(2Ã—4)+(3Ã—4)] mod 7 = 20 mod 7 = 6
+   [(a + b) × c] mod n = [(a×c) + (b×c)] mod n
+   Example: [(2+3)×4] mod 7 = [(2×4)+(3×4)] mod 7 = 20 mod 7 = 6
 
 4. Additive Identity:
    (a + 0) mod n = a mod n
    Example: (5 + 0) mod 8 = 5
 
 5. Multiplicative Identity:
-   (a Ã— 1) mod n = a mod n
-   Example: (7 Ã— 1) mod 9 = 7
+   (a × 1) mod n = a mod n
+   Example: (7 × 1) mod 9 = 7
 
 6. Modular Inverse (Multiplicative):
-   a Ã— aâ»Â¹ â‰¡ 1 (mod n), exists when gcd(a,n) = 1
-   Example: 3 Ã— 5 = 15 â‰¡ 1 (mod 7) â†’ 3â»Â¹ â‰¡ 5 (mod 7)
+   a × a⁻¹ ≡ 1 (mod n), exists when gcd(a,n) = 1
+   Example: 3 × 5 = 15 ≡ 1 (mod 7) → 3⁻¹ ≡ 5 (mod 7)
 
 7. Additive Inverse:
-   (a + (nâˆ’a)) mod n = 0
+   (a + (n−a)) mod n = 0
    Example: (3 + 4) mod 7 = 0`},
 
-    {q:"Define the following terms: (a) Prime number, (b) Euler's totient function Ï†(n), (c) Factorization, (d) Public key, (e) Private key.",
+    {q:"Define the following terms: (a) Prime number, (b) Euler's totient function φ(n), (c) Factorization, (d) Public key, (e) Private key.",
      a:`(a) Prime Number:
 A natural number > 1 divisible only by 1 and itself.
-Examples: 2, 3, 5, 7, 11, 13, 17â€¦
-Role in crypto: RSA security relies on difficulty of factoring n = p Ã— q.
+Examples: 2, 3, 5, 7, 11, 13, 17…
+Role in crypto: RSA security relies on difficulty of factoring n = p × q.
 
-(b) Euler's Totient Function Ï†(n):
+(b) Euler's Totient Function φ(n):
 Counts integers 1 to n that are coprime to n (gcd = 1).
-Formulas: Ï†(p) = pâˆ’1 for prime p; Ï†(pÂ·q) = (pâˆ’1)(qâˆ’1)
-Example: Ï†(10) = 4 â†’ {1, 3, 7, 9} are coprime to 10
+Formulas: φ(p) = p−1 for prime p; φ(p·q) = (p−1)(q−1)
+Example: φ(10) = 4 → {1, 3, 7, 9} are coprime to 10
 
 (c) Factorization:
 Expressing a composite number as a product of prime factors.
-Example: 180 = 2Â² Ã— 3Â² Ã— 5
-In RSA, factoring n = pÃ—q breaks the scheme; this is the Integer Factorization Problem (IFP).
+Example: 180 = 2² × 3² × 5
+In RSA, factoring n = p×q breaks the scheme; this is the Integer Factorization Problem (IFP).
 
 (d) Public Key:
 One key of an asymmetric key pair, shared openly.
 Used to: encrypt data, verify digital signatures.
-In RSA: (e, n) â€” anyone can encrypt with it.
+In RSA: (e, n) — anyone can encrypt with it.
 
 (e) Private Key:
 The secret key of an asymmetric key pair, kept confidential.
 Used to: decrypt data, create digital signatures.
-In RSA: (d, n) â€” only the owner decrypts with it.
+In RSA: (d, n) — only the owner decrypts with it.
 Security: computationally infeasible to derive d from e and n.`},
 
-    {q:"Calculate Ï†(360), Ï†(210), GCD(56,98), 5^11 mod 7, and factorize 221. Show all steps.",
-     a:`(1) Ï†(360):
-360 = 2Â³ Ã— 3Â² Ã— 5
-Ï†(360) = 360 Ã— (1âˆ’1/2) Ã— (1âˆ’1/3) Ã— (1âˆ’1/5)
-       = 360 Ã— 1/2 Ã— 2/3 Ã— 4/5 = 96
+    {q:"Calculate φ(360), φ(210), GCD(56,98), 5^11 mod 7, and factorize 221. Show all steps.",
+     a:`(1) φ(360):
+360 = 2³ × 3² × 5
+φ(360) = 360 × (1−1/2) × (1−1/3) × (1−1/5)
+       = 360 × 1/2 × 2/3 × 4/5 = 96
 
-(2) Ï†(210):
-210 = 2 Ã— 3 Ã— 5 Ã— 7
-Ï†(210) = 210 Ã— (1âˆ’1/2)(1âˆ’1/3)(1âˆ’1/5)(1âˆ’1/7)
-       = 210 Ã— 1/2 Ã— 2/3 Ã— 4/5 Ã— 6/7 = 48
+(2) φ(210):
+210 = 2 × 3 × 5 × 7
+φ(210) = 210 × (1−1/2)(1−1/3)(1−1/5)(1−1/7)
+       = 210 × 1/2 × 2/3 × 4/5 × 6/7 = 48
 
-(3) GCD(56, 98) â€” Euclidean Algorithm:
-98 = 1Ã—56 + 42  â†’ gcd(56, 42)
-56 = 1Ã—42 + 14  â†’ gcd(42, 14)
-42 = 3Ã—14 + 0   â†’ GCD = 14
+(3) GCD(56, 98) — Euclidean Algorithm:
+98 = 1×56 + 42  → gcd(56, 42)
+56 = 1×42 + 14  → gcd(42, 14)
+42 = 3×14 + 0   → GCD = 14
 
-(4) 5Â¹Â¹ mod 7:
-By Fermat: 5â¶ â‰¡ 1 (mod 7)
-5Â¹Â¹ = 5â¶ Ã— 5âµ
-5Â¹ = 5, 5Â² = 4, 5Â³ = 6, 5â´ = 2, 5âµ = 3 (all mod 7)
-5Â¹Â¹ = 1 Ã— 3 = 3 (mod 7)
-âˆ´ 5Â¹Â¹ mod 7 = 3
+(4) 5¹¹ mod 7:
+By Fermat: 5⁶ ≡ 1 (mod 7)
+5¹¹ = 5⁶ × 5⁵
+5¹ = 5, 5² = 4, 5³ = 6, 5⁴ = 2, 5⁵ = 3 (all mod 7)
+5¹¹ = 1 × 3 = 3 (mod 7)
+∴ 5¹¹ mod 7 = 3
 
 (5) Factorize 221:
-221/13 = 17 âœ“
-âˆ´ 221 = 13 Ã— 17`},
+221/13 = 17 ✓
+∴ 221 = 13 × 17`},
 
-    {q:"If n = 391 and e = 17, find p and q by factorization. Calculate Ï†(n) and determine the private key d.",
+    {q:"If n = 391 and e = 17, find p and q by factorization. Calculate φ(n) and determine the private key d.",
      a:`Given: n = 391, e = 17
 
 Step 1: Factorize n = 391
-Try primes: 391/17 = 23 âœ“
-âˆ´ p = 17, q = 23
+Try primes: 391/17 = 23 ✓
+∴ p = 17, q = 23
 
-Step 2: Compute Ï†(n)
-Ï†(n) = (17âˆ’1)(23âˆ’1) = 16 Ã— 22 = 352
+Step 2: Compute φ(n)
+φ(n) = (17−1)(23−1) = 16 × 22 = 352
 
 Step 3: Verify gcd(17, 352)
-352 = 20Ã—17 + 12
-17  = 1Ã—12 + 5
-12  = 2Ã—5 + 2
-5   = 2Ã—2 + 1 â†’ GCD = 1 âœ“
+352 = 20×17 + 12
+17  = 1×12 + 5
+12  = 2×5 + 2
+5   = 2×2 + 1 → GCD = 1 ✓
 
-Step 4: Find d = 17â»Â¹ mod 352
+Step 4: Find d = 17⁻¹ mod 352
 Extended Euclidean back-substitution:
-1 = 5 âˆ’ 2Ã—2 = 5 âˆ’ 2Ã—(12âˆ’2Ã—5) = 5Ã—5 âˆ’ 2Ã—12
-  = 5Ã—(17âˆ’12) âˆ’ 2Ã—12 = 5Ã—17 âˆ’ 7Ã—12
-  = 5Ã—17 âˆ’ 7Ã—(352 âˆ’ 20Ã—17) = 145Ã—17 âˆ’ 7Ã—352
-âˆ´ d â‰¡ 145 (mod 352)
+1 = 5 − 2×2 = 5 − 2×(12−2×5) = 5×5 − 2×12
+  = 5×(17−12) − 2×12 = 5×17 − 7×12
+  = 5×17 − 7×(352 − 20×17) = 145×17 − 7×352
+∴ d ≡ 145 (mod 352)
 
-Verify: 17 Ã— 145 = 2465 = 6Ã—352 + 353 â€¦ recalculate:
-17 Ã— 145 = 2465; 2465 mod 352 = 2465 âˆ’ 7Ã—352 = 2465 âˆ’ 2464 = 1 âœ“
+Verify: 17 × 145 = 2465; 2465 mod 352 = 2465 − 7×352 = 2465 − 2464 = 1 ✓
 
-âˆ´ Private key d = 145`},
+∴ Private key d = 145`},
 
     {q:"Perform primality testing on n = 61 using trial division and Fermat's test with base a = 3. Determine if 61 is prime.",
      a:`Primality Testing for n = 61
 
 Method 1: Trial Division
-Test all primes up to âˆš61 â‰ˆ 7.81 â†’ test: 2, 3, 5, 7
+Test all primes up to √61 ≈ 7.81 → test: 2, 3, 5, 7
 
-61 Ã· 2 = 30.5  â†’ not divisible
-61 Ã· 3 = 20.33 â†’ not divisible
-61 Ã· 5 = 12.2  â†’ not divisible
-61 Ã· 7 = 8.71  â†’ not divisible
+61 ÷ 2 = 30.5  → not divisible
+61 ÷ 3 = 20.33 → not divisible
+61 ÷ 5 = 12.2  → not divisible
+61 ÷ 7 = 8.71  → not divisible
 
-No prime factor found â†’ 61 is prime by trial division âœ“
+No prime factor found → 61 is prime by trial division ✓
 
 Method 2: Fermat's Primality Test (base a = 3)
-Fermat's test: if p is prime, then a^(pâˆ’1) â‰¡ 1 (mod p)
+Fermat's test: if p is prime, then a^(p−1) ≡ 1 (mod p)
 Test: 3^60 mod 61 = ?
 
 Compute using successive squaring:
-3Â¹   = 3
-3Â²   = 9
-3â´   = 81 mod 61  = 20
-3â¸   = 400 mod 61 = 400 âˆ’ 6Ã—61 = 34
-3Â¹â¶  = 34Â² = 1156 mod 61 = 1156 âˆ’ 18Ã—61 = 1156âˆ’1098 = 58 â‰¡ âˆ’3
-3Â³Â²  = (âˆ’3)Â² = 9
-3â¶â°  = 3Â³Â² Ã— 3Â¹â¶ Ã— 3â¸ Ã— 3â´
-     = 9 Ã— 58 Ã— 34 Ã— 20 mod 61
-     = 9 Ã— 58 = 522 mod 61 = 522 âˆ’ 8Ã—61 = 34
-     = 34 Ã— 34 = 1156 mod 61 = 58
-     = 58 Ã— 20 = 1160 mod 61 = 1160 âˆ’ 19Ã—61 = 1160âˆ’1159 = 1
+3¹   = 3
+3²   = 9
+3⁴   = 81 mod 61  = 20
+3⁸   = 400 mod 61 = 400 − 6×61 = 34
+3¹⁶  = 34² = 1156 mod 61 = 1156 − 18×61 = 1156−1098 = 58 ≡ −3
+3³²  = (−3)² = 9
+3⁶⁰  = 3³² × 3¹⁶ × 3⁸ × 3⁴
+     = 9 × 58 × 34 × 20 mod 61
+     = 9 × 58 = 522 mod 61 = 522 − 8×61 = 34
+     = 34 × 34 = 1156 mod 61 = 58
+     = 58 × 20 = 1160 mod 61 = 1160 − 19×61 = 1160−1159 = 1
 
-3^60 mod 61 = 1 âœ“
+3^60 mod 61 = 1 ✓
 
-Conclusion: 61 passes both trial division and Fermat's test â†’ 61 is PRIME.`}
+Conclusion: 61 passes both trial division and Fermat's test → 61 is PRIME.`}
   ],
   m10:[
-    {q:"Analyze the Chinese Remainder Theorem. Solve the system: x â‰¡ 2 (mod 3), x â‰¡ 3 (mod 5), x â‰¡ 2 (mod 7), x â‰¡ 1 (mod 11). Show all steps.",
-     a:`Chinese Remainder Theorem â€” Solution
+    {q:"Analyze the Chinese Remainder Theorem. Solve the system: x ≡ 2 (mod 3), x ≡ 3 (mod 5), x ≡ 2 (mod 7), x ≡ 1 (mod 11). Show all steps.",
+     a:`Chinese Remainder Theorem — Solution
 
-Given:  x â‰¡ 2 (mod 3)
-        x â‰¡ 3 (mod 5)
-        x â‰¡ 2 (mod 7)
-        x â‰¡ 1 (mod 11)
+Given:  x ≡ 2 (mod 3)
+        x ≡ 3 (mod 5)
+        x ≡ 2 (mod 7)
+        x ≡ 1 (mod 11)
 
 Step 1: Compute M (product of all moduli)
-M = 3 Ã— 5 Ã— 7 Ã— 11 = 1155
+M = 3 × 5 × 7 × 11 = 1155
 
-Step 2: Compute Máµ¢ = M / náµ¢ for each congruence
-Mâ‚ = 1155/3 = 385
-Mâ‚‚ = 1155/5 = 231
-Mâ‚ƒ = 1155/7 = 165
-Mâ‚„ = 1155/11 = 105
+Step 2: Compute Mᵢ = M / nᵢ for each congruence
+M₁ = 1155/3 = 385
+M₂ = 1155/5 = 231
+M₃ = 1155/7 = 165
+M₄ = 1155/11 = 105
 
-Step 3: Find Máµ¢â»Â¹ mod náµ¢ (modular inverse)
-Mâ‚â»Â¹: 385 mod 3 = 1 â†’ inverse of 1 mod 3 = 1
-Mâ‚‚â»Â¹: 231 mod 5 = 1 â†’ inverse of 1 mod 5 = 1
-Mâ‚ƒâ»Â¹: 165 mod 7 = 4 â†’ find 4â»Â¹ mod 7: 4Ã—2=8â‰¡1 â†’ Mâ‚ƒâ»Â¹ = 2
-Mâ‚„â»Â¹: 105 mod 11 = 6 â†’ find 6â»Â¹ mod 11: 6Ã—2=12â‰¡1 â†’ Mâ‚„â»Â¹ = 2
+Step 3: Find Mᵢ⁻¹ mod nᵢ (modular inverse)
+M₁⁻¹: 385 mod 3 = 1 → inverse of 1 mod 3 = 1
+M₂⁻¹: 231 mod 5 = 1 → inverse of 1 mod 5 = 1
+M₃⁻¹: 165 mod 7 = 4 → find 4⁻¹ mod 7: 4×2=8≡1 → M₃⁻¹ = 2
+M₄⁻¹: 105 mod 11 = 6 → find 6⁻¹ mod 11: 6×2=12≡1 → M₄⁻¹ = 2
 
-Step 4: Compute x = Î£(aáµ¢ Ã— Máµ¢ Ã— Máµ¢â»Â¹) mod M
-x = (2Ã—385Ã—1) + (3Ã—231Ã—1) + (2Ã—165Ã—2) + (1Ã—105Ã—2)
+Step 4: Compute x = Σ(aᵢ × Mᵢ × Mᵢ⁻¹) mod M
+x = (2×385×1) + (3×231×1) + (2×165×2) + (1×105×2)
   = 770 + 693 + 660 + 210
   = 2333
 
 Step 5: Reduce mod M
-x = 2333 mod 1155 = 2333 âˆ’ 2Ã—1155 = 2333 âˆ’ 2310 = 23
+x = 2333 mod 1155 = 2333 − 2×1155 = 2333 − 2310 = 23
 
 Verification:
-23 mod 3  = 2 âœ“
-23 mod 5  = 3 âœ“
-23 mod 7  = 2 âœ“
-23 mod 11 = 1 âœ“
+23 mod 3  = 2 ✓
+23 mod 5  = 3 ✓
+23 mod 7  = 2 ✓
+23 mod 11 = 1 ✓
 
-âˆ´ x â‰¡ 23 (mod 1155)`},
+∴ x ≡ 23 (mod 1155)`},
 
     {q:"Describe the RSA algorithm. Perform encryption and decryption using RSA for: p = 7, q = 11, e = 7, M = 9. Show all steps including key generation, encryption, and decryption.",
-     a:`RSA Algorithm â€” Full Example
+     a:`RSA Algorithm — Full Example
 
 Given: p = 7, q = 11, e = 7, M = 9
 
 STEP 1: Key Generation
-n = p Ã— q = 7 Ã— 11 = 77
-Ï†(n) = (pâˆ’1)(qâˆ’1) = 6 Ã— 10 = 60
+n = p × q = 7 × 11 = 77
+φ(n) = (p−1)(q−1) = 6 × 10 = 60
 Public key: (e, n) = (7, 77)
 
 STEP 2: Verify e is valid
-gcd(7, 60): 60 = 8Ã—7 + 4; 7 = 1Ã—4+3; 4=1Ã—3+1 â†’ GCD=1 âœ“
+gcd(7, 60): 60 = 8×7 + 4; 7 = 1×4+3; 4=1×3+1 → GCD=1 ✓
 
-STEP 3: Find private key d = eâ»Â¹ mod Ï†(n)
-Find d: 7d â‰¡ 1 (mod 60)
+STEP 3: Find private key d = e⁻¹ mod φ(n)
+Find d: 7d ≡ 1 (mod 60)
 Extended Euclidean:
-60 = 8Ã—7 + 4
-7  = 1Ã—4 + 3
-4  = 1Ã—3 + 1
-Back-substitute: 1 = 4âˆ’1Ã—3 = 4âˆ’1Ã—(7âˆ’4) = 2Ã—4âˆ’7 = 2Ã—(60âˆ’8Ã—7)âˆ’7 = 2Ã—60âˆ’17Ã—7
-âˆ´ d â‰¡ âˆ’17 â‰¡ 60âˆ’17 = 43 (mod 60)
-Verify: 7 Ã— 43 = 301 = 5Ã—60 + 1 â†’ 301 mod 60 = 1 âœ“
+60 = 8×7 + 4
+7  = 1×4 + 3
+4  = 1×3 + 1
+Back-substitute: 1 = 4−1×3 = 4−1×(7−4) = 2×4−7 = 2×(60−8×7)−7 = 2×60−17×7
+∴ d ≡ −17 ≡ 60−17 = 43 (mod 60)
+Verify: 7 × 43 = 301 = 5×60 + 1 → 301 mod 60 = 1 ✓
 Private key: (d, n) = (43, 77)
 
 STEP 4: Encryption
-C = M^e mod n = 9â· mod 77
-9Â² = 81 mod 77 = 4
-9â´ = 4Â² = 16
-9â· = 9â´ Ã— 9Â² Ã— 9Â¹ = 16 Ã— 4 Ã— 9 = 576 mod 77
-576 = 7Ã—77 + 37 â†’ C = 37
+C = M^e mod n = 9⁷ mod 77
+9² = 81 mod 77 = 4
+9⁴ = 4² = 16
+9⁷ = 9⁴ × 9² × 9¹ = 16 × 4 × 9 = 576 mod 77
+576 = 7×77 + 37 → C = 37
 
 Ciphertext C = 37
 
 STEP 5: Decryption
-M = C^d mod n = 37â´Â³ mod 77
+M = C^d mod n = 37⁴³ mod 77
 Using successive squaring:
-37Â² = 1369 mod 77: 1369/77 = 17 rem 60 â†’ 60
-37â´ = 60Â² = 3600 mod 77: 3600/77 = 46 rem 58 â†’ 58
-37â¸ = 58Â² = 3364 mod 77: 3364/77 = 43 rem 53 â†’ 53
-37Â¹â¶= 53Â²= 2809 mod 77 = 2809 âˆ’ 36Ã—77 = 2809âˆ’2772 = 37
-37Â³Â² = 37Â² mod 77 = 60 (as above)
+37² = 1369 mod 77: 1369/77 = 17 rem 60 → 60
+37⁴ = 60² = 3600 mod 77: 3600/77 = 46 rem 58 → 58
+37⁸ = 58² = 3364 mod 77: 3364/77 = 43 rem 53 → 53
+37¹⁶= 53²= 2809 mod 77 = 2809 − 36×77 = 2809−2772 = 37
+37³² = 37² mod 77 = 60 (as above)
 43 = 32+8+2+1
-37â´Â³ = 37Â³Â²Ã—37â¸Ã—37Â²Ã—37Â¹ = 60Ã—53Ã—60Ã—37 mod 77
-= (60Ã—53) mod 77 = 3180 mod 77 = 3180âˆ’41Ã—77 = 3180âˆ’3157 = 23
-= (23Ã—60) mod 77 = 1380 mod 77 = 1380âˆ’17Ã—77 = 1380âˆ’1309 = 71
-= (71Ã—37) mod 77 = 2627 mod 77 = 2627âˆ’34Ã—77 = 2627âˆ’2618 = 9
+37⁴³ = 37³²×37⁸×37²×37¹ = 60×53×60×37 mod 77
+= (60×53) mod 77 = 3180 mod 77 = 3180−41×77 = 3180−3157 = 23
+= (23×60) mod 77 = 1380 mod 77 = 1380−17×77 = 1380−1309 = 71
+= (71×37) mod 77 = 2627 mod 77 = 2627−34×77 = 2627−2618 = 9
 
-Decrypted M = 9 âœ“ (matches original plaintext)`},
+Decrypted M = 9 ✓ (matches original plaintext)`},
 
-    {q:"Users A and B use Diffie-Hellman with q = 11, Î± = 7. (i) XA = 3 â†’ YA? (ii) XB = 6 â†’ YB? (iii) Shared secret key? Also write the algorithm.",
+    {q:"Users A and B use Diffie-Hellman with q = 11, α = 7. (i) XA = 3 → YA? (ii) XB = 6 → YB? (iii) Shared secret key? Also write the algorithm.",
      a:`Diffie-Hellman Key Exchange
 
-Public parameters: q (prime) = 11, Î± (generator) = 7
+Public parameters: q (prime) = 11, α (generator) = 7
 
 Algorithm:
-1. Agree on public prime q and generator Î± (primitive root of q)
+1. Agree on public prime q and generator α (primitive root of q)
 2. Alice selects private key XA (1 < XA < q)
 3. Bob selects private key XB (1 < XB < q)
-4. Alice computes and sends: YA = Î±^XA mod q
-5. Bob computes and sends: YB = Î±^XB mod q
+4. Alice computes and sends: YA = α^XA mod q
+5. Bob computes and sends: YB = α^XB mod q
 6. Alice computes shared key: K = YB^XA mod q
 7. Bob computes shared key: K = YA^XB mod q
-8. Both arrive at same K = Î±^(XAÂ·XB) mod q
+8. Both arrive at same K = α^(XA·XB) mod q
 
 (i) Alice's Public Key YA:
 XA = 3
-YA = Î±^XA mod q = 7Â³ mod 11
-7Â³ = 343; 343 mod 11 = 343 âˆ’ 31Ã—11 = 343âˆ’341 = 2
-âˆ´ YA = 2
+YA = α^XA mod q = 7³ mod 11
+7³ = 343; 343 mod 11 = 343 − 31×11 = 343−341 = 2
+∴ YA = 2
 
 (ii) Bob's Public Key YB:
 XB = 6
-YB = Î±^XB mod q = 7â¶ mod 11
-7Â² = 49 mod 11 = 5
-7â´ = 5Â² = 25 mod 11 = 3
-7â¶ = 7â´ Ã— 7Â² = 3 Ã— 5 = 15 mod 11 = 4
-âˆ´ YB = 4
+YB = α^XB mod q = 7⁶ mod 11
+7² = 49 mod 11 = 5
+7⁴ = 5² = 25 mod 11 = 3
+7⁶ = 7⁴ × 7² = 3 × 5 = 15 mod 11 = 4
+∴ YB = 4
 
 (iii) Shared Secret Key:
-Alice computes: K = YB^XA mod q = 4Â³ mod 11 = 64 mod 11 = 9
-Bob computes:   K = YA^XB mod q = 2â¶ mod 11 = 64 mod 11 = 9
+Alice computes: K = YB^XA mod q = 4³ mod 11 = 64 mod 11 = 9
+Bob computes:   K = YA^XB mod q = 2⁶ mod 11 = 64 mod 11 = 9
 
-âˆ´ Shared secret K = 9 âœ“
+∴ Shared secret K = 9 ✓
 
-Security: An eavesdropper who knows q=11, Î±=7, YA=2, YB=4 must solve:
-7^XA â‰¡ 2 (mod 11) â€” the Discrete Logarithm Problem.`},
+Security: An eavesdropper who knows q=11, α=7, YA=2, YB=4 must solve:
+7^XA ≡ 2 (mod 11) — the Discrete Logarithm Problem.`},
 
-    {q:"Analyze the Chinese Remainder Theorem. Solve the system: x â‰¡ 1 (mod 3), x â‰¡ 2 (mod 5), x â‰¡ 3 (mod 7), x â‰¡ 4 (mod 11).",
+    {q:"Analyze the Chinese Remainder Theorem. Solve the system: x ≡ 1 (mod 3), x ≡ 2 (mod 5), x ≡ 3 (mod 7), x ≡ 4 (mod 11).",
      a:`CRT Solution
 
-Given:  x â‰¡ 1 (mod 3)
-        x â‰¡ 2 (mod 5)
-        x â‰¡ 3 (mod 7)
-        x â‰¡ 4 (mod 11)
+Given:  x ≡ 1 (mod 3)
+        x ≡ 2 (mod 5)
+        x ≡ 3 (mod 7)
+        x ≡ 4 (mod 11)
 
-Step 1: M = 3 Ã— 5 Ã— 7 Ã— 11 = 1155
+Step 1: M = 3 × 5 × 7 × 11 = 1155
 
-Step 2: Máµ¢ values
-Mâ‚ = 1155/3 = 385
-Mâ‚‚ = 1155/5 = 231
-Mâ‚ƒ = 1155/7 = 165
-Mâ‚„ = 1155/11 = 105
+Step 2: Mᵢ values
+M₁ = 1155/3 = 385
+M₂ = 1155/5 = 231
+M₃ = 1155/7 = 165
+M₄ = 1155/11 = 105
 
-Step 3: Modular inverses Máµ¢â»Â¹ mod náµ¢
-385 mod 3 = 1 â†’ Mâ‚â»Â¹ = 1 (since 1Ã—1â‰¡1 mod 3)
-231 mod 5 = 1 â†’ Mâ‚‚â»Â¹ = 1
-165 mod 7 = 4 â†’ 4â»Â¹ mod 7: 4Ã—2=8â‰¡1 â†’ Mâ‚ƒâ»Â¹ = 2
-105 mod 11= 6 â†’ 6â»Â¹ mod 11: 6Ã—2=12â‰¡1 â†’ Mâ‚„â»Â¹ = 2
+Step 3: Modular inverses Mᵢ⁻¹ mod nᵢ
+385 mod 3 = 1 → M₁⁻¹ = 1 (since 1×1≡1 mod 3)
+231 mod 5 = 1 → M₂⁻¹ = 1
+165 mod 7 = 4 → 4⁻¹ mod 7: 4×2=8≡1 → M₃⁻¹ = 2
+105 mod 11= 6 → 6⁻¹ mod 11: 6×2=12≡1 → M₄⁻¹ = 2
 
 Step 4: Compute x
-x = (1Ã—385Ã—1) + (2Ã—231Ã—1) + (3Ã—165Ã—2) + (4Ã—105Ã—2)
+x = (1×385×1) + (2×231×1) + (3×165×2) + (4×105×2)
   = 385 + 462 + 990 + 840
   = 2677
 
 Step 5: Reduce mod 1155
-2677 mod 1155 = 2677 âˆ’ 2Ã—1155 = 2677 âˆ’ 2310 = 367
+2677 mod 1155 = 2677 − 2×1155 = 2677 − 2310 = 367
 
 Verification:
-367 mod 3  = 1 âœ“  (366 = 122Ã—3)
-367 mod 5  = 2 âœ“  (365 = 73Ã—5)
-367 mod 7  = 3 âœ“  (364 = 52Ã—7)
-367 mod 11 = 4 âœ“  (363 = 33Ã—11)
+367 mod 3  = 1 ✓  (366 = 122×3)
+367 mod 5  = 2 ✓  (365 = 73×5)
+367 mod 7  = 3 ✓  (364 = 52×7)
+367 mod 11 = 4 ✓  (363 = 33×11)
 
-âˆ´ x â‰¡ 367 (mod 1155)`},
+∴ x ≡ 367 (mod 1155)`},
 
-    {q:"Analyze the RSA algorithm. With p = 17, q = 13, e = 5, m = 42: (a) Calculate n and Ï†(n), (b) Verify gcd(e,Ï†(n))=1, (c) Find d, (d) Encrypt m, (e) Decrypt, (f) Verify.",
-     a:`RSA Algorithm â€” p=17, q=13, e=5, m=42
+    {q:"Analyze the RSA algorithm. With p = 17, q = 13, e = 5, m = 42: (a) Calculate n and φ(n), (b) Verify gcd(e,φ(n))=1, (c) Find d, (d) Encrypt m, (e) Decrypt, (f) Verify.",
+     a:`RSA Algorithm — p=17, q=13, e=5, m=42
 
-(a) Calculate n and Ï†(n):
-n = 17 Ã— 13 = 221
-Ï†(n) = (17âˆ’1)(13âˆ’1) = 16 Ã— 12 = 192
+(a) Calculate n and φ(n):
+n = 17 × 13 = 221
+φ(n) = (17−1)(13−1) = 16 × 12 = 192
 
 (b) Verify gcd(5, 192) = 1:
-192 = 38Ã—5 + 2
-5   = 2Ã—2 + 1 â†’ GCD = 1 âœ“ (e is valid)
+192 = 38×5 + 2
+5   = 2×2 + 1 → GCD = 1 ✓ (e is valid)
 
-(c) Find private key d = 5â»Â¹ mod 192:
+(c) Find private key d = 5⁻¹ mod 192:
 Extended Euclidean:
-192 = 38Ã—5 + 2
-5   = 2Ã—2 + 1
+192 = 38×5 + 2
+5   = 2×2 + 1
 Back-substitute:
-1 = 5 âˆ’ 2Ã—2 = 5 âˆ’ 2Ã—(192 âˆ’ 38Ã—5) = 77Ã—5 âˆ’ 2Ã—192
-âˆ´ d â‰¡ 77 (mod 192)
-Verify: 5 Ã— 77 = 385 = 2Ã—192 + 1 â†’ mod 192 = 1 âœ“
+1 = 5 − 2×2 = 5 − 2×(192 − 38×5) = 77×5 − 2×192
+∴ d ≡ 77 (mod 192)
+Verify: 5 × 77 = 385 = 2×192 + 1 → mod 192 = 1 ✓
 
-(d) Encryption: C = m^e mod n = 42âµ mod 221
-42Â² = 1764 mod 221 = 1764 âˆ’ 7Ã—221 = 1764âˆ’1547 = 217
-42â´ = 217Â² = 47089 mod 221 = 47089 âˆ’ 213Ã—221 = 47089âˆ’47073 = 16
-42âµ = 42â´ Ã— 42 = 16 Ã— 42 = 672 mod 221 = 672 âˆ’ 3Ã—221 = 672âˆ’663 = 9
-âˆ´ Ciphertext C = 9
+(d) Encryption: C = m^e mod n = 42⁵ mod 221
+42² = 1764 mod 221 = 1764 − 7×221 = 1764−1547 = 217
+42⁴ = 217² = 47089 mod 221 = 47089 − 213×221 = 47089−47073 = 16
+42⁵ = 42⁴ × 42 = 16 × 42 = 672 mod 221 = 672 − 3×221 = 672−663 = 9
+∴ Ciphertext C = 9
 
-(e) Decryption: M = C^d mod n = 9â·â· mod 221
-Using Fermat/CRT or squaring: (full computation)
-9Â¹ = 9
-9Â² = 81
-9â´ = 6561 mod 221 = 6561 âˆ’ 29Ã—221 = 6561âˆ’6409 = 152
-9â¸ = 152Â² = 23104 mod 221 = 23104 âˆ’ 104Ã—221 = 23104âˆ’22984 = 120
-9Â¹â¶= 120Â² = 14400 mod 221 = 14400 âˆ’ 65Ã—221 = 14400âˆ’14365 = 35
-9Â³Â² = 35Â² = 1225 mod 221 = 1225 âˆ’ 5Ã—221 = 1225âˆ’1105 = 120
-9â¶â´ = 120Â² mod 221 = 120 (same as 9â¸)
-77 = 64+8+4+1
-9â·â· = 9â¶â´ Ã— 9â¸ Ã— 9â´ Ã— 9Â¹ = 120Ã—120Ã—152Ã—9 mod 221
-= 14400 mod 221 = 120
-120 Ã— 152 = 18240 mod 221 = 18240 âˆ’ 82Ã—221 = 18240âˆ’18122 = 118
-118 Ã— 9 = 1062 mod 221 = 1062 âˆ’ 4Ã—221 = 1062âˆ’884 = 178
-
-Hmm â€” note: for small examples fast path is: 9^77 mod 221
+(e) Decryption: M = C^d mod n = 9⁷⁷ mod 221
 Using CRT: 9^77 mod 17 = 9^(77 mod 16) = 9^13 mod 17
-9Â² =81, 9â´=81Â²=6561 mod17=16â‰¡âˆ’1, 9â¸â‰¡1, 9Â¹Â³=9â¸Â·9â´Â·9=1Â·(âˆ’1)Â·9=âˆ’9â‰¡8(mod17)
+9² =81, 9⁴=81²=6561 mod17=16≡−1, 9⁸≡1, 9¹³=9⁸·9⁴·9=1·(−1)·9=−9≡8(mod17)
 9^77 mod 13 = 9^(77 mod 12) = 9^5 mod 13
-9Â²=81 mod13=3, 9â´=9, 9âµ=9â´Â·9=81 mod13=3 â†’ no wait: 9^5=9â´Ã—9=9Ã—9=81 mod13=3
-By CRT: xâ‰¡8(mod17), xâ‰¡3(mod13)
-x=8+17k; 8+17kâ‰¡3(mod13); 17kâ‰¡âˆ’5â‰¡8(mod13); 4kâ‰¡8(mod13); kâ‰¡2(mod13); k=2
-x=8+34=42 âœ“
+9²=81 mod13=3, 9⁴=9, 9⁵=9⁴·9=81 mod13=3
+By CRT: x≡8(mod17), x≡3(mod13)
+x=8+17k; 8+17k≡3(mod13); 17k≡−5≡8(mod13); 4k≡8(mod13); k≡2(mod13); k=2
+x=8+34=42 ✓
 
-(f) Decrypted message = 42 = original plaintext m âœ“`},
+(f) Decrypted message = 42 = original plaintext m ✓`},
 
     {q:"Evaluate Diffie-Hellman. With p = 23, g = 5, a = 6 (Alice), b = 15 (Bob): (a) Public keys, (b) Shared secret both ways, (c) Verify, (d) Why secure against eavesdropping.",
      a:`Diffie-Hellman Key Exchange: p=23, g=5, a=6, b=15
 
 (a) Compute Public Keys:
 Alice's public key:
-A = g^a mod p = 5â¶ mod 23
-5Â² = 25 mod 23 = 2
-5â´ = 2Â² = 4
-5â¶ = 5â´ Ã— 5Â² = 4 Ã— 2 = 8 mod 23
-âˆ´ A = 8
+A = g^a mod p = 5⁶ mod 23
+5² = 25 mod 23 = 2
+5⁴ = 2² = 4
+5⁶ = 5⁴ × 5² = 4 × 2 = 8 mod 23
+∴ A = 8
 
 Bob's public key:
-B = g^b mod p = 5Â¹âµ mod 23
-5â¸ = 5â´ Ã— 5â´ = 4Ã—4 = 16
-5Â¹âµ = 5â¸ Ã— 5â´ Ã— 5Â² Ã— 5Â¹ = 16Ã—4Ã—2Ã—5 = 640 mod 23
-640 = 27Ã—23 + 19 â†’ B = 19
+B = g^b mod p = 5¹⁵ mod 23
+5⁸ = 5⁴ × 5⁴ = 4×4 = 16
+5¹⁵ = 5⁸ × 5⁴ × 5² × 5¹ = 16×4×2×5 = 640 mod 23
+640 = 27×23 + 19 → B = 19
 
 (b) Compute Shared Secret:
-Alice computes: K = B^a mod p = 19â¶ mod 23
-19Â² = 361 mod 23 = 361 âˆ’ 15Ã—23 = 16
-19â´ = 16Â² = 256 mod 23 = 256âˆ’11Ã—23 = 3
-19â¶ = 19â´ Ã— 19Â² = 3 Ã— 16 = 48 mod 23 = 2
+Alice computes: K = B^a mod p = 19⁶ mod 23
+19² = 361 mod 23 = 361 − 15×23 = 16
+19⁴ = 16² = 256 mod 23 = 256−11×23 = 3
+19⁶ = 19⁴ × 19² = 3 × 16 = 48 mod 23 = 2
 K_Alice = 2
 
-Bob computes: K = A^b mod p = 8Â¹âµ mod 23
-8Â² = 64 mod 23 = 18
-8â´ = 18Â² = 324 mod 23 = 324âˆ’14Ã—23 = 2
-8â¸ = 2Â² = 4
-8Â¹âµ = 8â¸ Ã— 8â´ Ã— 8Â² Ã— 8 = 4Ã—2Ã—18Ã—8 mod 23
-= 4Ã—2=8; 8Ã—18=144 mod23=6; 6Ã—8=48 mod23=2
+Bob computes: K = A^b mod p = 8¹⁵ mod 23
+8² = 64 mod 23 = 18
+8⁴ = 18² = 324 mod 23 = 324−14×23 = 2
+8⁸ = 2² = 4
+8¹⁵ = 8⁸ × 8⁴ × 8² × 8 = 4×2×18×8 mod 23
+= 4×2=8; 8×18=144 mod23=6; 6×8=48 mod23=2
 K_Bob = 2
 
 (c) Verification:
-K_Alice = K_Bob = 2 âœ“
+K_Alice = K_Bob = 2 ✓
 
 (d) Security against eavesdropping:
 An eavesdropper knows: p=23, g=5, A=8, B=19
 To find the shared key, they must compute either:
-  a from A = g^a mod p â†’ 8 = 5^a mod 23 (Discrete Logarithm Problem)
-  b from B = g^b mod p â†’ 19 = 5^b mod 23
+  a from A = g^a mod p → 8 = 5^a mod 23 (Discrete Logarithm Problem)
+  b from B = g^b mod p → 19 = 5^b mod 23
 With large primes (2048-bit), DLP is computationally infeasible.
 Even if A and B are intercepted, no known efficient algorithm exists to compute ab from A and B.`},
 
-    {q:"Solve using CRT: x â‰¡ 1 (mod 2), x â‰¡ 2 (mod 3), x â‰¡ 3 (mod 5), x â‰¡ 4 (mod 7). Show all steps.",
+    {q:"Solve using CRT: x ≡ 1 (mod 2), x ≡ 2 (mod 3), x ≡ 3 (mod 5), x ≡ 4 (mod 7). Show all steps.",
      a:`CRT Solution
 
-Given:  x â‰¡ 1 (mod 2)
-        x â‰¡ 2 (mod 3)
-        x â‰¡ 3 (mod 5)
-        x â‰¡ 4 (mod 7)
+Given:  x ≡ 1 (mod 2)
+        x ≡ 2 (mod 3)
+        x ≡ 3 (mod 5)
+        x ≡ 4 (mod 7)
 
-Step 1: Verify pairwise coprime: 2,3,5,7 are all prime â†’ pairwise coprime âœ“
-M = 2 Ã— 3 Ã— 5 Ã— 7 = 210
+Step 1: Verify pairwise coprime: 2,3,5,7 are all prime → pairwise coprime ✓
+M = 2 × 3 × 5 × 7 = 210
 
-Step 2: Compute Máµ¢ = M / náµ¢
-Mâ‚ = 210/2 = 105
-Mâ‚‚ = 210/3 = 70
-Mâ‚ƒ = 210/5 = 42
-Mâ‚„ = 210/7 = 30
+Step 2: Compute Mᵢ = M / nᵢ
+M₁ = 210/2 = 105
+M₂ = 210/3 = 70
+M₃ = 210/5 = 42
+M₄ = 210/7 = 30
 
-Step 3: Find Máµ¢â»Â¹ mod náµ¢
-105 mod 2 = 1 â†’ 1â»Â¹ mod 2 = 1
-70  mod 3 = 1 â†’ 1â»Â¹ mod 3 = 1
-42  mod 5 = 2 â†’ 2â»Â¹ mod 5: 2Ã—3=6â‰¡1 â†’ Mâ‚ƒâ»Â¹ = 3
-30  mod 7 = 2 â†’ 2â»Â¹ mod 7: 2Ã—4=8â‰¡1 â†’ Mâ‚„â»Â¹ = 4
+Step 3: Find Mᵢ⁻¹ mod nᵢ
+105 mod 2 = 1 → 1⁻¹ mod 2 = 1
+70  mod 3 = 1 → 1⁻¹ mod 3 = 1
+42  mod 5 = 2 → 2⁻¹ mod 5: 2×3=6≡1 → M₃⁻¹ = 3
+30  mod 7 = 2 → 2⁻¹ mod 7: 2×4=8≡1 → M₄⁻¹ = 4
 
-Step 4: x = Î£(aáµ¢ Ã— Máµ¢ Ã— Máµ¢â»Â¹) mod M
-x = (1Ã—105Ã—1) + (2Ã—70Ã—1) + (3Ã—42Ã—3) + (4Ã—30Ã—4)
+Step 4: x = Σ(aᵢ × Mᵢ × Mᵢ⁻¹) mod M
+x = (1×105×1) + (2×70×1) + (3×42×3) + (4×30×4)
   = 105 + 140 + 378 + 480
   = 1103
 
-Step 5: x = 1103 mod 210 = 1103 âˆ’ 5Ã—210 = 1103âˆ’1050 = 53
+Step 5: x = 1103 mod 210 = 1103 − 5×210 = 1103−1050 = 53
 
 Verification:
-53 mod 2 = 1 âœ“
-53 mod 3 = 2 âœ“  (51=17Ã—3)
-53 mod 5 = 3 âœ“  (50=10Ã—5)
-53 mod 7 = 4 âœ“  (49=7Ã—7)
+53 mod 2 = 1 ✓
+53 mod 3 = 2 ✓  (51=17×3)
+53 mod 5 = 3 ✓  (50=10×5)
+53 mod 7 = 4 ✓  (49=7×7)
 
-âˆ´ x â‰¡ 53 (mod 210)`},
+∴ x ≡ 53 (mod 210)`},
 
     {q:"Describe RSA. Perform encryption and decryption for p = 11, q = 13, e = 11, M = 7. Show all steps.",
-     a:`RSA Algorithm â€” p=11, q=13, e=11, M=7
+     a:`RSA Algorithm — p=11, q=13, e=11, M=7
 
 Step 1: Key Generation
-n = p Ã— q = 11 Ã— 13 = 143
-Ï†(n) = (11âˆ’1)(13âˆ’1) = 10 Ã— 12 = 120
+n = p × q = 11 × 13 = 143
+φ(n) = (11−1)(13−1) = 10 × 12 = 120
 Public key: (e, n) = (11, 143)
 
 Step 2: Verify e
-gcd(11, 120): 120 = 10Ã—11 + 10; 11=1Ã—10+1 â†’ GCD=1 âœ“
+gcd(11, 120): 120 = 10×11 + 10; 11=1×10+1 → GCD=1 ✓
 
-Step 3: Find private key d = 11â»Â¹ mod 120
+Step 3: Find private key d = 11⁻¹ mod 120
 Extended Euclidean:
-120 = 10Ã—11 + 10
-11  = 1Ã—10 + 1
-Back-substitute: 1 = 11 âˆ’ 1Ã—10 = 11 âˆ’ 1Ã—(120âˆ’10Ã—11) = 11Ã—11 âˆ’ 120
-âˆ´ d â‰¡ 11 (mod 120)
-Verify: 11Ã—11 = 121 = 1Ã—120+1 â†’ mod 120 = 1 âœ“
+120 = 10×11 + 10
+11  = 1×10 + 1
+Back-substitute: 1 = 11 − 1×10 = 11 − 1×(120−10×11) = 11×11 − 120
+∴ d ≡ 11 (mod 120)
+Verify: 11×11 = 121 = 1×120+1 → mod 120 = 1 ✓
 Private key: (d, n) = (11, 143)
 
 Step 4: Encryption
-C = M^e mod n = 7Â¹Â¹ mod 143
-7Â² = 49
-7â´ = 49Â² = 2401 mod 143: 2401/143=16 rem 113 â†’ 113
-7â¸ = 113Â² = 12769 mod 143: 12769/143=89 rem 42 â†’ 42
-7Â¹Â¹ = 7â¸ Ã— 7Â² Ã— 7 = 42 Ã— 49 Ã— 7 mod 143
-42Ã—49 = 2058 mod 143 = 2058 âˆ’ 14Ã—143 = 2058âˆ’2002 = 56
-56Ã—7 = 392 mod 143 = 392 âˆ’ 2Ã—143 = 392âˆ’286 = 106
-âˆ´ Ciphertext C = 106
+C = M^e mod n = 7¹¹ mod 143
+7² = 49
+7⁴ = 49² = 2401 mod 143: 2401/143=16 rem 113 → 113
+7⁸ = 113² = 12769 mod 143: 12769/143=89 rem 42 → 42
+7¹¹ = 7⁸ × 7² × 7 = 42 × 49 × 7 mod 143
+42×49 = 2058 mod 143 = 2058 − 14×143 = 2058−2002 = 56
+56×7 = 392 mod 143 = 392 − 2×143 = 392−286 = 106
+∴ Ciphertext C = 106
 
 Step 5: Decryption
-M = C^d mod n = 106Â¹Â¹ mod 143
-106Â² = 11236 mod 143: 11236/143=78 rem 122 â†’ 122
-106â´ = 122Â² = 14884 mod 143: 14884/143=104 rem 12 â†’ 12
-106â¸ = 12Â² = 144 mod 143 = 1
-106Â¹Â¹ = 106â¸ Ã— 106Â² Ã— 106Â¹ = 1 Ã— 122 Ã— 106 mod 143
-= 12932 mod 143 = 12932 âˆ’ 90Ã—143 = 12932âˆ’12870 = 62 â€¦ 
-
 Using CRT shortcut: M=7 was original. Decrypt: 106^11 mod 11 and mod 13
-106 mod 11 = 7; 7^11 mod 11: By Fermat 7^10â‰¡1, so 7^11=7 mod 11 â†’ 7
-106 mod 13 = 2; 2^11 mod 13: 2^12â‰¡1 by Fermat, 2^11=2^12/2=1Ã—7(inv of 2 mod13=7) â†’ 2^11=7? 
-2^1=2,2^2=4,2^3=8,2^4=3,2^5=6,2^6=12,2^7=11,2^8=9,2^9=5,2^10=10,2^11=7 mod 13
-CRT: xâ‰¡7 mod11, xâ‰¡7 mod13 â†’ x=7 (since 7<11Ã—13=143)
+106 mod 11 = 7; 7^11 mod 11: By Fermat 7^10≡1, so 7^11=7 mod 11 → 7
+106 mod 13 = 2; 2^11 mod 13:
+2^1=2,2²=4,2³=8,2⁴=3,2⁵=6,2⁶=12,2⁷=11,2⁸=9,2⁹=5,2¹⁰=10,2¹¹=7 mod 13
+CRT: x≡7 mod11, x≡7 mod13 → x=7 (since 7<11×13=143)
 
-âˆ´ Decrypted message M = 7 âœ“ (matches original plaintext)`},
+∴ Decrypted message M = 7 ✓ (matches original plaintext)`},
 
     {q:"Evaluate Diffie-Hellman. p = 31, g = 3, Alice a = 7, Bob b = 12. (a) Public keys, (b) Shared secrets, (c) Verify, (d) Security against eavesdropper.",
      a:`Diffie-Hellman Key Exchange: p=31, g=3, a=7, b=12
 
 (a) Compute Public Keys:
 Alice's public key:
-A = g^a mod p = 3â· mod 31
-3Â¹ = 3
-3Â² = 9
-3â´ = 81 mod 31 = 81âˆ’2Ã—31 = 19
-3â· = 3â´ Ã— 3Â² Ã— 3 = 19 Ã— 9 Ã— 3 mod 31
-19Ã—9 = 171 mod 31 = 171 âˆ’ 5Ã—31 = 171âˆ’155 = 16
-16Ã—3 = 48 mod 31 = 17
-âˆ´ A = 17
+A = g^a mod p = 3⁷ mod 31
+3¹ = 3
+3² = 9
+3⁴ = 81 mod 31 = 81−2×31 = 19
+3⁷ = 3⁴ × 3² × 3 = 19 × 9 × 3 mod 31
+19×9 = 171 mod 31 = 171 − 5×31 = 171−155 = 16
+16×3 = 48 mod 31 = 17
+∴ A = 17
 
 Bob's public key:
-B = g^b mod p = 3Â¹Â² mod 31
-3â¸ = 3â´ Ã— 3â´ = 19 Ã— 19 = 361 mod 31 = 361 âˆ’ 11Ã—31 = 361âˆ’341 = 20
-3Â¹Â² = 3â¸ Ã— 3â´ = 20 Ã— 19 = 380 mod 31 = 380 âˆ’ 12Ã—31 = 380âˆ’372 = 8
-âˆ´ B = 8
+B = g^b mod p = 3¹² mod 31
+3⁸ = 3⁴ × 3⁴ = 19 × 19 = 361 mod 31 = 361 − 11×31 = 361−341 = 20
+3¹² = 3⁸ × 3⁴ = 20 × 19 = 380 mod 31 = 380 − 12×31 = 380−372 = 8
+∴ B = 8
 
 (b) Compute Shared Secrets:
-Alice: K = B^a mod p = 8â· mod 31
-8Â² = 64 mod 31 = 2
-8â´ = 2Â² = 4
-8â· = 8â´ Ã— 8Â² Ã— 8 = 4 Ã— 2 Ã— 8 = 64 mod 31 = 2
+Alice: K = B^a mod p = 8⁷ mod 31
+8² = 64 mod 31 = 2
+8⁴ = 2² = 4
+8⁷ = 8⁴ × 8² × 8 = 4 × 2 × 8 = 64 mod 31 = 2
 K_Alice = 2
 
-Bob: K = A^b mod p = 17Â¹Â² mod 31
-17Â² = 289 mod 31 = 289 âˆ’ 9Ã—31 = 289âˆ’279 = 10
-17â´ = 10Â² = 100 mod 31 = 100âˆ’3Ã—31 = 7
-17â¸ = 7Â² = 49 mod 31 = 18
-17Â¹Â² = 17â¸ Ã— 17â´ = 18 Ã— 7 = 126 mod 31 = 126âˆ’4Ã—31 = 2
+Bob: K = A^b mod p = 17¹² mod 31
+17² = 289 mod 31 = 289 − 9×31 = 289−279 = 10
+17⁴ = 10² = 100 mod 31 = 100−3×31 = 7
+17⁸ = 7² = 49 mod 31 = 18
+17¹² = 17⁸ × 17⁴ = 18 × 7 = 126 mod 31 = 126−4×31 = 2
 K_Bob = 2
 
 (c) Verification:
-K_Alice = K_Bob = 2 âœ“
+K_Alice = K_Bob = 2 ✓
 Both parties independently compute shared secret K = g^(ab) mod p = 3^84 mod 31 = 2
 
 (d) Security:
 Public information: p=31, g=3, A=17, B=8
-To break: must solve 3^a â‰¡ 17 (mod 31) or 3^b â‰¡ 8 (mod 31) â€” Discrete Logarithm Problem.
-With real 2048-bit primes, best known algorithms (Index Calculus, Number Field Sieve) still require ~10Â²â° operations.
+To break: must solve 3^a ≡ 17 (mod 31) or 3^b ≡ 8 (mod 31) — Discrete Logarithm Problem.
+With real 2048-bit primes, best known algorithms (Index Calculus, Number Field Sieve) still require ~10²⁰ operations.
 DH achieves forward secrecy: if long-term keys compromised, past session keys are still safe if ephemeral keys are used.`}
   ]
 },
 
-/* â”€â”€â”€â”€ MODULE 4 â”€â”€â”€â”€ */
+/* ---- MODULE 4 ---- */
 4:{
   name:"Authentication & Integrity",
-  icon:"ðŸ›¡ï¸", topic:"Hash Functions, MAC, HMAC, Digital Signatures & Kerberos",
+  icon:"🛡️", topic:"Hash Functions, MAC, HMAC, Digital Signatures & Kerberos",
   c1:"#f59e0b", cb:"rgba(245,158,11,.13)",
   m2:[
     {q:"Define authentication.",
@@ -1638,23 +1616,23 @@ DH achieves forward secrecy: if long-term keys compromised, past session keys ar
     {q:"Define biometrics.",
      a:"Biometrics is the measurement and statistical analysis of people's unique physical and behavioural characteristics for identity verification. Physical biometrics: fingerprint, iris/retina scan, facial recognition, hand geometry. Behavioural biometrics: voice recognition, signature dynamics, keystroke patterns. Used in authentication when high security and convenience are needed. Advantages: cannot be forgotten or stolen (unlike passwords)."},
     {q:"What is HMAC?",
-     a:"HMAC (Hash-based Message Authentication Code) is a MAC that uses a cryptographic hash function combined with a secret key.\n\nFormula: HMAC(K, M) = H[(K âŠ• opad) || H[(K âŠ• ipad) || M]]\n\nWhere ipad = 0x36 repeated, opad = 0x5C repeated.\n\nProvides both message integrity and authentication. More secure than a plain hash. Examples: HMAC-SHA256, HMAC-SHA1. Widely used in TLS, API authentication, JWT tokens."},
+     a:"HMAC (Hash-based Message Authentication Code) is a MAC that uses a cryptographic hash function combined with a secret key.\n\nFormula: HMAC(K, M) = H[(K⁺ ⊕ opad) || H[(K⁺ ⊕ ipad) || M]]\n\nWhere ipad = 0x36 repeated, opad = 0x5C repeated.\n\nProvides both message integrity and authentication. More secure than a plain hash. Examples: HMAC-SHA256, HMAC-SHA1. Widely used in TLS, API authentication, JWT tokens."},
     {q:"What is Kerberos used for?",
-     a:"Kerberos is a network authentication protocol designed to provide secure authentication for users and services in a distributed environment using trusted third-party ticket-based authentication.\n\nKey uses:\nâ€¢ Single Sign-On (SSO) in enterprise networks\nâ€¢ Authenticating users to services without sending passwords over the network\nâ€¢ Active Directory authentication (Windows domains)\nâ€¢ Mutual authentication (both client and server verify each other)\n\nKey components: Authentication Server (AS), Ticket Granting Server (TGS), Service Server (SS)."},
+     a:"Kerberos is a network authentication protocol designed to provide secure authentication for users and services in a distributed environment using trusted third-party ticket-based authentication.\n\nKey uses:\n• Single Sign-On (SSO) in enterprise networks\n• Authenticating users to services without sending passwords over the network\n• Active Directory authentication (Windows domains)\n• Mutual authentication (both client and server verify each other)\n\nKey components: Authentication Server (AS), Ticket Granting Server (TGS), Service Server (SS)."},
     {q:"Distinguish between MAC and hash function.",
-     a:"Hash Function:\nâ€¢ Takes message M as input; no key required\nâ€¢ Output: fixed-length digest\nâ€¢ Provides only integrity (anyone can compute it)\nâ€¢ Cannot authenticate the sender\nâ€¢ Examples: SHA-256, MD5\n\nMAC (Message Authentication Code):\nâ€¢ Takes message M and secret key K as inputs\nâ€¢ Output: fixed-length authentication tag\nâ€¢ Provides integrity AND authentication\nâ€¢ Only parties with the shared key can generate/verify\nâ€¢ Examples: HMAC-SHA256, CMAC\n\nKey difference: MAC requires a secret key; hash does not."},
+     a:"Hash Function:\n• Takes message M as input; no key required\n• Output: fixed-length digest\n• Provides only integrity (anyone can compute it)\n• Cannot authenticate the sender\n• Examples: SHA-256, MD5\n\nMAC (Message Authentication Code):\n• Takes message M and secret key K as inputs\n• Output: fixed-length authentication tag\n• Provides integrity AND authentication\n• Only parties with the shared key can generate/verify\n• Examples: HMAC-SHA256, CMAC\n\nKey difference: MAC requires a secret key; hash does not."},
     {q:"What is an X.509 certificate?",
      a:"X.509 is an ITU-T standard defining the format of public key certificates. An X.509 certificate binds a public key to an identity (individual, organisation, or device) and is digitally signed by a Certificate Authority (CA).\n\nKey fields: Version, Serial Number, Issuer (CA name), Subject (certificate owner), Public Key, Validity period, Signature algorithm, CA's digital signature.\n\nUsed in: TLS/HTTPS (web security), email signing (S/MIME), code signing, VPNs."},
     {q:"Describe the challenge-response authentication protocol.",
-     a:"Challenge-Response Authentication: A protocol where the server sends a random challenge (nonce) and the client proves its identity by responding with the correct transformation of the challenge using a shared secret or private key.\n\nSteps:\n1. Client â†’ Server: 'I am Alice'\n2. Server â†’ Client: Random challenge r (nonce)\n3. Client â†’ Server: Response = E_K(r) or H(K||r)\n4. Server verifies response independently\n\nAdvantage: Password never transmitted over the network â†’ resistant to replay attacks."},
+     a:"Challenge-Response Authentication: A protocol where the server sends a random challenge (nonce) and the client proves its identity by responding with the correct transformation of the challenge using a shared secret or private key.\n\nSteps:\n1. Client → Server: 'I am Alice'\n2. Server → Client: Random challenge r (nonce)\n3. Client → Server: Response = E_K(r) or H(K||r)\n4. Server verifies response independently\n\nAdvantage: Password never transmitted over the network → resistant to replay attacks."},
     {q:"What is CMAC?",
      a:"CMAC (Cipher-based MAC) is a MAC algorithm based on a block cipher (typically AES). It was standardised by NIST as NIST SP 800-38B.\n\nStructure: Uses AES in CBC mode to process the message; the final block is XORed with a derived subkey and encrypted to produce the MAC tag.\n\nAdvantage over HMAC: uses only one key (no separate HMAC key derivation), and is based on AES (hardware-accelerated on modern CPUs). Widely used in TLS and cryptographic protocols."},
     {q:"Define the El Gamal cryptosystem.",
-     a:"The ElGamal cryptosystem is a public-key encryption system based on the Discrete Logarithm Problem.\n\nKey Generation: Prime p, generator g, private key x â†’ public key y = gË£ mod p\nEncryption: Choose random k; C1 = gáµ mod p; C2 = M Ã— yáµ mod p â†’ ciphertext (C1, C2)\nDecryption: M = C2 Ã— C1â»Ë£ mod p = C2 Ã— (gË£)â»áµ Ã— gË£áµ = M\n\nProbabilistic: same message encrypted twice with different k gives different ciphertexts. Used in PGP encryption and DSA."},
+     a:"The ElGamal cryptosystem is a public-key encryption system based on the Discrete Logarithm Problem.\n\nKey Generation: Prime p, generator g, private key x → public key y = g^x mod p\nEncryption: Choose random k; C1 = g^k mod p; C2 = M × y^k mod p → ciphertext (C1, C2)\nDecryption: M = C2 × C1^(−x) mod p = C2 × (g^x)^(−k) × g^(xk) = M\n\nProbabilistic: same message encrypted twice with different k gives different ciphertexts. Used in PGP encryption and DSA."},
     {q:"What is the Digital Signature Standard (DSS)?",
-     a:"DSS (Digital Signature Standard) is a NIST standard (FIPS 186) for digital signatures based on the Digital Signature Algorithm (DSA).\n\nParameters: prime p (1024/2048-bit), prime q (160/256-bit divisor of pâˆ’1), generator g\nKey gen: private key x, public key y = gË£ mod p\nSign: r = (gáµ mod p) mod q; s = kâ»Â¹(H(M) + xr) mod q\nVerify: w=sâ»Â¹ mod q; u1=(H(M)Ã—w) mod q; u2=(rw) mod q; v=(g^u1 Ã— y^u2 mod p) mod q; v=r âœ“\n\nSecurity based on DLP. DSS only for signing, not encryption."},
+     a:"DSS (Digital Signature Standard) is a NIST standard (FIPS 186) for digital signatures based on the Digital Signature Algorithm (DSA).\n\nParameters: prime p (1024/2048-bit), prime q (160/256-bit divisor of p−1), generator g\nKey gen: private key x, public key y = g^x mod p\nSign: r = (g^k mod p) mod q; s = k⁻¹(H(M) + xr) mod q\nVerify: w=s⁻¹ mod q; u1=(H(M)×w) mod q; u2=(rw) mod q; v=(g^u1 × y^u2 mod p) mod q; v=r ✓\n\nSecurity based on DLP. DSS only for signing, not encryption."},
     {q:"Distinguish between symmetric key distribution and public key distribution.",
-     a:"Symmetric Key Distribution:\nâ€¢ Same key must reach both parties securely\nâ€¢ Uses KDC (Key Distribution Centre) / Kerberos\nâ€¢ Challenge: n users need n(nâˆ’1)/2 keys\nâ€¢ Example: Alice gets K_session from KDC, encrypted with their individual master keys\n\nPublic Key Distribution:\nâ€¢ Public key is shared openly; private key kept secret\nâ€¢ Distributed via directories, X.509 certificates, or PKI\nâ€¢ Challenge: need to authenticate public keys (avoid impersonation)\nâ€¢ Certificate Authorities (CAs) sign public keys to verify ownership"},
+     a:"Symmetric Key Distribution:\n• Same key must reach both parties securely\n• Uses KDC (Key Distribution Centre) / Kerberos\n• Challenge: n users need n(n−1)/2 keys\n• Example: Alice gets K_session from KDC, encrypted with their individual master keys\n\nPublic Key Distribution:\n• Public key is shared openly; private key kept secret\n• Distributed via directories, X.509 certificates, or PKI\n• Challenge: need to authenticate public keys (avoid impersonation)\n• Certificate Authorities (CAs) sign public keys to verify ownership"},
     {q:"Explain what a nonce is and state its role in authentication protocols.",
      a:"A nonce (Number used ONCE) is an arbitrary number or string used only once in a cryptographic communication.\n\nRole in Authentication:\n1. Prevents Replay Attacks: a fresh nonce ensures old captured messages cannot be reused\n2. Challenge-Response: server sends nonce as challenge; client must respond correctly\n3. Session Freshness: ensures messages belong to the current session\n4. IV/Counter: used as initialisation vector in encryption modes\n\nExample in Kerberos: timestamps and sequence numbers act as nonces preventing old tickets from being replayed."}
   ],
@@ -1663,29 +1641,29 @@ DH achieves forward secrecy: if long-term keys compromised, past session keys ar
      a:`MAC vs Hash Function
 
 Hash Function:
-â€¢ Input: message M (any length); Output: fixed-length digest h(M)
-â€¢ No secret key required
-â€¢ Anyone can compute and verify
-â€¢ Provides DATA INTEGRITY only â€” detects accidental corruption
-â€¢ One-way (preimage resistant) and collision resistant
-â€¢ Examples: SHA-256 (256-bit), SHA-1 (160-bit), MD5 (128-bit â€” deprecated)
+• Input: message M (any length); Output: fixed-length digest h(M)
+• No secret key required
+• Anyone can compute and verify
+• Provides DATA INTEGRITY only — detects accidental corruption
+• One-way (preimage resistant) and collision resistant
+• Examples: SHA-256 (256-bit), SHA-1 (160-bit), MD5 (128-bit — deprecated)
 
 How hash provides integrity:
 Sender computes h(M) and sends (M, h(M)).
 Receiver recomputes h(M') and checks if h(M') = h(M).
-If match â†’ data not corrupted.
+If match → data not corrupted.
 Limitation: Attacker can replace both M and h(M) together!
 
 MAC (Message Authentication Code):
-â€¢ Input: message M + secret key K; Output: MAC tag
-â€¢ Requires shared secret key K between sender and receiver
-â€¢ Provides INTEGRITY + AUTHENTICATION
-â€¢ Examples: HMAC-SHA256, CMAC-AES
+• Input: message M + secret key K; Output: MAC tag
+• Requires shared secret key K between sender and receiver
+• Provides INTEGRITY + AUTHENTICATION
+• Examples: HMAC-SHA256, CMAC-AES
 
 How MAC provides integrity + authentication:
 Sender computes MAC_K(M) and sends (M, MAC_K(M)).
 Receiver recomputes MAC_K(M') and compares.
-If match â†’ data not modified AND from someone with key K.
+If match → data not modified AND from someone with key K.
 Attacker cannot forge MAC without key K.
 
 Key difference: Hash = no key (integrity only); MAC = secret key (integrity + authentication).`},
@@ -1696,27 +1674,27 @@ Key difference: Hash = no key (integrity only); MAC = secret key (integrity + au
 Overview: Kerberos is a trusted-third-party protocol providing mutual authentication using shared secret keys and time-limited tickets.
 
 Key Components:
-â€¢ Client (C): User requesting access
-â€¢ Authentication Server (AS): Verifies user identity, issues TGT
-â€¢ Ticket Granting Server (TGS): Issues service tickets
-â€¢ Service Server (SS): The actual service client wants to access
+• Client (C): User requesting access
+• Authentication Server (AS): Verifies user identity, issues TGT
+• Ticket Granting Server (TGS): Issues service tickets
+• Service Server (SS): The actual service client wants to access
 
 Protocol Flow (3-Phase):
 
-Phase 1 â€” Client â†” AS:
-1. C â†’ AS: User ID + TGS ID (in plaintext)
-2. AS â†’ C: [TGT = {C, TGS, timestamp, lifetime, K_c,tgs}] encrypted with K_tgs
+Phase 1 — Client ↔ AS:
+1. C → AS: User ID + TGS ID (in plaintext)
+2. AS → C: [TGT = {C, TGS, timestamp, lifetime, K_c,tgs}] encrypted with K_tgs
             + K_c,tgs encrypted with K_c (client's master key)
 Client decrypts K_c,tgs using their password-derived key.
 
-Phase 2 â€” Client â†” TGS:
-3. C â†’ TGS: TGT + [Authenticator = {C, timestamp}]_K_c,tgs + Service ID
-4. TGS â†’ C: Service Ticket {C, SS, timestamp, K_c,ss} encrypted with K_ss
+Phase 2 — Client ↔ TGS:
+3. C → TGS: TGT + [Authenticator = {C, timestamp}]_K_c,tgs + Service ID
+4. TGS → C: Service Ticket {C, SS, timestamp, K_c,ss} encrypted with K_ss
             + K_c,ss encrypted with K_c,tgs
 
-Phase 3 â€” Client â†” SS:
-5. C â†’ SS: Service Ticket + Authenticator encrypted with K_c,ss
-6. SS â†’ C: {timestamp+1} encrypted with K_c,ss (mutual authentication)
+Phase 3 — Client ↔ SS:
+5. C → SS: Service Ticket + Authenticator encrypted with K_c,ss
+6. SS → C: {timestamp+1} encrypted with K_c,ss (mutual authentication)
 
 Benefits: Passwords never sent over network, replay prevention via timestamps.`},
 
@@ -1724,32 +1702,32 @@ Benefits: Passwords never sent over network, replay prevention via timestamps.`}
      a:`HMAC (Hash-based Message Authentication Code) Computation
 
 HMAC Formula:
-HMAC(K, M) = H[(Kâº âŠ• opad) || H[(Kâº âŠ• ipad) || M]]
+HMAC(K, M) = H[(K⁺ ⊕ opad) || H[(K⁺ ⊕ ipad) || M]]
 
 Where:
-â€¢ H = underlying hash function (SHA-1, SHA-256, etc.)
-â€¢ Kâº = key padded/truncated to block size (64 bytes for SHA-1)
-â€¢ ipad = 0x36 repeated to block length (inner padding)
-â€¢ opad = 0x5C repeated to block length (outer padding)
-â€¢ || = concatenation
+• H = underlying hash function (SHA-1, SHA-256, etc.)
+• K⁺ = key padded/truncated to block size (64 bytes for SHA-1)
+• ipad = 0x36 repeated to block length (inner padding)
+• opad = 0x5C repeated to block length (outer padding)
+• || = concatenation
 
 Steps for HMAC-SHA1(K, M):
 
-Step 1: Prepare key Kâº
+Step 1: Prepare key K⁺
 If |K| < 64 bytes: pad K with zeros to 64 bytes
-If |K| > 64 bytes: Kâº = SHA-1(K) padded to 64 bytes
+If |K| > 64 bytes: K⁺ = SHA-1(K) padded to 64 bytes
 
 Step 2: Compute inner padding XOR
-Sâ‚ = Kâº âŠ• ipad  (XOR each byte of Kâº with 0x36)
+S₁ = K⁺ ⊕ ipad  (XOR each byte of K⁺ with 0x36)
 
 Step 3: Compute inner hash
-inner = SHA-1(Sâ‚ || M)  â†’ 20-byte result
+inner = SHA-1(S₁ || M)  → 20-byte result
 
 Step 4: Compute outer padding XOR
-Sâ‚‚ = Kâº âŠ• opad  (XOR each byte of Kâº with 0x5C)
+S₂ = K⁺ ⊕ opad  (XOR each byte of K⁺ with 0x5C)
 
 Step 5: Compute final HMAC
-HMAC = SHA-1(Sâ‚‚ || inner)  â†’ 20-byte authentication tag
+HMAC = SHA-1(S₂ || inner)  → 20-byte authentication tag
 
 The tag proves: (a) M was not modified (integrity), (b) sender knows K (authentication).`},
 
@@ -1761,15 +1739,15 @@ Output: 160-bit (20-byte) hash digest
 Overview: SHA-1 processes message in 512-bit blocks through 80 rounds using compression function.
 
 Pre-processing:
-1. Pad message: append '1' bit, then zeros, then 64-bit length â†’ total length â‰¡ 0 (mod 512)
-2. Parse into N Ã— 512-bit blocks Mâ½Â¹â¾, Mâ½Â²â¾, â€¦, Mâ½á´ºâ¾
+1. Pad message: append '1' bit, then zeros, then 64-bit length → total length ≡ 0 (mod 512)
+2. Parse into N × 512-bit blocks M⁽¹⁾, M⁽²⁾, …, M⁽ᴺ⁾
 
-Initial Hash Values (Hâ‚€ to Hâ‚„):
-Hâ‚€=0x67452301, Hâ‚=0xEFCDAB89, Hâ‚‚=0x98BADCFE, Hâ‚ƒ=0x10325476, Hâ‚„=0xC3D2E1F0
+Initial Hash Values (H₀ to H₄):
+H₀=0x67452301, H₁=0xEFCDAB89, H₂=0x98BADCFE, H₃=0x10325476, H₄=0xC3D2E1F0
 
 For each 512-bit block:
-1. Message schedule: expand 16 Ã— 32-bit words â†’ 80 Ã— 32-bit words Wâ‚œ
-   Wâ‚œ = (W_{t-3} âŠ• W_{t-8} âŠ• W_{t-14} âŠ• W_{t-16}) <<< 1 (t â‰¥ 16)
+1. Message schedule: expand 16 × 32-bit words → 80 × 32-bit words Wₜ
+   Wₜ = (W_{t-3} ⊕ W_{t-8} ⊕ W_{t-14} ⊕ W_{t-16}) <<< 1 (t ≥ 16)
 
 2. 80 rounds in 4 groups of 20:
    Rounds 0-19:  f(B,C,D) = (B AND C) OR (NOT B AND D);  K=0x5A827999
@@ -1777,47 +1755,47 @@ For each 512-bit block:
    Rounds 40-59: f(B,C,D) = (B AND C) OR (B AND D) OR (C AND D); K=0x8F1BBCDC
    Rounds 60-79: f(B,C,D) = B XOR C XOR D;               K=0xCA62C1D6
 
-3. Update: (A,B,C,D,E) = (T, A, B<<<30, C, D) where T = A<<<5 + f(B,C,D) + E + Wâ‚œ + Kâ‚œ
+3. Update: (A,B,C,D,E) = (T, A, B<<<30, C, D) where T = A<<<5 + f(B,C,D) + E + Wₜ + Kₜ
 
-4. Add to running hash: Háµ¢ = Háµ¢â‚‹â‚ + (A,B,C,D,E)
+4. Add to running hash: Hᵢ = Hᵢ₋₁ + (A,B,C,D,E)
 
 Collision Resistance:
-â€¢ Avalanche effect: 1 bit change â†’ ~80 bits of output change
-â€¢ Preimage resistance: given hash h, finding M with SHA1(M)=h is infeasible
-â€¢ Note: SHA-1 is now considered broken (collisions found in 2017). Use SHA-256/SHA-3.`},
+• Avalanche effect: 1 bit change → ~80 bits of output change
+• Preimage resistance: given hash h, finding M with SHA1(M)=h is infeasible
+• Note: SHA-1 is now considered broken (collisions found in 2017). Use SHA-256/SHA-3.`},
 
     {q:"Illustrate the Digital Signature Standard (DSS). How is a digital signature generated and verified using DSS?",
      a:`Digital Signature Standard (DSS)
 
 Parameters (public):
-â€¢ p: large prime (1024-3072 bits)
-â€¢ q: prime divisor of (pâˆ’1), 160-256 bits
-â€¢ g: generator = h^((p-1)/q) mod p where h is any integer
+• p: large prime (1024-3072 bits)
+• q: prime divisor of (p−1), 160-256 bits
+• g: generator = h^((p-1)/q) mod p where h is any integer
 
 Key Generation:
-â€¢ Private key x: randomly chosen, 0 < x < q
-â€¢ Public key y = g^x mod p
+• Private key x: randomly chosen, 0 < x < q
+• Public key y = g^x mod p
 
 Signature Generation (for message M):
 1. Compute hash: H = SHA-1(M)
 2. Choose random per-message secret k (1 < k < q)
 3. Compute r = (g^k mod p) mod q
-4. Compute s = kâ»Â¹ Ã— (H + xÂ·r) mod q
+4. Compute s = k⁻¹ × (H + x·r) mod q
 5. Signature = (r, s)
 
 Signature Verification:
 Given message M, signature (r, s), public key y:
 1. Compute H = SHA-1(M)
-2. Compute w = sâ»Â¹ mod q
-3. Compute uâ‚ = (H Ã— w) mod q
-4. Compute uâ‚‚ = (r Ã— w) mod q
-5. Compute v = (g^uâ‚ Ã— y^uâ‚‚ mod p) mod q
-6. Signature valid if v = r âœ“
+2. Compute w = s⁻¹ mod q
+3. Compute u₁ = (H × w) mod q
+4. Compute u₂ = (r × w) mod q
+5. Compute v = (g^u₁ × y^u₂ mod p) mod q
+6. Signature valid if v = r ✓
 
 Role of hash function:
-â€¢ SHA-1/SHA-256 compresses variable-length M to fixed-size input
-â€¢ Signing the hash (not M) is computationally efficient
-â€¢ Ensures only the message's digest is signed, binding the signature to M`},
+• SHA-1/SHA-256 compresses variable-length M to fixed-size input
+• Signing the hash (not M) is computationally efficient
+• Ensures only the message's digest is signed, binding the signature to M`},
 
     {q:"Define: (a) Authentication, (b) Hash function, (c) MAC, (d) Digital Signature, (e) Biometrics.",
      a:`(a) Authentication:
@@ -1830,7 +1808,7 @@ A one-way mathematical function that maps arbitrary-length input to a fixed-leng
 A keyed cryptographic function that produces an authentication tag from a message and secret key. MAC = F(K, M). Provides both integrity and authentication. Only parties sharing key K can generate or verify. Example: HMAC-SHA256.
 
 (d) Digital Signature:
-A cryptographic mechanism providing authentication, integrity, and non-repudiation. Sender signs with private key; receiver verifies with sender's public key. Example: RSA signature, DSA, ECDSA. If signature verifies â†’ message came from legitimate sender and was not altered.
+A cryptographic mechanism providing authentication, integrity, and non-repudiation. Sender signs with private key; receiver verifies with sender's public key. Example: RSA signature, DSA, ECDSA. If signature verifies → message came from legitimate sender and was not altered.
 
 (e) Biometrics:
 Authentication using unique physiological or behavioural characteristics. Types: fingerprint, iris scan, facial recognition (physiological); voice, signature, keystroke (behavioural). Advantages: cannot be shared/stolen like passwords. Challenges: false acceptance/rejection rates, privacy concerns.`},
@@ -1839,38 +1817,34 @@ Authentication using unique physiological or behavioural characteristics. Types:
      a:`El Gamal Cryptosystem: p=19, g=2, x=6, M=8, k=5
 
 (a) Compute Public Key y:
-y = g^x mod p = 2â¶ mod 19
-2Â¹ = 2
-2Â² = 4
-2Â³ = 8
-2â´ = 16
-2â¶ = 2â´ Ã— 2Â² = 16 Ã— 4 = 64 mod 19 = 64 âˆ’ 3Ã—19 = 64âˆ’57 = 7
-âˆ´ Public key y = 7
+y = g^x mod p = 2⁶ mod 19
+2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32 mod19=13, 2⁶=13×2=26 mod19=7
+∴ y = 7
 
 (b) Compute Ciphertext (c1, c2) with k=5:
-c1 = g^k mod p = 2âµ mod 19
-2âµ = 32 mod 19 = 13
-âˆ´ c1 = 13
+c1 = g^k mod p = 2⁵ mod 19
+2⁵ = 32 mod 19 = 13
+∴ c1 = 13
 
-c2 = M Ã— y^k mod p = 8 Ã— 7âµ mod 19
-7Â² = 49 mod 19 = 11
-7â´ = 11Â² = 121 mod 19 = 121 âˆ’ 6Ã—19 = 121âˆ’114 = 7
-7âµ = 7â´ Ã— 7 = 7 Ã— 7 = 49 mod 19 = 11
-c2 = 8 Ã— 11 mod 19 = 88 mod 19 = 88 âˆ’ 4Ã—19 = 88âˆ’76 = 12
-âˆ´ c2 = 12
+c2 = M × y^k mod p = 8 × 7⁵ mod 19
+7² = 49 mod 19 = 11
+7⁴ = 11² = 121 mod 19 = 121 − 6×19 = 121−114 = 7
+7⁵ = 7⁴ × 7 = 7 × 7 = 49 mod 19 = 11
+c2 = 8 × 11 mod 19 = 88 mod 19 = 88 − 4×19 = 88−76 = 12
+∴ c2 = 12
 
 Ciphertext = (c1, c2) = (13, 12)
 
 (c) Decryption:
-M = c2 Ã— c1^(pâˆ’1âˆ’x) mod p = c2 Ã— c1^(âˆ’x) mod p
-c1^x mod p = 13â¶ mod 19
-13Â² = 169 mod 19 = 169 âˆ’ 8Ã—19 = 169âˆ’152 = 17
-13â´ = 17Â² = 289 mod 19 = 289 âˆ’ 15Ã—19 = 289âˆ’285 = 4
-13â¶ = 13â´ Ã— 13Â² = 4 Ã— 17 = 68 mod 19 = 68 âˆ’ 3Ã—19 = 68âˆ’57 = 11
-Inverse of 11 mod 19: 11 Ã— t â‰¡ 1 (mod 19) â†’ 11Ã—7=77=4Ã—19+1 â†’ t=7
-M = c2 Ã— (c1^x)â»Â¹ = 12 Ã— 7 mod 19 = 84 mod 19 = 84 âˆ’ 4Ã—19 = 84âˆ’76 = 8 âœ“
+M = c2 × c1^(p−1−x) mod p = c2 × c1^(−x) mod p
+c1^x mod p = 13⁶ mod 19
+13² = 169 mod 19 = 169 − 8×19 = 169−152 = 17
+13⁴ = 17² = 289 mod 19 = 289 − 15×19 = 289−285 = 4
+13⁶ = 13⁴ × 13² = 4 × 17 = 68 mod 19 = 68 − 3×19 = 68−57 = 11
+Inverse of 11 mod 19: 11 × t ≡ 1 (mod 19) → 11×7=77=4×19+1 → t=7
+M = c2 × (c1^x)⁻¹ = 12 × 7 mod 19 = 84 mod 19 = 84 − 4×19 = 84−76 = 8 ✓
 
-âˆ´ Recovered plaintext M = 8 âœ“`},
+∴ Recovered plaintext M = 8 ✓`},
 
     {q:"Explain the challenge-response protocol for entity authentication. Show a three-step example how a client proves identity to a server without sending its password.",
      a:`Challenge-Response Authentication Protocol
@@ -1881,26 +1855,26 @@ Three-Step Protocol (Shared Secret / Symmetric):
 
 Setup: Both client (Alice) and server share secret key K.
 
-Step 1 â€” Identification:
-Alice â†’ Server: "I am Alice"
+Step 1 — Identification:
+Alice → Server: "I am Alice"
 (Server looks up Alice's shared key K from its database)
 
-Step 2 â€” Challenge:
-Server â†’ Alice: r  (random nonce, e.g., r = 0xF3A8...)
+Step 2 — Challenge:
+Server → Alice: r  (random nonce, e.g., r = 0xF3A8...)
 The nonce r is fresh and random to prevent replay attacks.
 
-Step 3 â€” Response:
-Alice â†’ Server: E_K(r)  (encrypts nonce with shared key K)
+Step 3 — Response:
+Alice → Server: E_K(r)  (encrypts nonce with shared key K)
 Server independently computes E_K(r) and compares.
-If match â†’ Alice is authenticated âœ“
+If match → Alice is authenticated ✓
 
 Why secure:
-â€¢ Alice never sends her password K over the network
-â€¢ Each challenge r is unique â†’ captured response cannot be replayed
-â€¢ Attacker cannot forge E_K(r) without knowing K
+• Alice never sends her password K over the network
+• Each challenge r is unique → captured response cannot be replayed
+• Attacker cannot forge E_K(r) without knowing K
 
-Variant â€” Public Key Challenge-Response:
-Step 3: Alice signs r with her private key â†’ Server verifies with Alice's public key.
+Variant — Public Key Challenge-Response:
+Step 3: Alice signs r with her private key → Server verifies with Alice's public key.
 Even more secure: no shared secret needed.`},
 
     {q:"Describe symmetric key distribution using asymmetric encryption. p=29, g=2, a=5, b=4. (a) Public keys, (b) Shared key both sides, verify they match.",
@@ -1911,185 +1885,185 @@ Two parties use asymmetric (public-key) mathematics to establish a shared symmet
 
 (a) Compute Public Keys:
 Alice's public key:
-A = g^a mod p = 2âµ mod 29
-2Â¹=2, 2Â²=4, 2Â³=8, 2â´=16, 2âµ=32 mod 29 = 3
-âˆ´ A = 3
+A = g^a mod p = 2⁵ mod 29
+2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32 mod 29 = 3
+∴ A = 3
 
 Bob's public key:
-B = g^b mod p = 2â´ mod 29
-2â´ = 16
-âˆ´ B = 16
+B = g^b mod p = 2⁴ mod 29
+2⁴ = 16
+∴ B = 16
 
 (b) Derive Shared Session Key:
 From Alice's side:
-K_Alice = B^a mod p = 16âµ mod 29
-16Â² = 256 mod 29 = 256 âˆ’ 8Ã—29 = 256âˆ’232 = 24
-16â´ = 24Â² = 576 mod 29 = 576 âˆ’ 19Ã—29 = 576âˆ’551 = 25
-16âµ = 16â´ Ã— 16 = 25 Ã— 16 = 400 mod 29 = 400 âˆ’ 13Ã—29 = 400âˆ’377 = 23
+K_Alice = B^a mod p = 16⁵ mod 29
+16² = 256 mod 29 = 256 − 8×29 = 256−232 = 24
+16⁴ = 24² = 576 mod 29 = 576 − 19×29 = 576−551 = 25
+16⁵ = 16⁴ × 16 = 25 × 16 = 400 mod 29 = 400 − 13×29 = 400−377 = 23
 K_Alice = 23
 
 From Bob's side:
-K_Bob = A^b mod p = 3â´ mod 29
-3Â² = 9
-3â´ = 81 mod 29 = 81 âˆ’ 2Ã—29 = 81âˆ’58 = 23
+K_Bob = A^b mod p = 3⁴ mod 29
+3² = 9
+3⁴ = 81 mod 29 = 81 − 2×29 = 81−58 = 23
 K_Bob = 23
 
-Verification: K_Alice = K_Bob = 23 âœ“
+Verification: K_Alice = K_Bob = 23 ✓
 
 Both parties now use K=23 as their shared symmetric key (e.g., for AES encryption).
-The key never traversed the network â€” only A=3 and B=16 were exchanged.`}
+The key never traversed the network — only A=3 and B=16 were exchanged.`}
   ],
   m10:[
     {q:"Describe the HMAC algorithm and compute the authentication tag. M='Hello', K='secret'. (a) HMAC formula + ipad/opad, (b) inner hash, (c) outer hash, (d) what tag proves, (e) HMAC vs plain hash.",
-     a:`HMAC Algorithm â€” Full Description and Computation
+     a:`HMAC Algorithm — Full Description and Computation
 
 (a) HMAC Formula:
-HMAC(K, M) = H[(Kâº âŠ• opad) || H[(Kâº âŠ• ipad) || M]]
+HMAC(K, M) = H[(K⁺ ⊕ opad) || H[(K⁺ ⊕ ipad) || M]]
 
 Where:
-â€¢ H = hash function (e.g., SHA-1 with 64-byte block size)
-â€¢ Kâº = key padded to block size (64 bytes)
-â€¢ ipad = 0x36 repeated 64 times (inner padding)
-â€¢ opad = 0x5C repeated 64 times (outer padding)
-â€¢ || = concatenation
+• H = hash function (e.g., SHA-1 with 64-byte block size)
+• K⁺ = key padded to block size (64 bytes)
+• ipad = 0x36 repeated 64 times (inner padding)
+• opad = 0x5C repeated 64 times (outer padding)
+• || = concatenation
 
 Key: K = "secret" = 73 65 63 72 65 74 (hex), 6 bytes
-Kâº = pad to 64 bytes: 73 65 63 72 65 74 00 00 ... 00 (58 zero bytes appended)
+K⁺ = pad to 64 bytes: 73 65 63 72 65 74 00 00 ... 00 (58 zero bytes appended)
 
 ipad = 36 36 36 36 ... (64 times)
 opad = 5C 5C 5C 5C ... (64 times)
 
 (b) Inner Hash Computation:
-Kâº âŠ• ipad:
-73âŠ•36=45, 65âŠ•36=53, 63âŠ•36=55, 72âŠ•36=44, 65âŠ•36=53, 74âŠ•36=42, 00âŠ•36=36, ...
-â†’ S_inner = [45 53 55 44 53 42 36 36 ... 36] (64 bytes)
+K⁺ ⊕ ipad:
+73⊕36=45, 65⊕36=53, 63⊕36=55, 72⊕36=44, 65⊕36=53, 74⊕36=42, 00⊕36=36, ...
+→ S_inner = [45 53 55 44 53 42 36 36 ... 36] (64 bytes)
 
 Concatenate with M: S_inner || "Hello" = S_inner || 48 65 6C 6C 6F
 
 inner_hash = H(S_inner || M)
 = SHA-1(S_inner || "Hello")
-â‰ˆ some 20-byte (160-bit) value [actual computation requires SHA-1 engine]
+≈ some 20-byte (160-bit) value [actual computation requires SHA-1 engine]
 
 (c) Outer Hash Computation:
-Kâº âŠ• opad:
-73âŠ•5C=2F, 65âŠ•5C=39, 63âŠ•5C=3F, 72âŠ•5C=2E, 65âŠ•5C=39, 74âŠ•5C=28, 00âŠ•5C=5C, ...
-â†’ S_outer = [2F 39 3F 2E 39 28 5C 5C ... 5C] (64 bytes)
+K⁺ ⊕ opad:
+73⊕5C=2F, 65⊕5C=39, 63⊕5C=3F, 72⊕5C=2E, 65⊕5C=39, 74⊕5C=28, 00⊕5C=5C, ...
+→ S_outer = [2F 39 3F 2E 39 28 5C 5C ... 5C] (64 bytes)
 
 HMAC = H(S_outer || inner_hash)
 = SHA-1(S_outer || 20-byte inner hash)
 = 20-byte final authentication tag
 
 (d) What the HMAC tag proves:
-â€¢ INTEGRITY: If even 1 bit of M is changed, the tag will not match
-â€¢ AUTHENTICATION: Only someone who knows secret key K can generate a valid tag
-â€¢ NON-REPUDIATION (partial): between the two parties sharing K
+• INTEGRITY: If even 1 bit of M is changed, the tag will not match
+• AUTHENTICATION: Only someone who knows secret key K can generate a valid tag
+• NON-REPUDIATION (partial): between the two parties sharing K
 
 (e) HMAC vs Plain Hash:
-â€¢ Plain hash H(M): no key, anyone can compute, provides integrity only
-â€¢ HMAC(K,M): requires secret key K, provides integrity + authentication
-â€¢ Even if attacker intercepts (M, H(M)) they can replace both; but cannot forge HMAC without K
-â€¢ Length extension attacks defeat plain hash MACs (like H(K||M)) but not HMAC's nested structure`},
+• Plain hash H(M): no key, anyone can compute, provides integrity only
+• HMAC(K,M): requires secret key K, provides integrity + authentication
+• Even if attacker intercepts (M, H(M)) they can replace both; but cannot forge HMAC without K
+• Length extension attacks defeat plain hash MACs (like H(K||M)) but not HMAC's nested structure`},
 
     {q:"Perform DSS digital signature generation and verification. p=23, q=11, g=4, x=7, k=3, H(M)=5. Full steps.",
-     a:`DSS Digital Signature â€” Full Generation and Verification
+     a:`DSS Digital Signature — Full Generation and Verification
 
 Given: p=23, q=11, g=4, x=7 (private key), k=3 (per-message secret), H(M)=5
 
 Setup Verification:
-â€¢ q | (pâˆ’1): pâˆ’1=22, 22/11=2 âœ“
-â€¢ g = h^((p-1)/q) mod p: g=4 (given) âœ“
+• q | (p−1): p−1=22, 22/11=2 ✓
+• g = h^((p-1)/q) mod p: g=4 (given) ✓
 
 (a) Compute Public Key y:
-y = g^x mod p = 4â· mod 23
-4Â² = 16
-4â´ = 256 mod 23 = 256 âˆ’ 11Ã—23 = 256âˆ’253 = 3
-4â· = 4â´ Ã— 4Â² Ã— 4 = 3 Ã— 16 Ã— 4 = 192 mod 23
-192 = 8Ã—23 + 8 â†’ y = 8
-âˆ´ Public key y = 8
+y = g^x mod p = 4⁷ mod 23
+4² = 16
+4⁴ = 256 mod 23 = 256 − 11×23 = 256−253 = 3
+4⁷ = 4⁴ × 4² × 4 = 3 × 16 × 4 = 192 mod 23
+192 = 8×23 + 8 → y = 8
+∴ Public key y = 8
 
 (b) Compute r:
-r = (g^k mod p) mod q = (4Â³ mod 23) mod 11
-4Â³ = 64 mod 23 = 64 âˆ’ 2Ã—23 = 64âˆ’46 = 18
+r = (g^k mod p) mod q = (4³ mod 23) mod 11
+4³ = 64 mod 23 = 64 − 2×23 = 64−46 = 18
 r = 18 mod 11 = 7
-âˆ´ r = 7
+∴ r = 7
 
 (c) Compute s:
-s = kâ»Â¹ Ã— (H(M) + xÂ·r) mod q
-First: kâ»Â¹ = 3â»Â¹ mod 11
-  3 Ã— 4 = 12 â‰¡ 1 (mod 11) â†’ kâ»Â¹ = 4
-H(M) + xÂ·r = 5 + 7Ã—7 = 5 + 49 = 54
-54 mod 11 = 54 âˆ’ 4Ã—11 = 54âˆ’44 = 10
-s = 4 Ã— 10 mod 11 = 40 mod 11 = 7
-âˆ´ Signature = (r, s) = (7, 7)
+s = k⁻¹ × (H(M) + x·r) mod q
+First: k⁻¹ = 3⁻¹ mod 11
+  3 × 4 = 12 ≡ 1 (mod 11) → k⁻¹ = 4
+H(M) + x·r = 5 + 7×7 = 5 + 49 = 54
+54 mod 11 = 54 − 4×11 = 54−44 = 10
+s = 4 × 10 mod 11 = 40 mod 11 = 7
+∴ Signature = (r, s) = (7, 7)
 
 (d) Verify Signature:
 Given: signature (r,s)=(7,7), H(M)=5, public key y=8
 
-Step 1: w = sâ»Â¹ mod q = 7â»Â¹ mod 11
-  7 Ã— 8 = 56 â‰¡ 1 (mod 11) â†’ w = 8
+Step 1: w = s⁻¹ mod q = 7⁻¹ mod 11
+  7 × 8 = 56 ≡ 1 (mod 11) → w = 8
 
-Step 2: uâ‚ = (H(M) Ã— w) mod q = (5 Ã— 8) mod 11 = 40 mod 11 = 7
+Step 2: u₁ = (H(M) × w) mod q = (5 × 8) mod 11 = 40 mod 11 = 7
 
-Step 3: uâ‚‚ = (r Ã— w) mod q = (7 Ã— 8) mod 11 = 56 mod 11 = 1
+Step 3: u₂ = (r × w) mod q = (7 × 8) mod 11 = 56 mod 11 = 1
 
-Step 4: v = (g^uâ‚ Ã— y^uâ‚‚ mod p) mod q
-g^uâ‚ = 4â· mod 23 = 8 (computed above)
-y^uâ‚‚ = 8Â¹ mod 23 = 8
-g^uâ‚ Ã— y^uâ‚‚ = 8 Ã— 8 = 64 mod 23 = 64âˆ’2Ã—23 = 18
+Step 4: v = (g^u₁ × y^u₂ mod p) mod q
+g^u₁ = 4⁷ mod 23 = 8 (computed above)
+y^u₂ = 8¹ mod 23 = 8
+g^u₁ × y^u₂ = 8 × 8 = 64 mod 23 = 64−2×23 = 18
 v = 18 mod 11 = 7
 
-(e) Confirmation: v = 7 = r = 7 âœ“
+(e) Confirmation: v = 7 = r = 7 ✓
 Signature is VALID. The message was signed by the holder of private key x=7.`},
 
     {q:"Apply El Gamal cryptosystem. p=19, g=2, x=6, M=8, k=5. (a) Public key, (b) c1, (c) c2, (d) Decrypt, verify M=8, (e) Why different k gives different ciphertext.",
-     a:`El Gamal Cryptosystem â€” Full Example: p=19, g=2, x=6, M=8, k=5
+     a:`El Gamal Cryptosystem — Full Example: p=19, g=2, x=6, M=8, k=5
 
 (a) Compute Public Key y:
-y = g^x mod p = 2â¶ mod 19
-2Â¹=2, 2Â²=4, 2Â³=8, 2â´=16, 2âµ=32 mod19=13, 2â¶=13Ã—2=26 mod19=7
-âˆ´ y = 7
+y = g^x mod p = 2⁶ mod 19
+2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32 mod19=13, 2⁶=13×2=26 mod19=7
+∴ y = 7
 
 (b) Compute c1 = g^k mod p:
-c1 = 2âµ mod 19
-2âµ = 32 mod 19 = 13
-âˆ´ c1 = 13
+c1 = 2⁵ mod 19
+2⁵ = 32 mod 19 = 13
+∴ c1 = 13
 
-(c) Compute c2 = M Ã— y^k mod p:
-y^k = 7âµ mod 19
-7Â²=49 mod19=11; 7â´=11Â²=121 mod19=7; 7âµ=7Ã—7=49 mod19=11
-c2 = 8 Ã— 11 mod 19 = 88 mod 19
-88 = 4Ã—19 + 12 â†’ c2 = 12
-âˆ´ Ciphertext = (c1, c2) = (13, 12)
+(c) Compute c2 = M × y^k mod p:
+y^k = 7⁵ mod 19
+7²=49 mod19=11; 7⁴=11²=121 mod19=7; 7⁵=7×7=49 mod19=11
+c2 = 8 × 11 mod 19 = 88 mod 19
+88 = 4×19 + 12 → c2 = 12
+∴ Ciphertext = (c1, c2) = (13, 12)
 
-(d) Decryption â€” Recover M:
-M = c2 Ã— c1^(âˆ’x) mod p = c2 Ã— (c1^x)â»Â¹ mod p
+(d) Decryption — Recover M:
+M = c2 × c1^(−x) mod p = c2 × (c1^x)⁻¹ mod p
 
-Compute c1^x = 13â¶ mod 19:
-13Â² = 169 mod 19 = 169âˆ’8Ã—19 = 17
-13Â³ = 17Ã—13 = 221 mod 19 = 221âˆ’11Ã—19 = 221âˆ’209 = 12
-13â¶ = (13Â³)Â² = 12Â² = 144 mod 19 = 144âˆ’7Ã—19 = 144âˆ’133 = 11
+Compute c1^x = 13⁶ mod 19:
+13² = 169 mod 19 = 169−8×19 = 17
+13³ = 17×13 = 221 mod 19 = 221−11×19 = 221−209 = 12
+13⁶ = (13³)² = 12² = 144 mod 19 = 144−7×19 = 144−133 = 11
 
 Find inverse of 11 mod 19:
-11Ã—7 = 77 = 4Ã—19+1 â†’ (c1^x)â»Â¹ = 7
+11×7 = 77 = 4×19+1 → (c1^x)⁻¹ = 7
 
-M = c2 Ã— 7 mod 19 = 12 Ã— 7 = 84 mod 19 = 84âˆ’4Ã—19 = 84âˆ’76 = 8 âœ“
+M = c2 × 7 mod 19 = 12 × 7 = 84 mod 19 = 84−4×19 = 84−76 = 8 ✓
 
-Recovered M = 8 âœ“ (Matches original plaintext)
+Recovered M = 8 ✓ (Matches original plaintext)
 
 (e) Why different k gives different ciphertext (Probabilistic Property):
 If k is changed (say k=3):
-c1' = 2Â³ mod 19 = 8 (different from c1=13)
-y^3 = 7Â³ = 343 mod 19 = 343âˆ’18Ã—19 = 343âˆ’342 = 1
-c2' = 8 Ã— 1 mod 19 = 8 (different from c2=12)
-â†’ Completely different ciphertext (8, 8) for same M=8
+c1' = 2³ mod 19 = 8 (different from c1=13)
+y^3 = 7³ = 343 mod 19 = 343−18×19 = 343−342 = 1
+c2' = 8 × 1 mod 19 = 8 (different from c2=12)
+→ Completely different ciphertext (8, 8) for same M=8
 
-This is called probabilistic encryption â€” each encryption of the same plaintext produces a different ciphertext (due to random k). This prevents:
-â€¢ Chosen-plaintext attacks
-â€¢ Ciphertext-only pattern analysis
-â€¢ Semantic security attacks`},
+This is called probabilistic encryption — each encryption of the same plaintext produces a different ciphertext (due to random k). This prevents:
+• Chosen-plaintext attacks
+• Ciphertext-only pattern analysis
+• Semantic security attacks`},
 
     {q:"Describe the Kerberos Authentication protocol with step-by-step message flow. (a) AS, TGS, SS roles, (b) Step 1: TGT, (c) Step 2: Service Ticket, (d) Step 3: Service Access, (e) Replay attack prevention.",
-     a:`Kerberos Authentication Protocol â€” Full Step-by-Step
+     a:`Kerberos Authentication Protocol — Full Step-by-Step
 
 Overview:
 Kerberos is a trusted-third-party network authentication protocol using symmetric key cryptography and time-limited tickets to authenticate users to services.
@@ -2097,55 +2071,55 @@ Kerberos is a trusted-third-party network authentication protocol using symmetri
 (a) Three Kerberos Servers:
 
 1. AS (Authentication Server):
-   â€¢ First point of contact for client
-   â€¢ Maintains database of all users and their secret keys
-   â€¢ Verifies user identity; issues Ticket Granting Ticket (TGT)
+   • First point of contact for client
+   • Maintains database of all users and their secret keys
+   • Verifies user identity; issues Ticket Granting Ticket (TGT)
 
 2. TGS (Ticket Granting Server):
-   â€¢ Receives TGT from client
-   â€¢ Issues Service Tickets for specific services
-   â€¢ Client does not need to re-authenticate with AS for each service
+   • Receives TGT from client
+   • Issues Service Tickets for specific services
+   • Client does not need to re-authenticate with AS for each service
 
 3. SS (Service Server):
-   â€¢ The actual application server (file server, email server, etc.)
-   â€¢ Validates Service Ticket; grants access to service
+   • The actual application server (file server, email server, etc.)
+   • Validates Service Ticket; grants access to service
 
-(b) Step 1 â€” Client â†” Authentication Server:
-Client â†’ AS: {UserID || TGS_ID || Timestampâ‚}
-AS â†’ Client: {
-   Message A: [TGT = {UserID, TGS_ID, Timestampâ‚‚, Lifetime, K_client,tgs}] encrypted with K_tgs
-   Message B: [K_client,tgs || Timestampâ‚‚ || Lifetime || TGS_ID] encrypted with K_client
+(b) Step 1 — Client ↔ Authentication Server:
+Client → AS: {UserID || TGS_ID || Timestamp₁}
+AS → Client: {
+   Message A: [TGT = {UserID, TGS_ID, Timestamp₂, Lifetime, K_client,tgs}] encrypted with K_tgs
+   Message B: [K_client,tgs || Timestamp₂ || Lifetime || TGS_ID] encrypted with K_client
 }
-Client decrypts Message B using password-derived K_client â†’ obtains session key K_c,tgs.
+Client decrypts Message B using password-derived K_client → obtains session key K_c,tgs.
 
-(c) Step 2 â€” Client â†” Ticket Granting Server:
-Client â†’ TGS: {
+(c) Step 2 — Client ↔ Ticket Granting Server:
+Client → TGS: {
    TGT (from Step 1), encrypted with K_tgs
-   Authenticator = {UserID, Timestampâ‚ƒ} encrypted with K_c,tgs
+   Authenticator = {UserID, Timestamp₃} encrypted with K_c,tgs
    Service_ID
 }
 TGS decrypts TGT, then decrypts Authenticator, verifies timestamp is fresh.
-TGS â†’ Client: {
-   Service Ticket = {UserID, Service_ID, Timestampâ‚„, Lifetime, K_c,ss} encrypted with K_ss
+TGS → Client: {
+   Service Ticket = {UserID, Service_ID, Timestamp₄, Lifetime, K_c,ss} encrypted with K_ss
    K_c,ss encrypted with K_c,tgs
 }
 Client decrypts to get K_c,ss (session key for service).
 
-(d) Step 3 â€” Client â†” Service Server:
-Client â†’ SS: {
+(d) Step 3 — Client ↔ Service Server:
+Client → SS: {
    Service Ticket (encrypted with K_ss)
-   Authenticator = {UserID, Timestampâ‚…} encrypted with K_c,ss
+   Authenticator = {UserID, Timestamp₅} encrypted with K_c,ss
 }
 SS decrypts Service Ticket, verifies Authenticator timestamp.
-SS â†’ Client: {Timestampâ‚… + 1} encrypted with K_c,ss  (mutual authentication proof)
+SS → Client: {Timestamp₅ + 1} encrypted with K_c,ss  (mutual authentication proof)
 Client confirms SS is genuine. Access granted.
 
 (e) Replay Attack Prevention:
-â€¢ Timestamps: Each Authenticator contains current timestamp. SS rejects if timestamp > 5 minutes old.
-â€¢ Ticket Lifetime: TGT and Service Tickets expire (typically 8 hours).
-â€¢ Session Keys: Fresh session keys K_c,tgs and K_c,ss are generated for each session.
-â€¢ Sequence Numbers: Optional sequence numbers prevent out-of-order reuse.
-â€¢ Kerberos Cache: SS maintains a cache of recent Authenticators; duplicate timestamps are rejected.
+• Timestamps: Each Authenticator contains current timestamp. SS rejects if timestamp > 5 minutes old.
+• Ticket Lifetime: TGT and Service Tickets expire (typically 8 hours).
+• Session Keys: Fresh session keys K_c,tgs and K_c,ss are generated for each session.
+• Sequence Numbers: Optional sequence numbers prevent out-of-order reuse.
+• Kerberos Cache: SS maintains a cache of recent Authenticators; duplicate timestamps are rejected.
 Result: Even if an attacker captures a complete valid exchange, replaying it after the timestamp window fails.`},
 
     {q:"Illustrate symmetric key distribution using asymmetric encryption. p=29, g=2, a=5, b=4. Full steps.",
@@ -2162,34 +2136,34 @@ Protocol Flow:
 5. Shared secret used as symmetric encryption key
 
 (a) Compute Alice's Public Key:
-A = g^a mod p = 2âµ mod 29
-2Â¹=2, 2Â²=4, 2Â³=8, 2â´=16, 2âµ=32 mod 29=3
-âˆ´ A = 3 (transmitted to Bob over insecure channel)
+A = g^a mod p = 2⁵ mod 29
+2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32 mod 29=3
+∴ A = 3 (transmitted to Bob over insecure channel)
 
 (b) Compute Bob's Public Key:
-B = g^b mod p = 2â´ mod 29
-2â´ = 16
-âˆ´ B = 16 (transmitted to Alice over insecure channel)
+B = g^b mod p = 2⁴ mod 29
+2⁴ = 16
+∴ B = 16 (transmitted to Alice over insecure channel)
 
 (c) Alice Computes Shared Session Key:
-K = B^a mod p = 16âµ mod 29
-16Â² = 256 mod 29 = 256âˆ’8Ã—29 = 256âˆ’232 = 24
-16â´ = 24Â² = 576 mod 29 = 576âˆ’19Ã—29 = 576âˆ’551 = 25
-16âµ = 25 Ã— 16 = 400 mod 29 = 400âˆ’13Ã—29 = 400âˆ’377 = 23
+K = B^a mod p = 16⁵ mod 29
+16² = 256 mod 29 = 256−8×29 = 256−232 = 24
+16⁴ = 24² = 576 mod 29 = 576−19×29 = 576−551 = 25
+16⁵ = 25 × 16 = 400 mod 29 = 400−13×29 = 400−377 = 23
 K_Alice = 23
 
 (d) Bob Computes Shared Session Key:
-K = A^b mod p = 3â´ mod 29
-3Â² = 9
-3â´ = 9Â² = 81 mod 29 = 81âˆ’2Ã—29 = 81âˆ’58 = 23
+K = A^b mod p = 3⁴ mod 29
+3² = 9
+3⁴ = 9² = 81 mod 29 = 81−2×29 = 81−58 = 23
 K_Bob = 23
 
 (e) Verification:
-K_Alice = K_Bob = 23 âœ“
+K_Alice = K_Bob = 23 ✓
 Both parties independently arrived at shared key K = 23.
 
-Mathematical proof: K = g^(ab) mod p = 2^20 mod 29 = 2^16 Ã— 2^4 mod 29
-2^16=(2^8)^2=(256 mod29)^2=24^2=576 mod29=25; 25Ã—16=400 mod29=23 âœ“
+Mathematical proof: K = g^(ab) mod p = 2^20 mod 29 = 2^16 × 2^4 mod 29
+2^16=(2^8)²=(256 mod29)²=24²=576 mod29=25; 25×16=400 mod29=23 ✓
 
 Use of Shared Key:
 The shared secret K=23 is used as input to a Key Derivation Function (KDF) to generate a symmetric encryption key (e.g., AES-256 key). All subsequent communication is encrypted with this symmetric key, benefiting from AES's speed compared to asymmetric operations.`},
@@ -2216,31 +2190,31 @@ X.509 is an ITU-T standard defining the format of public key certificates. A cer
 1. CA computes hash of all certificate fields: h = SHA-256(cert_fields)
 2. CA encrypts hash with CA's private key: signature = E(CA_privKey, h)
 3. Signature is appended to certificate
-â†’ Any tampering with any field (name, public key, etc.) will invalidate the signature
-â†’ CA's signature is verified with CA's own public key (from its certificate)
+→ Any tampering with any field (name, public key, etc.) will invalidate the signature
+→ CA's signature is verified with CA's own public key (from its certificate)
 
 (c) Verification Process:
 When receiver gets certificate:
 1. Extract issuer's public key (from CA's own trusted certificate)
 2. Decrypt the certificate's signature: h' = D(CA_pubKey, signature)
 3. Recompute hash of certificate fields: h = SHA-256(cert_fields)
-4. Compare h and h': if equal â†’ certificate is authentic and untampered âœ“
+4. Compare h and h': if equal → certificate is authentic and untampered ✓
 5. Also check: validity period (not expired), revocation status (CRL/OCSP)
 
-(d) Real-World Example â€” HTTPS:
+(d) Real-World Example — HTTPS:
 When browser visits https://bank.com:
-â€¢ Server presents X.509 certificate for bank.com
-â€¢ Browser verifies it was signed by a trusted CA (pre-installed in OS/browser)
-â€¢ Browser extracts bank.com's public key from certificate
-â€¢ TLS handshake uses this public key to establish encrypted session
-â€¢ Green padlock = certificate verified
+• Server presents X.509 certificate for bank.com
+• Browser verifies it was signed by a trusted CA (pre-installed in OS/browser)
+• Browser extracts bank.com's public key from certificate
+• TLS handshake uses this public key to establish encrypted session
+• Green padlock = certificate verified
 
 (e) X.509 Certificates vs Manual Distribution:
 Manual Distribution:
-â€¢ Error-prone (typos, outdated keys)
-â€¢ No scalability (millions of users cannot exchange keys manually)
-â€¢ No revocation mechanism
-â€¢ No binding of key to identity
+• Error-prone (typos, outdated keys)
+• No scalability (millions of users cannot exchange keys manually)
+• No revocation mechanism
+• No binding of key to identity
 
 X.509 Certificates Advantages:
 1. Authenticated binding: CA's signature guarantees key truly belongs to the stated identity (prevents MITM impersonation)
@@ -2251,50 +2225,50 @@ X.509 Certificates Advantages:
      a:`El Gamal Cryptosystem: p=23, g=5, x=6, M=10, k=4
 
 (a) Compute Public Key y:
-y = g^x mod p = 5â¶ mod 23
-5Â¹=5; 5Â²=25 mod23=2; 5Â³=2Ã—5=10; 5â´=10Ã—5=50 mod23=4; 5âµ=4Ã—5=20; 5â¶=20Ã—5=100 mod23
-100 = 4Ã—23 + 8 â†’ y = 8
-âˆ´ Public key y = 8
+y = g^x mod p = 5⁶ mod 23
+5¹=5; 5²=25 mod23=2; 5³=2×5=10; 5⁴=10×5=50 mod23=4; 5⁵=4×5=20; 5⁶=20×5=100 mod23
+100 = 4×23 + 8 → y = 8
+∴ Public key y = 8
 
 Key pair: Private key x=6, Public key (p=23, g=5, y=8)
 
 (b) Encryption with k=4:
-c1 = g^k mod p = 5â´ mod 23 = 4 (computed above)
-âˆ´ c1 = 4
+c1 = g^k mod p = 5⁴ mod 23 = 4 (computed above)
+∴ c1 = 4
 
-y^k mod p = 8â´ mod 23
-8Â²=64 mod23=64âˆ’2Ã—23=18; 8â´=18Â²=324 mod23=324âˆ’14Ã—23=324âˆ’322=2
-c2 = M Ã— y^k mod p = 10 Ã— 2 mod 23 = 20
-âˆ´ c2 = 20
+y^k mod p = 8⁴ mod 23
+8²=64 mod23=64−2×23=18; 8⁴=18²=324 mod23=324−14×23=324−322=2
+c2 = M × y^k mod p = 10 × 2 mod 23 = 20
+∴ c2 = 20
 
 Ciphertext = (c1, c2) = (4, 20)
 
 (c) Decryption:
-M = c2 Ã— (c1^x)â»Â¹ mod p
+M = c2 × (c1^x)⁻¹ mod p
 
-c1^x = 4â¶ mod 23
-4Â²=16; 4Â³=64 mod23=18; 4â¶=18Â²=324 mod23=2
+c1^x = 4⁶ mod 23
+4²=16; 4³=64 mod23=18; 4⁶=18²=324 mod23=2
 
 Find inverse of 2 mod 23:
-2Ã—12=24â‰¡1 (mod 23) â†’ 2â»Â¹=12
+2×12=24≡1 (mod 23) → 2⁻¹=12
 
-M = 20 Ã— 12 mod 23 = 240 mod 23 = 240âˆ’10Ã—23 = 240âˆ’230 = 10 âœ“
+M = 20 × 12 mod 23 = 240 mod 23 = 240−10×23 = 240−230 = 10 ✓
 
-Recovered M = 10 âœ“
+Recovered M = 10 ✓
 
 (d) Why El Gamal is Probabilistic:
 If the same message M=10 is encrypted again with different k (say k=7):
-c1' = 5â· mod 23 = 5â¶Ã—5 = 8Ã—5=40 mod23=17 (different!)
+c1' = 5⁷ mod 23 = 5⁶×5 = 8×5=40 mod23=17 (different!)
 y^7 = 8^7 mod 23 ... gives a different value
-c2' = 10 Ã— y^7 mod 23 (different!)
+c2' = 10 × y^7 mod 23 (different!)
 
-Same M=10 but ciphertext (17, c2') â‰  (4, 20).
+Same M=10 but ciphertext (17, c2') ≠ (4, 20).
 
-This property (same plaintext â†’ different ciphertexts) means:
-â€¢ Attacker cannot tell if two ciphertexts encrypt the same message
-â€¢ Prevents chosen-plaintext attacks (semantic security)
-â€¢ Probabilistic encryption â‰ˆ IND-CPA secure
-Contrast: RSA without padding is deterministic (same M â†’ same C) and insecure.`},
+This property (same plaintext → different ciphertexts) means:
+• Attacker cannot tell if two ciphertexts encrypt the same message
+• Prevents chosen-plaintext attacks (semantic security)
+• Probabilistic encryption ≈ IND-CPA secure
+Contrast: RSA without padding is deterministic (same M → same C) and insecure.`},
 
     {q:"Analyze symmetric key distribution using asymmetric encryption. p=37, g=2, A's private=8, B's private=6. Full analysis.",
      a:`Diffie-Hellman Key Exchange: p=37, g=2, A's private key=8, B's private key=6
@@ -2304,46 +2278,46 @@ Purpose: Establish a shared symmetric key K over an insecure channel using asymm
 (a) Compute Each User's Public Key:
 
 User A's Public Key:
-PA = g^a mod p = 2â¸ mod 37
-2Â¹=2, 2Â²=4, 2Â³=8, 2â´=16, 2âµ=32, 2â¶=64 mod37=27, 2â·=27Ã—2=54 mod37=17, 2â¸=17Ã—2=34
-âˆ´ PA = 34
+PA = g^a mod p = 2⁸ mod 37
+2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64 mod37=27, 2⁷=27×2=54 mod37=17, 2⁸=17×2=34
+∴ PA = 34
 
 User B's Public Key:
-PB = g^b mod p = 2â¶ mod 37
-2â¶ = 64 mod 37 = 27
-âˆ´ PB = 27
+PB = g^b mod p = 2⁶ mod 37
+2⁶ = 64 mod 37 = 27
+∴ PB = 27
 
 Public exchange: A sends PA=34 to B; B sends PB=27 to A (over insecure channel).
 
 (b) Derive Shared Symmetric Key:
 
 From A's side:
-K_A = PB^a mod p = 27â¸ mod 37
-27Â² = 729 mod 37 = 729âˆ’19Ã—37 = 729âˆ’703 = 26
-27â´ = 26Â² = 676 mod 37 = 676âˆ’18Ã—37 = 676âˆ’666 = 10
-27â¸ = 10Â² = 100 mod 37 = 100âˆ’2Ã—37 = 100âˆ’74 = 26
+K_A = PB^a mod p = 27⁸ mod 37
+27² = 729 mod 37 = 729−19×37 = 729−703 = 26
+27⁴ = 26² = 676 mod 37 = 676−18×37 = 676−666 = 10
+27⁸ = 10² = 100 mod 37 = 100−2×37 = 100−74 = 26
 K_A = 26
 
 From B's side:
-K_B = PA^b mod p = 34â¶ mod 37
-34Â² = 1156 mod 37 = 1156âˆ’31Ã—37 = 1156âˆ’1147 = 9
-34Â³ = 9Ã—34 = 306 mod 37 = 306âˆ’8Ã—37 = 306âˆ’296 = 10
-34â¶ = 10Â² = 100 mod 37 = 100âˆ’2Ã—37 = 26
+K_B = PA^b mod p = 34⁶ mod 37
+34² = 1156 mod 37 = 1156−31×37 = 1156−1147 = 9
+34³ = 9×34 = 306 mod 37 = 306−8×37 = 306−296 = 10
+34⁶ = 10² = 100 mod 37 = 100−2×37 = 26
 K_B = 26
 
 (c) Verification:
-K_A = K_B = 26 âœ“
+K_A = K_B = 26 ✓
 Shared symmetric key K = 26
 
-Mathematical confirmation: K = 2^(8Ã—6) mod 37 = 2^48 mod 37
-2^37 â‰¡ 2 (by Fermat), 2^48 = 2^37 Ã— 2^11 = 2 Ã— 2048 mod 37
-2048 mod 37: 2048/37=55 rem 13 â†’ 2Ã—13=26 mod37=26 âœ“
+Mathematical confirmation: K = 2^(8×6) mod 37 = 2^48 mod 37
+2^37 ≡ 2 (by Fermat), 2^48 = 2^37 × 2^11 = 2 × 2048 mod 37
+2048 mod 37: 2048/37=55 rem 13 → 2×13=26 mod37=26 ✓
 
 (d) Use of Shared Key:
 1. K=26 is the raw shared secret (Diffie-Hellman output)
 2. Apply KDF (Key Derivation Function): DK = HKDF-SHA256(K, salt, info)
 3. DK is used as AES-256 symmetric key for actual data encryption
-4. Example: AES-GCM(DK, nonce, plaintext) â†’ secure encrypted message
+4. Example: AES-GCM(DK, nonce, plaintext) → secure encrypted message
 5. Advantage: fast AES bulk encryption + secure DH key exchange = hybrid cryptography
    (Used in TLS 1.3, Signal Protocol, WhatsApp end-to-end encryption)`},
 
@@ -2351,69 +2325,69 @@ Mathematical confirmation: K = 2^(8Ã—6) mod 37 = 2^48 mod 37
      a:`DSS Digital Signature: p=23, q=11, g=4, x=7, k=3, H(M)=5
 
 Setup:
-â€¢ p=23 (prime), q=11 (prime, q | pâˆ’1: 22/11=2 âœ“)
-â€¢ g=4 (generator of subgroup of order q)
-â€¢ x=7 (private signing key), k=3 (per-message random secret)
+• p=23 (prime), q=11 (prime, q | p−1: 22/11=2 ✓)
+• g=4 (generator of subgroup of order q)
+• x=7 (private signing key), k=3 (per-message random secret)
 
 (a) Compute Public Key y:
-y = g^x mod p = 4â· mod 23
-4Â¹=4; 4Â²=16; 4Â³=64 mod23=18; 4â´=18Ã—4=72 mod23=3
-4â· = 4â´ Ã— 4Â² Ã— 4 = 3 Ã— 16 Ã— 4 mod 23
-= 48 mod 23 = 48âˆ’2Ã—23 = 2 ... wait let me recompute:
-3Ã—16=48 mod23=2; 2Ã—4=8
-âˆ´ y = 8
+y = g^x mod p = 4⁷ mod 23
+4¹=4; 4²=16; 4³=64 mod23=18; 4⁴=18×4=72 mod23=3
+4⁷ = 4⁴ × 4² × 4 = 3 × 16 × 4 mod 23
+= 48 mod 23 = 2; 2×4=8
+∴ y = 8
 
 (b) Generate Signature (r, s):
 r = (g^k mod p) mod q:
-g^k = 4Â³ mod 23 = 64 mod 23 = 64âˆ’2Ã—23 = 18
+g^k = 4³ mod 23 = 64 mod 23 = 64−2×23 = 18
 r = 18 mod 11 = 7
-âˆ´ r = 7
+∴ r = 7
 
-s = kâ»Â¹ Ã— (H(M) + xÂ·r) mod q:
-kâ»Â¹ = 3â»Â¹ mod 11: 3Ã—4=12â‰¡1 (mod11) â†’ kâ»Â¹=4
-H(M) + xÂ·r = 5 + 7Ã—7 = 5+49 = 54
-54 mod 11 = 54âˆ’4Ã—11 = 10
-s = 4 Ã— 10 mod 11 = 40 mod 11 = 7
-âˆ´ s = 7
+s = k⁻¹ × (H(M) + x·r) mod q:
+k⁻¹ = 3⁻¹ mod 11: 3×4=12≡1 (mod11) → k⁻¹=4
+H(M) + x·r = 5 + 7×7 = 5+49 = 54
+54 mod 11 = 54−4×11 = 10
+s = 4 × 10 mod 11 = 40 mod 11 = 7
+∴ s = 7
 
 Signature = (r, s) = (7, 7)
 
 (c) Signature Verification:
 Verifier has: (r,s)=(7,7), H(M)=5, public key y=8, p=23, q=11, g=4
 
-Step 1 â€” Compute w:
-w = sâ»Â¹ mod q = 7â»Â¹ mod 11
-7Ã—8=56=5Ã—11+1 â†’ w=8
+Step 1 — Compute w:
+w = s⁻¹ mod q = 7⁻¹ mod 11
+7×8=56=5×11+1 → w=8
 
-Step 2 â€” Compute uâ‚:
-uâ‚ = (H(M) Ã— w) mod q = (5 Ã— 8) mod 11 = 40 mod 11 = 7
+Step 2 — Compute u₁:
+u₁ = (H(M) × w) mod q = (5 × 8) mod 11 = 40 mod 11 = 7
 
-Step 3 â€” Compute uâ‚‚:
-uâ‚‚ = (r Ã— w) mod q = (7 Ã— 8) mod 11 = 56 mod 11 = 1
+Step 3 — Compute u₂:
+u₂ = (r × w) mod q = (7 × 8) mod 11 = 56 mod 11 = 1
 
-Step 4 â€” Compute v:
-v = (g^uâ‚ Ã— y^uâ‚‚ mod p) mod q
-g^uâ‚ = 4â· mod 23 = 8 (computed in part a)
-y^uâ‚‚ = 8Â¹ mod 23 = 8
-g^uâ‚ Ã— y^uâ‚‚ = 8 Ã— 8 = 64 mod 23 = 64âˆ’2Ã—23 = 18
+Step 4 — Compute v:
+v = (g^u₁ × y^u₂ mod p) mod q
+g^u₁ = 4⁷ mod 23 = 8 (computed in part a)
+y^u₂ = 8¹ mod 23 = 8
+g^u₁ × y^u₂ = 8 × 8 = 64 mod 23 = 64−2×23 = 18
 v = 18 mod 11 = 7
 
 (d) Confirmation:
-v = 7 = r = 7 âœ“
+v = 7 = r = 7 ✓
 
 Signature verification SUCCESSFUL.
 The message was signed by the holder of private key x=7.
 
 Mathematical explanation why it works:
-v = (g^uâ‚ Â· y^uâ‚‚) mod p mod q
-  = g^(uâ‚ + xÂ·uâ‚‚) mod p mod q
-  = g^((H(M)Â·w + xÂ·rÂ·w)) mod p mod q
-  = g^(wÂ·(H(M)+xÂ·r)) mod p mod q
-  = g^(sâ»Â¹Â·sÂ·k) mod p mod q    [since s=kâ»Â¹(H(M)+xr)]
-  = g^k mod p mod q = r âœ“`}
+v = (g^u₁ · y^u₂) mod p mod q
+  = g^(u₁ + x·u₂) mod p mod q
+  = g^((H(M)·w + x·r·w)) mod p mod q
+  = g^(w·(H(M)+x·r)) mod p mod q
+  = g^(s⁻¹·s·k) mod p mod q    [since s=k⁻¹(H(M)+xr)]
+  = g^k mod p mod q = r ✓`}
   ]
 }
 };
+
 let currentModule = null;
 let currentMarks = null;
 
@@ -2831,6 +2805,6 @@ function initTTS() {
 buildHome();
 updateNav();
 initTTS();
-</script>
+  </script>
 </body>
 </html>

@@ -1,0 +1,1427 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIML Question Bank - GEC Bhubaneswar</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2433;
+    --border: #30363d;
+    --accent: #00d4aa;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --m1: #00d4aa;
+    --m2: #7c3aed;
+    --m3: #f59e0b;
+    --m4: #ef4444;
+    --r: 14px;
+    --tr: 0.3s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0d1117, #161b22);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    right: -60px;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(0, 212, 170, .1), transparent 70%);
+    pointer-events: none;
+  }
+
+  header h1 {
+    font-size: clamp(1.4rem, 4vw, 2.3rem);
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4aa, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: .88rem;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    position: relative;
+  }
+
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  .badge.g {
+    border-color: var(--m1);
+    color: var(--m1);
+    background: rgba(0, 212, 170, .08);
+  }
+
+  .badge.p {
+    border-color: var(--m2);
+    color: var(--m2);
+    background: rgba(124, 58, 237, .08);
+  }
+
+  .badge.a {
+    border-color: var(--m3);
+    color: var(--m3);
+    background: rgba(245, 158, 11, .08);
+  }
+
+  .badge.r {
+    border-color: var(--m4);
+    color: var(--m4);
+    background: rgba(239, 68, 68, .08);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    min-height: 52px;
+    flex-wrap: wrap;
+  }
+
+  #back-btn,
+  .home-btn {
+    align-items: center;
+    gap: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--tr);
+    white-space: nowrap;
+  }
+
+  #back-btn {
+    display: none;
+  }
+
+  .home-btn {
+    display: inline-flex;
+    text-decoration: none;
+  }
+
+  #back-btn:hover,
+  .home-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  #breadcrumb {
+    font-size: .8rem;
+    color: var(--muted);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  #breadcrumb .sep {
+    opacity: .4;
+  }
+
+  #breadcrumb .active {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  #breadcrumb .lnk {
+    cursor: pointer;
+  }
+
+  #breadcrumb .lnk:hover {
+    color: var(--accent);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  .page-footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    text-align: center;
+    padding: 18px 20px 24px;
+    font-size: .82rem;
+    letter-spacing: .4px;
+  }
+
+  .view {
+    animation: fadeIn .35s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-lbl {
+    font-size: .72rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .mc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 28px 24px 24px;
+    cursor: pointer;
+    transition: var(--tr);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--r) var(--r) 0 0;
+  }
+
+  .mc.m1::before { background: var(--m1); }
+  .mc.m2::before { background: var(--m2); }
+  .mc.m3::before { background: var(--m3); }
+  .mc.m4::before { background: var(--m4); }
+
+  .mc:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+  }
+
+  .mc.m1:hover {
+    box-shadow: 0 8px 32px rgba(0, 212, 170, .18);
+    border-color: rgba(0, 212, 170, .3);
+  }
+
+  .mc.m2:hover {
+    box-shadow: 0 8px 32px rgba(124, 58, 237, .18);
+    border-color: rgba(124, 58, 237, .3);
+  }
+
+  .mc.m3:hover {
+    box-shadow: 0 8px 32px rgba(245, 158, 11, .18);
+    border-color: rgba(245, 158, 11, .3);
+  }
+
+  .mc.m4:hover {
+    box-shadow: 0 8px 32px rgba(239, 68, 68, .18);
+    border-color: rgba(239, 68, 68, .3);
+  }
+
+  .cn {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .m1 .cn { color: var(--m1); }
+  .m2 .cn { color: var(--m2); }
+  .m3 .cn { color: var(--m3); }
+  .m4 .cn { color: var(--m4); }
+
+  .ct {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .cd {
+    font-size: .79rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .cf {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    font-size: .68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .chip.c2 {
+    background: rgba(99, 179, 237, .12);
+    color: #63b3ed;
+    border: 1px solid rgba(99, 179, 237, .25);
+  }
+
+  .chip.c5 {
+    background: rgba(245, 158, 11, .12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, .25);
+  }
+
+  .chip.c10 {
+    background: rgba(239, 68, 68, .12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, .25);
+  }
+
+  #module-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  #module-subtitle {
+    color: var(--muted);
+    font-size: .84rem;
+    margin-bottom: 24px;
+  }
+
+  .marks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+  }
+
+  .mkc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: var(--tr);
+    text-align: center;
+  }
+
+  .mkc:hover {
+    transform: translateY(-3px);
+  }
+
+  .mkc.active {
+    border-color: currentColor;
+  }
+
+  .mkc .mv {
+    font-size: 2.4rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .mkc .ml {
+    font-size: .7rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  .mkc .mc2 {
+    font-size: .7rem;
+    margin-top: 8px;
+    color: var(--muted);
+  }
+
+  .mkc.two { color: #63b3ed; }
+  .mkc.two:hover,
+  .mkc.two.active {
+    box-shadow: 0 4px 20px rgba(99, 179, 237, .2);
+    background: rgba(99, 179, 237, .06);
+  }
+
+  .mkc.five { color: var(--m3); }
+  .mkc.five:hover,
+  .mkc.five.active {
+    box-shadow: 0 4px 20px rgba(245, 158, 11, .2);
+    background: rgba(245, 158, 11, .06);
+  }
+
+  .mkc.ten { color: var(--m4); }
+  .mkc.ten:hover,
+  .mkc.ten.active {
+    box-shadow: 0 4px 20px rgba(239, 68, 68, .2);
+    background: rgba(239, 68, 68, .06);
+  }
+
+  .mst {
+    font-size: .83rem;
+    color: var(--muted);
+    margin-top: 28px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mst span {
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--text);
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .tbtn {
+    font-family: 'Sora', sans-serif;
+    font-size: .74rem;
+    font-weight: 600;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--tr);
+  }
+
+  .tbtn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .qlist {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .qi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+
+  .qh {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 15px 17px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .qn {
+    font-size: .68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    margin-top: 2px;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .qi.two .qn {
+    background: rgba(99, 179, 237, .15);
+    color: #63b3ed;
+  }
+
+  .qi.five .qn {
+    background: rgba(245, 158, 11, .15);
+    color: #f59e0b;
+  }
+
+  .qi.ten .qn {
+    background: rgba(239, 68, 68, .15);
+    color: #ef4444;
+  }
+
+  .qt {
+    flex: 1;
+    font-size: .875rem;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  .qtg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--surface2);
+    color: var(--muted);
+    transition: var(--tr);
+    margin-top: 2px;
+    font-size: .8rem;
+    font-weight: 700;
+  }
+
+  .qi.open .qtg {
+    background: var(--accent);
+    color: #000;
+    transform: rotate(45deg);
+  }
+
+  .qa {
+    display: none;
+    padding: 16px 17px 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .qi.open .qa {
+    display: block;
+    animation: fadeIn .2s ease;
+  }
+
+  .qi.speaking {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0, 212, 170, .16), 0 10px 28px rgba(0, 212, 170, .08);
+  }
+
+  .ans-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .albl {
+    font-size: .67rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ans-top .albl {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .albl::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .tts-panel {
+    margin-top: 22px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .tts-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .tts-title {
+    font-size: .72rem;
+    color: var(--muted);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .tts-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tts-settings {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.35fr) minmax(180px, 1fr);
+    gap: 12px;
+    align-items: end;
+  }
+
+  .tts-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tts-field span {
+    font-size: .72rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .tts-field strong {
+    color: var(--text);
+    font-size: .75rem;
+  }
+
+  .tts-field select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 10px;
+    border-radius: 8px;
+    font-family: 'Sora', sans-serif;
+    font-size: .82rem;
+  }
+
+  .tts-field input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+
+  .tts-status {
+    margin-top: 12px;
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tts-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: 'Sora', sans-serif;
+    font-size: .74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--tr);
+  }
+
+  .tts-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tts-btn.listen {
+    border-color: rgba(0, 212, 170, .28);
+    color: var(--accent);
+    background: rgba(0, 212, 170, .08);
+  }
+
+  .tts-btn.danger:hover {
+    border-color: var(--m4);
+    color: var(--m4);
+  }
+
+  .tts-unsupported {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .ab {
+    font-size: .85rem;
+    line-height: 1.75;
+    color: #c9d1d9;
+  }
+
+  .ab code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    background: rgba(28, 36, 51, .8);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 6px;
+    color: #79c0ff;
+  }
+
+  .ab pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    background: #0a0e14;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow-x: auto;
+    color: #c9d1d9;
+    line-height: 1.65;
+    white-space: pre;
+  }
+
+  .ab pre code {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+  }
+
+  .ab ul,
+  .ab ol {
+    padding-left: 18px;
+    margin: 8px 0;
+  }
+
+  .ab li {
+    margin-bottom: 5px;
+    line-height: 1.65;
+  }
+
+  .ab strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .ab table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: .8rem;
+  }
+
+  .ab table th {
+    background: var(--surface2);
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: .72rem;
+    text-transform: uppercase;
+  }
+
+  .ab table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .ab p {
+    margin-bottom: 8px;
+  }
+
+  @media(max-width:600px) {
+    main {
+      padding: 18px 13px 50px;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .marks-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .tts-settings {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Artificial Intelligence &amp; Machine Learning Question Bank</h1>
+    <p>B.Tech IV Semester &middot; Gandhi Engineering College (GEC Autonomous) Bhubaneswar</p>
+    <div class="badge-row">
+      <span class="badge g">Module 1 &middot; AI Fundamentals</span>
+      <span class="badge p">Module 2 &middot; Advanced Search</span>
+      <span class="badge a">Module 3 &middot; Data Analysis</span>
+      <span class="badge r">Module 4 &middot; Machine Learning</span>
+    </div>
+  </header>
+  <nav>
+    <a class="home-btn" href="index.html">&#8592; Home</a>
+    <button id="back-btn" onclick="goBack()">&#8592; Back</button>
+    <div id="breadcrumb"><span class="active">Home</span></div>
+  </nav>
+  <main>
+    <div id="view-home" class="view">
+      <div class="section-lbl">Select a Module to Begin</div>
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+    <div id="view-module" class="view" style="display:none">
+      <h2 id="module-title"></h2>
+      <p id="module-subtitle"></p>
+      <div class="marks-grid" id="marks-grid"></div>
+      <div class="tts-panel" id="tts-panel">
+        <div class="tts-top">
+          <div class="tts-title">Voice Reading</div>
+          <div class="tts-controls">
+            <button class="tts-btn" type="button" onclick="pauseSpeaking(event)">Pause</button>
+            <button class="tts-btn" type="button" onclick="resumeSpeaking(event)">Resume</button>
+            <button class="tts-btn danger" type="button" onclick="stopSpeaking(event)">Stop</button>
+          </div>
+        </div>
+        <div class="tts-settings">
+          <label class="tts-field">
+            <span>Voice</span>
+            <select id="tts-voice"></select>
+          </label>
+          <label class="tts-field">
+            <span>Speed <strong id="tts-rate-value">1.0x</strong></span>
+            <input id="tts-rate" type="range" min="0.7" max="1.4" step="0.1" value="1">
+          </label>
+        </div>
+        <div class="tts-status" id="tts-status">Choose an answer and press Listen.</div>
+      </div>
+      <div id="qcontainer" style="margin-top:28px"></div>
+    </div>
+  </main>
+  <footer class="page-footer">&copy; Prabhudatta Panda</footer>
+  <script>const data = {
+  1: {
+    name: "AI Fundamentals",
+    icon: "ðŸ¤–",
+    topic: "Agents, Search Strategies & Problem Solving",
+    color: "#4f8ef7",
+    marks2: [
+      { q: "Describe agent along with its function.", a: "An agent is any entity that perceives its environment through sensors and acts upon it through actuators. Functions: sensing inputs, processing information using internal knowledge, deciding actions, and executing outputs to achieve goals. Example: a robot (sensors=camera, actuators=wheels)." },
+      { q: "State the various properties of environment.", a: "Environments are classified by:\nâ€¢ Fully/Partially Observable â€“ agent can/cannot see complete state\nâ€¢ Deterministic/Stochastic â€“ next state is certain/uncertain\nâ€¢ Episodic/Sequential â€“ actions are independent/dependent\nâ€¢ Static/Dynamic â€“ environment changes while agent deliberates or not\nâ€¢ Discrete/Continuous â€“ finite/infinite states\nâ€¢ Single/Multi-agent â€“ one or multiple agents present" },
+      { q: "Differentiate blind search and heuristic search.", a: "Blind (Uninformed) Search: No domain knowledge; explores systematically without guidance. Examples: BFS, DFS, UCS.\n\nHeuristic (Informed) Search: Uses domain knowledge (heuristic function h(n)) to estimate distance to goal, making search more efficient. Examples: A*, Greedy Best-First Search." },
+      { q: "List various informed search strategies.", a: "Informed search strategies:\n1. Greedy Best-First Search â€“ expands node with lowest h(n)\n2. A* Search â€“ uses f(n) = g(n) + h(n)\n3. IDA* (Iterative Deepening A*)\n4. Hill Climbing\n5. Beam Search\n6. RBFS (Recursive Best-First Search)" },
+      { q: "Define Artificial Intelligence.", a: "Artificial Intelligence (AI) is the simulation of human intelligence processes by computer systems, including learning, reasoning, problem-solving, perception, and language understanding. It aims to create machines that can perform tasks requiring human-level intelligence." },
+      { q: "What are the examples of AI in real life?", a: "Real-life AI examples:\nâ€¢ Virtual assistants: Siri, Alexa, Google Assistant\nâ€¢ Recommendation systems: Netflix, YouTube, Amazon\nâ€¢ Autonomous vehicles: Tesla self-driving cars\nâ€¢ Medical diagnosis: AI-based disease detection\nâ€¢ Spam filters in email\nâ€¢ Face recognition systems\nâ€¢ ChatGPT and language models" },
+      { q: "Define AI in terms of rational thinking.", a: "In terms of rational thinking, AI is defined as the study and construction of systems that think rationally â€“ doing the 'right thing' based on available knowledge. A rational agent selects actions that maximize its performance measure, given the percept sequence and built-in knowledge." },
+      { q: "What is a breadth-first search algorithm?", a: "BFS (Breadth-First Search) explores all nodes at the current depth level before moving to the next level. It uses a FIFO queue. Properties: Complete (always finds a solution if one exists), Optimal (finds shortest path in unweighted graphs), Time & Space: O(b^d) where b=branching factor, d=depth." },
+      { q: "What is an A* algorithm search method?", a: "A* is an informed search algorithm that uses f(n) = g(n) + h(n), where g(n) = cost from start to node n, h(n) = heuristic estimate from n to goal. It is complete and optimal if h(n) is admissible (never overestimates). It efficiently finds the least-cost path by balancing actual cost and heuristic." },
+      { q: "Differentiate between deterministic and stochastic game with real world example.", a: "Deterministic Game: Outcome is fully determined by players' actions; no randomness. Example: Chess â€“ moves are predictable and known.\n\nStochastic Game: Involves randomness/chance. Example: Backgammon â€“ dice rolls introduce uncertainty. In AI, stochastic games require probabilistic reasoning unlike deterministic ones." },
+      { q: "What do you understand by state space model?", a: "State Space Model represents a problem as a set of states, initial state, goal state(s), and actions/transitions. Searching = navigating from initial to goal state. It forms a directed graph where nodes = states and edges = actions. Used in planning, robotics, and game playing." },
+      { q: "Differentiate between informed and uninformed searching.", a: "Uninformed Search: No extra knowledge; uses only problem definition. Examples: BFS, DFS, UCS.\n\nInformed Search: Uses heuristic h(n) to guide search toward goal. More efficient. Examples: A*, Greedy BFS.\n\nKey difference: Informed search is faster and uses domain-specific knowledge to reduce search space." },
+      { q: "What is MEA method of problem solving?", a: "MEA (Means-End Analysis) is a problem-solving strategy that reduces the difference between current state and goal state. It identifies the largest difference, selects an operator to reduce it, and applies it. Used in General Problem Solver (GPS). It combines forward and backward reasoning." },
+      { q: "In context of problem solving, what do you understand by searching and how it performs?", a: "Searching is the process of systematically exploring the state space to find a path from the initial state to the goal state. It performs by: generating successor states, maintaining a frontier (open list), checking goal condition, and tracking visited states (closed list) to avoid revisiting. Performance measured by completeness, optimality, time, and space." },
+      { q: "Explain different properties of searching.", a: "Search algorithm properties:\n1. Completeness â€“ Does it always find a solution if one exists?\n2. Optimality â€“ Does it find the least-cost solution?\n3. Time Complexity â€“ Number of nodes generated/expanded\n4. Space Complexity â€“ Maximum nodes stored in memory\n\nThese properties help compare BFS, DFS, UCS, A* etc." }
+    ],
+    marks5: [],
+    marks10: []
+  },
+
+  2: {
+    name: "Advanced Search",
+    icon: "â™Ÿï¸",
+    topic: "CSP, Local Search & Adversarial",
+    color: "#7c3aed",
+    marks2: [
+      { q: "What do you mean by optimization of a problem?", a: "Optimization means finding the best solution from a set of feasible solutions by maximizing or minimizing an objective function. In AI, it involves finding a state with the highest/lowest value. Examples: traveling salesman problem, neural network training, scheduling problems." },
+      { q: "What do you mean by inference in CSP?", a: "Inference in CSP means using constraint propagation to reduce the domain of variables before/during search. Techniques include Arc Consistency (AC-3) and Forward Checking. It eliminates inconsistent values early, reducing backtracking and speeding up the search process." },
+      { q: "What do you mean by local search algorithm?", a: "Local search starts from a complete solution and iteratively moves to a neighboring state to improve objective. It is memory-efficient (stores only current state). Examples: Hill Climbing, Simulated Annealing, Genetic Algorithms. Suitable for optimization problems where path to solution doesn't matter." },
+      { q: "What is meant by partial observation in search problems?", a: "Partial observation means the agent cannot fully perceive the environment's state. The agent maintains a belief state â€“ a set of possible current states. It must search through belief space rather than actual state space. Example: navigating in a room with limited visibility." },
+      { q: "What is the purpose of Alpha-Beta pruning?", a: "Alpha-Beta pruning eliminates branches in the minimax search tree that cannot influence the final decision. It reduces the number of nodes evaluated without affecting the result. Alpha (Î±) = best value for MAX; Beta (Î²) = best value for MIN. Prune when Î± â‰¥ Î². Reduces O(b^m) to O(b^(m/2))." },
+      { q: "What is meant by imperfect real-time decision?", a: "In real-time games, an agent cannot search to the end of the game tree due to time constraints. It uses a cutoff depth with an evaluation function (heuristic) to estimate utility of non-terminal states. This leads to imperfect but practically useful decisions. Example: Chess engines using evaluation heuristics." },
+      { q: "What are the three main components of a CSP?", a: "The three main components of a Constraint Satisfaction Problem (CSP) are:\n1. Variables (X) â€“ entities to be assigned values\n2. Domains (D) â€“ set of possible values for each variable\n3. Constraints (C) â€“ restrictions on combinations of variable values\n\nGoal: assign values satisfying all constraints." },
+      { q: "What do you mean by adversarial search technique?", a: "Adversarial search handles competitive environments with two or more agents with conflicting goals (games). Uses the Minimax algorithm where MAX player tries to maximize utility and MIN player tries to minimize it. Applied in zero-sum games like chess, tic-tac-toe." },
+      { q: "Why is backtracking used in CSP?", a: "Backtracking is used in CSP when a variable assignment violates a constraint. The algorithm undoes the last assignment and tries the next value from the domain. It systematically explores the search space, ensuring all constraints are eventually satisfied without exhaustive enumeration." },
+      { q: "What is the condition for pruning in alpha beta pruning?", a: "Pruning condition: If at a MIN node, the current beta (Î²) value â‰¤ alpha (Î±) value of any ancestor MAX node â†’ prune remaining branches (alpha cutoff). If at a MAX node, current alpha (Î±) â‰¥ beta (Î²) of any ancestor MIN node â†’ prune remaining branches (beta cutoff)." },
+      { q: "What is meant by an unknown environment in AI search?", a: "An unknown (non-deterministic or unobservable) environment is one where the agent has no knowledge of the environment's layout or outcomes of actions. The agent must explore and learn. This requires online search or exploration strategies like random walks or LRTA* algorithm." },
+      { q: "What is meant by local maxima and global maxima in context of local search algorithm?", a: "Local Maxima: A state that is better than all its neighbors but NOT the globally best solution. Hill climbing can get stuck here.\n\nGlobal Maxima: The best possible solution in the entire search space.\n\nStrategies to escape local maxima: random restarts, simulated annealing, plateau handling." },
+      { q: "Define belief state in partially observable environment.", a: "A belief state is the set of all possible actual states an agent might be in, given its observation history. In partially observable environments, the agent tracks a belief state instead of a single known state. Actions map belief states to new belief states based on transition and observation models." },
+      { q: "What is hill climbing? Explain Steepest ascent Hill climbing algorithm.", a: "Hill Climbing is a local search that continuously moves in the direction of increasing value (like climbing a hill). \n\nSteepest Ascent: At each step, evaluate ALL neighbors and move to the BEST one (highest value). Unlike simple hill climbing (first better neighbor), steepest ascent is more thorough per step but still susceptible to local maxima." },
+      { q: "Define online searching with example?", a: "Online search means the agent interleaves computation and action â€“ it acts and discovers the environment simultaneously, without prior knowledge. The agent builds a map as it explores.\n\nExample: A robot exploring an unknown building, discovering corridors and rooms while navigating. Algorithm: LRTA* (Learning Real-Time A*)." }
+    ],
+    marks5: [],
+    marks10: []
+  },
+
+  3: {
+    name: "Data Analysis",
+    icon: "ðŸ“Š",
+    topic: "EDA, NumPy, Pandas & Visualization",
+    color: "#06b6d4",
+    marks2: [
+      { q: "Define Exploratory Data Analysis.", a: "Exploratory Data Analysis (EDA) is the process of analyzing datasets to summarize their main characteristics using statistical methods and visualizations. It helps understand data distribution, detect anomalies, identify patterns, and check assumptions before applying ML models." },
+      { q: "What is the purpose of EDA in data analysis?", a: "EDA purposes: Understanding data structure and distributions, detecting outliers and missing values, identifying relationships between variables, formulating hypotheses, checking data quality, and guiding feature selection for machine learning models." },
+      { q: "What is NumPy used for in data analysis?", a: "NumPy (Numerical Python) is used for: efficient multi-dimensional array operations, mathematical/statistical functions, linear algebra operations, random number generation, and fast numerical computations. It is the foundation for pandas, SciPy, and most ML libraries." },
+      { q: "What is a DataFrame in pandas?", a: "A DataFrame is a 2-dimensional, tabular data structure in pandas with labeled rows and columns. It can hold different data types in each column. Similar to a spreadsheet or SQL table. Created using pd.DataFrame(). Supports operations like filtering, grouping, merging, and aggregation." },
+      { q: "Write Python code to create a NumPy array with values [1,2,3,4].", a: "import numpy as np\narr = np.array([1, 2, 3, 4])\nprint(arr)  # Output: [1 2 3 4]", isCode: true },
+      { q: "Write Python code to display the first 5 rows of a dataset.", a: "import pandas as pd\ndf = pd.read_csv('data.csv')\nprint(df.head())  # Displays first 5 rows by default\n# df.head(n) for n rows", isCode: true },
+      { q: "Name two visualization libraries in Python.", a: "1. Matplotlib â€“ foundational plotting library; creates static, animated, and interactive visualizations. Functions like plt.plot(), plt.bar(), plt.show().\n\n2. Seaborn â€“ built on Matplotlib; provides statistical data visualizations with better default aesthetics. Functions like sns.heatmap(), sns.boxplot()." },
+      { q: "What is the difference between a Series and DataFrame in pandas?", a: "Series: 1-dimensional labeled array holding any data type. Like a single column.\nDataFrame: 2-dimensional labeled data structure with rows and columns (collection of Series).\n\nSeries = pd.Series([1,2,3])\nDataFrame = pd.DataFrame({'A':[1,2], 'B':[3,4]})" },
+      { q: "What is data normalization?", a: "Data normalization scales data to a standard range (e.g., 0 to 1) to remove unit differences and prevent features with large values dominating ML models. Common methods: Min-Max Normalization (x-min)/(max-min) and Z-score Standardization (x-Î¼)/Ïƒ." },
+      { q: "Write Python code to read a CSV file using pandas.", a: "import pandas as pd\ndf = pd.read_csv('filename.csv')\nprint(df.shape)   # rows and columns\nprint(df.head())  # first 5 rows", isCode: true },
+      { q: "Write Python code to check missing values in a dataset.", a: "import pandas as pd\ndf = pd.read_csv('data.csv')\nprint(df.isnull().sum())   # Count missing per column\nprint(df.isnull().any())   # True/False per column", isCode: true },
+      { q: "Write Python code to drop rows with missing values.", a: "import pandas as pd\ndf = pd.read_csv('data.csv')\ndf_clean = df.dropna()         # Drop rows with any NaN\n# df.dropna(subset=['col'])    # Drop only if NaN in specific column\nprint(df_clean.shape)", isCode: true },
+      { q: "What is the purpose of the describe() function in pandas?", a: "describe() generates descriptive statistics of a DataFrame: count, mean, standard deviation, min, 25th/50th/75th percentiles, and max for all numeric columns. Quick summary for understanding data distribution.\n\nUsage: df.describe()" },
+      { q: "What does the info() function display in pandas?", a: "info() displays: DataFrame index dtype and columns, non-null value counts for each column, data types of each column, and memory usage. It is used to quickly check for missing values and data types.\n\nUsage: df.info()" },
+      { q: "What is meant by data transformation, explain with a proper example.", a: "Data transformation converts data into a suitable format for analysis. Examples:\nâ€¢ Encoding: converting 'Male'/'Female' â†’ 1/0\nâ€¢ Log transformation: applying log to skewed data\nâ€¢ Scaling: normalizing values between 0 and 1\n\nExample: df['age'] = (df['age'] - df['age'].min()) / (df['age'].max() - df['age'].min())" }
+    ],
+    marks5: [
+      { q: "Solve the following crypt problem with proper steps: BASE + BALL = GAMES", a: "Cryptarithmetic: BASE + BALL = GAMES\n\nEach letter = unique digit (0-9)\nLetters: B, A, S, E, L, G, M (7 unique letters)\n\nConstraints:\nâ€¢ B â‰  0, G â‰  0 (leading digits)\nâ€¢ Column-wise addition with carry\n\nApproach:\n1. Assign variables to each letter\n2. E + L = S (mod 10), carry c1\n3. S + L + c1 = E (mod 10), carry c2 ... solve iteratively\n\nOne solution: B=7, A=4, S=3, E=2, L=5, G=8, M=1 â†’ 7432 + 7455 = 14887 (verify each column)\n\nBacktracking CSP approach assigns digits one by one checking constraints at each step." },
+      { q: "Solve the minimax algorithm on the given tree.", a: "Minimax Algorithm Steps:\n1. Start from leaf nodes (terminal states with known utility values)\n2. At MAX nodes: choose maximum value among children\n3. At MIN nodes: choose minimum value among children\n4. Propagate values back to root\n\nGeneral rule:\nâ€¢ MAX level: V = max(children values)\nâ€¢ MIN level: V = min(children values)\n\nThe root value represents the optimal decision for the MAX player assuming MIN plays optimally. The algorithm guarantees the best achievable outcome in a zero-sum game." },
+      { q: "What is outliers? Give example of it.", a: "An outlier is a data point that significantly differs from other observations in the dataset. It lies far outside the overall pattern.\n\nTypes:\nâ€¢ Point outlier: single unusual value\nâ€¢ Contextual outlier: unusual in context\nâ€¢ Collective outlier: group of unusual values\n\nExample: In a salary dataset [30k, 32k, 31k, 28k, 500k], the value 500k is an outlier.\n\nDetection methods: Z-score (|Z| > 3), IQR method (Q1-1.5*IQR, Q3+1.5*IQR), box plots.\n\nOutliers can distort statistical analysis and ML model training, so they must be handled carefully." },
+      { q: "Compare and contrast the loc and iloc indexers in Pandas. Provide scenarios where one is preferred over the other.", a: "loc (Label-based):\nâ€¢ Accesses rows/columns by label (index name or column name)\nâ€¢ Inclusive of end label\nâ€¢ df.loc[0:5] includes row 5\nâ€¢ df.loc['A':'C'] for string indices\n\niloc (Integer-based):\nâ€¢ Accesses rows/columns by integer position (0-indexed)\nâ€¢ Exclusive of end\nâ€¢ df.iloc[0:5] gives rows 0-4\n\nWhen to use loc:\nâ€¢ When index has meaningful labels (dates, names)\nâ€¢ df.loc[df['Age'] > 25]  # conditional filtering\n\nWhen to use iloc:\nâ€¢ When you need positional slicing\nâ€¢ df.iloc[:, 2:5]  # columns 2,3,4\n\nKey difference: loc is label-based, iloc is position-based." },
+      { q: "State the Classification of data as per Data mining is concerned.", a: "Data Classification in Data Mining:\n\n1. By Type:\n   â€¢ Numerical (quantitative) â€“ continuous or discrete\n   â€¢ Categorical (qualitative) â€“ nominal or ordinal\n\n2. By Structure:\n   â€¢ Structured â€“ databases, spreadsheets\n   â€¢ Semi-structured â€“ XML, JSON\n   â€¢ Unstructured â€“ text, images, video\n\n3. By Source:\n   â€¢ Primary â€“ collected directly\n   â€¢ Secondary â€“ already collected\n\n4. By Time:\n   â€¢ Static â€“ fixed dataset\n   â€¢ Dynamic/Streaming â€“ real-time data\n\nProper classification helps choose right preprocessing and mining algorithms." },
+      { q: "What is the difference between barplot and histplot?", a: "Barplot:\nâ€¢ Used for categorical data\nâ€¢ X-axis: categories, Y-axis: aggregated values (mean/count)\nâ€¢ Bars do not touch\nâ€¢ Used to compare groups\nâ€¢ sns.barplot(x='Gender', y='Score', data=df)\n\nHistplot:\nâ€¢ Used for continuous/numerical data\nâ€¢ Shows frequency distribution of a single variable\nâ€¢ Bars are adjacent (bins)\nâ€¢ Reveals data distribution shape (normal, skewed)\nâ€¢ sns.histplot(df['Age'], bins=20)\n\nKey difference: Barplot compares categories; histplot shows distribution of continuous data." },
+      { q: "Solve the given graph using alpha beta pruning, mention the pruned branches.", a: "Alpha-Beta Pruning Steps:\n1. Initialize Î± = -âˆž (MAX best), Î² = +âˆž (MIN best)\n2. Traverse tree depth-first\n3. At MAX nodes: update Î± = max(Î±, child_value)\n4. At MIN nodes: update Î² = min(Î², child_value)\n5. Prune when Î± â‰¥ Î²\n\nPruning occurs when:\nâ€¢ At MIN node: if current value â‰¤ Î± of parent MAX â†’ prune remaining children\nâ€¢ At MAX node: if current value â‰¥ Î² of parent MIN â†’ prune remaining children\n\nResult: Branches that cannot affect root decision are pruned, reducing nodes evaluated while maintaining correct minimax result." },
+      { q: "What is Heatmap? How to analyze the graph?", a: "A Heatmap is a 2D data visualization where individual values are represented as colors in a matrix. Darker/brighter colors indicate higher/lower values.\n\nCommon use: Correlation matrix visualization.\n\nPython code:\nimport seaborn as sns\ncorr = df.corr()\nsns.heatmap(corr, annot=True, cmap='coolwarm')\n\nHow to analyze:\nâ€¢ Values near +1: strong positive correlation (same color intensity)\nâ€¢ Values near -1: strong negative correlation\nâ€¢ Values near 0: no correlation\nâ€¢ annot=True shows exact values\nâ€¢ Used to select features and detect multicollinearity in ML." },
+      { q: "Solve the following crypt problem with proper steps: SEND + MORE = MONEY", a: "SEND + MORE = MONEY â€“ Classic Cryptarithmetic\n\nLetters: S,E,N,D,M,O,R,Y (8 unique digits)\nConstraints: M â‰  0, S â‰  0\n\nKnown solution: S=9, E=5, N=6, D=7, M=1, O=0, R=8, Y=2\n\nVerification:\n  9567\n+ 1085\n------\n10652\n\nColumn-wise check:\nâ€¢ D+E = 7+5 = 12 â†’ Y=2, carry 1\nâ€¢ N+R+1 = 6+8+1 = 15 â†’ E=5, carry 1\nâ€¢ E+O+1 = 5+0+1 = 6 â†’ N=6, carry 0\nâ€¢ S+M = 9+1 = 10 â†’ O=0, M=1 âœ“\n\nSolved using CSP with backtracking + constraint propagation." }
+    ],
+    marks10: [
+      { q: "With proper steps solve the Wumpus World problem and also mention the rewards given.", a: "Wumpus World Problem:\n\nGrid: 4Ã—4, agent starts at (1,1)\nHazards: Pit (instant death), Wumpus (kill or be killed), Gold (goal)\n\nPercepts: Stench (adjacent Wumpus), Breeze (adjacent Pit), Glitter (Gold here), Bump, Scream\n\nActions: Move Forward, Turn Left/Right, Grab, Shoot Arrow\n\nRewards:\nâ€¢ +1000: picking up gold\nâ€¢ -1000: dying (Wumpus or Pit)\nâ€¢ -1: each action taken\nâ€¢ -10: shooting arrow\n\nSolution Steps:\n1. Agent at (1,1) â€“ no percepts â†’ (1,2) and (2,1) safe\n2. Move to (2,1): Breeze â†’ Pit in (2,2) or (3,1)\n3. Return to (1,1), go to (1,2): Stench â†’ Wumpus in (1,3) or (2,2)\n4. Move to (1,3): Stench + no Breeze â†’ Wumpus at (1,3)\n5. Shoot arrow toward Wumpus â†’ Scream confirms kill\n6. Navigate to (2,3), then (3,3) â†’ Glitter â†’ Grab Gold\n7. Return to (1,1) and Climb out\n\nLogical inference using propositional logic guides each step. Safe moves are inferred when KB proves no risk." },
+      { q: "What is central tendency? Explain any three with example.", a: "Central Tendency measures the center of a data distribution â€“ the typical/representative value.\n\n1. Mean (Arithmetic Average):\nFormula: Î¼ = Î£x / n\nExample: [2, 4, 6, 8, 10] â†’ Mean = 30/5 = 6\nUse: Best for symmetric, normally distributed data.\nWeakness: Affected by outliers.\n\n2. Median (Middle Value):\nArrange data in order; middle value (odd n) or avg of two middle values (even n).\nExample: [1, 3, 5, 7, 9] â†’ Median = 5\n[1, 3, 5, 7] â†’ Median = (3+5)/2 = 4\nUse: Best for skewed data and when outliers present.\n\n3. Mode (Most Frequent Value):\nValue that appears most often.\nExample: [2, 3, 3, 5, 3, 6] â†’ Mode = 3\nCan have multiple modes (bimodal, multimodal).\nUse: Best for categorical data and finding most common occurrence.\n\nComparison:\nSymmetric distribution: Mean = Median = Mode\nRight skewed: Mean > Median > Mode\nLeft skewed: Mean < Median < Mode\n\nAll three together give complete picture of data centrality." },
+      { q: "What is missing data and how to handle it using pandas? Explain with example.", a: "Missing Data: Values not present in a dataset. Represented as NaN (Not a Number) in pandas.\n\nTypes:\nâ€¢ MCAR â€“ Missing Completely At Random\nâ€¢ MAR â€“ Missing At Random (depends on other variables)\nâ€¢ MNAR â€“ Missing Not At Random (depends on missing value itself)\n\nHandling Techniques:\n\n1. Detection:\nimport pandas as pd\ndf = pd.read_csv('data.csv')\ndf.isnull().sum()       # count per column\ndf.isnull().mean()*100  # percentage missing\n\n2. Dropping:\ndf.dropna()              # drop rows with any NaN\ndf.dropna(thresh=5)      # keep rows with â‰¥5 non-NaN\ndf.drop(columns=['col']) # drop entire column\n\n3. Imputation:\n# Fill with mean\ndf['Age'].fillna(df['Age'].mean(), inplace=True)\n\n# Fill with median\ndf['Salary'].fillna(df['Salary'].median(), inplace=True)\n\n# Fill with mode (categorical)\ndf['City'].fillna(df['City'].mode()[0], inplace=True)\n\n# Forward fill\ndf.fillna(method='ffill')\n\n4. Advanced: Using sklearn SimpleImputer or KNNImputer\n\nExample:\ndf = pd.DataFrame({'Age': [25, None, 30, 28], 'Score': [80, 90, None, 70]})\ndf['Age'].fillna(df['Age'].mean(), inplace=True)\ndf['Score'].fillna(df['Score'].median(), inplace=True)\n\nChoice depends on amount of missing data and its type." },
+      { q: "What is data preprocessing and elaborate all steps involved in it.", a: "Data Preprocessing: Transforming raw data into a clean, consistent format suitable for ML models. It is the most critical step in any ML pipeline.\n\nSteps:\n\n1. Data Collection\nGather data from databases, APIs, web scraping, surveys.\n\n2. Data Cleaning\nâ€¢ Handle missing values (drop/impute)\nâ€¢ Remove duplicate records: df.drop_duplicates()\nâ€¢ Fix inconsistencies (spelling errors, wrong formats)\nâ€¢ Handle outliers (IQR/Z-score methods)\n\n3. Data Integration\nCombine data from multiple sources.\ndf_merged = pd.merge(df1, df2, on='ID')\n\n4. Data Transformation\nâ€¢ Encoding: Label Encoding or One-Hot Encoding for categorical variables\n  pd.get_dummies(df['City'])\nâ€¢ Normalization/Scaling: MinMaxScaler, StandardScaler\nâ€¢ Log transformation for skewed data\n\n5. Feature Selection\nSelect relevant features, remove irrelevant/redundant ones using correlation analysis, variance threshold.\n\n6. Feature Engineering\nCreate new meaningful features from existing ones.\n\n7. Data Splitting\nSplit into training (70-80%) and testing sets (20-30%).\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n8. Data Reduction\nDimensionality reduction using PCA, removing redundant features.\n\nOutcome: Clean, consistent, scaled dataset ready for ML algorithm training." },
+      { q: "Consider the sales dataset: find sales percentage ratio between forenoon and afternoon, and find sales count of each product based on each month.", a: "Sales Dataset Analysis (Sales data with Time and Product line columns):\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv('sales.csv')\n\n# Convert Time column to datetime\ndf['Time'] = pd.to_datetime(df['Time'], format='%H:%M')\ndf['Hour'] = df['Time'].dt.hour\n\n# 1. Forenoon (AM) vs Afternoon (PM) sales ratio\ndf['Period'] = df['Hour'].apply(lambda x: 'Forenoon' if x < 12 else 'Afternoon')\nperiod_counts = df['Period'].value_counts()\nforenoon_pct = (period_counts['Forenoon'] / len(df)) * 100\nafternoon_pct = (period_counts['Afternoon'] / len(df)) * 100\nprint(f'Forenoon: {forenoon_pct:.2f}%  Afternoon: {afternoon_pct:.2f}%')\n\n# 2. Sales count per product per month\ndf['Date'] = pd.to_datetime(df['Date'])\ndf['Month'] = df['Date'].dt.month_name()\nmonthly_product = df.groupby(['Month', 'Product line'])['Invoice ID'].count().unstack()\nprint(monthly_product)\n\nmonthly_product.plot(kind='bar', figsize=(12,6))\nplt.title('Sales Count by Product per Month')\nplt.show()" },
+      { q: "Write a python code to generate a bargraph on the basis of sales of each product line based on their gender.", a: "import pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\ndf = pd.read_csv('sales.csv')\n\n# Group by Product line and Gender\ngender_product = df.groupby(['Product line', 'Gender'])['Quantity'].sum().reset_index()\n\n# Plot using seaborn\nplt.figure(figsize=(12, 6))\nsns.barplot(x='Product line', y='Quantity', hue='Gender',\n            data=gender_product, palette=['#FF6B9D','#4F8EF7'])\n\nplt.title('Sales per Product Line by Gender', fontsize=14, fontweight='bold')\nplt.xlabel('Product Line', fontsize=12)\nplt.ylabel('Total Quantity Sold', fontsize=12)\nplt.xticks(rotation=45, ha='right')\nplt.legend(title='Gender')\nplt.tight_layout()\nplt.show()" },
+      { q: "Write python code to find customer details with highest bill payment and write a code to generate a pie chart regarding gender ratio.", a: "import pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv('sales.csv')\n\n# i. Customer with highest Total bill\nhighest_bill_idx = df['Total'].idxmax()\nhighest_customer = df.loc[highest_bill_idx]\nprint('Customer with Highest Bill:')\nprint(highest_customer[['Invoice ID','Branch','City','Customer type','Gender','Total']])\n\n# ii. Gender Ratio Pie Chart\ngender_count = df['Gender'].value_counts()\n\nplt.figure(figsize=(7, 7))\nplt.pie(gender_count,\n        labels=gender_count.index,\n        autopct='%1.1f%%',\n        colors=['#FF6B9D', '#4F8EF7'],\n        startangle=140,\n        explode=(0.05, 0.05),\n        shadow=True)\nplt.title('Gender Ratio of Customers', fontsize=14, fontweight='bold')\nplt.tight_layout()\nplt.show()" },
+      { q: "Write Python code for: i. Name of highest paid person (including benefits) ii. Top 5 most common jobs from SF Salaries dataset.", a: "import pandas as pd\n\ndf = pd.read_csv('sf_salaries.csv')\n\n# i. Highest paid person (TotalPayBenefits)\nhighest_idx = df['TotalPayBenefits'].idxmax()\nhighest = df.loc[highest_idx]\nprint('Highest Paid Person:')\nprint(f'Name: {highest[\"EmployeeName\"]}')\nprint(f'Job Title: {highest[\"JobTitle\"]}')\nprint(f'Total Pay + Benefits: ${highest[\"TotalPayBenefits\"]:,.2f}')\n\n# ii. Top 5 most common job titles\ntop5_jobs = df['JobTitle'].value_counts().head(5)\nprint('\\nTop 5 Most Common Jobs:')\nprint(top5_jobs)" },
+      { q: "Write a code to generate the graph of job title with frequency count from SF Salaries dataset.", a: "import pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\ndf = pd.read_csv('sf_salaries.csv')\n\n# Top 10 most frequent job titles\ntop10_jobs = df['JobTitle'].value_counts().head(10)\n\nplt.figure(figsize=(12, 7))\ncolors = sns.color_palette('Blues_r', 10)\nbars = plt.barh(top10_jobs.index[::-1], top10_jobs.values[::-1], color=colors)\n\nfor bar, val in zip(bars, top10_jobs.values[::-1]):\n    plt.text(bar.get_width() + 50, bar.get_y() + bar.get_height()/2,\n             str(val), va='center', fontsize=9)\n\nplt.title('Top 10 Job Titles by Frequency (SF Salaries)', fontsize=14, fontweight='bold')\nplt.xlabel('Number of Employees', fontsize=12)\nplt.ylabel('Job Title', fontsize=12)\nplt.tight_layout()\nplt.show()" }
+    ]
+  },
+
+  4: {
+    name: "Machine Learning",
+    icon: "ðŸ§ ",
+    topic: "Regression, Clustering & Classification",
+    color: "#f59e0b",
+    marks2: [
+      { q: "What is Machine Learning?", a: "Machine Learning (ML) is a branch of AI that enables systems to learn and improve from experience without being explicitly programmed. It develops algorithms that allow computers to automatically learn patterns from data and make predictions/decisions." },
+      { q: "What are the three main types of Machine Learning?", a: "1. Supervised Learning â€“ learns from labeled data; predicts output for new inputs (e.g., regression, classification)\n2. Unsupervised Learning â€“ finds hidden patterns in unlabeled data (e.g., clustering, dimensionality reduction)\n3. Reinforcement Learning â€“ agent learns by interacting with environment, receiving rewards/penalties" },
+      { q: "What is Linear Regression? Write the equation of Linear Regression.", a: "Linear Regression predicts a continuous dependent variable based on one or more independent variables by fitting a straight line.\n\nEquation: y = aâ‚€ + aâ‚x\nWhere: y = dependent variable, x = independent variable, aâ‚€ = y-intercept, aâ‚ = slope\n\nFor multiple features: y = aâ‚€ + aâ‚xâ‚ + aâ‚‚xâ‚‚ + ... + aâ‚™xâ‚™" },
+      { q: "What is the main purpose of using Logistic Regression? Give a real life example.", a: "Logistic Regression is used for binary classification problems â€“ predicting probability of one of two outcomes (0 or 1).\n\nUses sigmoid function: P(y=1) = 1 / (1 + e^(-z))\n\nReal-life examples:\nâ€¢ Email spam detection (spam/not spam)\nâ€¢ Disease prediction (diabetic/not diabetic)\nâ€¢ Loan approval (approved/rejected)" },
+      { q: "What is a Decision Tree in Machine Learning?", a: "A Decision Tree is a supervised ML model that splits data into branches based on feature values, forming a tree structure. Internal nodes = features, branches = conditions, leaf nodes = class labels/predictions.\n\nBuilt using splitting criteria like: Information Gain (ID3), Gini Impurity (CART)." },
+      { q: "What is K-Nearest Neighbors algorithm?", a: "KNN is a non-parametric, instance-based supervised learning algorithm. For a new data point, it finds the K nearest neighbors using Euclidean distance and assigns the majority class (classification) or average value (regression).\n\nFormula: d = âˆš(Î£(xi - yi)Â²). Simple, no training phase, but slow at prediction time." },
+      { q: "What is the main idea behind Support Vector Machines?", a: "SVM finds the optimal hyperplane that maximizes the margin between two classes. The data points closest to the hyperplane are called Support Vectors. For non-linearly separable data, SVM uses kernel functions (RBF, polynomial) to map data to higher dimensions." },
+      { q: "What is Clustering in Machine Learning?", a: "Clustering is an unsupervised learning technique that groups similar data points together based on intrinsic characteristics, without predefined labels. Goal: maximize intra-cluster similarity and minimize inter-cluster similarity.\n\nAlgorithms: K-Means, DBSCAN, Hierarchical Clustering." },
+      { q: "What is K-Means Clustering? What is a centroid in K-Means clustering?", a: "K-Means partitions data into K clusters by iteratively assigning points to nearest centroid and updating centroids.\n\nCentroid: The mean position (average) of all data points in a cluster. It is updated each iteration.\n\nSteps: Initialize K centroids â†’ Assign each point â†’ Update centroids â†’ Repeat until convergence." },
+      { q: "What are Model-Based Clustering Methods?", a: "Model-Based Clustering assumes data is generated from a mixture of probability distributions (e.g., Gaussian). Each cluster is modeled as a statistical distribution.\n\nExample: Gaussian Mixture Model (GMM) â€“ uses Expectation-Maximization (EM) algorithm to estimate parameters (mean, covariance) of each cluster's distribution." },
+      { q: "What is Constraint-Based Cluster Analysis?", a: "Constraint-based clustering incorporates user-defined constraints into the clustering process.\n\nTypes:\nâ€¢ Must-link: two points must be in the same cluster\nâ€¢ Cannot-link: two points must be in different clusters\n\nBenefits domain knowledge to improve clustering relevance. Used in semi-supervised learning scenarios." },
+      { q: "What is an Outlier in data analysis?", a: "An outlier is a data point that deviates significantly from the majority of observations. It falls far from the expected data pattern.\n\nDetection methods:\nâ€¢ Z-score: |z| > 3 â†’ outlier\nâ€¢ IQR method: < Q1-1.5Ã—IQR or > Q3+1.5Ã—IQR â†’ outlier\nâ€¢ Box plots visually identify outliers" },
+      { q: "Why is Outlier Analysis important in Machine Learning?", a: "Outlier analysis is important because:\n1. Outliers distort statistical measures (mean, variance)\n2. They can degrade ML model performance\n3. May represent genuine rare events (fraud detection, network intrusion)\n4. Help identify data collection errors\n5. Critical for preprocessing â€“ decide whether to remove or keep based on context" },
+      { q: "What is the difference between classification and clustering method?", a: "Classification (Supervised):\nâ€¢ Uses labeled training data\nâ€¢ Predicts predefined class labels\nâ€¢ Output is discrete categories\nâ€¢ Examples: Decision Tree, KNN, SVM\n\nClustering (Unsupervised):\nâ€¢ No labeled data\nâ€¢ Discovers inherent groupings\nâ€¢ Output is clusters (no predefined labels)\nâ€¢ Examples: K-Means, DBSCAN" },
+      { q: "What is random forest? Importance of random forest.", a: "Random Forest is an ensemble method that builds multiple decision trees on random subsets of data and features, then aggregates predictions (majority voting for classification, average for regression).\n\nImportance:\nâ€¢ Reduces overfitting vs single decision tree\nâ€¢ Handles high-dimensional data\nâ€¢ Provides feature importance scores\nâ€¢ Robust to outliers and missing values\nâ€¢ High accuracy" }
+    ],
+    marks5: [
+      { q: "With proper example differentiate between different types of Machine learning.", a: "1. Supervised Learning:\nTrains on labeled (input, output) pairs. Learns mapping function.\nAlgorithms: Linear Regression, Decision Trees, SVM, KNN\nExample: Predicting house prices (input: size, location â†’ output: price)\n\n2. Unsupervised Learning:\nFinds hidden patterns in unlabeled data.\nAlgorithms: K-Means, PCA, DBSCAN\nExample: Customer segmentation â€“ grouping customers by purchase behavior\n\n3. Reinforcement Learning:\nAgent learns by trial and error, receiving rewards/penalties from environment.\nAlgorithms: Q-Learning, Policy Gradient\nExample: AlphaGo learning chess moves; robot learning to walk\n\n4. Semi-Supervised Learning:\nUses small labeled + large unlabeled dataset.\nExample: Image classification with few labeled photos\n\n5. Self-Supervised Learning:\nModel generates labels from data itself.\nExample: GPT language models predicting next word\n\nKey Distinction: Supervised needs labels; Unsupervised doesn't; RL learns from feedback." },
+      { q: "Write short notes on: i) Linear regression ii) Random forest.", a: "i) Linear Regression:\nPredicts continuous output by fitting a straight line.\nEquation: y = aâ‚€ + aâ‚x (simple) or y = Î£aáµ¢xáµ¢ (multiple)\n\nWorking:\nâ€¢ Minimizes Sum of Squared Errors (SSE)\nâ€¢ Uses Ordinary Least Squares (OLS) to find aâ‚€, aâ‚\nâ€¢ aâ‚ = [n(Î£xy) - (Î£x)(Î£y)] / [n(Î£xÂ²) - (Î£x)Â²]\nâ€¢ aâ‚€ = È³ - aâ‚xÌ„\n\nAssumptions: linearity, no multicollinearity, homoscedasticity\nUse case: Predicting sales, prices, scores\n\nii) Random Forest:\nEnsemble of decision trees using bagging technique.\n\nWorking:\nâ€¢ Bootstrap sampling: random subsets of data\nâ€¢ Random feature selection at each split\nâ€¢ Majority voting (classification) or averaging (regression)\n\nAdvantages:\nâ€¢ Reduces overfitting significantly\nâ€¢ Handles missing values and outliers\nâ€¢ Provides feature importance ranking\nâ€¢ High accuracy on large datasets\n\nDisadvantage: Less interpretable than single decision tree." },
+      { q: "Differentiate between linear regression and logistic regression.", a: "Linear Regression:\nâ€¢ Output: Continuous value (e.g., price, temperature)\nâ€¢ Type: Regression problem\nâ€¢ Equation: y = aâ‚€ + aâ‚x\nâ€¢ Output range: -âˆž to +âˆž\nâ€¢ Error metric: MSE, RMSE, RÂ²\nâ€¢ Decision boundary: straight line\nâ€¢ Example: Predicting house price\n\nLogistic Regression:\nâ€¢ Output: Probability between 0 and 1\nâ€¢ Type: Classification problem\nâ€¢ Uses sigmoid: P = 1/(1+e^(-z))\nâ€¢ Output range: 0 to 1\nâ€¢ Error metric: Log Loss, Accuracy\nâ€¢ Decision boundary: Threshold (usually 0.5)\nâ€¢ Example: Spam/Not Spam detection\n\nKey difference: Linear regression predicts continuous values; Logistic regression predicts probability for binary classification." },
+      { q: "Find the linear regression equation for the dataset and predict the dependent value when x=15. Data: x=[2,4,6,8], y=[3,7,5,10].", a: "Given: x = [2,4,6,8], y = [3,7,5,10], n = 4\n\nCalculations:\nÎ£x = 2+4+6+8 = 20\nÎ£y = 3+7+5+10 = 25\nÎ£xÂ² = 4+16+36+64 = 120\nÎ£xy = 2Ã—3 + 4Ã—7 + 6Ã—5 + 8Ã—10 = 6+28+30+80 = 144\n\nSlope aâ‚:\naâ‚ = [n(Î£xy) - (Î£x)(Î£y)] / [n(Î£xÂ²) - (Î£x)Â²]\naâ‚ = [4Ã—144 - 20Ã—25] / [4Ã—120 - 400]\naâ‚ = [576 - 500] / [480 - 400]\naâ‚ = 76/80 = 0.95\n\nIntercept aâ‚€:\nxÌ„ = 20/4 = 5, È³ = 25/4 = 6.25\naâ‚€ = È³ - aâ‚Ã—xÌ„ = 6.25 - 0.95Ã—5 = 6.25 - 4.75 = 1.5\n\nRegression Equation: y = 1.5 + 0.95x\n\nPrediction for x = 15:\ny = 1.5 + 0.95 Ã— 15 = 1.5 + 14.25 = 15.75" },
+      { q: "Briefly explain KNN algorithm.", a: "KNN (K-Nearest Neighbors) is a simple, non-parametric, lazy learning algorithm.\n\nAlgorithm Steps:\n1. Choose the value of K (e.g., K=3)\n2. For a new data point, calculate distance to all training points\n3. Select K nearest neighbors (smallest distances)\n4. For Classification: Assign majority class among K neighbors\n   For Regression: Compute average of K neighbors' values\n5. Return prediction\n\nDistance Metric (Euclidean):\nd = âˆš[(xâ‚-xâ‚‚)Â² + (yâ‚-yâ‚‚)Â²]\n\nKey Properties:\nâ€¢ No training phase (lazy learner)\nâ€¢ Simple to implement\nâ€¢ Works well with small, clean datasets\nâ€¢ Sensitive to irrelevant features and scale\n\nAdvantage: No training time, naturally handles multi-class\nDisadvantage: Slow prediction (calculates all distances), needs feature scaling\n\nExample: Predicting health class based on Height and Weight using K=3 nearest samples." },
+      { q: "What is model based clustering?", a: "Model-Based Clustering assumes data is generated from a mixture of probability distributions. Each cluster is modeled as a separate statistical distribution.\n\nMost Common: Gaussian Mixture Model (GMM)\nâ€¢ Assumes each cluster follows a Gaussian (Normal) distribution\nâ€¢ Uses Expectation-Maximization (EM) algorithm\n\nEM Algorithm Steps:\n1. E-step (Expectation): Calculate probability of each point belonging to each cluster\n2. M-step (Maximization): Update cluster parameters (mean Î¼, covariance Î£, weight Ï€)\n3. Repeat until convergence\n\nAdvantages:\nâ€¢ Soft assignment (points have probability of belonging to each cluster)\nâ€¢ Handles ellipsoidal cluster shapes\nâ€¢ More flexible than K-Means\n\nDisadvantages:\nâ€¢ Computationally expensive\nâ€¢ Assumes specific distribution\nâ€¢ Sensitive to initialization\n\nApplications: Speech recognition, image segmentation, anomaly detection." },
+      { q: "What is outliers in machine learning? What is the importance of outliers?", a: "Outliers in ML:\nData points that significantly differ from the majority of the dataset. They lie far outside the normal range of values.\n\nCauses:\nâ€¢ Measurement errors\nâ€¢ Data entry mistakes\nâ€¢ Natural rare events\nâ€¢ Sensor malfunction\n\nDetection Methods:\nâ€¢ Z-score: |z| = |x-Î¼|/Ïƒ > 3 â†’ outlier\nâ€¢ IQR: below Q1-1.5Ã—IQR or above Q3+1.5Ã—IQR\nâ€¢ Box plots, scatter plots\nâ€¢ DBSCAN algorithm labels noise points as outliers\n\nImportance of Outlier Analysis:\n1. Model accuracy: Outliers can bias model training (especially linear regression)\n2. Fraud detection: Unusual transactions = fraudulent activity\n3. Network intrusion: Abnormal traffic = security breach\n4. Medical diagnosis: Abnormal readings = disease\n5. Data quality: Outliers reveal data collection errors\n6. Business insights: Bestselling product might appear as outlier in sales data\n\nHandling: Remove (if error) or keep (if genuine), use robust algorithms (tree-based methods are less sensitive)." },
+      { q: "What is a Decision Tree? Explain how decision trees are constructed using splitting criteria.", a: "Decision Tree: A flowchart-like structure where each internal node = feature test, each branch = outcome, leaf node = final prediction.\n\nConstruction Process:\n1. Start with entire dataset at root\n2. Choose best feature to split using splitting criterion\n3. Split data into subsets based on feature values\n4. Recursively repeat for each subset\n5. Stop when: all samples in node have same class, no features left, or stopping criterion met (max depth, min samples)\n\nSplitting Criteria:\n\n1. Information Gain (ID3):\n   IG = Entropy(parent) - Î£[weighted Entropy(child)]\n   Entropy(S) = -Î£ pÃ—logâ‚‚(p)\n   Select feature with highest IG\n\n2. Gini Impurity (CART):\n   Gini = 1 - Î£ pÂ²\n   Select feature with lowest Gini impurity\n   Gini=0 means pure node\n\n3. Gain Ratio (C4.5):\n   Corrects bias of IG toward many-valued attributes\n   GainRatio = IG / SplitInfo\n\nAdvantages: Interpretable, handles both numeric and categorical\nDisadvantages: Prone to overfitting â†’ use pruning or Random Forest" },
+      { q: "Explain how distance measures influence clustering results.", a: "Distance measures define 'similarity' between data points in clustering. The choice of distance metric fundamentally affects cluster shape and quality.\n\n1. Euclidean Distance:\nd = âˆš[Î£(xáµ¢-yáµ¢)Â²]\nâ€¢ Measures straight-line distance\nâ€¢ Works well for compact, spherical clusters\nâ€¢ Sensitive to scale â†’ needs normalization\n\n2. Manhattan Distance (City Block):\nd = Î£|xáµ¢-yáµ¢|\nâ€¢ Less sensitive to outliers than Euclidean\nâ€¢ Better for high-dimensional data\n\n3. Minkowski Distance:\nd = [Î£|xáµ¢-yáµ¢|^p]^(1/p)\nâ€¢ Generalization: p=1 (Manhattan), p=2 (Euclidean)\n\n4. Cosine Similarity:\nd = 1 - (AÂ·B)/(|A||B|)\nâ€¢ Measures angle between vectors\nâ€¢ Best for text/document clustering\nâ€¢ Scale-invariant\n\n5. Hamming Distance:\nâ€¢ For categorical/binary data\nâ€¢ Counts positions where values differ\n\nInfluence on Clustering:\nâ€¢ Euclidean â†’ K-Means forms spherical clusters\nâ€¢ Cosine â†’ better for high-dimensional sparse data\nâ€¢ Wrong metric can merge/separate wrong clusters\nâ€¢ Always normalize data before using Euclidean distance\n\nConclusion: Choosing the right distance metric based on data type and cluster shape assumption is crucial for meaningful results." }
+    ],
+    marks10: [
+      { q: "Using ID3 draw the proper decision tree for the given dataset.", a: "ID3 Algorithm â€“ Decision Tree Construction\n\nDataset: A1 (true/false), A2 (hot/cold), A3 (high/normal) â†’ Classification (yes/no)\n\nStep 1: Calculate Entropy of whole dataset\nâ€¢ Total = 10 instances: Yes=6, No=4\nâ€¢ E(S) = -(6/10)logâ‚‚(6/10) - (4/10)logâ‚‚(4/10)\nâ€¢ E(S) = -(0.6Ã—(-0.737)) - (0.4Ã—(-1.322))\nâ€¢ E(S) = 0.442 + 0.529 = 0.971\n\nStep 2: Information Gain for each attribute\n\nFor A1 (true=6, false=4):\nâ€¢ E(true): instances 1,2,6,7,8 â†’ Yes=2,No=4 â†’ E=-2/6log(2/6)-4/6log(4/6)=0.918 (wait, let's use 6 true instances from data)\nâ€¢ Recount: A1=true: rows 1,2,6,7,8 (5 rows; No=4,Yes=1) + row with true,hot,normal,yes\nâ€¢ E(true)= -(1/6)log(1/6)-(5/6)log(5/6) â‰ˆ 0.65\nâ€¢ E(false): rows 3,4,5,9,10 â†’ Yes=5,No=0 â†’ E=0\nâ€¢ IG(A1) = 0.971 - (6/10Ã—0.65 + 4/10Ã—0) = 0.971 - 0.39 = 0.581\n\nFor A3 (high vs normal):\nâ€¢ High: rows 1,2,3,6,7 â†’ Yes=1+1(row3)+0+0+0; No=1,1,0,1,1 â†’ count: Yes=2,No=4 if 6 records\nâ€¢ Normal: rows 4,5,8,9,10 â†’ Yes=5, No=1\n\nDecision Tree Structure (A1 is root, highest IG):\n\n              [A1]\n            /       \\\n         true        false\n           |           |\n         [A2]        YES âœ“ (all yes)\n        /    \\\n      hot     cold\n       |        |\n      [A3]      NO\n      /  \\\n    high  normal\n     |      |\n     NO    YES\n\nTree terminates when all nodes are pure (all yes or all no).\nID3 selects attribute with maximum Information Gain at each node." },
+      { q: "Using KNN classification predict the class when height=170 and weight=50, K=3.", a: "KNN Algorithm â€“ Predict class for (Height=170, Weight=50), K=3\n\nTraining Data:\nHeight | Weight | Class\n167    | 51     | underweight\n182    | 62     | normal\n176    | 69     | normal\n173    | 64     | normal\n172    | 65     | normal\n174    | 56     | underweight\n169    | 58     | normal\n173    | 57     | normal\n\nStep 1: Calculate Euclidean Distance from (170, 50) to each point\nd = âˆš[(Hâ‚-Hâ‚‚)Â² + (Wâ‚-Wâ‚‚)Â²]\n\nd(167,51) = âˆš[(170-167)Â² + (50-51)Â²] = âˆš[9+1] = âˆš10 = 3.16\nd(182,62) = âˆš[(170-182)Â² + (50-62)Â²] = âˆš[144+144] = âˆš288 = 16.97\nd(176,69) = âˆš[(170-176)Â² + (50-69)Â²] = âˆš[36+361] = âˆš397 = 19.92\nd(173,64) = âˆš[(170-173)Â² + (50-64)Â²] = âˆš[9+196] = âˆš205 = 14.32\nd(172,65) = âˆš[(170-172)Â² + (50-65)Â²] = âˆš[4+225] = âˆš229 = 15.13\nd(174,56) = âˆš[(170-174)Â² + (50-56)Â²] = âˆš[16+36] = âˆš52 = 7.21\nd(169,58) = âˆš[(170-169)Â² + (50-58)Â²] = âˆš[1+64] = âˆš65 = 8.06\nd(173,57) = âˆš[(170-173)Â² + (50-57)Â²] = âˆš[9+49] = âˆš58 = 7.62\n\nStep 2: Sort by distance and select K=3 nearest:\n1. (167, 51) â†’ 3.16 â†’ underweight\n2. (174, 56) â†’ 7.21 â†’ underweight\n3. (173, 57) â†’ 7.62 â†’ normal\n\nStep 3: Majority voting:\nâ€¢ underweight = 2\nâ€¢ normal = 1\n\nPrediction: underweight (majority class among K=3 neighbors)\n\nConclusion: Person with Height=170cm and Weight=50kg is classified as UNDERWEIGHT." },
+      { q: "Explain the Sigmoid function used in Logistic Regression and its role in classification.", a: "Sigmoid Function in Logistic Regression:\n\nDefinition:\nThe Sigmoid (Logistic) function is an S-shaped curve that maps any real-valued number to a value between 0 and 1.\n\nFormula: Ïƒ(z) = 1 / (1 + e^(-z))\nWhere z = aâ‚€ + aâ‚xâ‚ + aâ‚‚xâ‚‚ + ... (linear combination)\n\nProperties:\nâ€¢ Output range: (0, 1) â€“ represents probability\nâ€¢ Ïƒ(0) = 0.5 (decision boundary)\nâ€¢ As z â†’ +âˆž: Ïƒ(z) â†’ 1\nâ€¢ As z â†’ -âˆž: Ïƒ(z) â†’ 0\nâ€¢ Derivative: Ïƒ'(z) = Ïƒ(z)(1-Ïƒ(z)) â€“ smooth gradient\n\nRole in Classification:\n1. Probability Mapping: Converts linear output to probability between 0 and 1\n2. Decision Rule:\n   â€¢ P(y=1|x) â‰¥ 0.5 â†’ Class 1 (positive)\n   â€¢ P(y=1|x) < 0.5 â†’ Class 0 (negative)\n3. Binary Output: Threshold at 0.5 gives binary prediction\n4. Non-linearity: Handles non-linear decision boundaries indirectly\n\nWhy not Linear Regression for classification?\nâ€¢ Linear regression can predict values outside [0,1]\nâ€¢ Not interpretable as probabilities\nâ€¢ Sigmoid ensures valid probability output\n\nLoss Function: Binary Cross-Entropy\nL = -[yÃ—log(Å·) + (1-y)Ã—log(1-Å·)]\nMinimized during training using Gradient Descent.\n\nApplications: Medical diagnosis, email spam, credit scoring, ad click prediction." },
+      { q: "Using logistic regression classify whether student will pass or fail when study hour=15. aâ‚€=-1.2, aâ‚=0.9.", a: "Logistic Regression â€“ Pass/Fail Prediction\n\nGiven: aâ‚€ = -1.2, aâ‚ = 0.9, predict for x = 15 hours\n\nStep 1: Calculate z (linear part)\nz = aâ‚€ + aâ‚ Ã— x\nz = -1.2 + 0.9 Ã— 15\nz = -1.2 + 13.5\nz = 12.3\n\nStep 2: Apply Sigmoid function\nP(pass) = 1 / (1 + e^(-z))\nP(pass) = 1 / (1 + e^(-12.3))\nP(pass) = 1 / (1 + 0.0000045)\nP(pass) = 1 / 1.0000045\nP(pass) â‰ˆ 0.9999955 â‰ˆ 1.0\n\nDecision: P(pass) = 0.9999 â‰¥ 0.5 â†’ Student will PASS\n\nVerification with training data:\nx=2: z=-1.2+1.8=0.6, P=0.645 â†’ Predicted Pass, Actual Fail (threshold issue at low hours)\nx=5: z=-1.2+4.5=3.3, P=0.964 â†’ Pass âœ“\n\nThe sigmoid curve shifts from Fail to Pass around study hours â‰ˆ 1.33 (where z=0)\nDecision boundary: x = -aâ‚€/aâ‚ = 1.2/0.9 = 1.33 hours\n\nConclusion: A student studying 15 hours has near-100% probability of passing (Pâ‰ˆ0.9999), so the classification is PASS." },
+      { q: "Explain K means clustering algorithm with the help of a flow chart and describe its advantages and disadvantages.", a: "K-Means Clustering Algorithm:\n\nObjective: Partition n data points into K clusters to minimize intra-cluster variance.\n\nAlgorithm Steps:\n1. INPUT: Dataset, K (number of clusters)\n2. Initialize: Randomly select K data points as initial centroids\n3. Assignment Step: For each data point, calculate distance to all K centroids; assign point to nearest centroid\n4. Update Step: Recalculate centroid of each cluster as mean of all assigned points\n5. Convergence Check: If centroids didn't change (or change < threshold) â†’ STOP; else go to Step 3\n6. OUTPUT: K clusters with final assignments\n\nFlowchart:\nSTART â†’ Select K â†’ Initialize centroids â†’ Assign points to nearest centroid â†’ Update centroids â†’ Centroids changed? Yesâ†’Repeat; Noâ†’END\n\nDistance Metric: Euclidean d = âˆš[Î£(xáµ¢-cáµ¢)Â²]\n\nObjective Function: Minimize WCSS = Î£â‚– Î£â‚“âˆˆCâ‚– ||x - Î¼â‚–||Â²\n\nAdvantages:\nâ€¢ Simple and easy to implement\nâ€¢ Scales well to large datasets\nâ€¢ Guaranteed to converge\nâ€¢ Works well when clusters are spherical and equal-sized\nâ€¢ Computationally efficient O(nKt) where t=iterations\n\nDisadvantages:\nâ€¢ Must specify K in advance\nâ€¢ Sensitive to initial centroid placement (random restarts help)\nâ€¢ Struggles with non-spherical, irregular cluster shapes\nâ€¢ Sensitive to outliers (outliers distort centroid)\nâ€¢ Not suitable for categorical data\nâ€¢ May converge to local optimum\n\nVariants: K-Means++ (smart initialization), Mini-Batch K-Means (large data)" },
+      { q: "Using K-means clustering algorithm divide the given dataset into two clusters. Data: (1,1),(1.5,2),(3,4),(5,7),(3.5,5),(4.5,5),(3.5,4.5)", a: "K-Means with K=2, Dataset: P1(1,1), P2(1.5,2), P3(3,4), P4(5,7), P5(3.5,5), P6(4.5,5), P7(3.5,4.5)\n\nIteration 1:\nInitial centroids: C1=(1,1), C2=(5,7)\n\nAssign each point to nearest centroid:\nP1(1,1): d(C1)=0, d(C2)=7.21 â†’ C1\nP2(1.5,2): d(C1)=1.80, d(C2)=6.10 â†’ C1\nP3(3,4): d(C1)=3.61, d(C2)=3.61 â†’ tie â†’ C1\nP4(5,7): d(C1)=7.21, d(C2)=0 â†’ C2\nP5(3.5,5): d(C1)=4.61, d(C2)=2.50 â†’ C2\nP6(4.5,5): d(C1)=5.32, d(C2)=2.06 â†’ C2\nP7(3.5,4.5): d(C1)=4.27, d(C2)=3.04 â†’ C2\n\nCluster 1: {P1,P2,P3}  Cluster 2: {P4,P5,P6,P7}\n\nUpdate centroids:\nC1 = ((1+1.5+3)/3, (1+2+4)/3) = (5.5/3, 7/3) = (1.83, 2.33)\nC2 = ((5+3.5+4.5+3.5)/4, (7+5+5+4.5)/4) = (16.5/4, 21.5/4) = (4.13, 5.38)\n\nIteration 2:\nReassign with new centroids C1=(1.83,2.33), C2=(4.13,5.38):\nP1â†’C1, P2â†’C1, P3â†’C2 (closer to C2 now), P4â†’C2, P5â†’C2, P6â†’C2, P7â†’C2\n\nCluster 1: {P1(1,1), P2(1.5,2)}\nCluster 2: {P3(3,4), P4(5,7), P5(3.5,5), P6(4.5,5), P7(3.5,4.5)}\n\nFinal Centroids (stable):\nC1 = (1.25, 1.5)\nC2 = (4.0, 5.1)\n\nResult: Cluster 1 contains points near origin (low x,y); Cluster 2 contains points in upper-right region." },
+      { q: "Using NaÃ¯ve Bayes predict whether person will play tennis for: Outlook=Sunny, Temperature=Cool, Humidity=High, Wind=Strong.", a: "NaÃ¯ve Bayes â€“ Play Tennis Prediction\n\nDataset: 14 instances, Play=Yes: 9, Play=No: 5\n\nPrior Probabilities:\nP(Yes) = 9/14 = 0.643\nP(No) = 5/14 = 0.357\n\nConditional Probabilities:\n\nP(Outlook=Sunny | Yes) = 2/9 = 0.222\nP(Outlook=Sunny | No) = 3/5 = 0.600\n\nP(Temperature=Cool | Yes) = 3/9 = 0.333\nP(Temperature=Cool | No) = 1/5 = 0.200\n\nP(Humidity=High | Yes) = 3/9 = 0.333\nP(Humidity=High | No) = 4/5 = 0.800\n\nP(Wind=Strong | Yes) = 3/9 = 0.333\nP(Wind=Strong | No) = 3/5 = 0.600\n\nCompute Posterior Probabilities:\n\nP(Yes|X) âˆ P(Yes) Ã— P(Sun|Yes) Ã— P(Cool|Yes) Ã— P(High|Yes) Ã— P(Strong|Yes)\n= 0.643 Ã— 0.222 Ã— 0.333 Ã— 0.333 Ã— 0.333\n= 0.643 Ã— 0.008185 (product of likelihoods)\n= 0.00527 (approximately)\n\nP(No|X) âˆ P(No) Ã— P(Sun|No) Ã— P(Cool|No) Ã— P(High|No) Ã— P(Strong|No)\n= 0.357 Ã— 0.600 Ã— 0.200 Ã— 0.800 Ã— 0.600\n= 0.357 Ã— 0.0576\n= 0.02056\n\nNormalization:\nP(Yes|X) = 0.00527/(0.00527+0.02056) = 0.00527/0.02583 = 0.204 = 20.4%\nP(No|X) = 0.02056/0.02583 = 0.796 = 79.6%\n\nDecision: P(No|X) > P(Yes|X)\n\nPrediction: Person will NOT play tennis (79.6% probability)" },
+      { q: "Explain how the Linear Regression algorithm can be used to predict pizza price based on pizza size. Predict price of a 16-inch pizza.", a: "Linear Regression â€“ Pizza Price Prediction\n\nDataset:\nSize (x): 6, 8, 10, 12, 14\nPrice (y): 120, 160, 200, 240, 280\n\nn = 5\n\nStep 1: Calculate required sums\nÎ£x = 6+8+10+12+14 = 50\nÎ£y = 120+160+200+240+280 = 1000\nÎ£xÂ² = 36+64+100+144+196 = 540\nÎ£xy = 6Ã—120+8Ã—160+10Ã—200+12Ã—240+14Ã—280\n    = 720+1280+2000+2880+3920 = 10800\n\nStep 2: Calculate slope (aâ‚)\naâ‚ = [n(Î£xy) - (Î£x)(Î£y)] / [n(Î£xÂ²) - (Î£x)Â²]\naâ‚ = [5Ã—10800 - 50Ã—1000] / [5Ã—540 - 50Â²]\naâ‚ = [54000 - 50000] / [2700 - 2500]\naâ‚ = 4000 / 200\naâ‚ = 20\n\nStep 3: Calculate intercept (aâ‚€)\nxÌ„ = 50/5 = 10\nÈ³ = 1000/5 = 200\naâ‚€ = È³ - aâ‚Ã—xÌ„ = 200 - 20Ã—10 = 200 - 200 = 0\n\nRegression Equation: Price = 0 + 20 Ã— Size = 20x\n\nStep 4: Predict price for 16-inch pizza\nPrice = 20 Ã— 16 = â‚¹320\n\nInterpretation:\nâ€¢ Each additional inch increases price by â‚¹20\nâ€¢ The relationship is perfectly linear (RÂ²=1 for this data)\nâ€¢ 16-inch pizza predicted price = â‚¹320\n\nThis represents a clear proportional relationship between size and price." },
+      { q: "Explain the working of Support Vector Machine (SVM) algorithm with an example.", a: "Support Vector Machine (SVM):\n\nCore Concept:\nSVM finds the optimal hyperplane that maximally separates two classes. It maximizes the margin between the nearest data points of each class.\n\nKey Terms:\nâ€¢ Hyperplane: Decision boundary in n-dimensional space (line in 2D)\nâ€¢ Support Vectors: Data points closest to the hyperplane (define the margin)\nâ€¢ Margin: Distance between hyperplane and nearest support vectors; SVM maximizes this\nâ€¢ Hard Margin: All points correctly classified (linearly separable)\nâ€¢ Soft Margin: Allows some misclassification (C parameter controls trade-off)\n\nMathematical Formulation:\nHyperplane: wÂ·x + b = 0\nPositive class: wÂ·x + b â‰¥ +1\nNegative class: wÂ·x + b â‰¤ -1\nMargin = 2/||w||\nObjective: Minimize ||w||Â² subject to constraints\n\nKernel Trick (Non-linear SVM):\nWhen data is not linearly separable, kernel functions map data to higher dimensions:\nâ€¢ Linear Kernel: K(x,y) = xÂ·y\nâ€¢ RBF/Gaussian: K(x,y) = exp(-Î³||x-y||Â²)\nâ€¢ Polynomial: K(x,y) = (xÂ·y + 1)^d\n\nExample â€“ Email Spam Detection:\nâ€¢ Features: word frequencies\nâ€¢ Classes: Spam (+1) vs Not Spam (-1)\nâ€¢ SVM finds hyperplane separating spam/non-spam emails\nâ€¢ Support vectors = borderline emails (hardest to classify)\nâ€¢ Margin maximization â†’ better generalization to new emails\n\nAdvantages:\nâ€¢ Effective in high-dimensional spaces\nâ€¢ Memory efficient (uses only support vectors)\nâ€¢ Versatile kernels handle non-linear data\nâ€¢ Works well with clear margin of separation\n\nDisadvantages:\nâ€¢ Not suitable for large datasets (slow training)\nâ€¢ Sensitive to feature scaling\nâ€¢ Choosing right kernel is tricky\nâ€¢ Black-box model (less interpretable)\n\nApplications: Image classification, bioinformatics, text categorization" }
+    ]
+  }
+};
+let currentModule = null;
+let currentMarks = null;
+
+const modules = ['1', '2', '3', '4'].map((key, index) => ({
+  key,
+  num: `Module ${key}`,
+  title: data[key].name,
+  desc: data[key].topic,
+  className: `m${index + 1}`
+}));
+
+const TTS_STORAGE_KEY = 'question-bank-tts-settings-v1';
+const ttsState = {
+  supported: 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window,
+  activeId: null,
+  voices: []
+};
+
+function getMarkGroups(moduleKey) {
+  return [
+    { value: '2', questions: data[moduleKey].marks2 || [] },
+    { value: '5', questions: data[moduleKey].marks5 || [] },
+    { value: '10', questions: data[moduleKey].marks10 || [] }
+  ].filter(group => group.questions.length > 0);
+}
+
+function markClass(mark) {
+  if (+mark === 2) return 'c2';
+  if (+mark === 5) return 'c5';
+  return 'c10';
+}
+
+function questionClass(mark) {
+  if (+mark === 2) return 'two';
+  if (+mark === 5) return 'five';
+  return 'ten';
+}
+
+function partLabel(mark) {
+  if (+mark === 2) return 'A';
+  if (+mark === 5) return 'B';
+  return 'C';
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function formatTextAsHtml(text) {
+  return escapeHtml(text).replace(/\n/g, '<br>');
+}
+
+function renderAnswerHtml(item) {
+  if (item.isCode) {
+    return `<pre><code>${escapeHtml(item.a)}</code></pre>`;
+  }
+  return formatTextAsHtml(item.a);
+}
+
+function buildHome() {
+  const grid = document.getElementById('cards-grid');
+  grid.innerHTML = '';
+
+  modules.forEach(module => {
+    const marks = getMarkGroups(module.key);
+    const chips = marks
+      .map(group => `<span class="chip ${markClass(group.value)}">${group.value} Marks x ${group.questions.length}</span>`)
+      .join('');
+
+    grid.innerHTML += `
+      <div class="mc ${module.className}" onclick="openModule('${module.key}')">
+        <div class="cn">${module.num}</div>
+        <div class="ct">${module.title}</div>
+        <div class="cd">${module.desc}</div>
+        <div class="cf">${chips}</div>
+      </div>`;
+  });
+}
+
+function openModule(key) {
+  stopSpeaking(null, 'Choose an answer and press Listen.');
+  currentModule = String(key);
+  currentMarks = null;
+
+  const module = modules.find(item => item.key === currentModule);
+  const marks = getMarkGroups(currentModule);
+
+  hide('view-home');
+  show('view-module');
+
+  document.getElementById('module-title').textContent = `${module.num} - ${module.title}`;
+  document.getElementById('module-subtitle').textContent = module.desc;
+
+  document.getElementById('marks-grid').innerHTML = marks.map(group => `
+    <div class="mkc ${questionClass(group.value)}" id="mc-${group.value}" onclick="openMarks('${group.value}')">
+      <span class="mv">${group.value}</span>
+      <span class="ml">Marks</span>
+      <div class="mc2">${group.questions.length} Questions &middot; Part ${partLabel(group.value)}</div>
+    </div>`).join('');
+
+  document.getElementById('qcontainer').innerHTML = '';
+  updateNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openMarks(mark) {
+  if (!currentModule) return;
+  stopSpeaking(null, 'Choose an answer and press Listen.');
+  currentMarks = String(mark);
+
+  document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
+  const activeCard = document.getElementById(`mc-${currentMarks}`);
+  if (activeCard) activeCard.classList.add('active');
+
+  const questions = getMarkGroups(currentModule).find(group => group.value === currentMarks)?.questions || [];
+  const type = questionClass(currentMarks);
+  const container = document.getElementById('qcontainer');
+
+  container.innerHTML = `
+    <div class="mst"><span>${currentMarks}-Mark Questions</span>- ${questions.length} Questions &middot; Part ${partLabel(currentMarks)}</div>
+    <div class="toolbar">
+      <button class="tbtn" onclick="expandAll()">&#9660; Expand All</button>
+      <button class="tbtn" onclick="collapseAll()">&#9650; Collapse All</button>
+    </div>
+    <div class="qlist">
+      ${questions.map((item, index) => `
+        <div class="qi ${type}" id="q${index}" onclick="toggleQuestion(${index})">
+          <div class="qh">
+            <span class="qn">${String.fromCharCode(65 + index)}</span>
+            <span class="qt">${formatTextAsHtml(item.q)}</span>
+            <span class="qtg">+</span>
+          </div>
+          <div class="qa" onclick="event.stopPropagation()">
+            <div class="ans-top">
+              <div class="albl">Answer</div>
+              <button class="tts-btn listen" type="button" onclick="speakAnswer(event, 'q${index}')">Listen</button>
+            </div>
+            <div class="ab">${renderAnswerHtml(item)}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  updateNav();
+  setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+function toggleQuestion(index) {
+  const item = document.getElementById(`q${index}`);
+  if (item) item.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.qi').forEach(item => item.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.qi').forEach(item => item.classList.remove('open'));
+}
+
+function goBack() {
+  stopSpeaking(null, 'Choose an answer and press Listen.');
+  if (currentMarks !== null) {
+    currentMarks = null;
+    document.getElementById('qcontainer').innerHTML = '';
+    document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
+  } else if (currentModule !== null) {
+    currentModule = null;
+    hide('view-module');
+    show('view-home');
+    document.getElementById('marks-grid').innerHTML = '';
+    document.getElementById('qcontainer').innerHTML = '';
+  }
+
+  updateNav();
+}
+
+function show(id) {
+  const element = document.getElementById(id);
+  element.style.display = 'block';
+  element.className = 'view';
+}
+
+function hide(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function goHome() {
+  stopSpeaking(null, 'Choose an answer and press Listen.');
+  currentModule = null;
+  currentMarks = null;
+  hide('view-module');
+  show('view-home');
+  document.getElementById('marks-grid').innerHTML = '';
+  document.getElementById('qcontainer').innerHTML = '';
+  updateNav();
+}
+
+function goToModule() {
+  if (currentModule === null) return;
+  stopSpeaking(null, 'Choose an answer and press Listen.');
+  currentMarks = null;
+  document.getElementById('qcontainer').innerHTML = '';
+  document.querySelectorAll('.mkc').forEach(card => card.classList.remove('active'));
+  updateNav();
+}
+
+function updateNav() {
+  const backButton = document.getElementById('back-btn');
+  const breadcrumb = document.getElementById('breadcrumb');
+
+  if (currentModule === null) {
+    backButton.style.display = 'none';
+    breadcrumb.innerHTML = '<span class="active">Home</span>';
+    return;
+  }
+
+  backButton.style.display = 'flex';
+  const module = modules.find(item => item.key === currentModule);
+
+  if (currentMarks === null) {
+    breadcrumb.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">&rsaquo;</span><span class="active">${module.num}</span>`;
+    return;
+  }
+
+  breadcrumb.innerHTML = `<span class="lnk" onclick="goHome()">Home</span><span class="sep">&rsaquo;</span><span class="lnk" onclick="goToModule()">${module.num}</span><span class="sep">&rsaquo;</span><span class="active">${currentMarks} Marks</span>`;
+}
+
+function updateTTSStatus(message) {
+  const status = document.getElementById('tts-status');
+  if (status) status.textContent = message;
+}
+
+function clearSpeakingState() {
+  if (!ttsState.activeId) return;
+  const active = document.getElementById(ttsState.activeId);
+  if (active) active.classList.remove('speaking');
+  ttsState.activeId = null;
+}
+
+function setSpeakingState(questionId) {
+  clearSpeakingState();
+  const active = document.getElementById(questionId);
+  if (active) active.classList.add('speaking');
+  ttsState.activeId = questionId;
+}
+
+function getTTSSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(TTS_STORAGE_KEY) || '{}');
+    return {
+      voice: saved.voice || '',
+      rate: saved.rate || '1'
+    };
+  } catch (error) {
+    return { voice: '', rate: '1' };
+  }
+}
+
+function updateRateLabel(value) {
+  const label = document.getElementById('tts-rate-value');
+  if (label) label.textContent = `${Number(value).toFixed(1)}x`;
+}
+
+function saveTTSSettings() {
+  if (!ttsState.supported) return;
+  const voiceSelect = document.getElementById('tts-voice');
+  const rateInput = document.getElementById('tts-rate');
+  if (!voiceSelect || !rateInput) return;
+
+  updateRateLabel(rateInput.value);
+  localStorage.setItem(TTS_STORAGE_KEY, JSON.stringify({
+    voice: voiceSelect.value,
+    rate: rateInput.value
+  }));
+}
+
+function populateVoiceOptions() {
+  if (!ttsState.supported) return;
+  const voiceSelect = document.getElementById('tts-voice');
+  if (!voiceSelect) return;
+
+  const settings = getTTSSettings();
+  const voices = window.speechSynthesis.getVoices().slice().sort((a, b) => a.name.localeCompare(b.name));
+  ttsState.voices = voices;
+
+  voiceSelect.innerHTML = '';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Default Browser Voice';
+  voiceSelect.appendChild(defaultOption);
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI;
+    option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' - default' : ''}`;
+    voiceSelect.appendChild(option);
+  });
+
+  voiceSelect.value = voices.some(voice => voice.voiceURI === settings.voice) ? settings.voice : '';
+  saveTTSSettings();
+}
+
+function getSpeakableText(answerElement) {
+  const clone = answerElement.cloneNode(true);
+  return (clone.textContent || '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s([,.;!?])/g, '$1')
+    .trim();
+}
+
+function speakAnswer(event, questionId) {
+  if (event) event.stopPropagation();
+  if (!ttsState.supported) {
+    updateTTSStatus('Text-to-speech is not supported in this browser.');
+    return;
+  }
+
+  const questionElement = document.getElementById(questionId);
+  const answerElement = questionElement ? questionElement.querySelector('.ab') : null;
+  if (!answerElement) return;
+
+  const spokenText = getSpeakableText(answerElement);
+  if (!spokenText) {
+    updateTTSStatus('This answer has no readable text.');
+    return;
+  }
+
+  const voiceSelect = document.getElementById('tts-voice');
+  const rateInput = document.getElementById('tts-rate');
+  const questionLabel = (questionElement.querySelector('.qt')?.textContent || 'Selected answer').trim();
+
+  window.speechSynthesis.cancel();
+  clearSpeakingState();
+
+  const utterance = new SpeechSynthesisUtterance(spokenText);
+  const selectedVoice = ttsState.voices.find(voice => voice.voiceURI === voiceSelect?.value);
+  if (selectedVoice) utterance.voice = selectedVoice;
+  utterance.rate = parseFloat(rateInput?.value || '1');
+
+  utterance.onstart = () => {
+    setSpeakingState(questionId);
+    updateTTSStatus(`Reading: ${questionLabel}`);
+  };
+
+  utterance.onend = () => {
+    clearSpeakingState();
+    updateTTSStatus(`Finished reading: ${questionLabel}`);
+  };
+
+  utterance.onerror = () => {
+    clearSpeakingState();
+    updateTTSStatus('Unable to read this answer in the current browser.');
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function pauseSpeaking(event) {
+  if (event) event.stopPropagation();
+  if (!ttsState.supported) return;
+  if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+    window.speechSynthesis.pause();
+    updateTTSStatus('Reading paused.');
+  }
+}
+
+function resumeSpeaking(event) {
+  if (event) event.stopPropagation();
+  if (!ttsState.supported) return;
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+    updateTTSStatus('Reading resumed.');
+  }
+}
+
+function stopSpeaking(event, message = 'Choose an answer and press Listen.') {
+  if (event) event.stopPropagation();
+  if (!ttsState.supported) return;
+  window.speechSynthesis.cancel();
+  clearSpeakingState();
+  updateTTSStatus(message);
+}
+
+function initTTS() {
+  const panel = document.getElementById('tts-panel');
+  if (!panel) return;
+
+  if (!ttsState.supported) {
+    panel.innerHTML = '<div class="tts-unsupported">Text-to-speech is not supported in this browser.</div>';
+    return;
+  }
+
+  const settings = getTTSSettings();
+  const voiceSelect = document.getElementById('tts-voice');
+  const rateInput = document.getElementById('tts-rate');
+
+  if (rateInput) {
+    rateInput.value = settings.rate;
+    updateRateLabel(rateInput.value);
+    rateInput.addEventListener('input', saveTTSSettings);
+  }
+
+  if (voiceSelect) voiceSelect.addEventListener('change', saveTTSSettings);
+
+  populateVoiceOptions();
+  window.speechSynthesis.onvoiceschanged = populateVoiceOptions;
+  updateTTSStatus('Choose an answer and press Listen.');
+  window.addEventListener('beforeunload', () => stopSpeaking(null, ''));
+}
+
+buildHome();
+updateNav();
+initTTS();
+</script>
+</body>
+</html>
